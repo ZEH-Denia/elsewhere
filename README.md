@@ -4,7 +4,7 @@
 
 **组员从这里开始：[团队快速了解（约三分钟）](docs/团队快速了解.md)**，了解产品体验、当前进度、团队分工与可参与的工作。
 
-GitHub 私有仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)。异地获取项目与更新方式见 [GitHub 协作入门](docs/GITHUB_COLLABORATION.md)。
+GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，当前为公开仓库（2026-11-16 实查）。异地获取项目与更新方式见 [GitHub 协作入门](docs/GITHUB_COLLABORATION.md)。
 
 ## 当前状态
 
@@ -27,6 +27,7 @@ GitHub 私有仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhe
 | [产品定义](docs/PRODUCT.md) | MVP 体验与范围 |
 | [技术方案](docs/ARCHITECTURE.md) | 技术约束与演进方向 |
 | [路线图](docs/ROADMAP.md) | 顺序、里程碑与进入条件 |
+| [开发与参赛详细计划](docs/DETAILED_PLAN.md) | 逐日排期、分支剧情、任务门槛、验证与提交安排 |
 | [项目现状](docs/PROJECT_STATUS.md) | 检查证据、已完成事项和未验证事项 |
 | [原始交接](CODEX_HANDOFF.md) | 接管依据，保持原文 |
 
@@ -34,4 +35,4 @@ GitHub 私有仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhe
 
 待 TASK-001 落地后由 Qoder 补充安装、开发、类型检查、构建和预览的**实际命令**、Node 版本与访问地址。当前没有 `package.json`，不要将预期命令当作已验证命令。
 
-MVP 不要求用户提供 API Key，也不要求配置后端。已连接 GitHub 私有远程仓库，本次团队授权上传初始文档；后续提交、推送与合并按任务授权执行，公开部署另需授权。
+MVP 不要求用户提供 API Key，也不要求配置后端。团队已持续授权每轮改动完成并检查后自动提交、推送：指挥文档同步 main，Qoder 开发与返修同步任务分支。代码合并 main、网站部署与赛事投稿按协作协议另行批准。

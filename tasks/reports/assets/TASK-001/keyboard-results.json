@@ -1,0 +1,28 @@
+{
+  "tabToStart": {
+    "active": "开始体验",
+    "focusVisible": true,
+    "outline": "rgb(88, 228, 214) solid 2px"
+  },
+  "enterStart": {
+    "heading": "如果当年选择了音乐，你现在会在哪里？",
+    "active": "如果当年选择了音乐，你现在会在哪里？"
+  },
+  "tabToReturn": {
+    "active": "返回首页",
+    "focusVisible": true,
+    "outline": "rgb(88, 228, 214) solid 2px"
+  },
+  "spaceReturn": {
+    "heading": "Elsewhere\n未接来电",
+    "active": "开始体验"
+  },
+  "spaceRestart": {
+    "heading": "如果当年选择了音乐，你现在会在哪里？",
+    "active": "如果当年选择了音乐，你现在会在哪里？"
+  },
+  "enterReturn": {
+    "heading": "Elsewhere\n未接来电",
+    "active": "开始体验"
+  }
+}

@@ -8,7 +8,7 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 ## 当前状态
 
-2026-11-16 接管时仅有交接文档。现已建立本地 Git 仓库与协作文档；**应用尚未开发，当前不能启动网页**。TASK-001 等待 Qoder IDE 执行，尚无执行报告或验收结论。
+TASK-001 已在 `task-001` 分支实现 React 工程、神秘首页，以及“开始体验 → 来电前言 → 返回首页”的可重复交互。当前仅交付这一入口，完整来电、剧情选择、双时间线与结局尚未实现；执行结果见 [TASK-001 报告](tasks/reports/TASK-001.md)，仍需 Codex 审核。
 
 ## 在 Qoder IDE 中开始
 
@@ -37,6 +37,21 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 ## 本地运行
 
-待 TASK-001 落地后由 Qoder 补充安装、开发、类型检查、构建和预览的**实际命令**、Node 版本与访问地址。当前没有 `package.json`，不要将预期命令当作已验证命令。
+工程使用 React、TypeScript、Vite 与 Tailwind CSS，包管理器为 npm。`package.json` 遵循 Vite 的运行要求：Node.js 20 系列需 20.19.0 或更高版本，其他版本需 22.12.0 或更高版本；本轮实际使用 Node.js v24.16.0、npm 11.13.0。
+
+```bash
+npm ci
+npm run dev
+```
+
+开发服务默认地址为 `http://127.0.0.1:5173/`。另开终端可执行：
+
+```bash
+npm run typecheck
+npm run build
+npm run preview
+```
+
+生产构建输出到 `dist/`（不提交），预览服务默认地址为 `http://127.0.0.1:4173/`。当前版本不需要 API Key、后端、账号或远程素材，刷新页面会回到首页。
 
 MVP 不要求用户提供 API Key，也不要求配置后端。团队已持续授权每轮改动完成并检查后自动提交、推送：指挥文档同步 main，Qoder 开发与返修同步任务分支。代码合并 main、网站部署与赛事投稿按协作协议另行批准。

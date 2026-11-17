@@ -1,0 +1,19 @@
+{
+  "pointerCycle": [
+    "Elsewhere\n未接来电",
+    "如果当年选择了音乐，你现在会在哪里？",
+    "Elsewhere\n未接来电",
+    "如果当年选择了音乐，你现在会在哪里？"
+  ],
+  "secondIntro": {
+    "buttonCount": 1,
+    "buttonText": "返回首页",
+    "loadingTextPresent": false
+  },
+  "narrowScroll": {
+    "scrollY": 264,
+    "maxScroll": 264,
+    "horizontalOverflow": false,
+    "footerIntersectsViewport": true
+  }
+}

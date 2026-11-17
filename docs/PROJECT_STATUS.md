@@ -2,7 +2,7 @@
 
 最近检查日期：2026-11-17（Asia/Shanghai）；接管基线日期：2026-11-16。项目目录：`/Users/zeh/Documents/elsewhere`。
 
-当前摘要：GitHub 为公开仓库。TASK-001 已 DONE / PASS 并归档；TASK-002 的 task-002 分支提交 `167b62a` 已实现美化和首通来电，Codex 独立审查为 **FIX / IN_PROGRESS**：确认结束通话回首页后焦点落在 BODY，需 Qoder 按 R1 返修。main 仍保留 TASK-001 应用，未将 TASK-002 实现合并、部署或视为完整 MVP。以下保留历史记录，当前状态以本摘要和当前任务为准。
+当前摘要：TASK-001 和 TASK-002 均已 PASS；TASK-002 的 R1 返修提交 `2f81fce` 已独立复审通过。开发实现位于 task-002，main 保留 TASK-001 应用；等待团队批准下一任务和代码合并。
 
 ## 接管时实查结果
 
@@ -35,10 +35,10 @@
 
 | 项目 | 状态 |
 | --- | --- |
-| 当前任务 | TASK-002 / IN_PROGRESS（FIX / R1）；TASK-001 已 PASS 并归档 |
-| 等待动作 | Qoder 在 task-002 按审查 R1 返修、复验并追加原执行报告 |
+| 当前任务 | TASK-002 / DONE（PASS）；TASK-001 已 PASS 并归档 |
+| 等待动作 | 等待团队批准下一任务和开发实现合并 |
 | Qoder 执行报告 | TASK-002 原始报告在 task-002 的 167b62a；TASK-001 最新补证在 0da563b |
-| Codex 审查报告 | TASK-001 PASS；TASK-002 FIX，见 tasks/reviews/TASK-002.md |
+| Codex 审查报告 | TASK-001、TASK-002 均 PASS，见 tasks/reviews/TASK-002.md |
 | 网页可运行性 | TASK-002 工程和两分支生产流程已独立复验，焦点需返修；main 应用仍为 TASK-001 |
 | 版本备份 | 已连接公开仓库 `ZEH-Denia/elsewhere`；详细计划、赛事补充和持续同步规则已推送并回读核查，详见 `GITHUB_CONTENT_AUDIT.md` |
 
@@ -156,3 +156,7 @@
 - 审查结论 FIX：R1 / P2，确认退出后首页焦点为 BODY；鼠标与纯键盘均复现。其他核心流程满足本轮要求，不因该局部问题重做已验收部分。
 - 原始 Qoder 开工快照与本地指定会话核查可追溯；未上传完整会话。IDE 截图、实体设备、真实读屏及原生 200% 缩放仍未验证，如实保留限制。
 - 本轮只更新审查、状态和返修交接文档，未修改业务代码；独立 4179 预览已停止，Qoder 原有服务未操作。审查同步 main 并向 task-002 合入指挥文档，不将开发合并 main。
+
+## 2026-11-17 TASK-002 R1 复审
+
+Qoder 返修提交 `2f81fce`；Codex 独立类型检查、7 项剧情测试、生产构建和浏览器确认退出焦点/取消/重新开始验证通过，审查结论 PASS。main 仅同步审查与状态文档，开发实现仍在 task-002；团队尚未批准下一任务或合并。

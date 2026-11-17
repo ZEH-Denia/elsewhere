@@ -1,6 +1,8 @@
-# TASK-002 审查：FIX
+# TASK-002 审查：PASS
 
 日期：2026-11-17（Asia/Shanghai）。审核：Codex；执行：Qoder IDE。
+
+**最终结论：PASS。** R1 已由 `2f81fce` 修复并独立复验通过；以下初审 FIX 记录保留作为历史。
 
 审核对象为 `task-002` 的 `167b62a524c9b543d2ced7c2fdfa9d30e9679639`，基线 `322130c5f74022f1f50eeb7fea85e1ccfc0f6d72`。执行报告见[该提交的原始报告](https://github.com/ZEH-Denia/elsewhere/blob/167b62a524c9b543d2ced7c2fdfa9d30e9679639/tasks/reports/TASK-002.md)。代码仍留在任务分支；本次仅写入审查与指挥文档，不合并实现、不修改业务代码。
 
@@ -68,3 +70,11 @@ Qoder 的 `qoder-opening-log.json` 只覆盖开工指令和最初读文档/切�
 ## 交还 Qoder
 
 > 请阅读 AGENTS.md、docs/COLLABORATION.md、tasks/current.md 和 tasks/reviews/TASK-002.md。先保留现场，工作区干净时更新 task-002。仅处理 R1：确认结束通话后先解除模态隔离，再可靠聚焦首页“开始体验”；保留取消/Escape 的原节点与焦点恢复。按审查要求复验并追加 tasks/reports/TASK-002.md，保留原证据，自动提交推送 task-002 后停止修改，等待 Codex 复审。不进入 TASK-003，不合并 main，不部署。
+
+## 2026-11-17 R1 复审：PASS
+
+审核对象 `2f81fce`；实际代码仅调整对话框关闭与页面焦点 effect 的顺序，其他变更为 Qoder 追加报告及证据。独立 `npm run typecheck`、`npm run test:story`（7/7）和 `npm run build` 均退出 0，`git diff --check` 通过。
+
+独立生产预览中，Escape 取消后仍停留原对话且焦点回到“结束通话”；确认结束后原生对话框关闭，焦点位于首页“开始体验”，直接按 Enter 可进入前言。Qoder 报告另提供鼠标和纯键盘、已选择后取消保留、重听及两条分支的返修复验记录。R1 关闭，AC-08 满足。实体设备、真实读屏和原生 200% 缩放仍未独立验证。
+
+TASK-002 审核通过；下一任务和合并开发实现到 main 仍须团队批准。

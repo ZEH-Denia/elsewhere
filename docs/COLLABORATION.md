@@ -55,4 +55,4 @@
 
 ## 给 Qoder 的最短指令
 
-> 请阅读 docs/QODER_START.md、AGENTS.md、docs/COLLABORATION.md 和 tasks/current.md，切换并更新 task-002，按 TASK-002 执行开发和验证。完成后写入 tasks/reports/TASK-002.md，自动提交推送 task-002，提供提交号和预览地址，停止修改，等待 Codex 审核。
+> 请阅读 AGENTS.md、docs/COLLABORATION.md、tasks/current.md 和 tasks/reviews/TASK-002.md，更新 task-002，仅按 R1 返修并复验，追加原执行报告，自动提交推送 task-002 后停止修改，等待 Codex 复审。

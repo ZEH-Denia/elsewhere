@@ -10,15 +10,15 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 2026-11-17：TASK-001 的工程、首页与可返回前言已完成并 PASS，R1 已关闭，见 [审查报告](tasks/reviews/TASK-001.md)；最新执行方记录为 [task-001 补证报告](https://github.com/ZEH-Denia/elsewhere/blob/0da563b86ea2395f8fb8efb9d083ba20335632d5/tasks/reports/TASK-001.md)。TASK-001 [已归档](tasks/archive/TASK-001.md)。
 
-团队已要求下一轮交接，当前 **TASK-002 / READY**：视觉打磨、剧情来电、接听、首段对话和一次有效选择。任务与内容稿已准备；**上述新增功能尚未开发或验收，完整剧情也未实现**。
+当前 **TASK-002 / FIX**：[task-002 的 167b62a](https://github.com/ZEH-Denia/elsewhere/commit/167b62a524c9b543d2ced7c2fdfa9d30e9679639) 已完成视觉打磨与首通来电闭环，独立检查发现确认退出后的首页焦点恢复问题，须按 [R1 审查](tasks/reviews/TASK-002.md)返修。工程检查与两条剧情路径通过；完整剧情尚未实现。main 保留已验收的 TASK-001 应用，体验新增流程请切换 task-002；未批准合并或发布。
 
 ## 在 Qoder IDE 中开始
 
 用 Qoder 打开本项目根目录，在对话中发送：
 
-> 请阅读 docs/QODER_START.md、AGENTS.md、docs/COLLABORATION.md 和 tasks/current.md，切换并更新 task-002，按 TASK-002 执行开发和验证。完成后写入 tasks/reports/TASK-002.md，自动提交推送 task-002，提供提交号和预览地址，停止修改，等待 Codex 审核。
+> 请阅读 AGENTS.md、docs/COLLABORATION.md、tasks/current.md 和 tasks/reviews/TASK-002.md，更新 task-002，仅按 R1 返修并复验，追加原执行报告，自动提交推送 task-002 后停止修改，等待 Codex 复审。
 
-当前[Qoder 开发交接入口](docs/QODER_START.md)针对 TASK-002，包含 task-002 分支操作、提交推送与交还方式。同一台电脑直接打开现有项目目录，沿用已有工程；完成交接准备不表示 Qoder 已经执行开发。
+当前[Qoder 开发交接入口](docs/QODER_START.md)针对 TASK-002，包含 task-002 分支操作、提交推送与交还方式。同一台电脑直接打开现有项目目录，沿用已有工程；当前进入同编号返修，保留已完成的实现与证据。
 
 ## 文档入口
 

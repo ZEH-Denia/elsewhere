@@ -300,6 +300,9 @@ export function getEndingId(choiceId: ChoiceId, nextStepId: NextStepId): EndingI
 export function validateOpeningStory(nodes: Record<string, OpeningNode> = openingNodes): string[] {
   const errors: string[] = []
   const records = Object.values(nodes)
+  const endingIds = choiceIds.flatMap((choiceId) => (
+    nextStepIds.map((nextStepId) => getEndingId(choiceId, nextStepId))
+  ))
 
   if (!nodes['opening-01']) errors.push('missing opening-01')
 
@@ -316,6 +319,43 @@ export function validateOpeningStory(nodes: Record<string, OpeningNode> = openin
     }
   }
 
+  for (const choiceId of choiceIds) {
+    for (const nextStepId of nextStepIds) {
+      const combination = `${choiceId}/${nextStepId}`
+      const endingId = getEndingId(choiceId, nextStepId)
+      const ending = nodes[endingId]
+
+      if (!ending) {
+        errors.push(`${combination} references missing ending ${endingId}`)
+      } else if (ending.kind !== 'end') {
+        errors.push(`${combination} ending ${endingId} is not an end node`)
+      } else if (ending.choiceId !== choiceId || ending.nextStepId !== nextStepId) {
+        errors.push(`ending ${endingId} maps ${ending.choiceId}/${ending.nextStepId}, expected ${combination}`)
+      }
+
+      const reached = new Set<string>()
+      const pending = ['opening-01']
+      for (let index = 0; index < pending.length; index += 1) {
+        const nodeId = pending[index]
+        if (reached.has(nodeId)) continue
+        const node = nodes[nodeId]
+        if (!node) continue
+        reached.add(nodeId)
+
+        const nextIds = node.kind === 'choice'
+          ? node.options
+            .filter((option) => node.id === 'first-response' ? option.id === choiceId : option.id === nextStepId)
+            .map((option) => option.feedback[0].id)
+          : node.id === 'call-farewell'
+            ? [endingId]
+            : 'next' in node && node.next ? [node.next] : []
+        pending.push(...nextIds.filter((id) => !reached.has(id)))
+      }
+
+      if (!reached.has(endingId)) errors.push(`${combination} cannot reach ending ${endingId}`)
+    }
+  }
+
   const canReachEnd = new Set(records.filter(({ kind }) => kind === 'end').map(({ id }) => id))
   if (canReachEnd.size === 0) errors.push('story has no ending')
 
@@ -327,7 +367,7 @@ export function validateOpeningStory(nodes: Record<string, OpeningNode> = openin
       const nextIds = node.kind === 'choice'
         ? node.options.map((option) => option.feedback[0].id)
         : node.id === 'call-farewell'
-          ? endings.map(({ id }) => id)
+          ? endingIds
           : 'next' in node && node.next ? [node.next] : []
       if (nextIds.some((id) => canReachEnd.has(id))) {
         canReachEnd.add(node.id)

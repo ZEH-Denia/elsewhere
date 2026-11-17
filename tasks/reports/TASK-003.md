@@ -100,3 +100,30 @@
 - 本轮测试后生产预览保留在 `http://127.0.0.1:4173/`；无扩展的临时浏览器已关闭。
 
 请 Codex 对照 `tasks/current.md` 审核。FIX 沿用 TASK-003；交还后停止修改，不自行进入下一任务。
+
+## 7. 第 1 次修复（R1）
+
+日期：2026-11-17（Asia/Shanghai）。处理 `tasks/reviews/TASK-003.md` 对 `64c6c5e` 的 R1：删除单个结局后 `validateOpeningStory` 漏报。状态：**R1 修复与本轮复验完成，等待 Codex 复审；不代表 PASS。**
+
+### 修复内容
+
+- `src/story/opening.ts`：按四个实际选择组合分别检查 `getEndingId` 的目标是否存在、是否为 `end`，以及 `choiceId` / `nextStepId` 是否与组合一致。每个组合从 `opening-01` 开始遍历，只沿该组合的首次与第二次选项前进，`call-farewell` 只连接到该组合的确定结局；目标缺失、类型或映射错误、单分支无法到达正确结束均返回带组合与结局 ID 的具体错误。通用反向可达性检查也改用同一实际结局映射，不再引用模块级 `endings` 列表代替传入图。
+- `tests/opening.test.mjs`：保留原九项测试，新增四个反例，分别删除 `regret-make-space`、破坏该结局的首次选择映射、把映射目标改为非结局节点、令 `regret-feedback-02` 回到 `regret-feedback-01` 形成单分支循环。测试同时确认未受影响的组合不被误报。
+- 原有“异常节点与不一致选择安全恢复”测试继续通过，包括未知节点回到开场、缺失第二次选择返回 `next-step`、不一致结局按两次有效选择确定，不随机选择。未修改 `src/App.tsx`、剧情文案、视觉、依赖或配置。
+
+### 修复前后对照与工程复验
+
+先只添加反例，在原校验实现上实际运行 `npm run test:story`：退出码 1，原九项通过、新四项全部失败，复现 R1 及相邻校验缺口；原始输出见 [r1-test-story-before.txt](assets/TASK-003/r1-test-story-before.txt)。随后修改校验并复跑，最终输出如下。
+
+实际环境：macOS arm64，Node.js `v24.16.0`，npm `11.13.0`，见 [r1-environment.txt](assets/TASK-003/r1-environment.txt)。命令均在 `/Users/zeh/Documents/elsewhere` 执行。
+
+| 检查 | 最终结果 | 原始输出 |
+| --- | --- | --- |
+| `npm run typecheck` | 退出码 0，`tsc --noEmit` 通过 | [r1-typecheck.txt](assets/TASK-003/r1-typecheck.txt) |
+| `npm run test:story` | 退出码 0，13/13 通过，0 failed | [r1-test-story-after.txt](assets/TASK-003/r1-test-story-after.txt) |
+| `npm run build` | 退出码 0；18 modules；CSS 20.94 kB / gzip 5.68 kB；JS 237.34 kB / gzip 74.22 kB | [r1-build.txt](assets/TASK-003/r1-build.txt) |
+| lint | `package.json` 仍未配置 lint script，未声称执行 | [package.json](../../package.json) |
+
+R1 只修改开发期剧情图校验和测试，不改变界面、状态机或浏览器运行路径，因此本轮未把静态检查写成新的浏览器体验验收，也未覆盖原四组合截图、JSON 和过程证据。首次报告中的真实生产浏览器结果继续保留；本轮构建后仅核对现有 `http://127.0.0.1:4173/` 返回 HTTP 200，未将其表述为重新完成浏览器验收。
+
+实体设备、真实读屏、原生浏览器 200% 缩放及团队主观体验仍未验证。未新增 npm 依赖，未合并 main、未部署、未进入 TASK-004。执行分支为 `task-003`；本轮提交号与远程核对结果在最终交接中提供。

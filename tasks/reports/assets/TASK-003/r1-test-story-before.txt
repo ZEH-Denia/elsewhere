@@ -1,0 +1,111 @@
+
+> elsewhere-missed-call@0.1.0 test:story
+> node --test tests/opening.test.mjs
+
+✔ 保留七条主线与首次反馈，使用指定旁白、第二次问题和共同末句 (0.653667ms)
+✔ 七条主线按序进入第一次选择，两次选择都不能被继续或跨组选项绕过 (0.20675ms)
+✔ 四个组合均实际经过第二轮反馈、共同末句并到达唯一映射结局 (0.135125ms)
+✔ 两条首次路径均可达两个第二次选项，两次选择分别改变结局且标题摘要互不重复 (0.101875ms)
+✔ 快速重复选择不会改选、跳过反馈或重复结算 (0.073375ms)
+✔ 重听重置全部进度，异常节点与不一致选择安全恢复 (0.054875ms)
+✔ 剧情引用完整，全部二十一个节点均能到达四个结束节点之一 (0.144708ms)
+✔ 剧情检查发现第二轮反馈的缺失引用 (0.112958ms)
+✔ 剧情检查发现无法到达结束的循环 (0.549834ms)
+✖ 剧情检查发现单个映射结局缺失，且不误报其他组合 (3.274708ms)
+✖ 剧情检查发现结局与两次选择的映射不一致 (0.402291ms)
+✖ 剧情检查发现映射目标不是结局节点 (0.179542ms)
+✖ 剧情检查发现单个首次分支无法结束，且另一首次分支仍可结束 (0.114958ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 9
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 170.562125
+
+✖ failing tests:
+
+test at tests/opening.test.mjs:220:1
+✖ 剧情检查发现单个映射结局缺失，且不误报其他组合 (3.274708ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(errors.includes('regret/make-space references missing ending regret-make-space'))
+
+      at TestContext.<anonymous> (file:///Users/zeh/Documents/elsewhere/tests/opening.test.mjs:224:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/opening.test.mjs:230:1
+✖ 剧情检查发现结局与两次选择的映射不一致 (0.402291ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(errors.includes('ending regret-make-space maps cherish-present/make-space, expected regret/make-space'))
+
+      at TestContext.<anonymous> (file:///Users/zeh/Documents/elsewhere/tests/opening.test.mjs:236:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/opening.test.mjs:239:1
+✖ 剧情检查发现映射目标不是结局节点 (0.179542ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(errors.includes('regret/make-space ending regret-make-space is not an end node'))
+
+      at TestContext.<anonymous> (file:///Users/zeh/Documents/elsewhere/tests/opening.test.mjs:245:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/opening.test.mjs:248:1
+✖ 剧情检查发现单个首次分支无法结束，且另一首次分支仍可结束 (0.114958ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(errors.includes('regret/make-space cannot reach ending regret-make-space'))
+
+      at TestContext.<anonymous> (file:///Users/zeh/Documents/elsewhere/tests/opening.test.mjs:254:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -216,3 +216,42 @@ test('剧情检查发现无法到达结束的循环', () => {
   assert.ok(errors.includes('story has no ending'))
   assert.ok(errors.includes('call-farewell cannot reach an ending'))
 })
+
+test('剧情检查发现单个映射结局缺失，且不误报其他组合', () => {
+  const malformed = { ...openingNodes }
+  delete malformed['regret-make-space']
+  const errors = validateOpeningStory(malformed)
+  assert.ok(errors.includes('regret/make-space references missing ending regret-make-space'))
+  assert.ok(errors.includes('regret/make-space cannot reach ending regret-make-space'))
+  assert.ok(!errors.some((error) => error.startsWith('regret/reach-out')))
+  assert.ok(!errors.some((error) => error.startsWith('cherish-present/')))
+})
+
+test('剧情检查发现结局与两次选择的映射不一致', () => {
+  const malformed = {
+    ...openingNodes,
+    'regret-make-space': { ...openingNodes['regret-make-space'], choiceId: 'cherish-present' },
+  }
+  const errors = validateOpeningStory(malformed)
+  assert.ok(errors.includes('ending regret-make-space maps cherish-present/make-space, expected regret/make-space'))
+})
+
+test('剧情检查发现映射目标不是结局节点', () => {
+  const malformed = {
+    ...openingNodes,
+    'regret-make-space': { ...openingNodes['regret-make-space'], kind: 'dialogue', next: 'opening-01' },
+  }
+  const errors = validateOpeningStory(malformed)
+  assert.ok(errors.includes('regret/make-space ending regret-make-space is not an end node'))
+})
+
+test('剧情检查发现单个首次分支无法结束，且另一首次分支仍可结束', () => {
+  const malformed = {
+    ...openingNodes,
+    'regret-feedback-02': { ...openingNodes['regret-feedback-02'], next: 'regret-feedback-01' },
+  }
+  const errors = validateOpeningStory(malformed)
+  assert.ok(errors.includes('regret/make-space cannot reach ending regret-make-space'))
+  assert.ok(errors.includes('regret/reach-out cannot reach ending regret-reach-out'))
+  assert.ok(!errors.some((error) => error.startsWith('cherish-present/')))
+})

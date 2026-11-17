@@ -2,13 +2,17 @@
 
 | 字段 | 内容 |
 | --- | --- |
-| 状态 | **READY** |
+| 状态 | **IN_PROGRESS / FIX**（初审 64c6c5e，R1 待修复） |
 | 日期 | 2026-11-17（Asia/Shanghai） |
 | 授权 | 团队在 TASK-002 PASS 后要求“准备下一步”，据此下发 TASK-003；不含合并 main、部署或参赛投稿 |
 | 执行 / 审核 | Qoder IDE / Codex |
 | 基线 | task-002 的已复审通过实现 `2f81fce` 及其后文档提交 `dba0982`；task-003 从 task-002 建立，保留全部已验收代码 |
 | 执行分支 | `task-003`；自动提交并推送本分支，未经批准不合并 main |
 | 报告 / 审查 | `tasks/reports/TASK-003.md` / `tasks/reviews/TASK-003.md` |
+
+## 初审返修
+
+2026-11-17 Codex 初审 FIX：四种结局均可正常体验，但缺失单个结局时剧情检查漏报。按 [TASK-003 审查](reviews/TASK-003.md) 处理 R1，保留原任务和证据，完成后交还复审。
 
 ## 开始前
 

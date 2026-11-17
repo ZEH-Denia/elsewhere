@@ -1,0 +1,60 @@
+{
+  "method": "CSS foreground RGB vs nearby actual JPEG background pixels, sampled using AppKit NSBitmapImageRep deviceRGB; approximate local checks, not exhaustive contrast certification.",
+  "screenshot": "home-390x844.jpg",
+  "samples": [
+    {
+      "name": "首页正文旁背景",
+      "coordinate": [
+        360,
+        238
+      ],
+      "foreground": [
+        172,
+        183,
+        201
+      ],
+      "screenshotBackground": [
+        39,
+        40,
+        69
+      ],
+      "ratio": 7.03
+    },
+    {
+      "name": "辅助说明旁背景",
+      "coordinate": [
+        360,
+        728
+      ],
+      "foreground": [
+        144,
+        152,
+        173
+      ],
+      "screenshotBackground": [
+        24,
+        34,
+        52
+      ],
+      "ratio": 5.53
+    },
+    {
+      "name": "主按钮底色",
+      "coordinate": [
+        180,
+        680
+      ],
+      "foreground": [
+        10,
+        14,
+        31
+      ],
+      "screenshotBackground": [
+        142,
+        197,
+        192
+      ],
+      "ratio": 9.95
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 # Qoder 开发交接入口
 
-交接日期：2026-11-17。当前唯一任务：**TASK-002 / READY**。TASK-001 已 PASS 并归档，不重新初始化或返修。
+交接/初审日期：2026-11-17。当前唯一任务：**TASK-002 / IN_PROGRESS（FIX / R1）**。TASK-001 已 PASS 并归档，不重新初始化或返修。
 
 ## 直接复制到 Qoder
 
 在 Qoder IDE 打开项目根目录后，发送：
 
-> 请阅读 docs/QODER_START.md、AGENTS.md、docs/COLLABORATION.md、tasks/current.md，以及任务列出的视觉方向和剧情用稿。先检查工作区，干净时 fetch 并切换、快进更新 task-002，确认当前编号为 TASK-002。沿用已有工程，只执行本任务：首页视觉打磨、前言到来电/接听/短对话、一次真实选择与反馈、重听和返回闭环。不要重建项目、扩展四结局或部署。按 AC-01～AC-10 实际验证，保存改前/改后及新增页面截图；从本轮开工保留真实 Qoder 过程截图，若无法获取则及时保留可核验的原始任务和工具日志，注明来源与限制。完成后写入 tasks/reports/TASK-002.md，自动提交推送 task-002，核对远程，回复提交号、报告路径、实际预览地址和未验证项，然后停止修改，等待 Codex 审核。
+> 请阅读 AGENTS.md、docs/COLLABORATION.md、tasks/current.md 和 tasks/reviews/TASK-002.md。先保留现场，工作区干净时更新 task-002，仅按 R1 修复确认结束通话后首页“开始体验”的焦点恢复；保留取消/Escape 与正常返回行为。按审查复验并追加 tasks/reports/TASK-002.md，保留原证据，自动提交推送 task-002 后停止修改，等待 Codex 复审。不进入 TASK-003，不合并 main，不部署。
 
 ## 开工分支与目录
 
@@ -37,4 +37,4 @@ Codex 从本轮 main 交接提交准备 task-002；首次开工不需要重装�
 
 > 审核 TASK-002。Qoder 已停止修改，提交号：填写实际已推送提交号；报告：tasks/reports/TASK-002.md。
 
-没有实际开始开发前，状态保持 READY；Codex 收到报告后再审查真实实现。
+2026-11-17 初审已完成，结论 FIX；原始开发已完成，当前仅返修 R1，未批准下一任务。

@@ -8,7 +8,7 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 ## 当前状态
 
-2026-11-16 接管时仅有交接文档。现已建立本地 Git 仓库与协作文档；**应用尚未开发，当前不能启动网页**。TASK-001 等待 Qoder IDE 执行，尚无执行报告或验收结论。
+2026-11-17：Qoder 已在 [task-001 分支](https://github.com/ZEH-Denia/elsewhere/tree/task-001)实现工程、首页和可返回的来电前言。Codex 首轮独立工程与页面检查通过，审核为 **FIX：待补 Qoder 开发过程证据**，见 [审查报告](tasks/reviews/TASK-001.md)。应用代码尚未合并 main，后续剧情未实现。
 
 ## 在 Qoder IDE 中开始
 
@@ -37,6 +37,6 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 ## 本地运行
 
-待 TASK-001 落地后由 Qoder 补充安装、开发、类型检查、构建和预览的**实际命令**、Node 版本与访问地址。当前没有 `package.json`，不要将预期命令当作已验证命令。
+应用位于 `task-001` 分支，运行方式见[该分支 README](https://github.com/ZEH-Denia/elsewhere/blob/task-001/README.md)。main 当前仅包含指挥文档和审查记录，没有 `package.json`；需要体验或补证时，保留现场并切换至任务分支后操作。
 
 MVP 不要求用户提供 API Key，也不要求配置后端。团队已持续授权每轮改动完成并检查后自动提交、推送：指挥文档同步 main，Qoder 开发与返修同步任务分支。代码合并 main、网站部署与赛事投稿按协作协议另行批准。

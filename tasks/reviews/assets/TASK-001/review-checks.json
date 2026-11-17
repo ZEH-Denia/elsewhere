@@ -1,0 +1,28 @@
+{
+  "reviewDate": "2026-11-17",
+  "timezone": "Asia/Shanghai",
+  "reviewedCommit": "edba8a944ce61d62e8582923ef80a72cb2992c17",
+  "recordType": "Codex independent review summary, not raw CDP event log",
+  "environment": {"node": "v26.13.0", "npm": "11.20.0", "browser": "Codex in-app browser"},
+  "commands": {
+    "npm ci --registry=https://registry.npmjs.org": {"exitCode": 0, "addedPackages": 43, "auditedPackages": 50, "vulnerabilities": 0},
+    "npm run typecheck": {"exitCode": 0},
+    "npm run build": {"exitCode": 0, "modules": 16, "durationMs": 90},
+    "git diff --check origin/main...origin/task-001": {"exitCode": 0}
+  },
+  "previewUrl": "http://127.0.0.1:4179/",
+  "homeLayouts": [
+    {"viewportWidth": 1440, "viewportHeight": 900, "documentWidth": 1440, "documentHeight": 900, "horizontalOverflow": false, "buttonWidth": 184, "buttonHeight": 52},
+    {"viewportWidth": 390, "viewportHeight": 844, "documentWidth": 375, "documentHeight": 1136, "horizontalOverflow": false, "buttonWidth": 184, "buttonHeight": 52},
+    {"viewportWidth": 320, "viewportHeight": 844, "documentWidth": 305, "documentHeight": 1108, "horizontalOverflow": false, "buttonWidth": 172, "buttonHeight": 52},
+    {"viewportWidth": 320, "viewportHeight": 568, "documentWidth": 305, "documentHeight": 1108, "horizontalOverflow": false, "buttonWidth": 172, "buttonHeight": 52}
+  ],
+  "shortIntro": {"viewportWidth": 320, "viewportHeight": 568, "documentWidth": 305, "documentHeight": 738, "horizontalOverflow": false},
+  "pointerCycle": "home -> intro -> home -> intro; normal",
+  "keyboard": {"viewports": ["390x844", "1440x900"], "keys": ["Tab", "Enter", "Space"], "introFocus": "H1", "returnFocus": "start button", "buttonFocusVisible": true},
+  "reducedMotion": {"mediaMatches": true, "screenAnimation": "none", "orbitAnimation": "none", "buttonTransition": "0s"},
+  "network": {"requestCount": 24, "externalRequests": [], "failedResponses": [], "loadingFailures": [], "exceptions": [], "consoleWarningsAndErrors": [], "truncated": false, "hasMore": false},
+  "notVerified": ["physical mobile devices", "Safari", "screen reader experience", "original Qoder IDE task history"],
+  "reviewStatus": "FIX",
+  "remainingIssue": "R1: original Qoder development process evidence and report completeness"
+}

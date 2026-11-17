@@ -8,7 +8,7 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 ## 当前状态
 
-2026-11-17：Qoder 已在 task-001 分支实现工程、首页和可返回的来电前言。Codex 首轮独立工程与页面检查通过，审核为 **FIX：待补 Qoder 开发过程证据**，见 [审查报告](tasks/reviews/TASK-001.md)；执行方记录见 [TASK-001 报告](tasks/reports/TASK-001.md)。应用代码尚未合并 main，后续剧情未实现。
+2026-11-17：Qoder 已实现工程、首页和可返回的来电前言，并经 [PR #1](https://github.com/ZEH-Denia/elsewhere/pull/1)合入 main。Codex 首轮独立工程与页面检查通过，审核仍为 **FIX：待补 Qoder 开发过程证据**，见 [审查报告](tasks/reviews/TASK-001.md)；执行方记录见 [TASK-001 报告](tasks/reports/TASK-001.md)。合并不代表审核 PASS，后续剧情未实现。
 
 ## 在 Qoder IDE 中开始
 

@@ -2,7 +2,7 @@
 
 最近检查日期：2026-11-17（Asia/Shanghai）；接管基线日期：2026-11-16。项目目录：`/Users/zeh/Documents/elsewhere`。
 
-当前摘要：GitHub 为公开仓库。Qoder 已在 task-001 的 `edba8a9` 提交工程、首页和前言；Codex 首轮独立工程/页面检查通过，审查 **FIX，等待补开发过程证据**。任务仍为 TASK-001，未合并 main、未进入下一任务。团队持续授权每轮改动自动提交推送，详见 `COLLABORATION.md`。以下保留历史记录，当前状态以本摘要和最新审查为准。
+当前摘要：GitHub 为公开仓库。Qoder 已在 `edba8a9` 提交工程、首页和前言，PR #1 已合入 main；Codex 首轮独立工程/页面检查通过，审查仍 **FIX，等待补开发过程证据**。任务仍为 TASK-001，未进入下一任务。团队持续授权每轮改动自动提交推送，详见 `COLLABORATION.md`。以下保留历史记录，当前状态以本摘要和最新审查为准。
 
 ## 接管时实查结果
 
@@ -39,7 +39,7 @@
 | 等待动作 | Qoder 按 `tasks/reviews/TASK-001.md` 的 R1 补真实开发过程证据和执行报告 |
 | Qoder 执行报告 | task-001 已提交初次 `tasks/reports/TASK-001.md`，代码对象 edba8a9 |
 | Codex 审查报告 | `tasks/reviews/TASK-001.md`，首轮 FIX，未判定 PASS |
-| 网页可运行性 | 任务分支工程与页面已独立复验；main 尚未包含应用代码；完整剧情未实现 |
+| 网页可运行性 | 工程与页面已独立复验，PR #1 已合入 main；完整剧情未实现 |
 | 版本备份 | 已连接公开仓库 `ZEH-Denia/elsewhere`；详细计划、赛事补充和持续同步规则已推送并回读核查，详见 `GITHUB_CONTENT_AUDIT.md` |
 
 ## 风险与待确认
@@ -119,4 +119,5 @@
 - [x] 写入首轮审查及观测摘要：`tasks/reviews/TASK-001.md`、`tasks/reviews/assets/TASK-001/review-checks.json`。
 - 审查结论为 FIX：Qoder 报告承认未获取 IDE 过程截图，要求从真实历史补证并校正材料完整性表述；本次不要求业务代码修改。
 - [ ] Qoder 补证并更新执行报告后，Codex 复验。
-- 未合并应用代码到 main、未下发下一任务或部署；本轮仅更新指挥/审核文档，并按持续授权同步。
+- Codex 本轮仅更新指挥/审核文档并同步；收尾发现 GitHub PR #1 已将应用合入 main，合并提交 `a6c9bd7`，已保留并快进同步，没有回滚或改写历史。
+- 比对确认合并后的应用源码、依赖锁文件和配置与审核对象 `edba8a9` 相同；FIX 结论有效，仍需补证，不下发下一任务或部署。

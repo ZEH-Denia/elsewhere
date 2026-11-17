@@ -37,6 +37,12 @@ function App() {
   const currentNode = getOpeningNode(safeProgress.nodeId)
 
   useEffect(() => {
+    const dialog = confirmDialog.current
+    if (dialog) {
+      if (confirmOpen && !dialog.open) dialog.showModal()
+      if (!confirmOpen && dialog.open) dialog.close()
+    }
+
     if (previousView.current === view) return
     previousView.current = view
 
@@ -44,20 +50,12 @@ function App() {
     if (view === 'intro') introHeading.current?.focus()
     if (view === 'incoming') incomingHeading.current?.focus()
     if (view === 'call') callHeading.current?.focus()
-  }, [view])
+  }, [confirmOpen, view])
 
   useEffect(() => {
     if (currentNode.kind === 'choice') choiceHeading.current?.focus()
     if (currentNode.kind === 'end') endHeading.current?.focus()
   }, [currentNode.kind, safeProgress.nodeId])
-
-  useEffect(() => {
-    const dialog = confirmDialog.current
-    if (!dialog) return
-
-    if (confirmOpen && !dialog.open) dialog.showModal()
-    if (!confirmOpen && dialog.open) dialog.close()
-  }, [confirmOpen])
 
   function returnHome() {
     setConfirmOpen(false)

@@ -1,0 +1,290 @@
+[
+  {
+    "action": "focus 开始体验",
+    "activeText": "开始体验",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "Enter 开始体验",
+    "activeText": "如果当年选择了音乐，\n你现在会在哪里？",
+    "activeId": "intro-title",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 进入来电",
+    "activeText": "进入来电",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "Enter 进入来电",
+    "activeText": "另一个你，\n正在来电",
+    "activeId": "incoming-title",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 接听",
+    "activeText": "接听",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "Space 接听",
+    "activeText": "第一通来电",
+    "activeId": "call-title",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进主线 1",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进主线 2",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进主线 3",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进主线 4",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进主线 5",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进主线 6",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进主线 7",
+    "activeText": "你想怎样回应？",
+    "activeId": "choice-title",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 我有点遗憾，没继续学音乐。",
+    "activeText": "我有点遗憾，没继续学音乐。",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "Enter 第一次选择",
+    "activeText": "ELSEWHERE\n\n平行人生 / 001\n\n另一个你：我也会想，如果当年选了工程，会不会少一些不安。也许我们都看见了另一边的光。\n\n另一个你 · 来自平行世界的自己\n\n第一通来电\n结束通话\n\n回应反馈 01 / 02\n\n另一个你\n\n我也会想，如果当年选了工程，会不会少一些不安。也许我们都看见了另一边的光。\n\n继续\nAN INTERACTIVE STORY\n此刻 · 另一种可能",
+    "activeId": "",
+    "focusVisible": false,
+    "outlineStyle": "none",
+    "outlineWidth": "3px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进反馈与收束 1",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进反馈与收束 2",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 继续",
+    "activeText": "继续",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "推进反馈与收束 3",
+    "activeText": "第一通来电，暂时结束。",
+    "activeId": "end-title",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 返回首页",
+    "activeText": "返回首页",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "Enter 结束后返回首页",
+    "activeText": "开始体验",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 开始体验",
+    "activeText": "开始体验",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 进入来电",
+    "activeText": "进入来电",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 接听",
+    "activeText": "接听",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "focus 结束通话",
+    "activeText": "结束通话",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "Space 确认结束并返回首页",
+    "activeText": "开始体验",
+    "activeId": "",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  },
+  {
+    "action": "Enter 确认退出后立即再次开始",
+    "activeText": "如果当年选择了音乐，\n你现在会在哪里？",
+    "activeId": "intro-title",
+    "focusVisible": true,
+    "outlineStyle": "solid",
+    "outlineWidth": "2px"
+  }
+]

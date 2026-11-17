@@ -179,3 +179,64 @@ WCAG 相对亮度公式实测取样：
 - Qoder IDE 过程截图因工具超时未获取，原始开工日志已保存；不以页面截图冒充 IDE 过程图。
 - 开发服务仍运行于 `http://127.0.0.1:5174/`，生产预览仍运行于 `http://127.0.0.1:4173/`；这些是本机临时验证地址，不是部署。
 - 提交前分支为 `task-002`，基线 `322130c`；最终提交与远程核对结果见交接消息。
+
+---
+
+## 7. 第 1 次修复：R1 确认退出后的首页焦点
+
+| 字段 | 内容 |
+| --- | --- |
+| 修复日期 | 2026-11-17（Asia/Shanghai） |
+| 审查依据 | `tasks/reviews/TASK-002.md` 的 R1 / P2，审核对象 `167b62a` |
+| 本轮范围 | 仅修复确认结束通话后的焦点恢复并复验；保留以上初次报告和旧证据 |
+| 状态 | **R1 修复与复验完成，待 Codex 复审**；不自行判定 PASS |
+
+### 7.1 最小改动
+
+仅修改 `src/App.tsx`：将原生对话框开合与页面焦点恢复协调到同一个提交后 effect。现在先按 `confirmOpen` 执行 `showModal()` / `close()`，再在视图变化时聚焦对应标题或“开始体验”。
+
+确认结束同时提交 `confirmOpen=false` 和 `view='home'` 时，首页按钮已经挂载，`dialog.close()` 先解除模态隔离，随后 `startButton.current?.focus()` 生效。取消或 Escape 不改变视图，effect 只关闭对话框，仍由原生对话框把焦点还给“结束通话”。未使用延时、未移除原生模态、未改动剧情数据或视觉样式。
+
+本轮新增文件仅为 `tasks/reports/assets/TASK-002/r1-*` 复验脚本、日志、JSON 和截图；本追加节写入原报告。未修改审查文件、初次证据、README、依赖或锁文件。
+
+### 7.2 工程复验
+
+工作目录为项目根目录，实际环境仍为 Node v24.16.0 / npm 11.13.0：
+
+| 命令 | 退出码 | 结果 | 新证据 |
+| --- | --- | --- | --- |
+| `npm run typecheck` | 0 | TypeScript 无错误 | `assets/TASK-002/r1-typecheck.txt` |
+| `npm run test:story` | 0 | tests 7 / pass 7 / fail 0 | `assets/TASK-002/r1-story-tests.txt` |
+| `npm run build` | 0 | 18 modules transformed，85ms | `assets/TASK-002/r1-build.txt` |
+| `node tasks/reports/assets/TASK-002/r1-focus-regression.mjs` | 0 | R1 焦点断言及完整回归通过 | `assets/TASK-002/r1-focus-regression.txt` |
+
+R1 构建输出：`dist/index.html` 0.68kB、CSS 20.94kB（gzip 5.68kB）、JS 234.03kB（gzip 73.15kB）。无 lint 配置，未声称运行 lint。
+
+### 7.3 生产浏览器复验
+
+使用重新构建后的 `http://127.0.0.1:4173/` 和 Microsoft Edge 157.0.4341.60。复验脚本沿用真实 CDP 鼠标/键盘事件，并增加 R1 焦点断言；所有输出使用 `r1-` 前缀，不覆盖初次证据。
+
+| 场景 | 实际观测 |
+| --- | --- |
+| 390×844 鼠标确认退出 | 在已选择 `regret` 的第一条反馈中打开确认层并点击“确认结束”；首页出现、`dialog.open=false`、`document.activeElement.innerText === '开始体验'` |
+| 390×844 立即再次开始 | 确认退出后直接发送 Enter，进入前言且 `document.activeElement.id === 'intro-title'`；再次进入来电并接听，从 `opening-01` 第一句开始，证明进度和选择已清空 |
+| 1440×900 纯键盘确认退出 | 用 Tab 导航、Enter 打开确认层、Space 确认；首页出现、模态关闭、焦点为“开始体验”，`:focus-visible=true` |
+| 1440×900 立即再次开始 | 再按 Enter 进入前言，焦点为 `intro-title` |
+| 取消与 Escape | 在已选择后的 `regret` 第一条反馈中分别取消和 Escape；反馈原文与所选分支保持不变，焦点均回“结束通话” |
+| 普通返回、重听和两条分支 | `regret` 完成后重听并再次主动接听，完成 `cherish-present`；两种摘要不同，普通返回可用并能再次开始 |
+| 其他回归 | 快速重复选择仍只接受一项；刷新回首页；完整桌面键盘主流程通过，本轮共记录 36 个键盘步骤 |
+
+鼠标路径的焦点断言与截图：
+
+- `assets/TASK-002/r1-interaction-results.json` → `confirmation.confirmedHome`、`confirmedRestart`、`afterConfirmedReset`。
+- `assets/TASK-002/r1-confirmed-home-390x844.png`。鼠标操作后 `:focus-visible=false` 符合指针交互模态；焦点元素本身确为“开始体验”，且 Enter 已实际验证可用。
+
+键盘路径的焦点断言与截图：
+
+- `assets/TASK-002/r1-keyboard-confirmation.json` → `keyboardConfirmedHome.focus='开始体验'`、`focusVisible=true`，`keyboardConfirmedRestart.focus='intro-title'`。
+- `assets/TASK-002/r1-keyboard-results.json`。
+- `assets/TASK-002/r1-confirmed-home-keyboard-1440x900.png`，可见“开始体验”的键盘焦点轮廓。
+
+`assets/TASK-002/r1-browser-results.json` 中 `externalRequests`、`failedResponses`、`loadingFailures`、`exceptions`、`logEntries` 均为空数组。应用 HTTP 请求仅来自本地预览；测试浏览器另加载了 `chrome-extension://` 翻译扩展资源，已原样保留，不归为应用外部接口请求。
+
+R1 未发现新增已知问题。实体设备、真实读屏和原生浏览器/系统缩放仍未验证，限制沿用第 6 节。生产预览仍为本机 `http://127.0.0.1:4173/`；最终修复提交号与远程核对结果见交接消息。

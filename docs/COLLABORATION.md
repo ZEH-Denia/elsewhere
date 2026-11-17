@@ -9,7 +9,7 @@
 5. FIX：Qoder 按报告最小修复，更新原执行报告的修复记录；Codex 重新审查。BLOCKED：写清阻碍、已尝试项和解除条件。
 6. PASS：团队批准后才能进入下一任务。Codex 先将当前任务原文归档到 `tasks/archive/TASK-XXX.md`，再生成下一个 `tasks/current.md`，保留全部报告与审查记录。
 
-当前 TASK-001 的生成已由团队授权。任务文件状态由 Codex 维护；Qoder 不通过修改 `tasks/current.md` 自行宣布完成或通过。
+团队于 2026-11-17 在 TASK-001 PASS 后讨论下一步与美化，并明确要求“准备交接”，已授权下发 TASK-002；TASK-001 原文归档到 `tasks/archive/TASK-001.md`。任务状态由 Codex 维护，Qoder 不自行修改 `tasks/current.md` 宣布完成或通过。
 
 ## 状态约定
 
@@ -23,7 +23,7 @@
 - 文件归属见 `AGENTS.md`。Qoder 发现产品或架构需改变时，在执行报告中提案，不自行改写指挥文档。
 - 每次交接写明 `git status --short`、涉及文件；有提交则记录提交号，无提交则标注“未提交”，Codex 审核实际工作树。
 - 已连接远程仓库 `https://github.com/ZEH-Denia/elsewhere`；2026-11-16 本轮 GitHub API 实查可见性为 public，保留当前设置。早期记录中的“私有”是历史状态，当前说明已更正。异地协作入口见 `GITHUB_COLLABORATION.md`。
-- 团队最新持续授权“以后有改动都自动同步”：Codex 和 Qoder 在各自一轮改动完成、检查并交接时，自动创建说明清楚的提交并推送，无需再次申请同步批准。Codex 指挥文档使用 main；Qoder 实现、执行报告、返修和必要证据使用任务分支（TASK-001 对应 `task-001`）。同步记录不代表验收 PASS；代码合并 main、下一任务及部署/投稿仍按原协议批准。
+- 团队最新持续授权“以后有改动都自动同步”：Codex 和 Qoder 在各自一轮改动完成、检查并交接时，自动创建说明清楚的提交并推送，无需再次申请同步批准。Codex 指挥文档使用 main；Qoder 实现、执行报告、返修和必要证据使用当前任务分支（TASK-002 对应 `task-002`）。同步记录不代表验收 PASS；代码合并 main、下一任务及部署/投稿仍按原协议批准。
 - 开始前 fetch 并检查远程是否有新提交；有本地改动或分支分歧时先保留现场，按文件所有权处理。推送被拒绝时检查差异，不强推、不自动覆盖或删除其他人的内容。提交使用明确的文件清单，不盲目 `git add .`；排除密钥、证件、无关个人文件、依赖、构建产物和缓存。
 - 推送后核对 GitHub 目标分支提交与本地提交一致，确认本轮新增/更新文件在远程可读取；最终回复说明分支、提交号及未同步原因（如有）。这是每轮工作流程；其他进程的未交接改动待交接后处理，失败时如实保留未同步状态。
 - 不删除或重置未知改动，不用 `git reset --hard`、`git clean` 等清理协作现场；保存原始交接文档。
@@ -55,4 +55,4 @@
 
 ## 给 Qoder 的最短指令
 
-> 请阅读 AGENTS.md、docs/COLLABORATION.md 和 tasks/current.md，按 TASK-001 的允许范围执行开发和验证，完成后写入 tasks/reports/TASK-001.md 并停止，等待 Codex 审核。
+> 请阅读 docs/QODER_START.md、AGENTS.md、docs/COLLABORATION.md 和 tasks/current.md，切换并更新 task-002，按 TASK-002 执行开发和验证。完成后写入 tasks/reports/TASK-002.md，自动提交推送 task-002，提供提交号和预览地址，停止修改，等待 Codex 审核。

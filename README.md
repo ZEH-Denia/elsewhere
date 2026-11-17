@@ -31,6 +31,7 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 | [技术方案](docs/ARCHITECTURE.md) | 技术约束与演进方向 |
 | [路线图](docs/ROADMAP.md) | 顺序、里程碑与进入条件 |
 | [开发与参赛详细计划](docs/DETAILED_PLAN.md) | 逐日排期、分支剧情、任务门槛、验证与提交安排 |
+| [下一阶段与界面美化提案](docs/VISUAL_DIRECTION.md) | 下一步可行性、首页与来电/对话的视觉改进方向；尚未下发任务 |
 | [项目现状](docs/PROJECT_STATUS.md) | 检查证据、已完成事项和未验证事项 |
 | [GitHub 内容核查](docs/GITHUB_CONTENT_AUDIT.md) | 远程文件一致性、现状核查结果与修正记录 |
 | [原始交接](CODEX_HANDOFF.md) | 接管依据，保持原文 |

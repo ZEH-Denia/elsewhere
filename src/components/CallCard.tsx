@@ -1,0 +1,40 @@
+function PhoneSymbol() {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path
+        d="M16.8 8.5 21 17l-4.7 3.6c2.3 5.1 6 8.8 11.1 11.1l3.6-4.7 8.5 4.2-.8 7.1c-.2 1.7-1.7 2.9-3.4 2.7C18.5 39.5 8.5 29.5 7 12.7c-.2-1.7 1-3.2 2.7-3.4l7.1-.8Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M28 8c6.5 1.3 10.7 5.5 12 12M29.5 14c3.3.8 5.7 3.2 6.5 6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+export function CallCard({ className = '' }: { className?: string }) {
+  return (
+    <div className={`call-visual ${className}`}>
+      <div className="parallel-outline" aria-hidden="true" />
+      <div className="call-card">
+        <div className="call-card-top" aria-hidden="true">
+          <span>PARALLEL CALL</span>
+          <span>001</span>
+        </div>
+        <div className="caller-main">
+          <div className="phone-symbol"><PhoneSymbol /></div>
+          <div className="caller-copy">
+            <p className="caller-name">另一个你</p>
+            <p className="caller-origin">来自平行世界的自己</p>
+          </div>
+          <div className="signal-lines" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+        </div>
+        <div className="world-labels">
+          <span><i aria-hidden="true" />现实 · 工程</span>
+          <span><i aria-hidden="true" />平行 · 音乐</span>
+        </div>
+      </div>
+    </div>
+  )
+}

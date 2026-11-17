@@ -1,0 +1,234 @@
+{
+  "layouts": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "clientWidth": 390,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "horizontalOverflow": false,
+      "title": {
+        "x": 20,
+        "y": 154.09375,
+        "width": 350,
+        "height": 46.390625,
+        "bottom": 200.484375,
+        "right": 370
+      },
+      "caller": {
+        "x": 136.5,
+        "y": 440.984375,
+        "width": 117,
+        "height": 32.390625,
+        "bottom": 473.375,
+        "right": 253.5
+      },
+      "start": {
+        "x": 20,
+        "y": 653.171875,
+        "width": 350,
+        "height": 52,
+        "bottom": 705.171875,
+        "right": 370
+      },
+      "firstScreenComplete": true,
+      "titleFontSize": "40px",
+      "bodyFontSize": "16px",
+      "textColors": {
+        ".home-intro": "rgb(172, 183, 201)",
+        ".quiet-note": "rgb(144, 152, 173)",
+        ".caller-origin": "rgb(172, 183, 201)",
+        ".world-labels > span": "rgb(172, 183, 201)"
+      },
+      "backgroundColor": "rgb(7, 10, 24)"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "clientWidth": 1440,
+      "documentWidth": 1440,
+      "documentHeight": 900,
+      "horizontalOverflow": false,
+      "title": {
+        "x": 48,
+        "y": 340.34375,
+        "width": 691.1875,
+        "height": 83.515625,
+        "bottom": 423.859375,
+        "right": 739.1875
+      },
+      "caller": {
+        "x": 1111.515625,
+        "y": 445.453125,
+        "width": 120.96875,
+        "height": 37.796875,
+        "bottom": 483.25,
+        "right": 1232.484375
+      },
+      "start": {
+        "x": 48,
+        "y": 565.84375,
+        "width": 184,
+        "height": 52,
+        "bottom": 617.84375,
+        "right": 232
+      },
+      "firstScreenComplete": true,
+      "titleFontSize": "72px",
+      "bodyFontSize": "18px",
+      "textColors": {
+        ".home-intro": "rgb(172, 183, 201)",
+        ".quiet-note": "rgb(144, 152, 173)",
+        ".caller-origin": "rgb(172, 183, 201)",
+        ".world-labels > span": "rgb(172, 183, 201)"
+      },
+      "backgroundColor": "rgb(7, 10, 24)"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "clientWidth": 320,
+      "documentWidth": 320,
+      "documentHeight": 844,
+      "horizontalOverflow": false,
+      "title": {
+        "x": 20,
+        "y": 154.09375,
+        "width": 280,
+        "height": 41.75,
+        "bottom": 195.84375,
+        "right": 300
+      },
+      "caller": {
+        "x": 101.5,
+        "y": 436.34375,
+        "width": 117,
+        "height": 32.390625,
+        "bottom": 468.734375,
+        "right": 218.5
+      },
+      "start": {
+        "x": 20,
+        "y": 648.53125,
+        "width": 280,
+        "height": 52,
+        "bottom": 700.53125,
+        "right": 300
+      },
+      "firstScreenComplete": true,
+      "titleFontSize": "36px",
+      "bodyFontSize": "16px",
+      "textColors": {
+        ".home-intro": "rgb(172, 183, 201)",
+        ".quiet-note": "rgb(144, 152, 173)",
+        ".caller-origin": "rgb(172, 183, 201)",
+        ".world-labels > span": "rgb(172, 183, 201)"
+      },
+      "backgroundColor": "rgb(7, 10, 24)"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "clientWidth": 768,
+      "documentWidth": 768,
+      "documentHeight": 1024,
+      "horizontalOverflow": false,
+      "title": {
+        "x": 74,
+        "y": 196.59375,
+        "width": 620,
+        "height": 64.953125,
+        "bottom": 261.546875,
+        "right": 694
+      },
+      "caller": {
+        "x": 323.515625,
+        "y": 576.421875,
+        "width": 120.96875,
+        "height": 37.796875,
+        "bottom": 614.21875,
+        "right": 444.484375
+      },
+      "start": {
+        "x": 292,
+        "y": 824.015625,
+        "width": 184,
+        "height": 52,
+        "bottom": 876.015625,
+        "right": 476
+      },
+      "firstScreenComplete": true,
+      "titleFontSize": "56px",
+      "bodyFontSize": "18px",
+      "textColors": {
+        ".home-intro": "rgb(172, 183, 201)",
+        ".quiet-note": "rgb(144, 152, 173)",
+        ".caller-origin": "rgb(172, 183, 201)",
+        ".world-labels > span": "rgb(172, 183, 201)"
+      },
+      "backgroundColor": "rgb(7, 10, 24)"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "clientWidth": 305,
+      "documentWidth": 305,
+      "documentHeight": 817,
+      "horizontalOverflow": false,
+      "title": {
+        "x": 20,
+        "y": 154.09375,
+        "width": 265,
+        "height": 41.75,
+        "bottom": 195.84375,
+        "right": 285
+      },
+      "caller": {
+        "x": 94,
+        "y": 436.34375,
+        "width": 117,
+        "height": 32.390625,
+        "bottom": 468.734375,
+        "right": 211
+      },
+      "start": {
+        "x": 20,
+        "y": 648.53125,
+        "width": 265,
+        "height": 52,
+        "bottom": 700.53125,
+        "right": 285
+      },
+      "firstScreenComplete": false,
+      "titleFontSize": "36px",
+      "bodyFontSize": "16px",
+      "textColors": {
+        ".home-intro": "rgb(172, 183, 201)",
+        ".quiet-note": "rgb(144, 152, 173)",
+        ".caller-origin": "rgb(172, 183, 201)",
+        ".world-labels > span": "rgb(172, 183, 201)"
+      },
+      "backgroundColor": "rgb(7, 10, 24)",
+      "scroll": {
+        "scrollY": 249,
+        "maxScroll": 249,
+        "footerIntersects": true
+      }
+    }
+  ],
+  "reducedMotion": {
+    "matches": true,
+    "screenAnimation": "none",
+    "buttonTransitionDuration": "0s"
+  }
+}

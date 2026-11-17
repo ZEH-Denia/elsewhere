@@ -10,7 +10,7 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 2026-11-17：TASK-001 的工程、首页与可返回前言已完成并 PASS，R1 已关闭，见 [审查报告](tasks/reviews/TASK-001.md)；最新执行方记录为 [task-001 补证报告](https://github.com/ZEH-Denia/elsewhere/blob/0da563b86ea2395f8fb8efb9d083ba20335632d5/tasks/reports/TASK-001.md)。TASK-001 [已归档](tasks/archive/TASK-001.md)。
 
-团队已要求下一轮交接，当前 **TASK-002 / READY**：视觉打磨、剧情来电、接听、首段对话和一次有效选择。任务与内容稿已准备；**上述新增功能尚未开发或验收，完整剧情也未实现**。
+当前 **TASK-002 / 待审核**：task-002 分支已实现视觉打磨、剧情来电、接听、七条主线对话、一次有效选择、两条对应反馈、共同收束与重听。执行与验证证据见 [TASK-002 执行报告](tasks/reports/TASK-002.md)，尚待 Codex 审核；**完整剧情仍未实现**。
 
 ## 在 Qoder IDE 中开始
 
@@ -52,10 +52,13 @@ npm run dev
 
 ```bash
 npm run typecheck
+npm run test:story
 npm run build
 npm run preview
 ```
 
-生产构建输出到 `dist/`（不提交），预览服务默认地址为 `http://127.0.0.1:4173/`。当前版本不需要 API Key、后端、账号或远程素材，刷新页面会回到首页。
+生产构建输出到 `dist/`（不提交），预览服务默认地址为 `http://127.0.0.1:4173/`。`npm run test:story` 检查首通稿顺序、选项与反馈引用、两种收束、重置及异常剧情图。
+
+当前版本只完成第一通来电，不含第二次选择、四种结局、时间线或信件。不需要 API Key、后端、账号或远程素材，不保存剧情进度；刷新页面会回到首页。
 
 MVP 不要求用户提供 API Key，也不要求配置后端。团队已持续授权每轮改动完成并检查后自动提交、推送：指挥文档同步 main，Qoder 开发与返修同步任务分支。代码合并 main、网站部署与赛事投稿按协作协议另行批准。

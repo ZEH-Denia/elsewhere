@@ -1,0 +1,75 @@
+uid=8_1 RootWebArea "Elsewhere：未接来电" focusable url="http://127.0.0.1:5173/"
+  uid=8_2 none
+    uid=8_3 none
+      uid=8_4 generic
+        uid=8_5 generic
+          uid=8_6 none
+            uid=8_7 banner
+              uid=8_8 generic "Elsewhere"
+                uid=8_9 none
+                uid=8_10 StaticText "ELSEWHERE"
+                  InlineTextBox "ELSEWHERE"
+              uid=8_11 paragraph
+                uid=8_12 StaticText "平行人生"
+                  InlineTextBox "平行人生"
+                uid=8_13 StaticText "/"
+                  InlineTextBox "/"
+                uid=8_14 StaticText "001"
+                  InlineTextBox "001"
+            uid=8_15 main
+              uid=8_16 region "Elsewhere 未接来电"
+                uid=8_17 none
+                  uid=8_18 none
+                    uid=8_19 none
+                    uid=8_20 StaticText "来自另一个世界的信号"
+                      InlineTextBox "来自另一个世界的信号"
+                  uid=8_21 heading "Elsewhere 未接来电" level="1"
+                    uid=8_22 none
+                      uid=8_23 StaticText "Elsewhere"
+                        InlineTextBox "Elsewhere"
+                    uid=8_24 none
+                      uid=8_25 StaticText "未接来电"
+                        InlineTextBox "未接来电"
+                  uid=8_26 none
+                    uid=8_27 paragraph
+                      uid=8_28 StaticText "如果当年，你选择了另一条路。"
+                        InlineTextBox "如果当年，你选择了另一条路。"
+                    uid=8_29 paragraph
+                      uid=8_30 StaticText "平行世界的你，正在来电。"
+                        InlineTextBox "平行世界的你，正在来电。"
+                uid=8_31 generic
+                  uid=8_32 generic
+                    uid=8_33 none
+                      uid=8_34 none
+                      uid=8_35 none
+                        uid=8_36 paragraph
+                          uid=8_37 StaticText "另一个你"
+                            InlineTextBox "另一个你"
+                        uid=8_38 paragraph
+                          uid=8_39 StaticText "来自平行世界的自己"
+                            InlineTextBox "来自平行世界的自己"
+                    uid=8_40 none
+                      uid=8_41 none
+                        uid=8_42 StaticText "现实 · 工程"
+                          InlineTextBox "现实 · 工程"
+                      uid=8_43 none
+                        uid=8_44 StaticText "平行 · 音乐"
+                          InlineTextBox "平行 · 音乐"
+                uid=8_45 none
+                  uid=8_46 button "开始体验" focusable invalid="false"
+                    uid=8_47 none
+                      uid=8_48 StaticText "开始体验"
+                        InlineTextBox "开始体验"
+                    uid=8_49 none
+                  uid=8_50 none
+                    uid=8_51 StaticText "一段虚构的平行人生，无需注册"
+                      InlineTextBox "一段虚构的平行人生，无需注册"
+            uid=8_52 contentinfo
+              uid=8_53 none
+                uid=8_54 StaticText "AN INTERACTIVE STORY"
+                  InlineTextBox "AN INTERACTIVE STORY"
+              uid=8_55 none
+                uid=8_56 StaticText "此刻 · 另一种可能"
+                  InlineTextBox "此刻 · 另一种可能"
+          uid=8_57 none
+            uid=8_58 none

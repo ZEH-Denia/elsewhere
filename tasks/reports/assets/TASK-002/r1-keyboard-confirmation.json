@@ -1,0 +1,12 @@
+{
+  "keyboardConfirmedHome": {
+    "heading": "Elsewhere\n未接来电",
+    "dialogOpen": false,
+    "focus": "开始体验",
+    "focusVisible": true
+  },
+  "keyboardConfirmedRestart": {
+    "heading": "如果当年选择了音乐，\n你现在会在哪里？",
+    "focus": "intro-title"
+  }
+}

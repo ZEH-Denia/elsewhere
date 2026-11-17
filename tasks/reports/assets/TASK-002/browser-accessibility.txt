@@ -1,0 +1,70 @@
+{
+  "contrastSamples": [
+    {
+      "sample": "首页正文 soft / 深蓝底",
+      "foreground": "rgb(172, 183, 201)",
+      "background": "rgb(7, 10, 24)",
+      "ratio": 9.73
+    },
+    {
+      "sample": "辅助说明 dim / 深蓝底",
+      "foreground": "rgb(144, 152, 173)",
+      "background": "rgb(7, 10, 24)",
+      "ratio": 6.83
+    },
+    {
+      "sample": "主标题 mist / 深蓝底",
+      "foreground": "rgb(239, 243, 251)",
+      "background": "rgb(7, 10, 24)",
+      "ratio": 17.72
+    },
+    {
+      "sample": "主按钮文字 / 主按钮底",
+      "foreground": "rgb(10, 14, 31)",
+      "background": "rgb(130, 227, 218)",
+      "ratio": 12.73
+    }
+  ],
+  "textZoom": [
+    {
+      "label": "首页 200% 文本放大",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "clientWidth": 375,
+      "documentWidth": 375,
+      "documentHeight": 1140,
+      "horizontalOverflow": false,
+      "bodyFontSize": "16px",
+      "activeText": "ELSEWHERE\n\n平行人生 / 001\n\n来自另一个世界的信号\n\nElsewhere\n未接来电\n\n如果当年，你选择了另一条路。\n\n平行世界的你，正在来电。\n\nPARALLEL CALL\n001\n\n另一个你\n\n来自平行世界的自己\n\n现实 · 工程\n平行 · 音乐\n开始体验\n\n一段虚构的平行人生，无需注册\n\nAN INTERACTIVE STORY\n此刻 · 另一种可能"
+    },
+    {
+      "label": "首页底部滚动",
+      "scrollY": 296,
+      "maxScroll": 296,
+      "footerIntersects": true
+    },
+    {
+      "label": "第五条长对话 200% 文本放大",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "clientWidth": 375,
+      "documentWidth": 375,
+      "documentHeight": 1107,
+      "horizontalOverflow": false,
+      "bodyFontSize": "16px",
+      "activeText": "继续"
+    },
+    {
+      "label": "长对话继续按钮",
+      "top": 703.78125,
+      "bottom": 759.78125,
+      "width": 335,
+      "height": 56,
+      "inViewport": true
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+2026-11-17, SHA-256; TASK-002 before images are unchanged copies of the TASK-001 baseline screenshots.
+1892e6e8e6d319d02b2f4aaaf0d49e6a1f2dba8423c245e6973fcf0d77bf772e  TASK-001/home-390x844.png = TASK-002/before-home-390x844.png
+4ea1e1e094b967e748b0ec266506f7424830b9faf27d8eb912386cb26e8fc7d5  TASK-001/home-1440x900.png = TASK-002/before-home-1440x900.png

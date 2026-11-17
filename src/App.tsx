@@ -1,21 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
+import { CallCard } from './components/CallCard'
+import {
+  advanceOpening,
+  chooseOpening,
+  createInitialOpeningProgress,
+  firstChoice,
+  getOpeningNode,
+  normalizeOpeningProgress,
+  openingDialogue,
+  secondChoice,
+} from './story/opening'
 
-type View = 'home' | 'intro'
-
-function PhoneSymbol() {
-  return (
-    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-      <path
-        d="M16.8 8.5 21 17l-4.7 3.6c2.3 5.1 6 8.8 11.1 11.1l3.6-4.7 8.5 4.2-.8 7.1c-.2 1.7-1.7 2.9-3.4 2.7C18.5 39.5 8.5 29.5 7 12.7c-.2-1.7 1-3.2 2.7-3.4l7.1-.8Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M28 8c6.5 1.3 10.7 5.5 12 12M29.5 14c3.3.8 5.7 3.2 6.5 6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  )
-}
+type View = 'home' | 'intro' | 'incoming' | 'call'
 
 function Arrow({ returning = false }: { returning?: boolean }) {
   return (
@@ -27,106 +23,250 @@ function Arrow({ returning = false }: { returning?: boolean }) {
 
 function App() {
   const [view, setView] = useState<View>('home')
+  const [progress, setProgress] = useState(createInitialOpeningProgress)
+  const [confirmOpen, setConfirmOpen] = useState(false)
   const previousView = useRef<View>('home')
   const startButton = useRef<HTMLButtonElement>(null)
   const introHeading = useRef<HTMLHeadingElement>(null)
+  const incomingHeading = useRef<HTMLHeadingElement>(null)
+  const callHeading = useRef<HTMLHeadingElement>(null)
+  const choiceHeading = useRef<HTMLHeadingElement>(null)
+  const endHeading = useRef<HTMLHeadingElement>(null)
+  const confirmDialog = useRef<HTMLDialogElement>(null)
+  const safeProgress = normalizeOpeningProgress(progress)
+  const currentNode = getOpeningNode(safeProgress.nodeId)
 
   useEffect(() => {
+    const dialog = confirmDialog.current
+    if (dialog) {
+      if (confirmOpen && !dialog.open) dialog.showModal()
+      if (!confirmOpen && dialog.open) dialog.close()
+    }
+
     if (previousView.current === view) return
     previousView.current = view
 
-    if (view === 'intro') {
-      introHeading.current?.focus()
-    } else {
-      startButton.current?.focus()
-    }
-  }, [view])
+    if (view === 'home') startButton.current?.focus()
+    if (view === 'intro') introHeading.current?.focus()
+    if (view === 'incoming') incomingHeading.current?.focus()
+    if (view === 'call') callHeading.current?.focus()
+  }, [confirmOpen, view])
+
+  useEffect(() => {
+    if (currentNode.kind === 'choice') choiceHeading.current?.focus()
+    if (currentNode.kind === 'end') endHeading.current?.focus()
+  }, [currentNode.kind, safeProgress.nodeId])
+
+  function returnHome() {
+    setConfirmOpen(false)
+    setProgress(createInitialOpeningProgress())
+    setView('home')
+  }
+
+  function showIncoming() {
+    setProgress(createInitialOpeningProgress())
+    setView('incoming')
+  }
+
+  function answerCall() {
+    setProgress(createInitialOpeningProgress())
+    setView('call')
+  }
+
+  const liveText = currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing'
+    ? `${currentNode.speaker}：${currentNode.text}`
+    : ''
+  const selectedOption = firstChoice.options.find(({ id }) => id === safeProgress.choiceId)
+  const selectedNextStep = secondChoice.options.find(({ id }) => id === safeProgress.nextStepId)
 
   return (
-    <div className="app-background min-h-svh overflow-hidden text-mist">
+    <div className="app-background min-h-svh text-mist">
       <div className="ambient ambient-violet" aria-hidden="true" />
       <div className="ambient ambient-cyan" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-360 flex-col px-5 sm:px-8 lg:px-12">
-        <header className="flex h-20 shrink-0 items-center justify-between border-b border-line sm:h-24">
+        <header className="app-header">
           <div className="flex items-center gap-3" aria-label="Elsewhere">
             <span className="brand-mark" aria-hidden="true"><span /></span>
             <span className="font-mono text-xs font-medium tracking-[0.24em] text-mist">ELSEWHERE</span>
           </div>
-          <p className="font-mono text-[10px] tracking-[0.18em] text-dim sm:text-xs">平行人生 <span className="mx-2 text-line-strong">/</span> 001</p>
+          <p className="font-mono text-[10px] tracking-[0.16em] text-dim sm:text-xs">平行人生 <span className="mx-2 text-line-strong">/</span> 001</p>
         </header>
 
-        <main className="flex flex-1 items-center py-10 sm:py-14 lg:py-16">
-          {view === 'home' ? (
-            <section className="screen-enter grid w-full items-center gap-12 lg:grid-cols-[1.12fr_0.88fr] lg:gap-16" aria-labelledby="home-title">
-              <div className="max-w-2xl">
-                <p className="eyebrow mb-6"><span />来自另一个世界的信号</p>
-                <h1 id="home-title" className="font-medium tracking-[-0.045em]">
-                  <span className="block text-[clamp(3.4rem,8vw,7.2rem)] leading-[0.9] text-white">Elsewhere</span>
-                  <span className="mt-5 block text-[clamp(1.75rem,3vw,2.75rem)] font-normal tracking-[0.16em] text-mist">未接来电</span>
+        <main className="app-main">
+          {view === 'home' && (
+            <section className="screen-enter home-layout" aria-labelledby="home-title">
+              <div className="home-copy">
+                <p className="eyebrow"><span />来自另一个世界的信号</p>
+                <h1 id="home-title" className="home-title">
+                  <span className="home-title-brand">Elsewhere</span>
+                  <span className="home-title-cn">未接来电</span>
                 </h1>
-                <div className="mt-8 max-w-lg space-y-3 text-base leading-8 text-soft sm:text-lg">
-                  <p>如果当年，你做了另一个选择。</p>
-                  <p>某个平行世界里，另一个你正试图拨通这通电话。</p>
+                <div className="home-intro">
+                  <p>如果当年，你选择了另一条路。</p>
+                  <p>平行世界的你，正在来电。</p>
                 </div>
-                <button ref={startButton} type="button" className="primary-action group mt-9" onClick={() => setView('intro')}>
+              </div>
+
+              <CallCard className="home-call" />
+
+              <div className="home-actions">
+                <button ref={startButton} type="button" className="primary-action group" onClick={() => setView('intro')}>
                   <span>开始体验</span>
                   <span className="action-icon"><Arrow /></span>
                 </button>
-                <p className="mt-5 flex items-center gap-2 text-xs tracking-wide text-dim">
-                  <span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册
-                </p>
-              </div>
-
-              <div className="relative mx-auto w-full max-w-105 lg:mx-0 lg:ml-auto" aria-hidden="true">
-                <div className="orbit orbit-outer"><span /></div>
-                <div className="orbit orbit-inner"><span /></div>
-                <div className="phone-card">
-                  <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.2em] text-dim">
-                    <span>UNKNOWN CALLER</span><span>001</span>
-                  </div>
-                  <div className="my-10 flex flex-col items-center sm:my-12">
-                    <div className="phone-symbol"><PhoneSymbol /></div>
-                    <p className="mt-7 text-2xl font-medium tracking-[0.12em] text-white">另一个你</p>
-                    <p className="mt-3 text-sm tracking-[0.08em] text-soft">来自平行世界的自己</p>
-                  </div>
-                  <div className="border-t border-line pt-5">
-                    <div className="flex items-end justify-between gap-4">
-                      <div>
-                        <p className="font-mono text-[9px] tracking-[0.18em] text-dim">SIGNAL ORIGIN</p>
-                        <p className="mt-2 text-sm text-mist">另一种可能</p>
-                      </div>
-                      <div className="signal-lines"><i /><i /><i /><i /><i /></div>
-                    </div>
-                  </div>
-                </div>
-                <p className="mt-6 text-center font-mono text-[9px] tracking-[0.22em] text-dim">A CALL ACROSS POSSIBILITIES</p>
+                <p className="quiet-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>
               </div>
             </section>
-          ) : (
-            <section className="screen-enter mx-auto w-full max-w-3xl" aria-labelledby="intro-title">
-              <p className="eyebrow mb-7"><span />来电前言</p>
-              <p className="mb-6 font-mono text-xs tracking-[0.18em] text-dim">BEFORE THE CALL <span className="mx-2 text-line-strong">/</span> 01</p>
-              <h1 ref={introHeading} tabIndex={-1} id="intro-title" className="intro-heading max-w-3xl text-[clamp(2.25rem,5vw,4.75rem)] font-medium leading-[1.2] tracking-[-0.035em] text-white outline-none">
+          )}
+
+          {view === 'intro' && (
+            <section className="screen-enter intro-layout" aria-labelledby="intro-title">
+              <p className="eyebrow"><span />来电前言</p>
+              <h1 ref={introHeading} tabIndex={-1} id="intro-title" className="intro-heading">
                 如果当年选择了音乐，<br className="hidden sm:block" />你现在会在哪里？
               </h1>
-              <div className="mt-9 max-w-xl border-l border-accent pl-5 sm:pl-7">
-                <p className="text-base leading-8 text-soft sm:text-lg">闭上眼，想象电话另一端的声音。熟悉，却又走向了你未曾抵达的人生。</p>
-                <p className="mt-5 text-sm leading-7 text-dim">这是一段虚构的平行人生，不代表对真实未来的预测。</p>
+              <div className="intro-copy">
+                <p>闭上眼，想象电话另一端的声音。熟悉，却又走向了你未曾抵达的人生。</p>
+                <p>这是一段虚构的平行人生，不代表对真实未来的预测。</p>
               </div>
-              <button type="button" className="secondary-action group mt-10" onClick={() => setView('home')}>
-                <span className="action-icon"><Arrow returning /></span>
-                <span>返回首页</span>
-              </button>
+              <div className="action-row">
+                <button type="button" className="primary-action group" onClick={showIncoming}>
+                  <span>进入来电</span><span className="action-icon"><Arrow /></span>
+                </button>
+                <button type="button" className="secondary-action group" onClick={returnHome}>
+                  <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
+                </button>
+              </div>
+            </section>
+          )}
+
+          {view === 'incoming' && (
+            <section className="screen-enter incoming-layout" aria-labelledby="incoming-title">
+              <div className="incoming-copy">
+                <p className="eyebrow"><span />一通来自平行世界的来电</p>
+                <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
+                <p>这不是真实通话。你可以随时结束，也可以听听另一条路上的自己。</p>
+              </div>
+              <CallCard className="incoming-call" />
+              <div className="incoming-actions">
+                <div className="action-row">
+                  <button type="button" className="primary-action group" onClick={answerCall}>
+                    <span>接听</span><span className="action-icon"><Arrow /></span>
+                  </button>
+                  <button type="button" className="secondary-action group" onClick={returnHome}>
+                    <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
+                  </button>
+                </div>
+                <p className="quiet-note">剧情模拟，不会请求麦克风或通知权限。</p>
+              </div>
+            </section>
+          )}
+
+          {view === 'call' && currentNode.kind !== 'end' && (
+            <section className="screen-enter call-session" aria-labelledby="call-title">
+              <p className="sr-only" aria-live="polite" aria-atomic="true">{liveText}</p>
+              <div className="call-session-header">
+                <div>
+                  <p className="eyebrow"><span />另一个你 · 来自平行世界的自己</p>
+                  <h1 ref={callHeading} tabIndex={-1} id="call-title">第一通来电</h1>
+                </div>
+                <button type="button" className="end-call-action" onClick={() => setConfirmOpen(true)}>结束通话</button>
+              </div>
+
+              {currentNode.kind === 'dialogue' && (
+                <div className="dialogue-stage">
+                  <p className="dialogue-progress">主线 {String(openingDialogue.findIndex(({ id }) => id === currentNode.id) + 1).padStart(2, '0')} / 07</p>
+                  <article className="dialogue-card">
+                    <p className="dialogue-speaker">{currentNode.speaker}</p>
+                    <p className="dialogue-text">{currentNode.text}</p>
+                  </article>
+                  <button type="button" className="primary-action group" onClick={() => setProgress(advanceOpening)}>
+                    <span>继续</span><span className="action-icon"><Arrow /></span>
+                  </button>
+                </div>
+              )}
+
+              {currentNode.kind === 'choice' && (
+                <div className="choice-stage">
+                  <p className="dialogue-progress">{currentNode.id === 'first-response' ? '第一次选择' : '第二次选择'}</p>
+                  {currentNode.id === 'next-step' && <p className="dialogue-speaker">另一个你</p>}
+                  <h2 ref={choiceHeading} tabIndex={-1} id="choice-title">
+                    {currentNode.id === 'first-response' ? '你想怎样回应？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
+                  </h2>
+                  <div className="choice-options" aria-labelledby="choice-title">
+                    {currentNode.options.map((option) => (
+                      <button key={option.id} type="button" className="choice-option" onClick={() => setProgress((current) => chooseOpening(current, option.id))}>
+                        <span>{option.label}</span><Arrow />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {(currentNode.kind === 'feedback' || currentNode.kind === 'closing') && (
+                <div className="dialogue-stage">
+                  <p className="dialogue-progress">
+                    {currentNode.kind === 'closing'
+                      ? currentNode.id === 'opening-closing' ? '共同衔接' : '通话尾声'
+                      : safeProgress.nextStepId ? '行动反馈' : `回应反馈 ${currentNode.id.endsWith('01') ? '01' : '02'} / 02`}
+                  </p>
+                  <article className="dialogue-card">
+                    <p className="dialogue-speaker">{currentNode.speaker}</p>
+                    <p className="dialogue-text">{currentNode.text}</p>
+                  </article>
+                  <button type="button" className="primary-action group" onClick={() => setProgress(advanceOpening)}>
+                    <span>继续</span><span className="action-icon"><Arrow /></span>
+                  </button>
+                </div>
+              )}
+            </section>
+          )}
+
+          {view === 'call' && currentNode.kind === 'end' && (
+            <section className="screen-enter end-layout" aria-labelledby="end-title" data-ending-id={currentNode.id}>
+              <p className="eyebrow"><span />剧情结局</p>
+              <h1 ref={endHeading} tabIndex={-1} id="end-title">{currentNode.title}</h1>
+              <div className="end-reflection">
+                {selectedOption && <p className="end-choice">你的回应：{selectedOption.label}</p>}
+                {selectedNextStep && <p className="end-choice">下一步：{selectedNextStep.label}</p>}
+                <p>{currentNode.summary}</p>
+              </div>
+              <div className="action-row">
+                <button type="button" className="primary-action group" onClick={showIncoming}>
+                  <span>重听这通来电</span><span className="action-icon"><Arrow returning /></span>
+                </button>
+                <button type="button" className="secondary-action group" onClick={returnHome}>
+                  <span>返回首页</span><span className="action-icon"><Arrow /></span>
+                </button>
+              </div>
             </section>
           )}
         </main>
 
-        <footer className="flex min-h-16 shrink-0 items-center justify-between border-t border-line py-4 font-mono text-[9px] tracking-[0.16em] text-dim sm:text-[10px]">
+        <footer className="app-footer">
           <span>AN INTERACTIVE STORY</span>
           <span>此刻 · 另一种可能</span>
         </footer>
       </div>
+
+      <dialog
+        ref={confirmDialog}
+        className="confirm-dialog"
+        aria-labelledby="confirm-title"
+        onCancel={(event) => {
+          event.preventDefault()
+          setConfirmOpen(false)
+        }}
+        onClose={() => setConfirmOpen(false)}
+      >
+        <h2 id="confirm-title">结束本次通话并返回首页？</h2>
+        <p>当前对话与选择将清空。</p>
+        <div className="action-row">
+          <button type="button" className="secondary-action" onClick={() => setConfirmOpen(false)}>取消</button>
+          <button type="button" className="danger-action" onClick={returnHome}>确认结束</button>
+        </div>
+      </dialog>
     </div>
   )
 }

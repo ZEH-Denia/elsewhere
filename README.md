@@ -1,10 +1,6 @@
 # Elsewhere：未接来电
 
-> 最新状态：TASK-003 初审 FIX；Qoder 请阅读 tasks/reviews/TASK-003.md 并按 R1 返修，详见当前任务。
-
-> 最新状态：TASK-002 已 PASS 并归档；团队要求准备下一步，TASK-003 已下发至 task-003。Qoder 以 [当前任务](tasks/current.md)及剧情用稿为准；下文先前任务交接保留为历史。
-
-> 2026-11-17 最新状态：TASK-002 的 R1 已复审 **PASS**，等待团队批准下一任务及开发实现合并；下文原交接和初审内容为历史记录，实时状态见 [项目现状](docs/PROJECT_STATUS.md)。
+> TASK-003 初审 FIX：四条剧情路径可达，结局缺失检测需按 [R1 审查](tasks/reviews/TASK-003.md)返修。
 
 接到来自平行世界自己的电话，通过互动剧情探索另一种人生。
 
@@ -14,24 +10,24 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 ## 当前状态
 
-2026-11-17：TASK-001 的工程、首页与可返回前言已完成并 PASS，R1 已关闭，见 [审查报告](tasks/reviews/TASK-001.md)；最新执行方记录为 [task-001 补证报告](https://github.com/ZEH-Denia/elsewhere/blob/0da563b86ea2395f8fb8efb9d083ba20335632d5/tasks/reports/TASK-001.md)。TASK-001 [已归档](tasks/archive/TASK-001.md)。
+2026-11-17：TASK-001 的工程、首页与可返回前言，以及 TASK-002 的视觉和首通来电均已 PASS。TASK-002 的确认退出焦点返修已通过复审，见 [审查报告](tasks/reviews/TASK-002.md)。
 
-当前 **TASK-002 / FIX**：[task-002 的 167b62a](https://github.com/ZEH-Denia/elsewhere/commit/167b62a524c9b543d2ced7c2fdfa9d30e9679639) 已完成视觉打磨与首通来电闭环，独立检查发现确认退出后的首页焦点恢复问题，须按 [R1 审查](tasks/reviews/TASK-002.md)返修。工程检查与两条剧情路径通过；完整剧情尚未实现。main 保留已验收的 TASK-001 应用，体验新增流程请切换 task-002；未批准合并或发布。
+当前 **TASK-003 / FIX**：task-003 保留首通流程，新增第二次选择、两条行动反馈与四种剧情结局；缺失结局的校验待返修。四种结局由两次选择共同决定，不含评分或正确选项；尚未批准合并 main 或发布。
 
 ## 在 Qoder IDE 中开始
 
 用 Qoder 打开本项目根目录，在对话中发送：
 
-> 请阅读 AGENTS.md、docs/COLLABORATION.md、tasks/current.md 和 tasks/reviews/TASK-002.md，更新 task-002，仅按 R1 返修并复验，追加原执行报告，自动提交推送 task-002 后停止修改，等待 Codex 复审。
+> 请阅读 AGENTS.md、docs/COLLABORATION.md、tasks/current.md 和 tasks/reviews/TASK-003.md，更新 task-003，仅处理 R1 并复验，追加原执行报告，提交推送后停止，等待 Codex 复审。
 
-当前[Qoder 开发交接入口](docs/QODER_START.md)针对 TASK-002，包含 task-002 分支操作、提交推送与交还方式。同一台电脑直接打开现有项目目录，沿用已有工程；当前进入同编号返修，保留已完成的实现与证据。
+当前[Qoder 开发交接入口](docs/QODER_START.md)记录任务交接方式；具体范围以 TASK-003 当前任务为准。同一台电脑直接打开现有项目目录，沿用已有工程与已验收实现。
 
 ## 文档入口
 
 | 文档 | 用途 |
 | --- | --- |
 | [AGENTS.md](AGENTS.md) | 角色、权限和工作边界 |
-| [当前任务](tasks/current.md) | TASK-002 的目标、范围及十项验收标准 |
+| [当前任务](tasks/current.md) | TASK-003 的目标、范围及验收标准 |
 | [Qoder 开工交接](docs/QODER_START.md) | 可直接复制的开发指令、分支与交还步骤 |
 | [协作协议](docs/COLLABORATION.md) | 交接、执行报告、审查与返修 |
 | [GitHub 协作入门](docs/GITHUB_COLLABORATION.md) | 组员访问、下载与同步项目 |
@@ -40,7 +36,8 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 | [路线图](docs/ROADMAP.md) | 顺序、里程碑与进入条件 |
 | [开发与参赛详细计划](docs/DETAILED_PLAN.md) | 逐日排期、分支剧情、任务门槛、验证与提交安排 |
 | [界面美化方向](docs/VISUAL_DIRECTION.md) | 已纳入 TASK-002 的首页、来电和对话视觉方向 |
-| [首通来电执行用稿](docs/STORY_OPENING.md) | TASK-002 的固定对话、选项、反馈与本段结束内容 |
+| [首通来电执行用稿](docs/STORY_OPENING.md) | 首通主线、第一次选择及反馈的固定内容 |
+| [分支与结局执行用稿](docs/STORY_BRANCHES.md) | TASK-003 的第二次选择、反馈与四种结局 |
 | [项目现状](docs/PROJECT_STATUS.md) | 检查证据、已完成事项和未验证事项 |
 | [GitHub 内容核查](docs/GITHUB_CONTENT_AUDIT.md) | 远程文件一致性、现状核查结果与修正记录 |
 | [原始交接](CODEX_HANDOFF.md) | 接管依据，保持原文 |
@@ -58,10 +55,13 @@ npm run dev
 
 ```bash
 npm run typecheck
+npm run test:story
 npm run build
 npm run preview
 ```
 
-生产构建输出到 `dist/`（不提交），预览服务默认地址为 `http://127.0.0.1:4173/`。当前版本不需要 API Key、后端、账号或远程素材，刷新页面会回到首页。
+生产构建输出到 `dist/`（不提交），预览服务默认地址为 `http://127.0.0.1:4173/`。`npm run test:story` 检查两次选择、四种结局映射、分支可达性、重复选择、重置、异常进度与坏剧情图。
+
+当前版本完成第一通来电的两次选择和四种剧情结局；双世界时间线与结尾来信尚未实现，也没有分享、存档或后端功能。不需要 API Key、账号或远程素材，不保存剧情进度；刷新页面会回到首页。
 
 MVP 不要求用户提供 API Key，也不要求配置后端。团队已持续授权每轮改动完成并检查后自动提交、推送：指挥文档同步 main，Qoder 开发与返修同步任务分支。代码合并 main、网站部署与赛事投稿按协作协议另行批准。

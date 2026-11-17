@@ -1,0 +1,15 @@
+{
+  "browser": "Edg/157.0.4341.60",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0",
+  "requestUrls": [
+    "http://127.0.0.1:4173/",
+    "http://127.0.0.1:4173/assets/index-CbVx3xZc.js",
+    "http://127.0.0.1:4173/assets/index-oFLhg7VW.css",
+    "http://127.0.0.1:4173/favicon.svg"
+  ],
+  "externalRequests": [],
+  "failedResponses": [],
+  "loadingFailures": [],
+  "exceptions": [],
+  "logEntries": []
+}

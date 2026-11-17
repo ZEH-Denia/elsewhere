@@ -10,6 +10,7 @@
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
+    "test:story": "node --test tests/opening.test.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

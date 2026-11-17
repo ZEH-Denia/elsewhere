@@ -1,5 +1,7 @@
 # 路线图
 
+> 最新状态：TASK-003 初审 FIX；Qoder 请阅读 tasks/reviews/TASK-003.md 并按 R1 返修，详见当前任务。
+
 > 最新状态：TASK-002 已 PASS 并归档；团队要求准备下一步，TASK-003 已下发至 task-003。Qoder 以 [当前任务](../tasks/current.md)及剧情用稿为准；下文先前任务交接保留为历史。
 
 > 2026-11-17 最新状态：TASK-002 的 R1 已复审 **PASS**，等待团队批准下一任务及开发实现合并；下文原交接和初审内容为历史记录，实时状态见 [项目现状](PROJECT_STATUS.md)。

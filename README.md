@@ -16,12 +16,15 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 > 请阅读 AGENTS.md、docs/COLLABORATION.md 和 tasks/current.md，按 TASK-001 的允许范围执行开发和验证，完成后写入 tasks/reports/TASK-001.md 并停止，等待 Codex 审核。
 
+2026-11-17 已整理[Qoder 开发交接入口](docs/QODER_START.md)，包含完整开工指令、task-001 分支操作、提交推送与交还方式。同一台电脑直接打开现有项目目录；完成交接准备不表示 Qoder 已经执行开发。
+
 ## 文档入口
 
 | 文档 | 用途 |
 | --- | --- |
 | [AGENTS.md](AGENTS.md) | 角色、权限和工作边界 |
 | [当前任务](tasks/current.md) | TASK-001 的目标、范围及验收标准 |
+| [Qoder 开工交接](docs/QODER_START.md) | 可直接复制的开发指令、分支与交还步骤 |
 | [协作协议](docs/COLLABORATION.md) | 交接、执行报告、审查与返修 |
 | [GitHub 协作入门](docs/GITHUB_COLLABORATION.md) | 组员访问、下载与同步项目 |
 | [产品定义](docs/PRODUCT.md) | MVP 体验与范围 |

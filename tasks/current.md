@@ -4,6 +4,7 @@
 | --- | --- |
 | 状态 | **READY**（尚未执行、尚未审核） |
 | 下发日期 | 2026-11-16（Asia/Shanghai） |
+| 开发交接准备 | 2026-11-17；入口 `docs/QODER_START.md`；尚未实际开工 |
 | 执行方 | Qoder IDE |
 | 指挥 / 审核 | Codex |
 | 授权 | 本地开发、验证；团队已持续授权每轮自动提交并推送任务分支 `task-001`；不含合并 main、网站发布或投稿 |
@@ -13,6 +14,8 @@
 ## 1. 开始前必读
 
 `AGENTS.md`、`docs/COLLABORATION.md`、`docs/PRODUCT.md`、`docs/ARCHITECTURE.md`、`docs/PROJECT_STATUS.md`。先检查当前目录和 Git 状态，保留现有文档，禁止用脚手架覆盖整个根目录。
+
+工作区干净时先 fetch，切换并快进更新 `task-001`；首次没有本地分支时跟踪 `origin/task-001`。先确认分支内有本轮交接文档，再开始初始化工程。已有改动、分支分歧或缺少远程分支时保留现场并报告。具体开工与交还步骤见 `docs/QODER_START.md`。
 
 ## 2. 本轮目标
 

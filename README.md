@@ -8,7 +8,7 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 ## 当前状态
 
-2026-11-17：Qoder 已在 [task-001 分支](https://github.com/ZEH-Denia/elsewhere/tree/task-001)实现工程、首页和可返回的来电前言。Codex 首轮独立工程与页面检查通过，审核为 **FIX：待补 Qoder 开发过程证据**，见 [审查报告](tasks/reviews/TASK-001.md)。应用代码尚未合并 main，后续剧情未实现。
+2026-11-17：Qoder 已在 task-001 分支实现工程、首页和可返回的来电前言。Codex 首轮独立工程与页面检查通过，审核为 **FIX：待补 Qoder 开发过程证据**，见 [审查报告](tasks/reviews/TASK-001.md)；执行方记录见 [TASK-001 报告](tasks/reports/TASK-001.md)。应用代码尚未合并 main，后续剧情未实现。
 
 ## 在 Qoder IDE 中开始
 
@@ -37,6 +37,21 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 ## 本地运行
 
-应用位于 `task-001` 分支，运行方式见[该分支 README](https://github.com/ZEH-Denia/elsewhere/blob/task-001/README.md)。main 当前仅包含指挥文档和审查记录，没有 `package.json`；需要体验或补证时，保留现场并切换至任务分支后操作。
+工程使用 React、TypeScript、Vite 与 Tailwind CSS，包管理器为 npm。`package.json` 遵循 Vite 的运行要求：Node.js 20 系列需 20.19.0 或更高版本，其他版本需 22.12.0 或更高版本；本轮实际使用 Node.js v24.16.0、npm 11.13.0。
+
+```bash
+npm ci
+npm run dev
+```
+
+开发服务默认地址为 `http://127.0.0.1:5173/`。另开终端可执行：
+
+```bash
+npm run typecheck
+npm run build
+npm run preview
+```
+
+生产构建输出到 `dist/`（不提交），预览服务默认地址为 `http://127.0.0.1:4173/`。当前版本不需要 API Key、后端、账号或远程素材，刷新页面会回到首页。
 
 MVP 不要求用户提供 API Key，也不要求配置后端。团队已持续授权每轮改动完成并检查后自动提交、推送：指挥文档同步 main，Qoder 开发与返修同步任务分支。代码合并 main、网站部署与赛事投稿按协作协议另行批准。

@@ -1,0 +1,200 @@
+{
+  "results": [
+    {
+      "home": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "layoutViewportWidth": 375,
+        "documentWidth": 375,
+        "documentHeight": 1136,
+        "horizontalOverflow": false,
+        "title": "Elsewhere\n未接来电",
+        "button": {
+          "text": "开始体验",
+          "x": 20,
+          "y": 447.453125,
+          "width": 184,
+          "height": 52,
+          "withinHorizontalViewport": true
+        },
+        "pageScrollable": true
+      },
+      "intro": {
+        "heading": "如果当年选择了音乐，你现在会在哪里？",
+        "activeElement": "如果当年选择了音乐，你现在会在哪里？",
+        "disclaimerPresent": true,
+        "returnButton": "返回首页"
+      },
+      "mouseReturn": "Elsewhere\n未接来电",
+      "keyboard": {
+        "tabToStart": {
+          "active": "开始体验",
+          "focusVisible": true,
+          "outline": "rgb(88, 228, 214) solid 2px"
+        },
+        "enterStart": {
+          "heading": "如果当年选择了音乐，你现在会在哪里？",
+          "active": "如果当年选择了音乐，你现在会在哪里？"
+        },
+        "tabToReturn": {
+          "active": "返回首页",
+          "focusVisible": true,
+          "outline": "rgb(88, 228, 214) solid 2px"
+        },
+        "spaceReturn": {
+          "heading": "Elsewhere\n未接来电",
+          "active": "开始体验"
+        },
+        "spaceRestart": {
+          "heading": "如果当年选择了音乐，你现在会在哪里？",
+          "active": "如果当年选择了音乐，你现在会在哪里？"
+        },
+        "enterReturn": {
+          "heading": "Elsewhere\n未接来电",
+          "active": "开始体验"
+        }
+      },
+      "reducedMotion": {
+        "mediaMatches": true,
+        "screenAnimation": "none",
+        "orbitAnimation": "none",
+        "buttonTransitionDuration": "0s"
+      }
+    },
+    {
+      "home": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "layoutViewportWidth": 1440,
+        "documentWidth": 1440,
+        "documentHeight": 900,
+        "horizontalOverflow": false,
+        "title": "Elsewhere\n未接来电",
+        "button": {
+          "text": "开始体验",
+          "x": 48,
+          "y": 608.484375,
+          "width": 184,
+          "height": 52,
+          "withinHorizontalViewport": true
+        },
+        "pageScrollable": false
+      },
+      "intro": {
+        "heading": "如果当年选择了音乐，\n你现在会在哪里？",
+        "activeElement": "如果当年选择了音乐，\n你现在会在哪里？",
+        "disclaimerPresent": true,
+        "returnButton": "返回首页"
+      },
+      "mouseReturn": "Elsewhere\n未接来电",
+      "keyboard": {
+        "tabToStart": {
+          "active": "开始体验",
+          "focusVisible": true,
+          "outline": "rgb(88, 228, 214) solid 2px"
+        },
+        "enterStart": {
+          "heading": "如果当年选择了音乐，\n你现在会在哪里？",
+          "active": "如果当年选择了音乐，\n你现在会在哪里？"
+        },
+        "tabToReturn": {
+          "active": "返回首页",
+          "focusVisible": true,
+          "outline": "rgb(88, 228, 214) solid 2px"
+        },
+        "spaceReturn": {
+          "heading": "Elsewhere\n未接来电",
+          "active": "开始体验"
+        },
+        "spaceRestart": {
+          "heading": "如果当年选择了音乐，\n你现在会在哪里？",
+          "active": "如果当年选择了音乐，\n你现在会在哪里？"
+        },
+        "enterReturn": {
+          "heading": "Elsewhere\n未接来电",
+          "active": "开始体验"
+        }
+      }
+    },
+    {
+      "home": {
+        "viewport": {
+          "width": 320,
+          "height": 844
+        },
+        "layoutViewportWidth": 305,
+        "documentWidth": 305,
+        "documentHeight": 1108,
+        "horizontalOverflow": false,
+        "title": "Elsewhere\n未接来电",
+        "button": {
+          "text": "开始体验",
+          "x": 20,
+          "y": 447.453125,
+          "width": 172,
+          "height": 52,
+          "withinHorizontalViewport": true
+        },
+        "pageScrollable": true
+      }
+    }
+  ],
+  "network": [
+    {
+      "url": "http://127.0.0.1:5173/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/@vite/client",
+      "status": 304
+    },
+    {
+      "url": "http://127.0.0.1:5173/src/main.tsx?t=1794890861102",
+      "status": 304
+    },
+    {
+      "url": "http://127.0.0.1:5173/@react-refresh",
+      "status": 304
+    },
+    {
+      "url": "http://127.0.0.1:5173/node_modules/.vite/deps/react.js?v=9f1f7608",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/node_modules/.vite/deps/react-dom_client.js?v=2e172918",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/src/App.tsx?t=1794890861002",
+      "status": 304
+    },
+    {
+      "url": "http://127.0.0.1:5173/src/index.css?t=1794890861102",
+      "status": 304
+    },
+    {
+      "url": "http://127.0.0.1:5173/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=9f1f7608",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/node_modules/.vite/deps/react-DgVJeC5g.js?v=00c9ff15",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/node_modules/vite/dist/client/env.mjs",
+      "status": 304
+    },
+    {
+      "url": "http://127.0.0.1:5173/node_modules/.vite/deps/react-dom-CFuoV50Q.js?v=00c9ff15",
+      "status": 200
+    }
+  ],
+  "externalRequests": [],
+  "failedResponses": [],
+  "exceptions": [],
+  "logEntries": []
+}

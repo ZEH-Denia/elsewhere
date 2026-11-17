@@ -1,5 +1,7 @@
 # GitHub 内容与项目现状核查
 
+> 2026-11-17 最新状态：TASK-002 的 R1 已复审 **PASS**，等待团队批准下一任务及开发实现合并；下文原交接和初审内容为历史记录，实时状态见 [项目现状](PROJECT_STATUS.md)。
+
 核查日期：2026-11-16（Asia/Shanghai）。仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)。
 
 下文为 2026-11-16 初始核查记录；当前状态以文末更新及 PROJECT_STATUS.md 为准。

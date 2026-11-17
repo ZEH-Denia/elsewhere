@@ -1,5 +1,7 @@
 # Elsewhere 未接来电 开发与参赛详细计划
 
+> 2026-11-17 最新状态：TASK-002 的 R1 已复审 **PASS**，等待团队批准下一任务及开发实现合并；下文原交接和初审内容为历史记录，实时状态见 [项目现状](PROJECT_STATUS.md)。
+
 编制日期：2026-11-16。时间统一为北京时间（Asia/Shanghai）。适用对象：团队、Codex、Qoder IDE。
 
 2026-11-17 进度更新：TASK-001 已 PASS 并归档；TASK-002 已由 Qoder 在 task-002 的 167b62a 完成视觉与首通来电，Codex 初审 FIX，待修复确认退出后的首页焦点恢复；实现尚未合并 main。具体以 `tasks/current.md` 和审查为准。下列原始排期与规划时基线保留，实时状态见 `PROJECT_STATUS.md`。

@@ -1,0 +1,32 @@
+{
+  "reviewDate": "2026-11-17",
+  "timezone": "Asia/Shanghai",
+  "reviewedCommit": "0da563b86ea2395f8fb8efb9d083ba20335632d5",
+  "comparedTo": "f4abe925b0d6ac2bc245147613df4b23103bfa59",
+  "reviewStatus": "PASS",
+  "closedIssue": "R1",
+  "evidenceType": "verified original Qoder task and tool log excerpts",
+  "excerptSha256": "5dfb2c90a6610eeb1a35c35ce37038b35b69d04b1390a85c9c743ee0b5499274",
+  "originalInstructionAndMessageUuidMatch": true,
+  "eventsVerifiedAgainstLocalOriginal": [
+    {"tool": "Write", "sourceLine": 144, "resultLine": 163},
+    {"tool": "Write", "sourceLine": 145, "resultLine": 165},
+    {"tool": "Edit", "sourceLine": 204, "resultLine": 206},
+    {"tool": "Bash", "sourceLine": 360, "resultLine": 367},
+    {"tool": "Bash", "sourceLine": 361, "resultLine": 369},
+    {"tool": "Edit", "sourceLine": 515, "resultLine": 518},
+    {"tool": "Edit", "sourceLine": 516, "resultLine": 520},
+    {"tool": "Bash", "sourceLine": 525, "resultLine": 528},
+    {"tool": "Bash", "sourceLine": 526, "resultLine": 530},
+    {"tool": "Bash", "sourceLine": 533, "resultLine": 535}
+  ],
+  "allSelectedInputsAndResultsMatch": true,
+  "writeFullLengthsAndHashesMatch": true,
+  "browserResultMatchesExistingEvidence": true,
+  "applicationCodeConfigurationLockfileOrReadmeChanged": false,
+  "buildAndUiRerun": false,
+  "buildAndUiEvidence": "Retained independently verified results for unchanged application commit edba8a9",
+  "ideHistoryScreenshotsObtained": false,
+  "alternativeEvidenceAccepted": true,
+  "nextTaskAuthorized": false
+}

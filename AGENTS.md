@@ -18,7 +18,7 @@
 
 ## 任务与证据
 
-- 一个活动任务，以 `tasks/current.md` 为准；TASK-001 已 PASS 并归档，当前为 TASK-002。禁止自行推进尚未下发的路线图后续项。
+- 一个活动任务，以 `tasks/current.md` 为准；TASK-001、TASK-002 已 PASS 并归档，当前为 TASK-003。禁止自行推进尚未下发的路线图后续项。
 - Qoder 提交 `tasks/reports/TASK-XXX.md` 后交还控制；报告不代表验收通过。
 - Codex 对照真实代码与检查结果写入 `tasks/reviews/TASK-XXX.md`，状态仅用 PASS / FIX / BLOCKED。
 - PASS 后仍需团队批准下一任务；FIX 保留原任务编号；BLOCKED 写明缺少的信息或环境条件。

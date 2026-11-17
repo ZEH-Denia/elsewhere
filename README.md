@@ -8,7 +8,7 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 ## 当前状态
 
-TASK-001 已在 `task-001` 分支实现 React 工程、神秘首页，以及“开始体验 → 来电前言 → 返回首页”的可重复交互。当前仅交付这一入口，完整来电、剧情选择、双时间线与结局尚未实现；执行结果见 [TASK-001 报告](tasks/reports/TASK-001.md)，仍需 Codex 审核。
+2026-11-17：Qoder 已在 task-001 分支实现工程、首页和可返回的来电前言。Codex 首轮独立工程与页面检查通过，审核为 **FIX：待补 Qoder 开发过程证据**，见 [审查报告](tasks/reviews/TASK-001.md)；执行方记录见 [TASK-001 报告](tasks/reports/TASK-001.md)。应用代码尚未合并 main，后续剧情未实现。
 
 ## 在 Qoder IDE 中开始
 

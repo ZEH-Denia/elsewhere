@@ -2,16 +2,18 @@
 
 | 字段 | 内容 |
 | --- | --- |
-| 状态 | **READY**（尚未执行、尚未审核） |
+| 状态 | **IN_PROGRESS**（首轮审核 **FIX**，等待 Qoder 补证） |
 | 下发日期 | 2026-11-16（Asia/Shanghai） |
-| 开发交接准备 | 2026-11-17；入口 `docs/QODER_START.md`；尚未实际开工 |
+| 开发交接与审核 | 2026-11-17 已收到实现 `edba8a9`；审查见 `tasks/reviews/TASK-001.md` |
 | 执行方 | Qoder IDE |
 | 指挥 / 审核 | Codex |
 | 授权 | 本地开发、验证；团队已持续授权每轮自动提交并推送任务分支 `task-001`；不含合并 main、网站发布或投稿 |
-| 前置 | 已有 Git、协作文档与公开远程仓库；尚无应用工程或依赖 |
+| 前置 | task-001 已有工程与首页实现；首轮工程/页面检查通过，缺 Qoder 开发过程证据；未合并 main |
 | 交付报告 | `tasks/reports/TASK-001.md` |
 
 ## 1. 开始前必读
+
+**当前先处理首轮 FIX**：阅读 `tasks/reviews/TASK-001.md`，仅按 R1 补齐真实 Qoder 过程证据并更新执行报告；本轮未要求修改业务代码。以下初始需求和 AC-01～AC-08 保留作为复验依据，不重新初始化工程或扩大功能。
 
 `AGENTS.md`、`docs/COLLABORATION.md`、`docs/PRODUCT.md`、`docs/ARCHITECTURE.md`、`docs/PROJECT_STATUS.md`。先检查当前目录和 Git 状态，保留现有文档，禁止用脚手架覆盖整个根目录。
 

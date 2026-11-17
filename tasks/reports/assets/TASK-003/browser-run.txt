@@ -1,0 +1,12 @@
+2026-11-17
+Command: node tasks/reports/assets/TASK-003/browser-checks.mjs
+CDP: http://127.0.0.1:9224 (isolated temporary Edge profile, --disable-extensions)
+Exit code: 0
+
+{
+  "result": "all scripted assertions passed",
+  "combinations": 4,
+  "requests": 34,
+  "failures": [],
+  "consoleEvents": []
+}

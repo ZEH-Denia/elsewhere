@@ -1,6 +1,9 @@
 export const choiceIds = ['regret', 'cherish-present'] as const
+export const nextStepIds = ['make-space', 'reach-out'] as const
 
 export type ChoiceId = (typeof choiceIds)[number]
+export type NextStepId = (typeof nextStepIds)[number]
+export type EndingId = 'regret-make-space' | 'regret-reach-out' | 'cherish-make-space' | 'cherish-reach-out'
 export type Speaker = '你' | '另一个你'
 export type OpeningNodeId =
   | 'opening-01'
@@ -16,7 +19,11 @@ export type OpeningNodeId =
   | 'cherish-feedback-01'
   | 'cherish-feedback-02'
   | 'opening-closing'
-  | 'opening-end'
+  | 'next-step'
+  | 'make-space-feedback'
+  | 'reach-out-feedback'
+  | 'call-farewell'
+  | EndingId
 
 export interface DialogueNode {
   id: OpeningNodeId
@@ -35,30 +42,32 @@ export interface FeedbackNode {
 }
 
 export interface ChoiceOption {
-  id: ChoiceId
+  id: ChoiceId | NextStepId
   label: string
-  feedback: [FeedbackNode, FeedbackNode]
+  feedback: [FeedbackNode, ...FeedbackNode[]]
 }
 
 export interface ChoiceNode {
-  id: 'first-response'
+  id: 'first-response' | 'next-step'
   kind: 'choice'
   options: [ChoiceOption, ChoiceOption]
 }
 
 export interface ClosingNode {
-  id: 'opening-closing'
+  id: 'opening-closing' | 'call-farewell'
   kind: 'closing'
-  speaker: '另一个你'
+  speaker: '另一个你' | '旁白'
   text: string
-  next: 'opening-end'
+  next: 'next-step' | null
 }
 
 export interface EndNode {
-  id: 'opening-end'
+  id: EndingId
   kind: 'end'
+  choiceId: ChoiceId
+  nextStepId: NextStepId
   title: string
-  summaries: Record<ChoiceId, string>
+  summary: string
 }
 
 export type OpeningNode = DialogueNode | FeedbackNode | ChoiceNode | ClosingNode | EndNode
@@ -66,6 +75,7 @@ export type OpeningNode = DialogueNode | FeedbackNode | ChoiceNode | ClosingNode
 export interface OpeningProgress {
   nodeId: OpeningNodeId
   choiceId: ChoiceId | null
+  nextStepId: NextStepId | null
 }
 
 export const openingDialogue: DialogueNode[] = [
@@ -167,31 +177,125 @@ export const firstChoice: ChoiceNode = {
   ],
 }
 
-export const closingNode: ClosingNode = {
+export const openingClosing: ClosingNode = {
   id: 'opening-closing',
   kind: 'closing',
-  speaker: '另一个你',
-  text: '电话快断了。至少这一次，我们听见了彼此。',
-  next: 'opening-end',
+  speaker: '旁白',
+  text: '电话里的杂音慢慢弱了下去。另一个你还在等你的回答。',
+  next: 'next-step',
 }
 
-export const openingEnd: EndNode = {
-  id: 'opening-end',
-  kind: 'end',
-  title: '第一通来电，暂时结束。',
-  summaries: {
-    regret: '你说出了遗憾，也给一次小小的尝试留了位置。',
-    'cherish-present': '你珍惜当下，也没有关上另一种可能。',
-  },
+export const secondChoice: ChoiceNode = {
+  id: 'next-step',
+  kind: 'choice',
+  options: [
+    {
+      id: 'make-space',
+      label: '给喜欢的事留一点时间。',
+      feedback: [
+        {
+          id: 'make-space-feedback',
+          kind: 'feedback',
+          speaker: '另一个你',
+          text: '不用急着证明什么。先给自己留下一小段时间，也许就够了。',
+          next: 'call-farewell',
+        },
+      ],
+    },
+    {
+      id: 'reach-out',
+      label: '找一个信任的人聊一聊。',
+      feedback: [
+        {
+          id: 'reach-out-feedback',
+          kind: 'feedback',
+          speaker: '另一个你',
+          text: '说出来不一定马上有答案，但你不必一个人想完所有事。',
+          next: 'call-farewell',
+        },
+      ],
+    },
+  ],
 }
+
+export const callFarewell: ClosingNode = {
+  id: 'call-farewell',
+  kind: 'closing',
+  speaker: '另一个你',
+  text: '谢谢你接起这通电话。我们都继续好好生活吧。',
+  next: null,
+}
+
+export const endings: EndNode[] = [
+  {
+    id: 'regret-make-space',
+    kind: 'end',
+    choiceId: 'regret',
+    nextStepId: 'make-space',
+    title: '把旋律找回来',
+    summary: '你承认了遗憾，决定先为音乐留出一点时间。另一条路没有消失，它可以从一个小小的练习开始。',
+  },
+  {
+    id: 'regret-reach-out',
+    kind: 'end',
+    choiceId: 'regret',
+    nextStepId: 'reach-out',
+    title: '让遗憾被听见',
+    summary: '你承认了遗憾，也愿意找信任的人聊聊。那些未说出口的愿望，终于有了被听见的机会。',
+  },
+  {
+    id: 'cherish-make-space',
+    kind: 'end',
+    choiceId: 'cherish-present',
+    nextStepId: 'make-space',
+    title: '给今天留一首歌',
+    summary: '你珍惜已有的生活，也为喜欢的事留下位置。安稳与热爱，可以在同一天里慢慢相遇。',
+  },
+  {
+    id: 'cherish-reach-out',
+    kind: 'end',
+    choiceId: 'cherish-present',
+    nextStepId: 'reach-out',
+    title: '和身边的人分享',
+    summary: '你珍惜当下，也愿意把自己的想法说出来。平凡的日子因为彼此理解，多了一点新的可能。',
+  },
+]
+
+const endingNodes = Object.fromEntries(endings.map((node) => [node.id, node]))
 
 export const openingNodes = {
   ...Object.fromEntries(openingDialogue.map((node) => [node.id, node])),
   ...Object.fromEntries(firstChoice.options.flatMap((option) => option.feedback.map((node) => [node.id, node]))),
+  ...Object.fromEntries(secondChoice.options.flatMap((option) => option.feedback.map((node) => [node.id, node]))),
+  ...endingNodes,
   'first-response': firstChoice,
-  'opening-closing': closingNode,
-  'opening-end': openingEnd,
+  'opening-closing': openingClosing,
+  'next-step': secondChoice,
+  'call-farewell': callFarewell,
 } as Record<OpeningNodeId, OpeningNode>
+
+const endingByChoice: Record<ChoiceId, Record<NextStepId, EndingId>> = {
+  regret: {
+    'make-space': 'regret-make-space',
+    'reach-out': 'regret-reach-out',
+  },
+  'cherish-present': {
+    'make-space': 'cherish-make-space',
+    'reach-out': 'cherish-reach-out',
+  },
+}
+
+function isChoiceId(value: unknown): value is ChoiceId {
+  return choiceIds.includes(value as ChoiceId)
+}
+
+function isNextStepId(value: unknown): value is NextStepId {
+  return nextStepIds.includes(value as NextStepId)
+}
+
+export function getEndingId(choiceId: ChoiceId, nextStepId: NextStepId): EndingId {
+  return endingByChoice[choiceId][nextStepId]
+}
 
 export function validateOpeningStory(nodes: Record<string, OpeningNode> = openingNodes): string[] {
   const errors: string[] = []
@@ -200,7 +304,7 @@ export function validateOpeningStory(nodes: Record<string, OpeningNode> = openin
   if (!nodes['opening-01']) errors.push('missing opening-01')
 
   for (const node of records) {
-    if ('next' in node && !nodes[node.next]) {
+    if ('next' in node && node.next && !nodes[node.next]) {
       errors.push(`${node.id} references missing node ${node.next}`)
     }
     if (node.kind === 'choice') {
@@ -222,7 +326,9 @@ export function validateOpeningStory(nodes: Record<string, OpeningNode> = openin
       if (canReachEnd.has(node.id)) continue
       const nextIds = node.kind === 'choice'
         ? node.options.map((option) => option.feedback[0].id)
-        : 'next' in node ? [node.next] : []
+        : node.id === 'call-farewell'
+          ? endings.map(({ id }) => id)
+          : 'next' in node && node.next ? [node.next] : []
       if (nextIds.some((id) => canReachEnd.has(id))) {
         canReachEnd.add(node.id)
         changed = true
@@ -238,7 +344,7 @@ export function validateOpeningStory(nodes: Record<string, OpeningNode> = openin
 }
 
 export function createInitialOpeningProgress(): OpeningProgress {
-  return { nodeId: 'opening-01', choiceId: null }
+  return { nodeId: 'opening-01', choiceId: null, nextStepId: null }
 }
 
 export function getOpeningNode(nodeId: string): OpeningNode {
@@ -249,42 +355,74 @@ export function normalizeOpeningProgress(progress: OpeningProgress): OpeningProg
   const node = (openingNodes as Record<string, OpeningNode | undefined>)[progress.nodeId]
   if (!node) return createInitialOpeningProgress()
 
+  const choiceId = isChoiceId(progress.choiceId) ? progress.choiceId : null
+  const nextStepId = isNextStepId(progress.nextStepId) ? progress.nextStepId : null
+  const current = { nodeId: node.id, choiceId, nextStepId }
+
+  if (node.kind === 'dialogue' || node.id === 'first-response') {
+    return { nodeId: node.id, choiceId: null, nextStepId: null }
+  }
+
   if (node.kind === 'feedback') {
-    const option = firstChoice.options.find(({ id }) => id === progress.choiceId)
-    if (!option?.feedback.some(({ id }) => id === node.id)) {
-      return { nodeId: 'first-response', choiceId: null }
+    const firstOption = firstChoice.options.find((option) => option.feedback.some(({ id }) => id === node.id))
+    if (firstOption) {
+      if (firstOption.id !== choiceId) return { nodeId: 'first-response', choiceId: null, nextStepId: null }
+      return { nodeId: node.id, choiceId, nextStepId: null }
     }
+
+    const secondOption = secondChoice.options.find((option) => option.feedback.some(({ id }) => id === node.id))
+    if (!choiceId) return { nodeId: 'first-response', choiceId: null, nextStepId: null }
+    if (secondOption?.id !== nextStepId) return { nodeId: 'next-step', choiceId, nextStepId: null }
+    return current
   }
 
-  if ((node.kind === 'closing' || node.kind === 'end') && !progress.choiceId) {
-    return { nodeId: 'first-response', choiceId: null }
+  if (node.id === 'opening-closing' || node.id === 'next-step') {
+    if (!choiceId) return { nodeId: 'first-response', choiceId: null, nextStepId: null }
+    return { nodeId: node.id, choiceId, nextStepId: null }
   }
 
-  if ((node.kind === 'dialogue' || node.kind === 'choice') && progress.choiceId) {
-    return { nodeId: node.id, choiceId: null }
+  if (node.id === 'call-farewell' || node.kind === 'end') {
+    if (!choiceId) return { nodeId: 'first-response', choiceId: null, nextStepId: null }
+    if (!nextStepId) return { nodeId: 'next-step', choiceId, nextStepId: null }
+    if (node.kind === 'end') return { ...current, nodeId: getEndingId(choiceId, nextStepId) }
   }
 
-  return progress
+  return current
 }
 
 export function advanceOpening(progress: OpeningProgress): OpeningProgress {
   const current = normalizeOpeningProgress(progress)
   const node = getOpeningNode(current.nodeId)
 
-  if (node.kind === 'dialogue' || node.kind === 'feedback' || node.kind === 'closing') {
+  if (node.kind === 'dialogue' || node.kind === 'feedback') {
     return { ...current, nodeId: node.next }
+  }
+
+  if (node.kind === 'closing') {
+    if (node.next) return { ...current, nodeId: node.next }
+    if (current.choiceId && current.nextStepId) {
+      return { ...current, nodeId: getEndingId(current.choiceId, current.nextStepId) }
+    }
   }
 
   return current
 }
 
-export function chooseOpening(progress: OpeningProgress, choiceId: ChoiceId): OpeningProgress {
+export function chooseOpening(
+  progress: OpeningProgress,
+  optionId: ChoiceId | NextStepId,
+): OpeningProgress {
   const current = normalizeOpeningProgress(progress)
   const node = getOpeningNode(current.nodeId)
   if (node.kind !== 'choice') return current
 
-  const option = node.options.find(({ id }) => id === choiceId)
-  if (!option) return current
+  if (node.id === 'first-response') {
+    const option = firstChoice.options.find(({ id }) => id === optionId)
+    if (!option) return current
+    return { nodeId: option.feedback[0].id, choiceId: option.id as ChoiceId, nextStepId: null }
+  }
 
-  return { nodeId: option.feedback[0].id, choiceId }
+  const option = secondChoice.options.find(({ id }) => id === optionId)
+  if (!option || !current.choiceId) return current
+  return { ...current, nodeId: option.feedback[0].id, nextStepId: option.id as NextStepId }
 }

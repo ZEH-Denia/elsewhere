@@ -8,7 +8,7 @@ import {
   getOpeningNode,
   normalizeOpeningProgress,
   openingDialogue,
-  openingEnd,
+  secondChoice,
 } from './story/opening'
 
 type View = 'home' | 'intro' | 'incoming' | 'call'
@@ -77,6 +77,7 @@ function App() {
     ? `${currentNode.speaker}：${currentNode.text}`
     : ''
   const selectedOption = firstChoice.options.find(({ id }) => id === safeProgress.choiceId)
+  const selectedNextStep = secondChoice.options.find(({ id }) => id === safeProgress.nextStepId)
 
   return (
     <div className="app-background min-h-svh text-mist">
@@ -188,10 +189,13 @@ function App() {
 
               {currentNode.kind === 'choice' && (
                 <div className="choice-stage">
-                  <p className="dialogue-progress">第一次选择</p>
-                  <h2 ref={choiceHeading} tabIndex={-1} id="choice-title">你想怎样回应？</h2>
+                  <p className="dialogue-progress">{currentNode.id === 'first-response' ? '第一次选择' : '第二次选择'}</p>
+                  {currentNode.id === 'next-step' && <p className="dialogue-speaker">另一个你</p>}
+                  <h2 ref={choiceHeading} tabIndex={-1} id="choice-title">
+                    {currentNode.id === 'first-response' ? '你想怎样回应？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
+                  </h2>
                   <div className="choice-options" aria-labelledby="choice-title">
-                    {firstChoice.options.map((option) => (
+                    {currentNode.options.map((option) => (
                       <button key={option.id} type="button" className="choice-option" onClick={() => setProgress((current) => chooseOpening(current, option.id))}>
                         <span>{option.label}</span><Arrow />
                       </button>
@@ -202,7 +206,11 @@ function App() {
 
               {(currentNode.kind === 'feedback' || currentNode.kind === 'closing') && (
                 <div className="dialogue-stage">
-                  <p className="dialogue-progress">{currentNode.kind === 'closing' ? '共同收束' : `回应反馈 ${currentNode.id.endsWith('01') ? '01' : '02'} / 02`}</p>
+                  <p className="dialogue-progress">
+                    {currentNode.kind === 'closing'
+                      ? currentNode.id === 'opening-closing' ? '共同衔接' : '通话尾声'
+                      : safeProgress.nextStepId ? '行动反馈' : `回应反馈 ${currentNode.id.endsWith('01') ? '01' : '02'} / 02`}
+                  </p>
                   <article className="dialogue-card">
                     <p className="dialogue-speaker">{currentNode.speaker}</p>
                     <p className="dialogue-text">{currentNode.text}</p>
@@ -216,12 +224,13 @@ function App() {
           )}
 
           {view === 'call' && currentNode.kind === 'end' && (
-            <section className="screen-enter end-layout" aria-labelledby="end-title">
-              <p className="eyebrow"><span />本段结束</p>
-              <h1 ref={endHeading} tabIndex={-1} id="end-title">{openingEnd.title}</h1>
+            <section className="screen-enter end-layout" aria-labelledby="end-title" data-ending-id={currentNode.id}>
+              <p className="eyebrow"><span />剧情结局</p>
+              <h1 ref={endHeading} tabIndex={-1} id="end-title">{currentNode.title}</h1>
               <div className="end-reflection">
                 {selectedOption && <p className="end-choice">你的回应：{selectedOption.label}</p>}
-                <p>{safeProgress.choiceId ? openingEnd.summaries[safeProgress.choiceId] : ''}</p>
+                {selectedNextStep && <p className="end-choice">下一步：{selectedNextStep.label}</p>}
+                <p>{currentNode.summary}</p>
               </div>
               <div className="action-row">
                 <button type="button" className="primary-action group" onClick={showIncoming}>

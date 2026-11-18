@@ -598,7 +598,7 @@ button:focus-visible,
   justify-content: space-between;
   gap: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid hsl(var(--line) / 0.5);
+  border-bottom: 1px solid hsl(var(--line) / 0.28);
 }
 
 .call-session-header h1 {
@@ -610,19 +610,21 @@ button:focus-visible,
 
 .end-call-action {
   flex: none;
-  min-height: 48px;
-  padding: 0 18px;
-  border: 1px solid hsl(var(--line-strong));
+  min-width: 44px;
+  min-height: 46px;
+  padding: 0 4px;
+  border: 1px solid transparent;
   border-radius: 999px;
-  color: hsl(var(--soft));
-  background: hsl(var(--night-raised) / 0.5);
-  font-size: 13px;
-  transition: color 180ms ease, border-color 180ms ease;
+  color: hsl(var(--dim));
+  background: transparent;
+  font-size: 12px;
+  transition: color 180ms ease, background-color 180ms ease;
 }
 
 .end-call-action:hover {
   color: hsl(var(--mist));
-  border-color: hsl(var(--soft));
+  background: hsl(var(--mist) / 0.05);
+  border-color: transparent;
 }
 
 .dialogue-stage,
@@ -641,14 +643,14 @@ button:focus-visible,
 
 .dialogue-card {
   display: flex;
-  min-height: 190px;
+  min-height: 200px;
   flex-direction: column;
   justify-content: center;
-  margin: 20px 0 30px;
+  margin: 20px 0 22px;
   padding: 30px 32px;
-  border-left: 2px solid hsl(var(--accent) / 0.75);
+  border-left: 1px solid hsl(var(--accent) / 0.48);
   border-radius: 0 20px 20px 0;
-  background: linear-gradient(110deg, hsl(var(--night-raised) / 0.8), hsl(var(--night-raised) / 0.22));
+  background: linear-gradient(110deg, hsl(var(--night-raised) / 0.62), hsl(var(--night-raised) / 0.08));
 }
 
 .dialogue-speaker {
@@ -660,10 +662,46 @@ button:focus-visible,
 }
 
 .dialogue-text {
+  max-width: 28em;
   color: hsl(var(--mist));
-  font-size: clamp(22px, 2.4vw, 30px);
+  font-size: clamp(24px, 2.5vw, 32px);
   line-height: 1.75;
   letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+.dialogue-stage > .dialogue-continue {
+  display: flex;
+  min-width: 0;
+  min-height: 46px;
+  margin-left: auto;
+  padding: 4px 2px 4px 14px;
+  border-color: transparent;
+  color: hsl(var(--soft));
+  background: transparent;
+  box-shadow: none;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+.dialogue-continue .action-icon {
+  width: 34px;
+  height: 34px;
+  color: hsl(var(--accent));
+  border: 1px solid hsl(var(--line-strong) / 0.55);
+  background: hsl(var(--mist) / 0.04);
+}
+
+.primary-action.dialogue-continue:hover {
+  color: hsl(var(--mist));
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.dialogue-continue:hover .action-icon {
+  border-color: hsl(var(--accent) / 0.65);
+  background: hsl(var(--accent) / 0.08);
 }
 
 .choice-stage h2 {
@@ -731,6 +769,33 @@ button:focus-visible,
   margin-bottom: 14px;
   color: hsl(var(--soft));
   font-size: 14px;
+}
+
+.end-layout .action-row {
+  margin-top: 30px;
+}
+
+.end-layout .action-row .primary-action,
+.end-layout .action-row .secondary-action {
+  min-height: 48px;
+  border-color: hsl(var(--line-strong) / 0.72);
+  color: hsl(var(--soft));
+  background: hsl(var(--night-raised) / 0.28);
+  box-shadow: none;
+}
+
+.end-layout .action-row .action-icon {
+  color: hsl(var(--accent));
+  background: hsl(var(--mist) / 0.05);
+}
+
+.end-layout .action-row .primary-action:hover,
+.end-layout .action-row .secondary-action:hover {
+  border-color: hsl(var(--accent) / 0.6);
+  color: hsl(var(--mist));
+  background: hsl(var(--night-raised) / 0.5);
+  box-shadow: none;
+  transform: none;
 }
 
 .confirm-dialog {
@@ -985,8 +1050,8 @@ button:focus-visible,
     line-height: 1.75;
   }
 
-  .dialogue-stage > .primary-action {
-    width: 100%;
+  .dialogue-stage > .dialogue-continue {
+    min-height: 46px;
   }
 
   .choice-stage h2 {

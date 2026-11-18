@@ -211,3 +211,18 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 使用独立无扩展 Microsoft Edge 157 对最终生产构建再次运行全剧情场景回归：[warm-browser-checks.mjs](assets/TASK-003/warm-browser-checks.mjs)、[运行摘要](assets/TASK-003/warm-browser-run.txt)、[完整 JSON](assets/TASK-003/warm-browser-checks.json)。16 张背景加载及逐节点映射断言、四组合、三视口、键盘、重听、刷新、退出和减少动态效果均通过；142 次请求仍只有本地应用资源，外部请求、加载失败和控制台异常均为 `[]`。
 
 已目视检查 [1440 暖光首页](assets/TASK-003/warm-00-home-1440.png)、[390 第二次选择](assets/TASK-003/warm-01-regret-make-space-390-second-choice.png)与 [1440 暖光结局](assets/TASK-003/warm-03-cherish-make-space-1440-ending.png)：暖木色和杏粉灯光明确，文字和按钮对比清晰，无横向溢出或遮挡。实体设备、真实读屏和原生 200% 缩放仍未验证；生产预览保留供用户查看，未合并 main、未部署。
+
+## 11. 内容优先的交互界面
+
+日期：2026-11-18（Asia/Shanghai）。用户要求“优化交互界面，让使用者的注意力放在内容而不是交互按钮上”。本轮只调整内容层级和辅助控件视觉，不改变操作步骤。
+
+- `src/App.tsx`：仅为主线与反馈的两处“继续”增加 `dialogue-continue` 样式类，事件处理和推进逻辑不变。
+- `src/index.css`：继续按钮改为右对齐的低强调文本控件，透明背景、细线箭头；结束通话取消实心底色和粗边框；结局的重听/返回改为一致的轻量描边按钮。开始、接听和剧情选项仍保留必要引导。
+- 对白最大字号由 30px 提升至 32px，增加行长约束与 `text-wrap: balance`；对白卡片背景、左边线和底部间距更克制，结局摘要继续占据主要视觉区域。
+- 辅助按钮保留可见键盘焦点和至少 44px 触控目标。初次严格浏览器断言发现 44px 在亚像素计算下出现 `43.99999px`，最终将继续和结束通话设为 46px 后复验通过；[初次失败摘要](assets/TASK-003/content-browser-run-initial.txt)保留，未将失败轮次写成成功。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；构建为 19 modules，CSS 26.16 kB / gzip 6.53 kB，JS 238.50 kB / gzip 74.55 kB。日志见 [content-typecheck.txt](assets/TASK-003/content-typecheck.txt)、[content-test-story.txt](assets/TASK-003/content-test-story.txt)、[content-build.txt](assets/TASK-003/content-build.txt)。
+
+独立无扩展 Microsoft Edge 157 再次完成最终生产构建的四组合、16 场景、三视口、完整键盘、重听、刷新、退出、快速双击和减少动态效果回归，全部断言通过：[运行摘要](assets/TASK-003/content-browser-run.txt)、[完整 JSON](assets/TASK-003/content-browser-checks.json)、[可复跑脚本](assets/TASK-003/content-browser-checks.mjs)。153 次请求仅包含本地应用资源，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。
+
+已目视检查 [390 对白](assets/TASK-003/content-01-regret-make-space-390-dialogue.png)、[1440 对白](assets/TASK-003/content-03-cherish-make-space-1440-dialogue.png)与 [1440 结局](assets/TASK-003/content-03-cherish-make-space-1440-ending.png)：对白和摘要最先进入视线，辅助按钮位于边缘且不再以大面积实色抢注意；文字无遮挡，按钮仍可辨认和操作。实体设备、真实读屏和原生 200% 缩放仍未验证；生产预览保留供用户查看，未合并 main、未部署。

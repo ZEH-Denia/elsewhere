@@ -224,7 +224,7 @@ function App() {
                     <p className="dialogue-speaker">{currentNode.speaker}</p>
                     <p className="dialogue-text">{currentNode.text}</p>
                   </article>
-                  <button type="button" className="primary-action group" onClick={() => setProgress(advanceOpening)}>
+                  <button type="button" className="primary-action group dialogue-continue" onClick={() => setProgress(advanceOpening)}>
                     <span>继续</span><span className="action-icon"><Arrow /></span>
                   </button>
                 </div>
@@ -258,7 +258,7 @@ function App() {
                     <p className="dialogue-speaker">{currentNode.speaker}</p>
                     <p className="dialogue-text">{currentNode.text}</p>
                   </article>
-                  <button type="button" className="primary-action group" onClick={() => setProgress(advanceOpening)}>
+                  <button type="button" className="primary-action group dialogue-continue" onClick={() => setProgress(advanceOpening)}>
                     <span>继续</span><span className="action-icon"><Arrow /></span>
                   </button>
                 </div>

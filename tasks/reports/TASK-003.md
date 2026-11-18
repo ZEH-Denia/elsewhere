@@ -127,3 +127,49 @@
 R1 只修改开发期剧情图校验和测试，不改变界面、状态机或浏览器运行路径，因此本轮未把静态检查写成新的浏览器体验验收，也未覆盖原四组合截图、JSON 和过程证据。首次报告中的真实生产浏览器结果继续保留；本轮构建后仅核对现有 `http://127.0.0.1:4173/` 返回 HTTP 200，未将其表述为重新完成浏览器验收。
 
 实体设备、真实读屏、原生浏览器 200% 缩放及团队主观体验仍未验证。未新增 npm 依赖，未合并 main、未部署、未进入 TASK-004。执行分支为 `task-003`；本轮提交号与远程核对结果在最终交接中提供。
+
+## 8. 第 2 次修复（R1 复审）与定稿文案同步
+
+日期：2026-11-18（Asia/Shanghai）。处理 Codex 对 `2fab931` 的 R1 复审，并同步用户提供的《Elsewhere-润色与检查.xlsx》定稿。状态：**修复、逐字同步与本轮复验完成，等待 Codex 复审；不代表 PASS。**
+
+### 真实状态路径与异常图
+
+- `src/story/opening.ts`：四个组合分别从初始 `OpeningProgress` 开始，以 `nodeId / choiceId / nextStepId` 为遍历状态，不再只按节点 ID 判断可达。第一次选择写入对应 `choiceId`，第二次选择必须先具有匹配的首次选择；反馈按传入图的选项归属和选择状态推进；`call-farewell` 必须具有两次有效选择，结局必须同时匹配 ID 与两次选择。
+- 对话节点按真实状态规范化清空两次选择，共同衔接保留首次选择并清空第二次选择。校验使用传入图反查反馈归属，不依赖正常源码的 TypeScript 类型替代异常图检查。
+- `tests/opening.test.mjs`：保留原十三项测试，新增“opening-07 跳过第一次选择”和“opening-closing 跳过第二次选择”两个坏图反例；二者均要求四个组合分别报告无法到达匹配结局。正常四组合、快速重复选择、异常进度恢复及此前四类坏图继续通过。
+
+### Excel 定稿逐字同步
+
+- 只读来源：`/Users/zeh/Downloads/Elsewhere-润色与检查.xlsx`，读取 `逻辑问题清单`、`润色对照`、`结局路径` 三张表；最终复查仍为 revision `0`、version `cdf529c34501393c746b1e69271d47e6ccb55a6d4ed0974fc1a0eb72030b616e`，未写入原 Excel。
+- `润色对照` 共 30 项，其中 28 项更新，`opening-02` 与第二次选择问题 2 项原文不变。前言、声明、来电说明、七句主线、首次选择、两轮反馈、共同衔接、尾声和四个结局摘要均按“润色后”定稿同步；未采纳清单中未进入定稿的标题、铺垫或动画建议。
+- 两条内心独白以结构化 `speaker: '你（内心）'` 保存，正文只保留角色后的定稿台词，界面与 polite 文本均完整显示“你（内心）：……”，没有重复角色前缀。
+- 本地 [Elsewhere-未接来电-剧本.docx](../../Elsewhere-未接来电-剧本.docx) 已同步相同定稿并保存为 revision `5`、version `099c0c6b40b8e0ebef120cc8c61e87b9a37dcab1068c28fc6ac261afff01974f`；结构检查无问题，保存后完整回读 77 个块一致。该 DOCX 是用户要求的本地交付物，保持未跟踪，不纳入本任务源码提交。
+- 未新增依赖、配置、服务或界面功能，未修改 Codex 所有的任务、审查和文档。
+
+### 工程复验
+
+实际环境：macOS arm64，Node.js `v26.13.0`，npm `11.20.0`，见 [r2-environment.txt](assets/TASK-003/r2-environment.txt)。命令均在 `/Users/zeh/Documents/elsewhere` 执行，退出码均为 0。
+
+| 检查 | 最终结果 | 原始输出 |
+| --- | --- | --- |
+| `npm run typecheck` | `tsc --noEmit` 通过 | [r2-typecheck.txt](assets/TASK-003/r2-typecheck.txt) |
+| `npm run test:story` | 15/15 通过，0 failed | [r2-test-story.txt](assets/TASK-003/r2-test-story.txt) |
+| `npm run build` | 18 modules；CSS 20.94 kB / gzip 5.68 kB；JS 237.38 kB / gzip 74.27 kB | [r2-build.txt](assets/TASK-003/r2-build.txt) |
+| lint | `package.json` 未配置 lint script，未声称执行 | [package.json](../../package.json) |
+
+### 定稿生产浏览器回归
+
+Microsoft Edge `157.0.4341.60` / HeadlessChrome 157，独立临时配置及 `--disable-extensions`，预览为上述最终构建的 `http://127.0.0.1:4173/`。新脚本 [r2-browser-checks.mjs](assets/TASK-003/r2-browser-checks.mjs) 全部断言通过，退出码 0；摘要见 [r2-browser-run.txt](assets/TASK-003/r2-browser-run.txt)，完整原文、状态、焦点、布局、控制台与网络记录见 [r2-browser-checks.json](assets/TASK-003/r2-browser-checks.json)。
+
+| 组合 | 浏览器逐字核对 | 结局截图 |
+| --- | --- | --- |
+| regret / make-space | 前言、声明、来电说明、七句主线、regret 两句反馈与内心独白、共同衔接、第二次反馈、共同尾声；`regret-make-space` 新摘要一致 | [390×844](assets/TASK-003/r2-01-regret-make-space-390-ending.png) |
+| regret / reach-out | 重听后重新接听并改选；`regret-reach-out` 新摘要一致 | [390×844](assets/TASK-003/r2-02-regret-reach-out-390-ending.png) |
+| cherish-present / make-space | cherish 两句反馈与内心独白、共同衔接、第二次反馈、共同尾声；`cherish-make-space` 新摘要一致 | [1440×900](assets/TASK-003/r2-03-cherish-make-space-1440-ending.png) |
+| cherish-present / reach-out | cherish 路径与 reach-out 反馈；`cherish-reach-out` 新摘要一致 | [320×568](assets/TASK-003/r2-04-cherish-reach-out-320-ending.png) |
+
+第二次选择前、后分别复测取消、Escape 和确认退出；重听、返回首页、刷新、两轮快速双击均保持既有行为。纯键盘完成一条四阶段路径及确认退出，选择标题和结局焦点正确。390×844、1440×900、320×568 的选项、最长新结局和按钮均无横向溢出或遮挡，矮屏自然滚动；另保存 [320×568 最长结局](assets/TASK-003/r2-06-longest-320-ending.png)。减少动态效果实测为 `animation-name: none`、`transition-duration: 0s`，当前句与反馈保持 polite。
+
+本轮完整运行共 35 次请求，仅本地 HTML、构建 JS/CSS 与 favicon；应用外部请求、浏览器扩展请求、HTTP/加载失败、页面异常、console error/warning 均为 `[]`。上述截图均为本轮新文案，未覆盖或复用此前截图充当新证据。
+
+实体设备、真实读屏、原生浏览器 200% 缩放及团队主观体验仍未验证；DOCX 已回读结构与实际文本，未声称完成页面排版目视检查。测试结束后临时浏览器和生产预览均停止，不保留需用户手动清理的服务。未合并 main、未部署、未进入 TASK-004。

@@ -4,7 +4,7 @@ export const nextStepIds = ['make-space', 'reach-out'] as const
 export type ChoiceId = (typeof choiceIds)[number]
 export type NextStepId = (typeof nextStepIds)[number]
 export type EndingId = 'regret-make-space' | 'regret-reach-out' | 'cherish-make-space' | 'cherish-reach-out'
-export type Speaker = '你' | '另一个你'
+export type Speaker = '你' | '你（内心）' | '另一个你'
 export type OpeningNodeId =
   | 'opening-01'
   | 'opening-02'
@@ -83,7 +83,7 @@ export const openingDialogue: DialogueNode[] = [
     id: 'opening-01',
     kind: 'dialogue',
     speaker: '另一个你',
-    text: '喂？先别挂。如果我说，我也是你呢？',
+    text: '喂？先别挂——如果我说，我也是你呢？',
     next: 'opening-02',
   },
   {
@@ -97,35 +97,35 @@ export const openingDialogue: DialogueNode[] = [
     id: 'opening-03',
     kind: 'dialogue',
     speaker: '另一个你',
-    text: '那年填志愿，我把工程改成了音乐。你是不是没有改？',
+    text: '那年填志愿，我把工程改成了音乐。你没改，对吧？',
     next: 'opening-04',
   },
   {
     id: 'opening-04',
     kind: 'dialogue',
     speaker: '你',
-    text: '……没有。我留在了那条更稳妥的路上。',
+    text: '……没有。我留在了原来的路上，当时觉得它更稳妥。',
     next: 'opening-05',
   },
   {
     id: 'opening-05',
     kind: 'dialogue',
     speaker: '另一个你',
-    text: '我刚结束一次排练。能演自己写的歌很开心，可下个月的演出费还没着落。',
+    text: '我刚排练完。能唱自己写的歌，我很开心。可下个月的演出费，还没有着落。',
     next: 'opening-06',
   },
   {
     id: 'opening-06',
     kind: 'dialogue',
     speaker: '你',
-    text: '我在准备实习。生活有了安排，但那把吉他已经很久没碰过。',
+    text: '我在准备实习，日子有了安排。可那把吉他，已经很久没碰过了。',
     next: 'opening-07',
   },
   {
     id: 'opening-07',
     kind: 'dialogue',
     speaker: '另一个你',
-    text: '所以我想问，你现在最想对另一个自己说什么？',
+    text: '所以我想问你：现在，你最想对另一个自己说什么？',
     next: 'first-response',
   },
 ]
@@ -136,40 +136,40 @@ export const firstChoice: ChoiceNode = {
   options: [
     {
       id: 'regret',
-      label: '我有点遗憾，没继续学音乐。',
+      label: '我有点遗憾，当年没有继续学音乐。',
       feedback: [
         {
           id: 'regret-feedback-01',
           kind: 'feedback',
           speaker: '另一个你',
-          text: '我也会想，如果当年选了工程，会不会少一些不安。也许我们都看见了另一边的光。',
+          text: '我有时也会想，如果当年选了工程，是不是就能少一些不安。也许我们都看到了对方那边的光。',
           next: 'regret-feedback-02',
         },
         {
           id: 'regret-feedback-02',
           kind: 'feedback',
-          speaker: '你',
-          text: '也许可以先把那把吉他找出来，不用马上推翻整个生活。',
+          speaker: '你（内心）',
+          text: '……原来，你也会不安。',
           next: 'opening-closing',
         },
       ],
     },
     {
       id: 'cherish-present',
-      label: '我也有想珍惜的，当下的生活。',
+      label: '我很珍惜，现在拥有的生活。',
       feedback: [
         {
           id: 'cherish-feedback-01',
           kind: 'feedback',
           speaker: '另一个你',
-          text: '那就先别急着否定它。我舍不得舞台，也羡慕你身边那些安稳的日常。',
+          text: '那就不必急着否定它。我舍不得舞台，也羡慕你身边那份安稳的日常。',
           next: 'cherish-feedback-02',
         },
         {
           id: 'cherish-feedback-02',
           kind: 'feedback',
-          speaker: '你',
-          text: '我想先认真过好今天，也给喜欢的事留一个位置。',
+          speaker: '你（内心）',
+          text: '我想先认真过好今天。',
           next: 'opening-closing',
         },
       ],
@@ -181,7 +181,7 @@ export const openingClosing: ClosingNode = {
   id: 'opening-closing',
   kind: 'closing',
   speaker: '旁白',
-  text: '电话里的杂音慢慢弱了下去。另一个你还在等你的回答。',
+  text: '电话里的杂音渐渐弱了下去。另一个你沉默片刻，轻轻开了口。',
   next: 'next-step',
 }
 
@@ -197,7 +197,7 @@ export const secondChoice: ChoiceNode = {
           id: 'make-space-feedback',
           kind: 'feedback',
           speaker: '另一个你',
-          text: '不用急着证明什么。先给自己留下一小段时间，也许就够了。',
+          text: '不用急着证明什么。先给自己留一小段时间，也许就够了。',
           next: 'call-farewell',
         },
       ],
@@ -210,7 +210,7 @@ export const secondChoice: ChoiceNode = {
           id: 'reach-out-feedback',
           kind: 'feedback',
           speaker: '另一个你',
-          text: '说出来不一定马上有答案，但你不必一个人想完所有事。',
+          text: '说出来，不一定马上有答案，但你不必一个人把所有事想完。',
           next: 'call-farewell',
         },
       ],
@@ -222,7 +222,7 @@ export const callFarewell: ClosingNode = {
   id: 'call-farewell',
   kind: 'closing',
   speaker: '另一个你',
-  text: '谢谢你接起这通电话。我们都继续好好生活吧。',
+  text: '谢谢你接起这通电话。愿我们，都能好好生活。',
   next: null,
 }
 
@@ -233,7 +233,7 @@ export const endings: EndNode[] = [
     choiceId: 'regret',
     nextStepId: 'make-space',
     title: '把旋律找回来',
-    summary: '你承认了遗憾，决定先为音乐留出一点时间。另一条路没有消失，它可以从一个小小的练习开始。',
+    summary: '你坦然面对了那份遗憾，也决定先为音乐留出一点时间。那条没走的路并未消失，它可以从一次小小的练习重新开始。',
   },
   {
     id: 'regret-reach-out',
@@ -241,7 +241,7 @@ export const endings: EndNode[] = [
     choiceId: 'regret',
     nextStepId: 'reach-out',
     title: '让遗憾被听见',
-    summary: '你承认了遗憾，也愿意找信任的人聊聊。那些未说出口的愿望，终于有了被听见的机会。',
+    summary: '你承认了心里的遗憾，也愿意向信任的人开口。那些没说出口的心事，有了被听见的可能。',
   },
   {
     id: 'cherish-make-space',
@@ -249,7 +249,7 @@ export const endings: EndNode[] = [
     choiceId: 'cherish-present',
     nextStepId: 'make-space',
     title: '给今天留一首歌',
-    summary: '你珍惜已有的生活，也为喜欢的事留下位置。安稳与热爱，可以在同一天里慢慢相遇。',
+    summary: '你珍惜现在的生活，也为喜欢的事留出了位置。安稳与热爱，也许能在同一天里慢慢相遇。',
   },
   {
     id: 'cherish-reach-out',
@@ -257,7 +257,7 @@ export const endings: EndNode[] = [
     choiceId: 'cherish-present',
     nextStepId: 'reach-out',
     title: '和身边的人分享',
-    summary: '你珍惜当下，也愿意把自己的想法说出来。平凡的日子因为彼此理解，多了一点新的可能。',
+    summary: '你珍惜眼前的日子，也愿意把心里的想法说出来。被理解的日常，也许会多出一点新的可能。',
   },
 ]
 
@@ -334,25 +334,64 @@ export function validateOpeningStory(nodes: Record<string, OpeningNode> = openin
       }
 
       const reached = new Set<string>()
-      const pending = ['opening-01']
-      for (let index = 0; index < pending.length; index += 1) {
-        const nodeId = pending[index]
-        if (reached.has(nodeId)) continue
-        const node = nodes[nodeId]
-        if (!node) continue
-        reached.add(nodeId)
+      const pending: OpeningProgress[] = [createInitialOpeningProgress()]
+      let reachesEnding = false
 
-        const nextIds = node.kind === 'choice'
-          ? node.options
-            .filter((option) => node.id === 'first-response' ? option.id === choiceId : option.id === nextStepId)
-            .map((option) => option.feedback[0].id)
-          : node.id === 'call-farewell'
-            ? [endingId]
-            : 'next' in node && node.next ? [node.next] : []
-        pending.push(...nextIds.filter((id) => !reached.has(id)))
+      for (let index = 0; index < pending.length; index += 1) {
+        const current = pending[index]
+        const stateKey = `${current.nodeId}|${current.choiceId ?? '-'}|${current.nextStepId ?? '-'}`
+        if (reached.has(stateKey)) continue
+        reached.add(stateKey)
+        const node = nodes[current.nodeId]
+        if (!node) continue
+
+        if (node.kind === 'end') {
+          if (current.nodeId === endingId && current.choiceId === choiceId && current.nextStepId === nextStepId) {
+            reachesEnding = true
+          }
+          continue
+        }
+
+        const nextStates: OpeningProgress[] = []
+        if (node.kind === 'dialogue') {
+          if (node.next) nextStates.push({ nodeId: node.next, choiceId: null, nextStepId: null })
+        } else if (node.kind === 'choice') {
+          if (node.id === 'first-response') {
+            const option = node.options.find(({ id }) => id === choiceId)
+            if (option) {
+              nextStates.push({ nodeId: option.feedback[0].id, choiceId, nextStepId: null })
+            }
+          } else if (current.choiceId === choiceId) {
+            const option = node.options.find(({ id }) => id === nextStepId)
+            if (option) nextStates.push({ nodeId: option.feedback[0].id, choiceId, nextStepId })
+          }
+        } else if (node.kind === 'feedback') {
+          const firstNode = nodes['first-response']
+          const firstOption = firstNode?.kind === 'choice'
+            ? firstNode.options.find((option) => option.feedback.some(({ id }) => id === node.id))
+            : undefined
+          const secondNode = nodes['next-step']
+          const secondOption = secondNode?.kind === 'choice'
+            ? secondNode.options.find((option) => option.feedback.some(({ id }) => id === node.id))
+            : undefined
+          const matchesFirst = firstOption && current.choiceId === firstOption.id && !current.nextStepId
+          const matchesSecond = secondOption && current.choiceId === choiceId && current.nextStepId === secondOption.id
+          if ((matchesFirst || matchesSecond) && node.next) nextStates.push({ ...current, nodeId: node.next })
+        } else if (node.id === 'opening-closing') {
+          if (current.choiceId === choiceId && node.next) {
+            nextStates.push({ nodeId: node.next, choiceId, nextStepId: null })
+          }
+        } else if (current.choiceId === choiceId && current.nextStepId === nextStepId) {
+          nextStates.push({ ...current, nodeId: node.next ?? endingId })
+        }
+
+        pending.push(...nextStates.filter((state) => {
+          const key = `${state.nodeId}|${state.choiceId ?? '-'}|${state.nextStepId ?? '-'}`
+          return !reached.has(key)
+        }))
       }
 
-      if (!reached.has(endingId)) errors.push(`${combination} cannot reach ending ${endingId}`)
+      if (!reachesEnding) errors.push(`${combination} cannot reach ending ${endingId}`)
     }
   }
 

@@ -127,8 +127,8 @@ function App() {
                 如果当年选择了音乐，<br className="hidden sm:block" />你现在会在哪里？
               </h1>
               <div className="intro-copy">
-                <p>闭上眼，想象电话另一端的声音。熟悉，却又走向了你未曾抵达的人生。</p>
-                <p>这是一段虚构的平行人生，不代表对真实未来的预测。</p>
+                <p>想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。</p>
+                <p>这是一段虚构的平行人生，不代表对未来的预测。</p>
               </div>
               <div className="action-row">
                 <button type="button" className="primary-action group" onClick={showIncoming}>
@@ -146,7 +146,7 @@ function App() {
               <div className="incoming-copy">
                 <p className="eyebrow"><span />一通来自平行世界的来电</p>
                 <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
-                <p>这不是真实通话。你可以随时结束，也可以听听另一条路上的自己。</p>
+                <p>这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。</p>
               </div>
               <CallCard className="incoming-call" />
               <div className="incoming-actions">
@@ -192,7 +192,7 @@ function App() {
                   <p className="dialogue-progress">{currentNode.id === 'first-response' ? '第一次选择' : '第二次选择'}</p>
                   {currentNode.id === 'next-step' && <p className="dialogue-speaker">另一个你</p>}
                   <h2 ref={choiceHeading} tabIndex={-1} id="choice-title">
-                    {currentNode.id === 'first-response' ? '你想怎样回应？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
+                    {currentNode.id === 'first-response' ? '你想怎么回答？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
                   </h2>
                   <div className="choice-options" aria-labelledby="choice-title">
                     {currentNode.options.map((option) => (

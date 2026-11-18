@@ -286,3 +286,23 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 独立 Edge 生产浏览器等待 previous 层退出后再核对场景，避免把过渡旧帧写成最终画面；四组合、两轮鼠标预览与恢复、键盘预览、三视口、完整键盘、重置和减少动态效果全部通过。最终 162 次请求仅包含本地资源，外部请求、加载失败和控制台异常均为 `[]`，见 [运行摘要](assets/TASK-003/calm-browser-run.txt)、[完整 JSON](assets/TASK-003/calm-browser-checks.json)与[可复跑脚本](assets/TASK-003/calm-browser-checks.mjs)。
 
 已目视检查 [1440 首页](assets/TASK-003/calm-00-home-1440.png)、[1440 对白](assets/TASK-003/calm-03-cherish-make-space-1440-dialogue.png)、[1440 结局](assets/TASK-003/calm-03-cherish-make-space-1440-ending.png)和 [选项预览](assets/TASK-003/calm-01-regret-first-preview.png)：所有界面风格一致，没有突兀白框或放大跳亮，文字保持清晰。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。
+
+## 16. 桌面一屏阅读布局
+
+日期：2026-11-18（Asia/Shanghai）。用户希望在浏览器中无需上下滑动即可阅读整个界面。本轮针对桌面短视口压缩尺寸，手机端仍保留自然滚动。
+
+- `src/index.css` 新增 `min-width: 900px` 且 `max-height: 900px` 的桌面布局：页眉/页脚分别收紧至 64/44px，主区域上下留白改为 20px。
+- 首页标题、介绍、行动区间距和来电卡片按比例压缩；电话符号由 104px 调整为 72px，卡片内边距、角色信息和世界标签同步收紧，保留全部文字与操作。
+- 前言、来电、对白、第二次选择和结局分别调整标题字号、卡片最小高度、选项高度与上下间距，不改变字体可读性、44px 触控目标或暖米无框风格。
+- 手机和平板既有媒体规则不变，不通过隐藏内容、裁剪文字或禁用滚动来制造“一屏”。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 28.03 kB / gzip 6.74 kB，JS 239.31 kB / gzip 74.80 kB。日志见 [fit-typecheck.txt](assets/TASK-003/fit-typecheck.txt)、[fit-test-story.txt](assets/TASK-003/fit-test-story.txt)、[fit-build.txt](assets/TASK-003/fit-build.txt)。
+
+[fit-browser-checks.mjs](assets/TASK-003/fit-browser-checks.mjs) 在每次读取页面状态时增加桌面 `scrollHeight <= innerHeight` 断言，覆盖首页、前言、来电、每一句主线、两轮反馈、两次选择、尾声和四种结局，而非只检查首页。两种独立完整回归均通过：
+
+| 桌面视口 | 结果 | 原始摘要 / JSON |
+| --- | --- | --- |
+| 1366×768 | 四组合及全部桌面节点均无需纵向滚动；手机自然滚动保留 | [摘要](assets/TASK-003/fit-browser-run-1366.txt) / [JSON](assets/TASK-003/fit-browser-checks-1366.json) |
+| 1440×900 | 同样全部通过 | [摘要](assets/TASK-003/fit-browser-run-1440.txt) / [JSON](assets/TASK-003/fit-browser-checks-1440.json) |
+
+两轮分别记录 156/158 次本地请求，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。已目视检查 [1366 首页](assets/TASK-003/fit-00-home-1366.png)、[1366 对白](assets/TASK-003/fit-03-cherish-make-space-1366-dialogue.png)和 [1366 结局](assets/TASK-003/fit-03-cherish-make-space-1366-ending.png)：完整内容在一屏内可见，文字无裁切或遮挡。未验证所有可能桌面高度、实体设备、真实读屏和原生 200% 缩放；生产预览保留供用户查看，未合并 main、未部署。

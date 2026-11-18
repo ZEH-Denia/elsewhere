@@ -241,3 +241,17 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 独立无扩展 Microsoft Edge 157 对最终生产构建完成四组合、16 场景、首页/前言/来电布局、三视口、键盘、重听、刷新、退出、快速双击与减少动态效果回归，全部断言通过：[运行摘要](assets/TASK-003/apple-browser-run.txt)、[完整 JSON](assets/TASK-003/apple-browser-checks.json)、[可复跑脚本](assets/TASK-003/apple-browser-checks.mjs)。最终 152 次请求仅包含本地应用资源，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。
 
 已目视检查 [1440 首页](assets/TASK-003/apple-00-home-1440.png)、[1440 对白](assets/TASK-003/apple-03-cherish-make-space-1440-dialogue.png)、[390 选择与首页](assets/TASK-003/apple-01-regret-make-space-390-home.png)、[320 首页](assets/TASK-003/apple-04-cherish-reach-out-320-home.png)及 [1440 结局](assets/TASK-003/apple-03-cherish-make-space-1440-ending.png)：浅色留白、大标题和圆角卡片一致，文字清晰，窄屏自然滚动，无横向溢出或操作遮挡。未执行自动化 WCAG 对比度评分，不将目视结果写成完整无障碍认证；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。
+
+## 13. 暖米亮度与背景清晰度平衡
+
+日期：2026-11-18（Asia/Shanghai）。用户反馈“背景图看不清，白色界面太亮”。本轮保留 Apple 风格排版和内容优先交互，只调整表面亮度与背景呈现。
+
+- 页面与卡片由纯白/近白改为低亮度暖米色，正文进一步保持深棕黑，边框和次要文字同步加深，减少刺眼感。
+- 场景容器由 20px 改为 12px 内边距并保留圆角，图片不透明度最终由 0.24 提升至 0.72；阅读区遮罩由强白色覆盖调整为较轻暖米遮罩，使窗户、书桌、吉他和排练室可辨认。
+- 对白与结局仍使用独立浅色阅读表面，未把提高背景清晰度变成文字压图。16 张场景、节点切换、按钮层级和交互逻辑均未改变。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 26.38 kB / gzip 6.54 kB，JS 238.50 kB / gzip 74.55 kB。日志见 [balanced-typecheck.txt](assets/TASK-003/balanced-typecheck.txt)、[balanced-test-story.txt](assets/TASK-003/balanced-test-story.txt)、[balanced-build.txt](assets/TASK-003/balanced-build.txt)。
+
+独立 Edge 生产浏览器再次完成全部场景、四组合、三视口、键盘、重置与减少动态效果回归，最终 152 次请求仅含本地资源，外部请求、加载失败和控制台异常均为 `[]`；详见 [运行摘要](assets/TASK-003/balanced-browser-run.txt)与[完整 JSON](assets/TASK-003/balanced-browser-checks.json)。
+
+已目视检查 [1440 暖米首页](assets/TASK-003/balanced-00-home-1440.png)、[1440 对白](assets/TASK-003/balanced-03-cherish-make-space-1440-dialogue.png)与 [390 首页](assets/TASK-003/balanced-01-regret-make-space-390-home.png)：背景场景清晰，界面亮度柔和，文字和操作无遮挡。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。

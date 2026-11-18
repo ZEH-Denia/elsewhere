@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --night: 40 14% 96%;
-  --night-raised: 0 0% 100%;
-  --mist: 30 10% 12%;
+  --night: 36 20% 89%;
+  --night-raised: 40 24% 94%;
+  --mist: 30 12% 13%;
   --white: 0 0% 100%;
-  --soft: 25 8% 32%;
-  --dim: 25 5% 42%;
-  --accent: 14 45% 40%;
+  --soft: 25 10% 30%;
+  --dim: 25 6% 38%;
+  --accent: 14 45% 38%;
   --violet: 12 38% 44%;
-  --line: 30 10% 82%;
-  --line-strong: 25 8% 64%;
+  --line: 30 12% 74%;
+  --line-strong: 25 10% 56%;
   --action: 14 45% 40%;
   --action-ink: 0 0% 100%;
   color-scheme: light;
@@ -73,17 +73,18 @@ button:focus-visible,
   overflow: clip;
   background:
     radial-gradient(ellipse at 72% 48%, hsl(var(--violet) / 0.05), transparent 42%),
-    linear-gradient(135deg, hsl(var(--night)) 0%, hsl(32 22% 94%) 55%, hsl(var(--night)) 100%);
+    linear-gradient(135deg, hsl(var(--night)) 0%, hsl(32 22% 85%) 55%, hsl(var(--night)) 100%);
 }
 
 .scene-background {
   position: absolute;
-  inset: 20px;
+  inset: 12px;
   z-index: -1;
   overflow: hidden;
-  border-radius: 32px;
+  border: 1px solid hsl(var(--line) / 0.45);
+  border-radius: 28px;
   pointer-events: none;
-  background: #f5f5f3;
+  background: #e4dace;
 }
 
 .scene-background-image {
@@ -93,7 +94,7 @@ button:focus-visible,
   height: 100%;
   object-fit: cover;
   object-position: center 46%;
-  opacity: 0.24;
+  opacity: 0.72;
   animation: scene-reveal 560ms ease-out both;
   user-select: none;
 }
@@ -102,8 +103,8 @@ button:focus-visible,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, hsl(var(--night) / 0.82) 0%, hsl(var(--night) / 0.55) 42%, hsl(var(--night) / 0.48) 68%, hsl(var(--night) / 0.76) 100%),
-    linear-gradient(0deg, hsl(var(--night) / 0.92) 0%, transparent 52%, hsl(var(--night) / 0.3) 100%);
+    linear-gradient(90deg, hsl(var(--night) / 0.62) 0%, hsl(var(--night) / 0.38) 42%, hsl(var(--night) / 0.36) 68%, hsl(var(--night) / 0.58) 100%),
+    linear-gradient(0deg, hsl(var(--night) / 0.78) 0%, transparent 58%, hsl(var(--night) / 0.2) 100%);
 }
 
 .app-background::before {
@@ -863,7 +864,7 @@ button:focus-visible,
 
 @keyframes scene-reveal {
   from { opacity: 0; }
-  to { opacity: 0.24; }
+  to { opacity: 0.72; }
 }
 
 @keyframes screen-enter {

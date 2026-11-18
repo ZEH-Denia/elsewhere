@@ -226,3 +226,18 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 独立无扩展 Microsoft Edge 157 再次完成最终生产构建的四组合、16 场景、三视口、完整键盘、重听、刷新、退出、快速双击和减少动态效果回归，全部断言通过：[运行摘要](assets/TASK-003/content-browser-run.txt)、[完整 JSON](assets/TASK-003/content-browser-checks.json)、[可复跑脚本](assets/TASK-003/content-browser-checks.mjs)。153 次请求仅包含本地应用资源，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。
 
 已目视检查 [390 对白](assets/TASK-003/content-01-regret-make-space-390-dialogue.png)、[1440 对白](assets/TASK-003/content-03-cherish-make-space-1440-dialogue.png)与 [1440 结局](assets/TASK-003/content-03-cherish-make-space-1440-ending.png)：对白和摘要最先进入视线，辅助按钮位于边缘且不再以大面积实色抢注意；文字无遮挡，按钮仍可辨认和操作。实体设备、真实读屏和原生 200% 缩放仍未验证；生产预览保留供用户查看，未合并 main、未部署。
+
+## 12. Apple 风格实例应用
+
+日期：2026-11-18（Asia/Shanghai）。用户先查看独立的 Apple 设计风格示例，再要求“按照这个做”。本轮将示例的设计语言应用到现有产品，而不是复制 Apple 品牌素材或增加营销页面。
+
+- `src/index.css`：主题改为浅暖白背景、深色正文与低饱和陶土色行动按钮；首页和来电改为居中大标题、短文案和纵向产品卡片，前言与结局使用更大的标题层级和留白。
+- 剧情页改为 32px 圆角浅色阅读面板，对白和结局卡片使用轻边框与柔和阴影；继续、结束通话、重听和返回保持上一轮的低强调样式。主按钮、键盘焦点、对话框及选择态同步适配浅色主题。
+- 16 张代码生成场景及节点映射全部保留，背景退为圆角浅色场景底色，不再以深色全屏画面争夺内容注意力。没有新增图片、依赖、外部字体或 Apple 品牌资源。
+- 未修改中文定稿、剧情状态机、选项、焦点恢复或操作步骤；本轮业务改动仅限 `src/index.css`，`README.md` 同步设计状态。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；构建为 19 modules，CSS 26.33 kB / gzip 6.51 kB，JS 238.50 kB / gzip 74.55 kB。日志见 [apple-typecheck.txt](assets/TASK-003/apple-typecheck.txt)、[apple-test-story.txt](assets/TASK-003/apple-test-story.txt)、[apple-build.txt](assets/TASK-003/apple-build.txt)。
+
+独立无扩展 Microsoft Edge 157 对最终生产构建完成四组合、16 场景、首页/前言/来电布局、三视口、键盘、重听、刷新、退出、快速双击与减少动态效果回归，全部断言通过：[运行摘要](assets/TASK-003/apple-browser-run.txt)、[完整 JSON](assets/TASK-003/apple-browser-checks.json)、[可复跑脚本](assets/TASK-003/apple-browser-checks.mjs)。最终 152 次请求仅包含本地应用资源，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。
+
+已目视检查 [1440 首页](assets/TASK-003/apple-00-home-1440.png)、[1440 对白](assets/TASK-003/apple-03-cherish-make-space-1440-dialogue.png)、[390 选择与首页](assets/TASK-003/apple-01-regret-make-space-390-home.png)、[320 首页](assets/TASK-003/apple-04-cherish-reach-out-320-home.png)及 [1440 结局](assets/TASK-003/apple-03-cherish-make-space-1440-ending.png)：浅色留白、大标题和圆角卡片一致，文字清晰，窄屏自然滚动，无横向溢出或操作遮挡。未执行自动化 WCAG 对比度评分，不将目视结果写成完整无障碍认证；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。

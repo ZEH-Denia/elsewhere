@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --night: 24 32% 8%;
-  --night-raised: 24 29% 14%;
-  --mist: 35 55% 96%;
+  --night: 40 14% 96%;
+  --night-raised: 0 0% 100%;
+  --mist: 30 10% 12%;
   --white: 0 0% 100%;
-  --soft: 30 29% 79%;
-  --dim: 26 16% 65%;
-  --accent: 35 70% 76%;
-  --violet: 15 48% 73%;
-  --line: 25 24% 25%;
-  --line-strong: 25 21% 40%;
-  --action: 37 75% 77%;
-  --action-ink: 24 42% 10%;
-  color-scheme: dark;
+  --soft: 25 8% 32%;
+  --dim: 25 5% 42%;
+  --accent: 14 45% 40%;
+  --violet: 12 38% 44%;
+  --line: 30 10% 82%;
+  --line-strong: 25 8% 64%;
+  --action: 14 45% 40%;
+  --action-ink: 0 0% 100%;
+  color-scheme: light;
   font-synthesis: none;
 }
 
@@ -72,17 +72,18 @@ button:focus-visible,
   isolation: isolate;
   overflow: clip;
   background:
-    radial-gradient(ellipse at 72% 48%, hsl(var(--violet) / 0.07), transparent 42%),
-    linear-gradient(135deg, hsl(var(--night)) 0%, hsl(24 32% 11%) 55%, hsl(var(--night)) 100%);
+    radial-gradient(ellipse at 72% 48%, hsl(var(--violet) / 0.05), transparent 42%),
+    linear-gradient(135deg, hsl(var(--night)) 0%, hsl(32 22% 94%) 55%, hsl(var(--night)) 100%);
 }
 
 .scene-background {
   position: absolute;
-  inset: 0;
+  inset: 20px;
   z-index: -1;
   overflow: hidden;
+  border-radius: 32px;
   pointer-events: none;
-  background: #160f0e;
+  background: #f5f5f3;
 }
 
 .scene-background-image {
@@ -92,7 +93,7 @@ button:focus-visible,
   height: 100%;
   object-fit: cover;
   object-position: center 46%;
-  opacity: 0.9;
+  opacity: 0.24;
   animation: scene-reveal 560ms ease-out both;
   user-select: none;
 }
@@ -101,22 +102,12 @@ button:focus-visible,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, hsl(var(--night) / 0.7) 0%, hsl(var(--night) / 0.36) 42%, hsl(var(--night) / 0.3) 68%, hsl(var(--night) / 0.56) 100%),
-    linear-gradient(0deg, hsl(24 45% 4% / 0.9) 0%, transparent 46%, hsl(var(--night) / 0.24) 100%);
+    linear-gradient(90deg, hsl(var(--night) / 0.82) 0%, hsl(var(--night) / 0.55) 42%, hsl(var(--night) / 0.48) 68%, hsl(var(--night) / 0.76) 100%),
+    linear-gradient(0deg, hsl(var(--night) / 0.92) 0%, transparent 52%, hsl(var(--night) / 0.3) 100%);
 }
 
 .app-background::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  pointer-events: none;
-  opacity: 0.2;
-  background-image:
-    linear-gradient(hsl(var(--line) / 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--line) / 0.2) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, black, transparent 82%);
+  display: none;
 }
 
 .ambient {
@@ -309,11 +300,15 @@ button:focus-visible,
 .home-layout {
   display: grid;
   grid-template-areas:
-    "copy call"
-    "actions call";
-  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
-  gap: 40px 64px;
+    "copy"
+    "actions"
+    "call";
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
   align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .home-copy {
@@ -321,45 +316,48 @@ button:focus-visible,
 }
 
 .home-title {
-  margin: 28px 0 24px;
+  margin: 24px 0 22px;
 }
 
 .home-title-brand {
   display: block;
-  color: hsl(var(--soft));
+  color: hsl(var(--accent));
   font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
 }
 
 .home-title-cn {
   display: block;
-  margin-top: 14px;
+  margin-top: 18px;
   color: hsl(var(--mist));
-  font-size: clamp(56px, 5vw, 72px);
+  font-size: clamp(58px, 7vw, 88px);
   font-weight: 600;
-  line-height: 1.16;
-  letter-spacing: 0.04em;
+  line-height: 1.06;
+  letter-spacing: -0.05em;
 }
 
 .home-intro {
   color: hsl(var(--soft));
-  font-size: 18px;
-  line-height: 1.9;
+  font-size: clamp(19px, 2.2vw, 26px);
+  line-height: 1.55;
+  letter-spacing: -0.02em;
 }
 
 .home-call {
   grid-area: call;
-  justify-self: end;
+  justify-self: center;
+  width: min(100%, 620px);
+  margin-top: 16px;
 }
 
 .home-actions {
   display: flex;
   grid-area: actions;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 18px;
+  align-items: center;
+  gap: 14px;
 }
 
 .call-visual {
@@ -369,12 +367,7 @@ button:focus-visible,
 }
 
 .parallel-outline {
-  position: absolute;
-  inset: -18px -22px 22px 30px;
-  border: 1px solid hsl(var(--violet) / 0.16);
-  border-radius: 34px;
-  pointer-events: none;
-  transform: rotate(3deg);
+  display: none;
 }
 
 .call-card {
@@ -382,10 +375,10 @@ button:focus-visible,
   z-index: 1;
   padding: 26px;
   overflow: hidden;
-  border: 1px solid hsl(var(--line-strong) / 0.7);
-  border-radius: 28px;
-  background: linear-gradient(145deg, hsl(var(--night-raised) / 0.94), hsl(var(--night) / 0.9));
-  box-shadow: 0 32px 90px hsl(230 70% 2% / 0.55), inset 0 1px hsl(var(--white) / 0.035);
+  border: 1px solid hsl(var(--line) / 0.75);
+  border-radius: 32px;
+  background: linear-gradient(145deg, hsl(var(--night-raised) / 0.96), hsl(var(--night) / 0.92));
+  box-shadow: 0 28px 80px hsl(24 35% 25% / 0.14), inset 0 1px hsl(var(--white) / 0.7);
   backdrop-filter: blur(18px);
 }
 
@@ -513,25 +506,27 @@ button:focus-visible,
 
 .intro-layout,
 .end-layout {
-  max-width: 900px;
+  max-width: 940px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .intro-heading {
-  max-width: 850px;
-  margin: 28px 0;
+  max-width: 900px;
+  margin: 28px auto;
   color: hsl(var(--mist));
-  font-size: clamp(36px, 4.5vw, 60px);
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: 0.02em;
+  font-size: clamp(44px, 5.8vw, 72px);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.045em;
 }
 
 .intro-copy {
   max-width: 680px;
+  margin: 0 auto;
   color: hsl(var(--soft));
-  font-size: 17px;
-  line-height: 1.95;
+  font-size: 18px;
+  line-height: 1.8;
 }
 
 .intro-copy p + p {
@@ -541,6 +536,7 @@ button:focus-visible,
 .action-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
   margin-top: 40px;
 }
@@ -548,11 +544,15 @@ button:focus-visible,
 .incoming-layout {
   display: grid;
   grid-template-areas:
-    "copy call"
-    "actions call";
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.8fr);
-  gap: 36px 64px;
+    "copy"
+    "call"
+    "actions";
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
   align-items: center;
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .incoming-copy {
@@ -560,22 +560,25 @@ button:focus-visible,
 }
 
 .incoming-copy h1 {
-  margin: 26px 0 20px;
-  font-size: clamp(42px, 4.5vw, 60px);
-  font-weight: 500;
-  line-height: 1.3;
+  margin: 24px 0 20px;
+  font-size: clamp(46px, 5.5vw, 70px);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.045em;
 }
 
 .incoming-copy > p:last-child {
-  max-width: 520px;
+  max-width: 560px;
+  margin: 0 auto;
   color: hsl(var(--soft));
-  font-size: 16px;
-  line-height: 1.9;
+  font-size: 17px;
+  line-height: 1.8;
 }
 
 .incoming-call {
   grid-area: call;
-  justify-self: end;
+  justify-self: center;
+  width: min(100%, 560px);
 }
 
 .incoming-actions {
@@ -588,8 +591,14 @@ button:focus-visible,
 }
 
 .call-session {
-  max-width: 960px;
+  max-width: 940px;
   margin: 0 auto;
+  padding: 30px 40px 36px;
+  border: 1px solid hsl(var(--line) / 0.7);
+  border-radius: 32px;
+  background: hsl(var(--night-raised) / 0.9);
+  box-shadow: 0 24px 80px hsl(24 35% 25% / 0.1);
+  backdrop-filter: blur(20px);
 }
 
 .call-session-header {
@@ -648,9 +657,9 @@ button:focus-visible,
   justify-content: center;
   margin: 20px 0 22px;
   padding: 30px 32px;
-  border-left: 1px solid hsl(var(--accent) / 0.48);
-  border-radius: 0 20px 20px 0;
-  background: linear-gradient(110deg, hsl(var(--night-raised) / 0.62), hsl(var(--night-raised) / 0.08));
+  border-left: 1px solid hsl(var(--accent) / 0.42);
+  border-radius: 0 22px 22px 0;
+  background: linear-gradient(110deg, hsl(var(--night) / 0.92), hsl(var(--night) / 0.4));
 }
 
 .dialogue-speaker {
@@ -750,19 +759,24 @@ button:focus-visible,
 .end-layout h1 {
   margin: 28px 0;
   color: hsl(var(--mist));
-  font-size: clamp(36px, 4vw, 52px);
-  font-weight: 500;
-  line-height: 1.4;
+  font-size: clamp(44px, 5vw, 64px);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.045em;
 }
 
 .end-reflection {
-  max-width: 680px;
-  padding: 24px 28px;
-  border-left: 2px solid hsl(var(--violet) / 0.75);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 30px 32px;
+  border: 1px solid hsl(var(--line) / 0.65);
+  border-radius: 24px;
   color: hsl(var(--mist));
-  background: hsl(var(--night-raised) / 0.45);
+  background: hsl(var(--night-raised) / 0.82);
+  box-shadow: 0 20px 70px hsl(24 35% 25% / 0.08);
   font-size: 19px;
   line-height: 1.9;
+  text-align: left;
 }
 
 .end-choice {
@@ -805,12 +819,12 @@ button:focus-visible,
   border-radius: 24px;
   color: hsl(var(--mist));
   background: hsl(var(--night-raised));
-  box-shadow: 0 30px 100px hsl(230 70% 2% / 0.75);
+  box-shadow: 0 30px 100px hsl(24 35% 20% / 0.22);
 }
 
 .confirm-dialog::backdrop {
-  background: hsl(var(--night) / 0.82);
-  backdrop-filter: blur(6px);
+  background: hsl(24 20% 12% / 0.28);
+  backdrop-filter: blur(8px);
 }
 
 .confirm-dialog h2 {
@@ -849,7 +863,7 @@ button:focus-visible,
 
 @keyframes scene-reveal {
   from { opacity: 0; }
-  to { opacity: 0.9; }
+  to { opacity: 0.24; }
 }
 
 @keyframes screen-enter {
@@ -1011,6 +1025,11 @@ button:focus-visible,
 
   .incoming-copy > p:last-child {
     font-size: 15px;
+  }
+
+  .call-session {
+    padding: 24px 20px 28px;
+    border-radius: 26px;
   }
 
   .call-session-header {

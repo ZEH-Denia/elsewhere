@@ -68,27 +68,41 @@ function reachSecondChoice(choiceId) {
 
 test('保留七条主线与首次反馈，使用指定旁白、第二次问题和共同末句', () => {
   assert.deepEqual(openingDialogue.map(({ speaker, text }) => [speaker, text]), [
-    ['另一个你', '喂？先别挂。如果我说，我也是你呢？'],
+    ['另一个你', '喂？先别挂——如果我说，我也是你呢？'],
     ['你', '这是什么恶作剧？'],
-    ['另一个你', '那年填志愿，我把工程改成了音乐。你是不是没有改？'],
-    ['你', '……没有。我留在了那条更稳妥的路上。'],
-    ['另一个你', '我刚结束一次排练。能演自己写的歌很开心，可下个月的演出费还没着落。'],
-    ['你', '我在准备实习。生活有了安排，但那把吉他已经很久没碰过。'],
-    ['另一个你', '所以我想问，你现在最想对另一个自己说什么？'],
+    ['另一个你', '那年填志愿，我把工程改成了音乐。你没改，对吧？'],
+    ['你', '……没有。我留在了原来的路上，当时觉得它更稳妥。'],
+    ['另一个你', '我刚排练完。能唱自己写的歌，我很开心。可下个月的演出费，还没有着落。'],
+    ['你', '我在准备实习，日子有了安排。可那把吉他，已经很久没碰过了。'],
+    ['另一个你', '所以我想问你：现在，你最想对另一个自己说什么？'],
   ])
   assert.equal(openingDialogue.length, 7)
   assert.deepEqual(firstChoice.options.map(({ label }) => label), [
-    '我有点遗憾，没继续学音乐。',
-    '我也有想珍惜的，当下的生活。',
+    '我有点遗憾，当年没有继续学音乐。',
+    '我很珍惜，现在拥有的生活。',
+  ])
+  assert.deepEqual(firstChoice.options.map((option) => option.feedback.map(({ speaker, text }) => [speaker, text])), [
+    [
+      ['另一个你', '我有时也会想，如果当年选了工程，是不是就能少一些不安。也许我们都看到了对方那边的光。'],
+      ['你（内心）', '……原来，你也会不安。'],
+    ],
+    [
+      ['另一个你', '那就不必急着否定它。我舍不得舞台，也羡慕你身边那份安稳的日常。'],
+      ['你（内心）', '我想先认真过好今天。'],
+    ],
   ])
   assert.equal(openingClosing.speaker, '旁白')
-  assert.equal(openingClosing.text, '电话里的杂音慢慢弱了下去。另一个你还在等你的回答。')
+  assert.equal(openingClosing.text, '电话里的杂音渐渐弱了下去。另一个你沉默片刻，轻轻开了口。')
   assert.equal(secondChoice.id, 'next-step')
   assert.deepEqual(secondChoice.options.map(({ label }) => label), [
     '给喜欢的事留一点时间。',
     '找一个信任的人聊一聊。',
   ])
-  assert.equal(callFarewell.text, '谢谢你接起这通电话。我们都继续好好生活吧。')
+  assert.deepEqual(secondChoice.options.map((option) => option.feedback[0].text), [
+    '不用急着证明什么。先给自己留一小段时间，也许就够了。',
+    '说出来，不一定马上有答案，但你不必一个人把所有事想完。',
+  ])
+  assert.equal(callFarewell.text, '谢谢你接起这通电话。愿我们，都能好好生活。')
 })
 
 test('七条主线按序进入第一次选择，两次选择都不能被继续或跨组选项绕过', () => {
@@ -105,10 +119,10 @@ test('七条主线按序进入第一次选择，两次选择都不能被继续�
 
 test('四个组合均实际经过第二轮反馈、共同末句并到达唯一映射结局', () => {
   const expected = {
-    'regret/make-space': ['regret-make-space', '把旋律找回来', '你承认了遗憾，决定先为音乐留出一点时间。另一条路没有消失，它可以从一个小小的练习开始。'],
-    'regret/reach-out': ['regret-reach-out', '让遗憾被听见', '你承认了遗憾，也愿意找信任的人聊聊。那些未说出口的愿望，终于有了被听见的机会。'],
-    'cherish-present/make-space': ['cherish-make-space', '给今天留一首歌', '你珍惜已有的生活，也为喜欢的事留下位置。安稳与热爱，可以在同一天里慢慢相遇。'],
-    'cherish-present/reach-out': ['cherish-reach-out', '和身边的人分享', '你珍惜当下，也愿意把自己的想法说出来。平凡的日子因为彼此理解，多了一点新的可能。'],
+    'regret/make-space': ['regret-make-space', '把旋律找回来', '你坦然面对了那份遗憾，也决定先为音乐留出一点时间。那条没走的路并未消失，它可以从一次小小的练习重新开始。'],
+    'regret/reach-out': ['regret-reach-out', '让遗憾被听见', '你承认了心里的遗憾，也愿意向信任的人开口。那些没说出口的心事，有了被听见的可能。'],
+    'cherish-present/make-space': ['cherish-make-space', '给今天留一首歌', '你珍惜现在的生活，也为喜欢的事留出了位置。安稳与热爱，也许能在同一天里慢慢相遇。'],
+    'cherish-present/reach-out': ['cherish-reach-out', '和身边的人分享', '你珍惜眼前的日子，也愿意把心里的想法说出来。被理解的日常，也许会多出一点新的可能。'],
   }
 
   for (const firstOption of firstChoice.options) {
@@ -215,4 +229,65 @@ test('剧情检查发现无法到达结束的循环', () => {
   const errors = validateOpeningStory(cyclic)
   assert.ok(errors.includes('story has no ending'))
   assert.ok(errors.includes('call-farewell cannot reach an ending'))
+})
+
+test('剧情检查发现单个映射结局缺失，且不误报其他组合', () => {
+  const malformed = { ...openingNodes }
+  delete malformed['regret-make-space']
+  const errors = validateOpeningStory(malformed)
+  assert.ok(errors.includes('regret/make-space references missing ending regret-make-space'))
+  assert.ok(errors.includes('regret/make-space cannot reach ending regret-make-space'))
+  assert.ok(!errors.some((error) => error.startsWith('regret/reach-out')))
+  assert.ok(!errors.some((error) => error.startsWith('cherish-present/')))
+})
+
+test('剧情检查发现结局与两次选择的映射不一致', () => {
+  const malformed = {
+    ...openingNodes,
+    'regret-make-space': { ...openingNodes['regret-make-space'], choiceId: 'cherish-present' },
+  }
+  const errors = validateOpeningStory(malformed)
+  assert.ok(errors.includes('ending regret-make-space maps cherish-present/make-space, expected regret/make-space'))
+})
+
+test('剧情检查发现映射目标不是结局节点', () => {
+  const malformed = {
+    ...openingNodes,
+    'regret-make-space': { ...openingNodes['regret-make-space'], kind: 'dialogue', next: 'opening-01' },
+  }
+  const errors = validateOpeningStory(malformed)
+  assert.ok(errors.includes('regret/make-space ending regret-make-space is not an end node'))
+})
+
+test('剧情检查发现单个首次分支无法结束，且另一首次分支仍可结束', () => {
+  const malformed = {
+    ...openingNodes,
+    'regret-feedback-02': { ...openingNodes['regret-feedback-02'], next: 'regret-feedback-01' },
+  }
+  const errors = validateOpeningStory(malformed)
+  assert.ok(errors.includes('regret/make-space cannot reach ending regret-make-space'))
+  assert.ok(errors.includes('regret/reach-out cannot reach ending regret-reach-out'))
+  assert.ok(!errors.some((error) => error.startsWith('cherish-present/')))
+})
+
+test('剧情检查发现跳过第一次选择，四个组合都不能到达结局', () => {
+  const malformed = {
+    ...openingNodes,
+    'opening-07': { ...openingNodes['opening-07'], next: 'next-step' },
+  }
+  const errors = validateOpeningStory(malformed)
+  for (const ending of endings) {
+    assert.ok(errors.includes(`${ending.choiceId}/${ending.nextStepId} cannot reach ending ${ending.id}`))
+  }
+})
+
+test('剧情检查发现跳过第二次选择，四个组合都不能到达结局', () => {
+  const malformed = {
+    ...openingNodes,
+    'opening-closing': { ...openingNodes['opening-closing'], next: 'call-farewell' },
+  }
+  const errors = validateOpeningStory(malformed)
+  for (const ending of endings) {
+    assert.ok(errors.includes(`${ending.choiceId}/${ending.nextStepId} cannot reach ending ${ending.id}`))
+  }
 })

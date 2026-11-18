@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { CallCard } from './components/CallCard'
+import { SceneBackground, type SceneName } from './components/SceneBackground'
 import {
   advanceOpening,
   chooseOpening,
@@ -12,6 +13,46 @@ import {
 } from './story/opening'
 
 type View = 'home' | 'intro' | 'incoming' | 'call'
+
+function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>): SceneName {
+  if (view === 'home' || view === 'intro') return 'home'
+  if (view === 'incoming') return 'incoming'
+
+  switch (node.id) {
+    case 'opening-03':
+    case 'opening-05':
+      return 'music'
+    case 'opening-04':
+    case 'opening-06':
+      return 'reality'
+    case 'first-response':
+      return 'first-choice'
+    case 'regret-feedback-01':
+    case 'regret-feedback-02':
+      return 'regret'
+    case 'cherish-feedback-01':
+    case 'cherish-feedback-02':
+      return 'cherish'
+    case 'next-step':
+      return 'second-choice'
+    case 'make-space-feedback':
+      return 'make-space'
+    case 'reach-out-feedback':
+      return 'reach-out'
+    case 'call-farewell':
+      return 'farewell'
+    case 'regret-make-space':
+      return 'ending-regret-space'
+    case 'regret-reach-out':
+      return 'ending-regret-reach'
+    case 'cherish-make-space':
+      return 'ending-cherish-space'
+    case 'cherish-reach-out':
+      return 'ending-cherish-reach'
+    default:
+      return 'opening'
+  }
+}
 
 function Arrow({ returning = false }: { returning?: boolean }) {
   return (
@@ -35,6 +76,7 @@ function App() {
   const confirmDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
+  const sceneName = getSceneName(view, currentNode)
 
   useEffect(() => {
     const dialog = confirmDialog.current
@@ -81,6 +123,7 @@ function App() {
 
   return (
     <div className="app-background min-h-svh text-mist">
+      <SceneBackground scene={sceneName} />
       <div className="ambient ambient-violet" aria-hidden="true" />
       <div className="ambient ambient-cyan" aria-hidden="true" />
 
@@ -127,8 +170,8 @@ function App() {
                 如果当年选择了音乐，<br className="hidden sm:block" />你现在会在哪里？
               </h1>
               <div className="intro-copy">
-                <p>闭上眼，想象电话另一端的声音。熟悉，却又走向了你未曾抵达的人生。</p>
-                <p>这是一段虚构的平行人生，不代表对真实未来的预测。</p>
+                <p>想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。</p>
+                <p>这是一段虚构的平行人生，不代表对未来的预测。</p>
               </div>
               <div className="action-row">
                 <button type="button" className="primary-action group" onClick={showIncoming}>
@@ -146,7 +189,7 @@ function App() {
               <div className="incoming-copy">
                 <p className="eyebrow"><span />一通来自平行世界的来电</p>
                 <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
-                <p>这不是真实通话。你可以随时结束，也可以听听另一条路上的自己。</p>
+                <p>这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。</p>
               </div>
               <CallCard className="incoming-call" />
               <div className="incoming-actions">
@@ -181,7 +224,7 @@ function App() {
                     <p className="dialogue-speaker">{currentNode.speaker}</p>
                     <p className="dialogue-text">{currentNode.text}</p>
                   </article>
-                  <button type="button" className="primary-action group" onClick={() => setProgress(advanceOpening)}>
+                  <button type="button" className="primary-action group dialogue-continue" onClick={() => setProgress(advanceOpening)}>
                     <span>继续</span><span className="action-icon"><Arrow /></span>
                   </button>
                 </div>
@@ -192,7 +235,7 @@ function App() {
                   <p className="dialogue-progress">{currentNode.id === 'first-response' ? '第一次选择' : '第二次选择'}</p>
                   {currentNode.id === 'next-step' && <p className="dialogue-speaker">另一个你</p>}
                   <h2 ref={choiceHeading} tabIndex={-1} id="choice-title">
-                    {currentNode.id === 'first-response' ? '你想怎样回应？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
+                    {currentNode.id === 'first-response' ? '你想怎么回答？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
                   </h2>
                   <div className="choice-options" aria-labelledby="choice-title">
                     {currentNode.options.map((option) => (
@@ -215,7 +258,7 @@ function App() {
                     <p className="dialogue-speaker">{currentNode.speaker}</p>
                     <p className="dialogue-text">{currentNode.text}</p>
                   </article>
-                  <button type="button" className="primary-action group" onClick={() => setProgress(advanceOpening)}>
+                  <button type="button" className="primary-action group dialogue-continue" onClick={() => setProgress(advanceOpening)}>
                     <span>继续</span><span className="action-icon"><Arrow /></span>
                   </button>
                 </div>

@@ -1,0 +1,1939 @@
+{
+  "task": "TASK-003",
+  "date": "2026-11-18",
+  "browser": "Microsoft Edge 157.0.4341.60 / HeadlessChrome 157 via CDP, isolated temporary profile with --disable-extensions",
+  "preview": "http://127.0.0.1:4173/",
+  "combinations": [
+    {
+      "firstKey": "regret",
+      "secondKey": "space",
+      "viewport": [
+        390,
+        844
+      ],
+      "copyChecks": {
+        "introCopy": [
+          "想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。",
+          "这是一段虚构的平行人生，不代表对未来的预测。"
+        ],
+        "incomingNote": "这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。"
+      },
+      "openingLines": [
+        "喂？先别挂——如果我说，我也是你呢？",
+        "这是什么恶作剧？",
+        "那年填志愿，我把工程改成了音乐。你没改，对吧？",
+        "……没有。我留在了原来的路上，当时觉得它更稳妥。",
+        "我刚排练完。能唱自己写的歌，我很开心。可下个月的演出费，还没有着落。",
+        "我在准备实习，日子有了安排。可那把吉他，已经很久没碰过了。",
+        "所以我想问你：现在，你最想对另一个自己说什么？"
+      ],
+      "secondChoice": {
+        "scene": "/backgrounds/second-choice.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "第一通来电",
+        "secondChoice": true,
+        "speaker": "另一个你",
+        "dialogueSpeaker": "",
+        "question": "如果明天就能为自己做一件小事，你想从哪里开始？",
+        "line": "",
+        "livePoliteness": "polite",
+        "liveText": "",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "H2",
+          "id": "choice-title",
+          "text": "如果明天就能为自己做一件小事，你想从哪里开始？",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "结束通话",
+            "width": 78,
+            "height": 46,
+            "top": 96.4375,
+            "bottom": 142.4375
+          },
+          {
+            "text": "给喜欢的事留一点时间。",
+            "width": 350,
+            "height": 84,
+            "top": 351.984375,
+            "bottom": 435.984375
+          },
+          {
+            "text": "找一个信任的人聊一聊。",
+            "width": 350,
+            "height": 84,
+            "top": 451.816162109375,
+            "bottom": 535.816162109375
+          }
+        ]
+      },
+      "feedback": "不用急着证明什么。先给自己留一小段时间，也许就够了。",
+      "ending": {
+        "scene": "/backgrounds/ending-regret-space.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "把旋律找回来",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "regret-make-space",
+        "endingTitle": "把旋律找回来",
+        "endingSummary": "你坦然面对了那份遗憾，也决定先为音乐留出一点时间。那条没走的路并未消失，它可以从一次小小的练习重新开始。",
+        "endingChoices": [
+          "你的回应：我有点遗憾，当年没有继续学音乐。",
+          "下一步：给喜欢的事留一点时间。"
+        ],
+        "active": {
+          "tag": "H1",
+          "id": "end-title",
+          "text": "把旋律找回来",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "重听这通来电",
+            "width": 350,
+            "height": 52,
+            "top": 459.43292236328125,
+            "bottom": 511.43292236328125
+          },
+          {
+            "text": "返回首页",
+            "width": 350,
+            "height": 52,
+            "top": 527.4329223632812,
+            "bottom": 579.4329223632812
+          }
+        ]
+      }
+    },
+    {
+      "firstKey": "regret",
+      "secondKey": "reach",
+      "viewport": [
+        390,
+        844
+      ],
+      "replay": true,
+      "ending": {
+        "scene": "/backgrounds/ending-regret-reach.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "让遗憾被听见",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "regret-reach-out",
+        "endingTitle": "让遗憾被听见",
+        "endingSummary": "你承认了心里的遗憾，也愿意向信任的人开口。那些没说出口的心事，有了被听见的可能。",
+        "endingChoices": [
+          "你的回应：我有点遗憾，当年没有继续学音乐。",
+          "下一步：找一个信任的人聊一聊。"
+        ],
+        "active": {
+          "tag": "H1",
+          "id": "end-title",
+          "text": "让遗憾被听见",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "重听这通来电",
+            "width": 350,
+            "height": 52,
+            "top": 459.43206787109375,
+            "bottom": 511.43206787109375
+          },
+          {
+            "text": "返回首页",
+            "width": 350,
+            "height": 52,
+            "top": 527.4320678710938,
+            "bottom": 579.4320678710938
+          }
+        ]
+      }
+    },
+    {
+      "firstKey": "cherish",
+      "secondKey": "space",
+      "viewport": [
+        1440,
+        900
+      ],
+      "copyChecks": {
+        "introCopy": [
+          "想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。",
+          "这是一段虚构的平行人生，不代表对未来的预测。"
+        ],
+        "incomingNote": "这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。"
+      },
+      "openingLines": [
+        "喂？先别挂——如果我说，我也是你呢？",
+        "这是什么恶作剧？",
+        "那年填志愿，我把工程改成了音乐。你没改，对吧？",
+        "……没有。我留在了原来的路上，当时觉得它更稳妥。",
+        "我刚排练完。能唱自己写的歌，我很开心。可下个月的演出费，还没有着落。",
+        "我在准备实习，日子有了安排。可那把吉他，已经很久没碰过了。",
+        "所以我想问你：现在，你最想对另一个自己说什么？"
+      ],
+      "secondChoice": {
+        "scene": "/backgrounds/second-choice.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "document": {
+          "width": 1440,
+          "height": 900,
+          "clientWidth": 1440
+        },
+        "heading": "第一通来电",
+        "secondChoice": true,
+        "speaker": "另一个你",
+        "dialogueSpeaker": "",
+        "question": "如果明天就能为自己做一件小事，你想从哪里开始？",
+        "line": "",
+        "livePoliteness": "polite",
+        "liveText": "",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "H2",
+          "id": "choice-title",
+          "text": "如果明天就能为自己做一件小事，你想从哪里开始？",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "结束通话",
+            "width": 58,
+            "height": 46,
+            "top": 239.65625,
+            "bottom": 285.65625
+          },
+          {
+            "text": "给喜欢的事留一点时间。",
+            "width": 780,
+            "height": 84,
+            "top": 492.34375,
+            "bottom": 576.34375
+          },
+          {
+            "text": "找一个信任的人聊一聊。",
+            "width": 780,
+            "height": 84,
+            "top": 592.1751098632812,
+            "bottom": 676.1751098632812
+          }
+        ]
+      },
+      "feedback": "不用急着证明什么。先给自己留一小段时间，也许就够了。",
+      "ending": {
+        "scene": "/backgrounds/ending-cherish-space.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "document": {
+          "width": 1440,
+          "height": 900,
+          "clientWidth": 1440
+        },
+        "heading": "给今天留一首歌",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "cherish-make-space",
+        "endingTitle": "给今天留一首歌",
+        "endingSummary": "你珍惜现在的生活，也为喜欢的事留出了位置。安稳与热爱，也许能在同一天里慢慢相遇。",
+        "endingChoices": [
+          "你的回应：我很珍惜，现在拥有的生活。",
+          "下一步：给喜欢的事留一点时间。"
+        ],
+        "active": {
+          "tag": "H1",
+          "id": "end-title",
+          "text": "给今天留一首歌",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "重听这通来电",
+            "width": 185.734375,
+            "height": 52,
+            "top": 629.375244140625,
+            "bottom": 681.375244140625
+          },
+          {
+            "text": "返回首页",
+            "width": 184,
+            "height": 52,
+            "top": 629.375244140625,
+            "bottom": 681.375244140625
+          }
+        ]
+      }
+    },
+    {
+      "firstKey": "cherish",
+      "secondKey": "reach",
+      "viewport": [
+        320,
+        568
+      ],
+      "copyChecks": {
+        "introCopy": [
+          "想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。",
+          "这是一段虚构的平行人生，不代表对未来的预测。"
+        ],
+        "incomingNote": "这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。"
+      },
+      "openingLines": [
+        "喂？先别挂——如果我说，我也是你呢？",
+        "这是什么恶作剧？",
+        "那年填志愿，我把工程改成了音乐。你没改，对吧？",
+        "……没有。我留在了原来的路上，当时觉得它更稳妥。",
+        "我刚排练完。能唱自己写的歌，我很开心。可下个月的演出费，还没有着落。",
+        "我在准备实习，日子有了安排。可那把吉他，已经很久没碰过了。",
+        "所以我想问你：现在，你最想对另一个自己说什么？"
+      ],
+      "secondChoice": {
+        "scene": "/backgrounds/second-choice.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "document": {
+          "width": 305,
+          "height": 672,
+          "clientWidth": 305
+        },
+        "heading": "第一通来电",
+        "secondChoice": true,
+        "speaker": "另一个你",
+        "dialogueSpeaker": "",
+        "question": "如果明天就能为自己做一件小事，你想从哪里开始？",
+        "line": "",
+        "livePoliteness": "polite",
+        "liveText": "",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "H2",
+          "id": "choice-title",
+          "text": "如果明天就能为自己做一件小事，你想从哪里开始？",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "结束通话",
+            "width": 74,
+            "height": 46,
+            "top": 34.650360107421875,
+            "bottom": 80.65036010742188
+          },
+          {
+            "text": "给喜欢的事留一点时间。",
+            "width": 265,
+            "height": 84,
+            "top": 334.8847351074219,
+            "bottom": 418.8847351074219
+          },
+          {
+            "text": "找一个信任的人聊一聊。",
+            "width": 265,
+            "height": 84.00003051757812,
+            "top": 434.7157897949219,
+            "bottom": 518.7158203125
+          }
+        ]
+      },
+      "feedback": "说出来，不一定马上有答案，但你不必一个人把所有事想完。",
+      "ending": {
+        "scene": "/backgrounds/ending-cherish-reach.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "document": {
+          "width": 305,
+          "height": 712,
+          "clientWidth": 305
+        },
+        "heading": "和身边的人分享",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "cherish-reach-out",
+        "endingTitle": "和身边的人分享",
+        "endingSummary": "你珍惜眼前的日子，也愿意把心里的想法说出来。被理解的日常，也许会多出一点新的可能。",
+        "endingChoices": [
+          "你的回应：我很珍惜，现在拥有的生活。",
+          "下一步：找一个信任的人聊一聊。"
+        ],
+        "active": {
+          "tag": "H1",
+          "id": "end-title",
+          "text": "和身边的人分享",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "重听这通来电",
+            "width": 265,
+            "height": 52.000030517578125,
+            "top": 487.3263854980469,
+            "bottom": 539.326416015625
+          },
+          {
+            "text": "返回首页",
+            "width": 265,
+            "height": 52,
+            "top": 555.3263549804688,
+            "bottom": 607.3263549804688
+          }
+        ]
+      }
+    }
+  ],
+  "regressions": {
+    "replayReset": {
+      "returnedToIncoming": true,
+      "answeredAgain": true,
+      "differentEnding": "regret-reach-out"
+    },
+    "returnHomeReset": {
+      "scene": "/backgrounds/home.svg",
+      "sceneLoaded": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "height": 844,
+        "clientWidth": 390
+      },
+      "heading": "Elsewhere未接来电",
+      "secondChoice": false,
+      "speaker": "",
+      "dialogueSpeaker": "",
+      "question": "",
+      "line": "",
+      "livePoliteness": "",
+      "liveText": "",
+      "endingId": "",
+      "endingTitle": "",
+      "endingSummary": "",
+      "endingChoices": [],
+      "active": {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "开始体验",
+        "focusVisible": false
+      },
+      "dialogOpen": false,
+      "buttons": [
+        {
+          "text": "开始体验",
+          "width": 350,
+          "height": 52,
+          "top": 663.33935546875,
+          "bottom": 715.33935546875
+        }
+      ]
+    },
+    "beforeSecondChoice": {
+      "stage": "next-step",
+      "afterCancelAndEscape": {
+        "scene": "/backgrounds/second-choice.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "第一通来电",
+        "secondChoice": true,
+        "speaker": "另一个你",
+        "dialogueSpeaker": "",
+        "question": "如果明天就能为自己做一件小事，你想从哪里开始？",
+        "line": "",
+        "livePoliteness": "polite",
+        "liveText": "",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "BUTTON",
+          "id": "",
+          "text": "结束通话",
+          "focusVisible": true
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "结束通话",
+            "width": 78,
+            "height": 46,
+            "top": 96.4375,
+            "bottom": 142.4375
+          },
+          {
+            "text": "给喜欢的事留一点时间。",
+            "width": 350,
+            "height": 84,
+            "top": 351.984375,
+            "bottom": 435.984375
+          },
+          {
+            "text": "找一个信任的人聊一聊。",
+            "width": 350,
+            "height": 84,
+            "top": 451.984375,
+            "bottom": 535.984375
+          }
+        ]
+      },
+      "confirmedExit": {
+        "scene": "/backgrounds/home.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "Elsewhere未接来电",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "BUTTON",
+          "id": "",
+          "text": "开始体验",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "开始体验",
+            "width": 350,
+            "height": 52,
+            "top": 663.3383178710938,
+            "bottom": 715.3383178710938
+          }
+        ]
+      }
+    },
+    "afterSecondChoice": {
+      "stage": "make-space-feedback",
+      "afterCancelAndEscape": {
+        "scene": "/backgrounds/make-space.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "第一通来电",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "另一个你",
+        "question": "",
+        "line": "不用急着证明什么。先给自己留一小段时间，也许就够了。",
+        "livePoliteness": "polite",
+        "liveText": "另一个你：不用急着证明什么。先给自己留一小段时间，也许就够了。",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "BUTTON",
+          "id": "",
+          "text": "结束通话",
+          "focusVisible": true
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "结束通话",
+            "width": 78,
+            "height": 46,
+            "top": 96.4375,
+            "bottom": 142.4375
+          },
+          {
+            "text": "继续",
+            "width": 105.125,
+            "height": 46,
+            "top": 435.484375,
+            "bottom": 481.484375
+          }
+        ]
+      },
+      "endingAfterCancellation": {
+        "scene": "/backgrounds/ending-regret-space.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "把旋律找回来",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "regret-make-space",
+        "endingTitle": "把旋律找回来",
+        "endingSummary": "你坦然面对了那份遗憾，也决定先为音乐留出一点时间。那条没走的路并未消失，它可以从一次小小的练习重新开始。",
+        "endingChoices": [
+          "你的回应：我有点遗憾，当年没有继续学音乐。",
+          "下一步：给喜欢的事留一点时间。"
+        ],
+        "active": {
+          "tag": "H1",
+          "id": "end-title",
+          "text": "把旋律找回来",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "重听这通来电",
+            "width": 350,
+            "height": 52,
+            "top": 459.4319763183594,
+            "bottom": 511.4319763183594
+          },
+          {
+            "text": "返回首页",
+            "width": 350,
+            "height": 52,
+            "top": 527.4320068359375,
+            "bottom": 579.4320068359375
+          }
+        ]
+      },
+      "confirmedExit": {
+        "scene": "/backgrounds/home.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "Elsewhere未接来电",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "BUTTON",
+          "id": "",
+          "text": "开始体验",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "开始体验",
+            "width": 350,
+            "height": 52,
+            "top": 663.3450317382812,
+            "bottom": 715.3450317382812
+          }
+        ]
+      }
+    },
+    "rapidChoices": {
+      "firstFeedback": "我有时也会想，如果当年选了工程，是不是就能少一些不安。也许我们都看到了对方那边的光。",
+      "secondFeedback": "不用急着证明什么。先给自己留一小段时间，也许就够了。",
+      "endingId": "regret-make-space",
+      "settledOnce": true
+    },
+    "refreshReset": {
+      "scene": "/backgrounds/home.svg",
+      "sceneLoaded": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "height": 844,
+        "clientWidth": 390
+      },
+      "heading": "Elsewhere未接来电",
+      "secondChoice": false,
+      "speaker": "",
+      "dialogueSpeaker": "",
+      "question": "",
+      "line": "",
+      "livePoliteness": "",
+      "liveText": "",
+      "endingId": "",
+      "endingTitle": "",
+      "endingSummary": "",
+      "endingChoices": [],
+      "active": {
+        "tag": "BODY",
+        "id": "",
+        "text": "ELSEWHERE平行人生 / 001来自另一个世界的信号Elsewhere未接来电如果当年，你选择了另一条路。平行世界的你，正在来电。PARALLEL CALL001另一个你来自平行世界的自己现实 · 工程平行 · 音乐开始体验一段虚构的平行人生，无需注册AN INTERACTIVE STORY此刻 · 另一种可能结束本次通话并返回首页？当前对话与选择将清空。取消确认结束",
+        "focusVisible": false
+      },
+      "dialogOpen": false,
+      "buttons": [
+        {
+          "text": "开始体验",
+          "width": 350,
+          "height": 52,
+          "top": 663.3452758789062,
+          "bottom": 715.3452758789062
+        }
+      ]
+    }
+  },
+  "keyboard": {
+    "fullPath": {
+      "scene": "/backgrounds/ending-regret-space.svg",
+      "sceneLoaded": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "height": 900,
+        "clientWidth": 1440
+      },
+      "heading": "把旋律找回来",
+      "secondChoice": false,
+      "speaker": "",
+      "dialogueSpeaker": "",
+      "question": "",
+      "line": "",
+      "livePoliteness": "",
+      "liveText": "",
+      "endingId": "regret-make-space",
+      "endingTitle": "把旋律找回来",
+      "endingSummary": "你坦然面对了那份遗憾，也决定先为音乐留出一点时间。那条没走的路并未消失，它可以从一次小小的练习重新开始。",
+      "endingChoices": [
+        "你的回应：我有点遗憾，当年没有继续学音乐。",
+        "下一步：给喜欢的事留一点时间。"
+      ],
+      "active": {
+        "tag": "H1",
+        "id": "end-title",
+        "text": "把旋律找回来",
+        "focusVisible": true
+      },
+      "dialogOpen": false,
+      "buttons": [
+        {
+          "text": "重听这通来电",
+          "width": 185.734375,
+          "height": 52,
+          "top": 629.377197265625,
+          "bottom": 681.377197265625
+        },
+        {
+          "text": "返回首页",
+          "width": 184,
+          "height": 52,
+          "top": 629.377197265625,
+          "bottom": 681.377197265625
+        }
+      ]
+    },
+    "confirmedExit": {
+      "scene": "/backgrounds/home.svg",
+      "sceneLoaded": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "height": 900,
+        "clientWidth": 1440
+      },
+      "heading": "Elsewhere未接来电",
+      "secondChoice": false,
+      "speaker": "",
+      "dialogueSpeaker": "",
+      "question": "",
+      "line": "",
+      "livePoliteness": "",
+      "liveText": "",
+      "endingId": "",
+      "endingTitle": "",
+      "endingSummary": "",
+      "endingChoices": [],
+      "active": {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "开始体验",
+        "focusVisible": true
+      },
+      "dialogOpen": false,
+      "buttons": [
+        {
+          "text": "开始体验",
+          "width": 184,
+          "height": 52,
+          "top": 576.0225830078125,
+          "bottom": 628.0225830078125
+        }
+      ]
+    }
+  },
+  "responsive": [
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "secondChoice": {
+        "scene": "/backgrounds/second-choice.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "第一通来电",
+        "secondChoice": true,
+        "speaker": "另一个你",
+        "dialogueSpeaker": "",
+        "question": "如果明天就能为自己做一件小事，你想从哪里开始？",
+        "line": "",
+        "livePoliteness": "polite",
+        "liveText": "",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "H2",
+          "id": "choice-title",
+          "text": "如果明天就能为自己做一件小事，你想从哪里开始？",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "结束通话",
+            "width": 78,
+            "height": 46,
+            "top": 96.4375,
+            "bottom": 142.4375
+          },
+          {
+            "text": "给喜欢的事留一点时间。",
+            "width": 350,
+            "height": 84,
+            "top": 351.984375,
+            "bottom": 435.984375
+          },
+          {
+            "text": "找一个信任的人聊一聊。",
+            "width": 350,
+            "height": 84,
+            "top": 451.816162109375,
+            "bottom": 535.816162109375
+          }
+        ]
+      },
+      "ending": {
+        "scene": "/backgrounds/ending-regret-space.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844,
+          "clientWidth": 390
+        },
+        "heading": "把旋律找回来",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "regret-make-space",
+        "endingTitle": "把旋律找回来",
+        "endingSummary": "你坦然面对了那份遗憾，也决定先为音乐留出一点时间。那条没走的路并未消失，它可以从一次小小的练习重新开始。",
+        "endingChoices": [
+          "你的回应：我有点遗憾，当年没有继续学音乐。",
+          "下一步：给喜欢的事留一点时间。"
+        ],
+        "active": {
+          "tag": "H1",
+          "id": "end-title",
+          "text": "把旋律找回来",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "重听这通来电",
+            "width": 350,
+            "height": 52,
+            "top": 459.43292236328125,
+            "bottom": 511.43292236328125
+          },
+          {
+            "text": "返回首页",
+            "width": 350,
+            "height": 52,
+            "top": 527.4329223632812,
+            "bottom": 579.4329223632812
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "secondChoice": {
+        "scene": "/backgrounds/second-choice.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "document": {
+          "width": 305,
+          "height": 672,
+          "clientWidth": 305
+        },
+        "heading": "第一通来电",
+        "secondChoice": true,
+        "speaker": "另一个你",
+        "dialogueSpeaker": "",
+        "question": "如果明天就能为自己做一件小事，你想从哪里开始？",
+        "line": "",
+        "livePoliteness": "polite",
+        "liveText": "",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "H2",
+          "id": "choice-title",
+          "text": "如果明天就能为自己做一件小事，你想从哪里开始？",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "结束通话",
+            "width": 74,
+            "height": 46,
+            "top": 34.650360107421875,
+            "bottom": 80.65036010742188
+          },
+          {
+            "text": "给喜欢的事留一点时间。",
+            "width": 265,
+            "height": 84,
+            "top": 334.8847351074219,
+            "bottom": 418.8847351074219
+          },
+          {
+            "text": "找一个信任的人聊一聊。",
+            "width": 265,
+            "height": 84.00003051757812,
+            "top": 434.7157897949219,
+            "bottom": 518.7158203125
+          }
+        ]
+      },
+      "ending": {
+        "scene": "/backgrounds/ending-cherish-reach.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "document": {
+          "width": 305,
+          "height": 712,
+          "clientWidth": 305
+        },
+        "heading": "和身边的人分享",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "cherish-reach-out",
+        "endingTitle": "和身边的人分享",
+        "endingSummary": "你珍惜眼前的日子，也愿意把心里的想法说出来。被理解的日常，也许会多出一点新的可能。",
+        "endingChoices": [
+          "你的回应：我很珍惜，现在拥有的生活。",
+          "下一步：找一个信任的人聊一聊。"
+        ],
+        "active": {
+          "tag": "H1",
+          "id": "end-title",
+          "text": "和身边的人分享",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "重听这通来电",
+            "width": 265,
+            "height": 52.000030517578125,
+            "top": 487.3263854980469,
+            "bottom": 539.326416015625
+          },
+          {
+            "text": "返回首页",
+            "width": 265,
+            "height": 52,
+            "top": 555.3263549804688,
+            "bottom": 607.3263549804688
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "ending": {
+        "scene": "/backgrounds/ending-regret-space.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "document": {
+          "width": 1440,
+          "height": 900,
+          "clientWidth": 1440
+        },
+        "heading": "把旋律找回来",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "regret-make-space",
+        "endingTitle": "把旋律找回来",
+        "endingSummary": "你坦然面对了那份遗憾，也决定先为音乐留出一点时间。那条没走的路并未消失，它可以从一次小小的练习重新开始。",
+        "endingChoices": [
+          "你的回应：我有点遗憾，当年没有继续学音乐。",
+          "下一步：给喜欢的事留一点时间。"
+        ],
+        "active": {
+          "tag": "H1",
+          "id": "end-title",
+          "text": "把旋律找回来",
+          "focusVisible": true
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "重听这通来电",
+            "width": 185.734375,
+            "height": 52,
+            "top": 629.377197265625,
+            "bottom": 681.377197265625
+          },
+          {
+            "text": "返回首页",
+            "width": 184,
+            "height": 52,
+            "top": 629.377197265625,
+            "bottom": 681.377197265625
+          }
+        ]
+      }
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "longestEnding": {
+        "scene": "/backgrounds/ending-regret-space.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "document": {
+          "width": 305,
+          "height": 712,
+          "clientWidth": 305
+        },
+        "heading": "把旋律找回来",
+        "secondChoice": false,
+        "speaker": "",
+        "dialogueSpeaker": "",
+        "question": "",
+        "line": "",
+        "livePoliteness": "",
+        "liveText": "",
+        "endingId": "regret-make-space",
+        "endingTitle": "把旋律找回来",
+        "endingSummary": "你坦然面对了那份遗憾，也决定先为音乐留出一点时间。那条没走的路并未消失，它可以从一次小小的练习重新开始。",
+        "endingChoices": [
+          "你的回应：我有点遗憾，当年没有继续学音乐。",
+          "下一步：给喜欢的事留一点时间。"
+        ],
+        "active": {
+          "tag": "H1",
+          "id": "end-title",
+          "text": "把旋律找回来",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "重听这通来电",
+            "width": 265,
+            "height": 52,
+            "top": 487.322509765625,
+            "bottom": 539.322509765625
+          },
+          {
+            "text": "返回首页",
+            "width": 265,
+            "height": 52,
+            "top": 555.322509765625,
+            "bottom": 607.322509765625
+          }
+        ]
+      },
+      "secondChoice": {
+        "scene": "/backgrounds/second-choice.svg",
+        "sceneLoaded": true,
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "document": {
+          "width": 305,
+          "height": 672,
+          "clientWidth": 305
+        },
+        "heading": "第一通来电",
+        "secondChoice": true,
+        "speaker": "另一个你",
+        "dialogueSpeaker": "",
+        "question": "如果明天就能为自己做一件小事，你想从哪里开始？",
+        "line": "",
+        "livePoliteness": "polite",
+        "liveText": "",
+        "endingId": "",
+        "endingTitle": "",
+        "endingSummary": "",
+        "endingChoices": [],
+        "active": {
+          "tag": "H2",
+          "id": "choice-title",
+          "text": "如果明天就能为自己做一件小事，你想从哪里开始？",
+          "focusVisible": false
+        },
+        "dialogOpen": false,
+        "buttons": [
+          {
+            "text": "结束通话",
+            "width": 74,
+            "height": 46.000003814697266,
+            "top": 34.65037155151367,
+            "bottom": 80.65037536621094
+          },
+          {
+            "text": "给喜欢的事留一点时间。",
+            "width": 265,
+            "height": 84,
+            "top": 334.8847351074219,
+            "bottom": 418.8847351074219
+          },
+          {
+            "text": "找一个信任的人聊一聊。",
+            "width": 265,
+            "height": 84,
+            "top": 434.71612548828125,
+            "bottom": 518.7161254882812
+          }
+        ]
+      }
+    }
+  ],
+  "reducedMotion": {
+    "mediaMatches": true,
+    "animationName": "none",
+    "animationDuration": "0s",
+    "transitionDuration": "0s",
+    "sceneAnimationName": "none"
+  },
+  "network": [
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/regret.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/make-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/farewell.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/ending-regret-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/regret.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reach-out.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/farewell.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/ending-regret-reach.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/cherish.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/make-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/farewell.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/ending-cherish-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/cherish.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reach-out.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/farewell.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/ending-cherish-reach.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/regret.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/regret.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/make-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/farewell.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/ending-regret-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/regret.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reach-out.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/cherish.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/make-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/favicon.svg",
+      "type": "Other"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/regret.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/make-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/farewell.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/ending-regret-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/regret.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "type": "Script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "type": "Stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/home.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/music.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/regret.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/make-space.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/farewell.svg",
+      "type": "Image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/backgrounds/ending-regret-space.svg",
+      "type": "Image"
+    }
+  ],
+  "failures": [],
+  "consoleEvents": [],
+  "requestSummary": {
+    "count": 153,
+    "urls": [
+      "http://127.0.0.1:4173/",
+      "http://127.0.0.1:4173/assets/index-VXv3c9c-.js",
+      "http://127.0.0.1:4173/assets/index-DHsOOARD.css",
+      "http://127.0.0.1:4173/backgrounds/home.svg",
+      "http://127.0.0.1:4173/backgrounds/incoming.svg",
+      "http://127.0.0.1:4173/backgrounds/opening.svg",
+      "http://127.0.0.1:4173/backgrounds/music.svg",
+      "http://127.0.0.1:4173/backgrounds/reality.svg",
+      "http://127.0.0.1:4173/backgrounds/first-choice.svg",
+      "http://127.0.0.1:4173/backgrounds/regret.svg",
+      "http://127.0.0.1:4173/backgrounds/second-choice.svg",
+      "http://127.0.0.1:4173/backgrounds/make-space.svg",
+      "http://127.0.0.1:4173/backgrounds/farewell.svg",
+      "http://127.0.0.1:4173/backgrounds/ending-regret-space.svg",
+      "http://127.0.0.1:4173/backgrounds/reach-out.svg",
+      "http://127.0.0.1:4173/backgrounds/ending-regret-reach.svg",
+      "http://127.0.0.1:4173/backgrounds/cherish.svg",
+      "http://127.0.0.1:4173/backgrounds/ending-cherish-space.svg",
+      "http://127.0.0.1:4173/backgrounds/ending-cherish-reach.svg",
+      "http://127.0.0.1:4173/favicon.svg"
+    ],
+    "externalApplicationRequests": [],
+    "browserExtensionRequests": [],
+    "note": "Application and browser-extension requests are classified separately; no external HTTP interface, font, or asset request was observed."
+  },
+  "result": "all scripted assertions passed"
+}

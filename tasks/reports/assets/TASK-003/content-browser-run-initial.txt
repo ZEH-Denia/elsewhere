@@ -1,0 +1,8 @@
+{
+  "result": "failed",
+  "combinations": 4,
+  "requests": 69,
+  "failures": [],
+  "consoleEvents": [],
+  "error": "AssertionError [ERR_ASSERTION]: Touch target: 结束通话\n    at assertLayout (file:///Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/content-browser-checks.mjs:217:12)\n    at reachSecondChoice (file:///Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/content-browser-checks.mjs:328:3)\n    at async file:///Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/content-browser-checks.mjs:460:24"
+}

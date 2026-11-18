@@ -2,16 +2,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title desc">
   <title id="title">Elsewhere 雨夜双城 · farewell</title><desc id="desc">工程书桌与音乐排练室在雨夜中由来电信号连接。</desc>
   <defs>
-    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#03060d"/><stop offset=".46" stop-color="#11182c"/><stop offset="1" stop-color="#070b13"/></linearGradient>
-    <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ba786f" stop-opacity=".3"/><stop offset=".48" stop-color="#5c4c68" stop-opacity=".12"/><stop offset="1" stop-color="#07101b" stop-opacity="0"/></linearGradient>
-    <linearGradient id="leftRoom" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#1e2d3a"/><stop offset=".55" stop-color="#17232e"/><stop offset="1" stop-color="#0a111a"/></linearGradient>
-    <linearGradient id="rightRoom" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#29233a"/><stop offset=".58" stop-color="#1c1d31"/><stop offset="1" stop-color="#0b101b"/></linearGradient>
-    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#141923"/><stop offset="1" stop-color="#06090f"/></linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6f9ab5" stop-opacity=".13"/><stop offset=".42" stop-color="#2a3f55" stop-opacity=".05"/><stop offset=".48" stop-color="#b4d9e7" stop-opacity=".14"/><stop offset="1" stop-color="#0c1521" stop-opacity=".03"/></linearGradient>
-    <linearGradient id="spotlight" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#eadcff" stop-opacity=".24"/><stop offset="1" stop-color="#b793d5" stop-opacity="0"/></linearGradient>
-    <linearGradient id="bottomShade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#04070d" stop-opacity="0"/><stop offset=".56" stop-color="#04070d" stop-opacity=".5"/><stop offset="1" stop-color="#03050a" stop-opacity=".96"/></linearGradient>
-    <radialGradient id="lampGlow"><stop stop-color="#ffd89b" stop-opacity=".7"/><stop offset=".26" stop-color="#f4b96f" stop-opacity=".26"/><stop offset="1" stop-color="#e6a053" stop-opacity="0"/></radialGradient>
-    <radialGradient id="stageGlow"><stop stop-color="#e5c4ff" stop-opacity=".42"/><stop offset=".35" stop-color="#b887e1" stop-opacity=".15"/><stop offset="1" stop-color="#8c62bc" stop-opacity="0"/></radialGradient>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#120d0c"/><stop offset=".46" stop-color="#2b1c1c"/><stop offset="1" stop-color="#160f0e"/></linearGradient>
+    <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e2a276" stop-opacity=".36"/><stop offset=".48" stop-color="#8b5e5e" stop-opacity=".15"/><stop offset="1" stop-color="#17110f" stop-opacity="0"/></linearGradient>
+    <linearGradient id="warmWash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efb77d" stop-opacity=".2"/><stop offset=".5" stop-color="#dca18c" stop-opacity=".13"/><stop offset="1" stop-color="#c98370" stop-opacity=".18"/></linearGradient>
+    <linearGradient id="leftRoom" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#3b2c24"/><stop offset=".55" stop-color="#2a211d"/><stop offset="1" stop-color="#15100e"/></linearGradient>
+    <linearGradient id="rightRoom" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#3b292c"/><stop offset=".58" stop-color="#2b2025"/><stop offset="1" stop-color="#171114"/></linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#261c18"/><stop offset="1" stop-color="#0e0b0a"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d5b497" stop-opacity=".13"/><stop offset=".42" stop-color="#62483f" stop-opacity=".05"/><stop offset=".48" stop-color="#f4d7b6" stop-opacity=".13"/><stop offset="1" stop-color="#211512" stop-opacity=".03"/></linearGradient>
+    <linearGradient id="spotlight" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe0b6" stop-opacity=".27"/><stop offset="1" stop-color="#d9a18b" stop-opacity="0"/></linearGradient>
+    <linearGradient id="bottomShade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#100b09" stop-opacity="0"/><stop offset=".56" stop-color="#100b09" stop-opacity=".46"/><stop offset="1" stop-color="#0b0807" stop-opacity=".94"/></linearGradient>
+    <radialGradient id="lampGlow"><stop stop-color="#ffe0a8" stop-opacity=".78"/><stop offset=".26" stop-color="#f4bd78" stop-opacity=".3"/><stop offset="1" stop-color="#e6a053" stop-opacity="0"/></radialGradient>
+    <radialGradient id="stageGlow"><stop stop-color="#ffd8bd" stop-opacity=".48"/><stop offset=".35" stop-color="#dda088" stop-opacity=".18"/><stop offset="1" stop-color="#aa6e63" stop-opacity="0"/></radialGradient>
     <radialGradient id="vignette" cx=".5" cy=".45" r=".72"><stop offset=".42" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".66"/></radialGradient>
     <filter id="blur8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
     <filter id="blur24" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="24"/></filter>
@@ -20,7 +21,7 @@
     <clipPath id="leftClip"><rect x="102" y="164" width="532" height="502" rx="3"/></clipPath><clipPath id="rightClip"><rect x="806" y="164" width="532" height="502" rx="3"/></clipPath>
   </defs>
   <rect width="1440" height="900" fill="url(#night)"/>
-  <ellipse cx="360" cy="340" rx="460" ry="370" fill="#45627b" opacity=".07"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#765087" opacity=".08"/>
+  <ellipse cx="360" cy="340" rx="460" ry="370" fill="#b47b58" opacity=".09"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#a86c6c" opacity=".1"/>
 <rect width="1440" height="900" fill="url(#dawn)"/><path d="M0 248C280 210 480 268 720 226C970 182 1160 244 1440 196V0H0Z" fill="#e5a18a" opacity=".07"/><ellipse cx="720" cy="210" rx="380" ry="100" fill="#efb493" opacity=".1" filter="url(#blur24)"/>
   <path d="M0 112H1440V754H0Z" fill="#080d15" opacity=".9"/><path d="M0 112H1440M0 754H1440" stroke="#6d8296" stroke-opacity=".14"/>
   <g filter="url(#shadow)"><rect x="72" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#344250" stroke-opacity=".55"/><rect x="92" y="154" width="552" height="522" rx="4" fill="#111923" stroke="#637484" stroke-opacity=".18"/><rect x="776" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#454057" stroke-opacity=".58"/><rect x="796" y="154" width="552" height="522" rx="4" fill="#171522" stroke="#756887" stroke-opacity=".18"/></g>
@@ -98,5 +99,6 @@
     <path d="M707 293L714 303L708 308C711 314 715 318 721 320L725 314L735 320L733 327C732 330 729 331 726 330C711 326 701 316 697 301C696 297 698 294 701 293Z" fill="none" stroke="#c7eeea" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M741 284C749 287 754 293 756 301M744 275C757 279 765 289 768 302" fill="none" stroke="#91d8d4" stroke-opacity=".6" stroke-width="2" stroke-linecap="round"/>
   </g>
+  <rect width="1440" height="900" fill="url(#warmWash)"/>
   <rect y="606" width="1440" height="294" fill="url(#bottomShade)"/><rect width="1440" height="900" fill="url(#vignette)"/><rect width="1440" height="900" filter="url(#grain)" opacity=".38"/>
 </svg>

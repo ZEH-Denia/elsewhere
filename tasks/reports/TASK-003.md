@@ -197,3 +197,17 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 完整回归记录 142 次请求，唯一资源为本地 HTML、JS、CSS、favicon 和 16 张 SVG；外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。请求总数包含反复导航与重载，16 张 SVG 是唯一背景资源清单，不将其误写为 142 个不同资源。
 
 实体设备、真实读屏和原生 200% 缩放仍未验证。临时无头浏览器已停止；生产预览保留供用户查看。未合并 main、未部署。
+
+## 10. 温馨暖光风格调整
+
+日期：2026-11-18（Asia/Shanghai）。用户查看冷色场景版本后提出“我要更温馨的风格”。本轮保留双窗构图、16 个场景映射和全部剧情交互，仅调整视觉色彩、光线与遮罩。
+
+- `scripts/generate-backgrounds.mjs` 与 `public/backgrounds/`：冷蓝夜空改为暖棕与低饱和杏色，工程房间采用木色和暖黄台灯，排练室采用杏粉与柔桃色灯光；尾声增加暖色天光，regret 的冷蓝叠加改为低饱和灰粉。重新生成全部 16 张本地 SVG，未增加依赖或远程资源。
+- `src/index.css`：主题 token 改为暖夜色、米白正文、暖黄强调色和柔和桃色辅助色；主按钮、焦点、来电卡片和选择状态同步偏暖。背景显示透明度由 0.82 调至 0.9，遮罩改为暖棕并适度降低中间区域暗度，保持对白可读。
+- 未修改布局、中文定稿、剧情状态机、节点映射、键盘、焦点或确认交互。`README.md` 更新为“雨夜双城·暖光版”。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；构建为 19 modules，CSS 24.93 kB / gzip 6.33 kB，JS 238.47 kB / gzip 74.55 kB。原始输出见 [warm-typecheck.txt](assets/TASK-003/warm-typecheck.txt)、[warm-test-story.txt](assets/TASK-003/warm-test-story.txt)、[warm-build.txt](assets/TASK-003/warm-build.txt)。
+
+使用独立无扩展 Microsoft Edge 157 对最终生产构建再次运行全剧情场景回归：[warm-browser-checks.mjs](assets/TASK-003/warm-browser-checks.mjs)、[运行摘要](assets/TASK-003/warm-browser-run.txt)、[完整 JSON](assets/TASK-003/warm-browser-checks.json)。16 张背景加载及逐节点映射断言、四组合、三视口、键盘、重听、刷新、退出和减少动态效果均通过；142 次请求仍只有本地应用资源，外部请求、加载失败和控制台异常均为 `[]`。
+
+已目视检查 [1440 暖光首页](assets/TASK-003/warm-00-home-1440.png)、[390 第二次选择](assets/TASK-003/warm-01-regret-make-space-390-second-choice.png)与 [1440 暖光结局](assets/TASK-003/warm-03-cherish-make-space-1440-ending.png)：暖木色和杏粉灯光明确，文字和按钮对比清晰，无横向溢出或遮挡。实体设备、真实读屏和原生 200% 缩放仍未验证；生产预览保留供用户查看，未合并 main、未部署。

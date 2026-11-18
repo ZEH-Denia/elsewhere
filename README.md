@@ -1,8 +1,6 @@
 # Elsewhere：未接来电
 
-> TASK-003 R1 复审仍为 FIX：须补齐跳过选择的坏图校验。PR #2 已将初审实现合入 main；返修尚在 task-003。
-
-> TASK-003 初审 FIX：四条剧情路径可达，结局缺失检测需按 [R1 审查](tasks/reviews/TASK-003.md)返修。
+> 当前交接：TASK-003 的实现与本轮验证已完成，等待 Codex 复审；不代表 PASS，也未批准合并 main 或发布。
 
 接到来自平行世界自己的电话，通过互动剧情探索另一种人生。
 
@@ -14,13 +12,11 @@ GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，
 
 2026-11-17：TASK-001 的工程、首页与可返回前言，以及 TASK-002 的视觉和首通来电均已 PASS。TASK-002 的确认退出焦点返修已通过复审，见 [审查报告](tasks/reviews/TASK-002.md)。
 
-当前 **TASK-003 / FIX**：task-003 保留首通流程，新增第二次选择、两条行动反馈与四种剧情结局；缺失结局的校验待返修。四种结局由两次选择共同决定，不含评分或正确选项；尚未批准合并 main 或发布。
+当前 **TASK-003 / 等待 Codex 复审**：task-003 已完成两次选择与四种结局、真实状态路径校验、定稿文案同步，以及统一暖米无框视觉、全局选项预览、主次行动和桌面一屏优化。四种结局由两次选择共同决定，不含评分或正确选项；尚未批准合并 main 或发布。
 
-## 在 Qoder IDE 中开始
+## 复审与交接
 
-用 Qoder 打开本项目根目录，在对话中发送：
-
-> 请阅读 AGENTS.md、docs/COLLABORATION.md、tasks/current.md 和 tasks/reviews/TASK-003.md，更新 task-003，仅处理 R1 并复验，追加原执行报告，提交推送后停止，等待 Codex 复审。
+完整实现、逐轮修复和真实验证证据见 [TASK-003 执行报告](tasks/reports/TASK-003.md)。Codex 请阅读 AGENTS.md、docs/COLLABORATION.md、tasks/current.md、该执行报告及既有审查，对照 task-003 最新提交独立复跑必要检查并写入复审结论。
 
 当前[Qoder 开发交接入口](docs/QODER_START.md)记录任务交接方式；具体范围以 TASK-003 当前任务为准。同一台电脑直接打开现有项目目录，沿用已有工程与已验收实现。
 

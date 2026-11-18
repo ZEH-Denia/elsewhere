@@ -350,3 +350,35 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 独立 Edge 在 1366×768 和 390px 手机视口下完成前言、来电、四组合、键盘、重置和布局回归，全部通过；156 次请求仅包含本地资源，外部请求、加载失败和控制台异常均为 `[]`，见 [运行摘要](assets/TASK-003/action-browser-run-1366.txt)与[完整 JSON](assets/TASK-003/action-browser-checks-1366.json)。
 
 已目视检查 [桌面前言](assets/TASK-003/action-intro-action-1366.png)、[桌面来电](assets/TASK-003/action-incoming-action-1366.png)、[手机来电](assets/TASK-003/action-incoming-action-390.png)与 [结局](assets/TASK-003/action-03-cherish-make-space-1366-ending.png)：进入来电、接听和重听成为明确主行动，返回首页退居次要位置且不遮挡内容。实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。
+
+## 20. 交接给 Codex 复审
+
+日期：2026-11-19（Asia/Shanghai）。状态：**实现与本轮验证完成，交还 Codex 独立复审；不代表 PASS。**
+
+### 最终交接范围
+
+- R1 剧情校验已改为携带两次选择状态的真实路径遍历，覆盖缺失结局、错误映射、非结局目标、单分支循环、跳过第一次选择和跳过第二次选择等反例。
+- Excel 定稿已逐字同步到项目剧情与本地 Word 剧本，原 Excel 未修改。
+- 全流程已加入 16 张代码生成的本地场景、鼠标/键盘选项预览、220ms 保留旧画面的交叉淡化，以及统一暖米无框、低泛光、主次行动和桌面一屏布局。
+- 已定稿文案、两次选择、四结局、确认退出、重听、刷新重置、键盘焦点和减少动态效果均保留；未进入 TASK-004，未合并 main、未部署。
+
+### 复审入口与关键证据
+
+| 项目 | 交接内容 |
+| --- | --- |
+| 执行分支 | `task-003` |
+| 最终实现提交 | `ddc3239f80588ddd28a075f44ae97fbc3bf6ba69`；本次交接文档提交另行推送并核对远程 |
+| 工程检查 | `npm run typecheck`、15/15 `npm run test:story`、`npm run build` 均退出 0；[最终日志](assets/TASK-003/action-build.txt) |
+| 最新完整浏览器回归 | [action 摘要](assets/TASK-003/action-browser-run-1366.txt)与[完整 JSON](assets/TASK-003/action-browser-checks-1366.json) |
+| 桌面一屏专项 | [1366×768](assets/TASK-003/fit-browser-checks-1366.json)与[1440×900](assets/TASK-003/fit-browser-checks-1440.json)均逐节点断言无需纵向滚动 |
+| 视觉证据 | [前言](assets/TASK-003/action-intro-action-1366.png)、[来电](assets/TASK-003/action-incoming-action-1366.png)、[对白](assets/TASK-003/soft-03-cherish-make-space-1366-dialogue.png)、[结局](assets/TASK-003/action-03-cherish-make-space-1366-ending.png) |
+| 本地预览 | `http://127.0.0.1:4173/` 保持运行，便于 Codex 直接检查；也可用 `npm run preview` 重新启动 |
+| 工作区说明 | 根目录 `Elsewhere-未接来电-剧本.docx` 为用户要求的本地交付物，保持未跟踪，未混入源码提交 |
+
+### 仍需 Codex 或团队验证
+
+- Codex 尚未对 `2fab931` 之后的真实状态路径修复、定稿文案及后续视觉与交互改动给出独立 PASS；本报告不能替代复审。
+- 未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未执行原生浏览器 200% 缩放；未进行自动化 WCAG 对比度评分。
+- 已验证 320×568、390×844、1366×768、1440×900，不声称覆盖所有设备、浏览器和桌面高度；团队主观体验与下一任务批准仍需另行确认。
+
+交接后 Qoder 停止修改，等待 Codex 对照真实代码、测试和生产预览复审。未经团队批准不合并 main、不部署、不进入下一任务。

@@ -255,3 +255,18 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 独立 Edge 生产浏览器再次完成全部场景、四组合、三视口、键盘、重置与减少动态效果回归，最终 152 次请求仅含本地资源，外部请求、加载失败和控制台异常均为 `[]`；详见 [运行摘要](assets/TASK-003/balanced-browser-run.txt)与[完整 JSON](assets/TASK-003/balanced-browser-checks.json)。
 
 已目视检查 [1440 暖米首页](assets/TASK-003/balanced-00-home-1440.png)、[1440 对白](assets/TASK-003/balanced-03-cherish-make-space-1440-dialogue.png)与 [390 首页](assets/TASK-003/balanced-01-regret-make-space-390-home.png)：背景场景清晰，界面亮度柔和，文字和操作无遮挡。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。
+
+## 14. 无框对白与全局选项预览
+
+日期：2026-11-18（Asia/Shanghai）。用户认为对白白色框突兀，希望文字融入背景，并让选项与整个界面产生交互。本轮同时调整视觉层级与预览行为，不改变正式选择和剧情推进规则。
+
+- `src/index.css`：移除剧情页白色面板、对白卡片背景与边框，改为局部径向柔光和同色文字阴影；桌面与手机均使用无框排版。选项改为半透明、轻模糊的背景层，hover 与 `:focus-visible` 具有一致反馈。
+- `src/App.tsx`：新增 `previewScene`，将 regret、cherish-present、make-space、reach-out 映射到已有场景。鼠标移入选项或键盘聚焦时仅预览对应背景，移出/失焦恢复；节点变化时清空预览，只有点击、Enter 或 Space 才真正调用原 `chooseOpening`。
+- `src/components/SceneBackground.tsx`：增加预览状态，整个场景在预览时轻微放大并提高饱和度；减少动态效果仍禁用动画与过渡。没有新增依赖、远程资源或额外按钮。
+- 结局映射、两次选择、确认退出、重听与焦点恢复保持原逻辑；README 同步无框对白和场景预览能力。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 26.69 kB / gzip 6.63 kB，JS 238.94 kB / gzip 74.69 kB。日志见 [immersive-typecheck.txt](assets/TASK-003/immersive-typecheck.txt)、[immersive-test-story.txt](assets/TASK-003/immersive-test-story.txt)、[immersive-build.txt](assets/TASK-003/immersive-build.txt)。
+
+独立 Edge 生产浏览器除完整四组合和原有回归外，新增验证：首次与第二次选项在鼠标移入时进入对应场景、移出后恢复选择页；纯键盘 Tab 聚焦 regret 与 make-space 时也出现相同预览，Enter/Space 后才推进。全部断言通过，见 [运行摘要](assets/TASK-003/immersive-browser-run.txt)、[完整 JSON](assets/TASK-003/immersive-browser-checks.json)和[可复跑脚本](assets/TASK-003/immersive-browser-checks.mjs)。166 次请求仅包含本地资源，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。
+
+已目视检查 [1440 无框对白](assets/TASK-003/immersive-03-cherish-make-space-1440-dialogue.png)、[390 无框对白](assets/TASK-003/immersive-01-regret-make-space-390-dialogue.png)、[regret 全局预览](assets/TASK-003/immersive-01-regret-first-preview.png)和 [make-space 全局预览](assets/TASK-003/immersive-01-make-space-preview.png)：文字融入场景且清晰，选项不再局限于孤立按钮，整体画面会回应选择。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。

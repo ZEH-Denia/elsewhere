@@ -96,7 +96,13 @@ button:focus-visible,
   object-position: center 46%;
   opacity: 0.72;
   animation: scene-reveal 560ms ease-out both;
+  transition: transform 450ms ease, filter 450ms ease;
   user-select: none;
+}
+
+.scene-background.is-previewing .scene-background-image {
+  filter: saturate(1.08);
+  transform: scale(1.025);
 }
 
 .scene-background-scrim {
@@ -592,14 +598,21 @@ button:focus-visible,
 }
 
 .call-session {
+  position: relative;
+  isolation: isolate;
   max-width: 940px;
   margin: 0 auto;
   padding: 30px 40px 36px;
-  border: 1px solid hsl(var(--line) / 0.7);
-  border-radius: 32px;
-  background: hsl(var(--night-raised) / 0.9);
-  box-shadow: 0 24px 80px hsl(24 35% 25% / 0.1);
-  backdrop-filter: blur(20px);
+}
+
+.call-session::before {
+  position: absolute;
+  inset: -48px -64px;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 46%, hsl(var(--night) / 0.94) 0%, hsl(var(--night) / 0.76) 45%, hsl(var(--night) / 0.18) 76%, transparent 100%);
+  filter: blur(16px);
 }
 
 .call-session-header {
@@ -609,6 +622,7 @@ button:focus-visible,
   gap: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid hsl(var(--line) / 0.28);
+  text-shadow: 0 1px 18px hsl(var(--night) / 0.82);
 }
 
 .call-session-header h1 {
@@ -656,11 +670,9 @@ button:focus-visible,
   min-height: 200px;
   flex-direction: column;
   justify-content: center;
-  margin: 20px 0 22px;
-  padding: 30px 32px;
-  border-left: 1px solid hsl(var(--accent) / 0.42);
-  border-radius: 0 22px 22px 0;
-  background: linear-gradient(110deg, hsl(var(--night) / 0.92), hsl(var(--night) / 0.4));
+  margin: 20px 0 16px;
+  padding: 30px 0;
+  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
 }
 
 .dialogue-speaker {
@@ -720,6 +732,7 @@ button:focus-visible,
   font-size: 28px;
   font-weight: 500;
   line-height: 1.5;
+  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
 }
 
 .choice-options {
@@ -734,10 +747,11 @@ button:focus-visible,
   justify-content: space-between;
   gap: 24px;
   padding: 20px 24px;
-  border: 1px solid hsl(var(--line-strong));
-  border-radius: 18px;
+  border: 1px solid hsl(var(--night-raised) / 0.42);
+  border-radius: 16px;
   color: hsl(var(--mist));
-  background: hsl(var(--night-raised) / 0.62);
+  background: hsl(var(--night) / 0.36);
+  backdrop-filter: blur(12px);
   font-size: 17px;
   line-height: 1.7;
   text-align: left;
@@ -751,10 +765,11 @@ button:focus-visible,
   color: hsl(var(--accent));
 }
 
-.choice-option:hover {
+.choice-option:hover,
+.choice-option:focus-visible {
   transform: translateY(-2px);
-  border-color: hsl(var(--accent) / 0.8);
-  background: hsl(var(--night-raised) / 0.9);
+  border-color: hsl(var(--accent) / 0.55);
+  background: hsl(var(--night) / 0.6);
 }
 
 .end-layout h1 {
@@ -1061,8 +1076,8 @@ button:focus-visible,
 
   .dialogue-card {
     min-height: 180px;
-    margin: 16px 0 24px;
-    padding: 24px 22px;
+    margin: 16px 0 20px;
+    padding: 22px 0;
   }
 
   .dialogue-text {

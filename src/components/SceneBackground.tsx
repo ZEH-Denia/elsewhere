@@ -16,9 +16,9 @@ export type SceneName =
   | 'ending-cherish-space'
   | 'ending-cherish-reach'
 
-export function SceneBackground({ scene }: { scene: SceneName }) {
+export function SceneBackground({ scene, preview = false }: { scene: SceneName; preview?: boolean }) {
   return (
-    <div className="scene-background" aria-hidden="true">
+    <div className={`scene-background${preview ? ' is-previewing' : ''}`} data-scene={scene} aria-hidden="true">
       <img
         key={scene}
         className="scene-background-image"

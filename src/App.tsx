@@ -54,6 +54,21 @@ function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>): Scen
   }
 }
 
+function getChoicePreviewScene(optionId: string): SceneName | null {
+  switch (optionId) {
+    case 'regret':
+      return 'regret'
+    case 'cherish-present':
+      return 'cherish'
+    case 'make-space':
+      return 'make-space'
+    case 'reach-out':
+      return 'reach-out'
+    default:
+      return null
+  }
+}
+
 function Arrow({ returning = false }: { returning?: boolean }) {
   return (
     <svg className={returning ? 'rotate-180' : ''} viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -66,6 +81,7 @@ function App() {
   const [view, setView] = useState<View>('home')
   const [progress, setProgress] = useState(createInitialOpeningProgress)
   const [confirmOpen, setConfirmOpen] = useState(false)
+  const [previewScene, setPreviewScene] = useState<SceneName | null>(null)
   const previousView = useRef<View>('home')
   const startButton = useRef<HTMLButtonElement>(null)
   const introHeading = useRef<HTMLHeadingElement>(null)
@@ -76,7 +92,11 @@ function App() {
   const confirmDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
-  const sceneName = getSceneName(view, currentNode)
+  const sceneName = previewScene ?? getSceneName(view, currentNode)
+
+  useEffect(() => {
+    setPreviewScene(null)
+  }, [safeProgress.nodeId])
 
   useEffect(() => {
     const dialog = confirmDialog.current
@@ -123,7 +143,7 @@ function App() {
 
   return (
     <div className="app-background min-h-svh text-mist">
-      <SceneBackground scene={sceneName} />
+      <SceneBackground scene={sceneName} preview={previewScene !== null} />
       <div className="ambient ambient-violet" aria-hidden="true" />
       <div className="ambient ambient-cyan" aria-hidden="true" />
 
@@ -239,7 +259,16 @@ function App() {
                   </h2>
                   <div className="choice-options" aria-labelledby="choice-title">
                     {currentNode.options.map((option) => (
-                      <button key={option.id} type="button" className="choice-option" onClick={() => setProgress((current) => chooseOpening(current, option.id))}>
+                      <button
+                        key={option.id}
+                        type="button"
+                        className="choice-option"
+                        onMouseEnter={() => setPreviewScene(getChoicePreviewScene(option.id))}
+                        onMouseLeave={() => setPreviewScene(null)}
+                        onFocus={() => setPreviewScene(getChoicePreviewScene(option.id))}
+                        onBlur={() => setPreviewScene(null)}
+                        onClick={() => setProgress((current) => chooseOpening(current, option.id))}
+                      >
                         <span>{option.label}</span><Arrow />
                       </button>
                     ))}

@@ -173,3 +173,27 @@ Microsoft Edge `157.0.4341.60` / HeadlessChrome 157，独立临时配置及 `--d
 本轮完整运行共 35 次请求，仅本地 HTML、构建 JS/CSS 与 favicon；应用外部请求、浏览器扩展请求、HTTP/加载失败、页面异常、console error/warning 均为 `[]`。上述截图均为本轮新文案，未覆盖或复用此前截图充当新证据。
 
 实体设备、真实读屏、原生浏览器 200% 缩放及团队主观体验仍未验证；DOCX 已回读结构与实际文本，未声称完成页面排版目视检查。测试结束后临时浏览器和生产预览均停止，不保留需用户手动清理的服务。未合并 main、未部署、未进入 TASK-004。
+
+## 9. 团队直接授权的场景背景先行
+
+日期：2026-11-18（Asia/Shanghai）。用户在确认“雨夜双城”示例后明确要求“以后的图片都要这种风格”，随后直接授权“不用等 Codex 审核，先把背景图改了”。本轮仅实施背景资源与背景接入，不代表 Codex 已对 TASK-003 给出 PASS。
+
+### 改动范围
+
+- `scripts/generate-backgrounds.mjs`：用 Node 和 SVG 图元生成 16 张本地背景，无图片服务、远程素材或新增依赖。资源合计约 407.1 KiB，输出到 `public/backgrounds/`。
+- 场景包括首页、来电、开场、工程、音乐、首次选择、regret、cherish、第二次选择、make-space、reach-out、尾声和四种结局。延续深蓝雨夜、两扇亮窗、暖色工程书桌、紫色排练室与青色来电信号；尾声和结局加入微亮天色。
+- `src/components/SceneBackground.tsx` 与 `src/App.tsx`：按 `view + node.id` 映射场景，主线 03/05 聚焦音乐、04/06 聚焦工程；反馈、第二次选择、尾声和四个结局均有独立背景。
+- `src/index.css`：背景全屏 cover，增加定向暗色遮罩保障文字对比，场景变化采用 560ms 淡入；减少动态效果时动画为 none。未修改既有布局、定稿文案、剧情状态机、选项、焦点或确认对话框。
+- `README.md`：补充本地场景背景及重新生成命令。
+
+### 最终验证
+
+Node.js `v26.13.0`、npm `11.20.0` 下，`npm run typecheck`、`npm run test:story` 和 `npm run build` 均在最终源码上退出 0；15/15 剧情测试通过。构建为 19 modules，CSS 24.94 kB / gzip 6.34 kB，JS 238.47 kB / gzip 74.55 kB。原始输出见 [visual-typecheck.txt](assets/TASK-003/visual-typecheck.txt)、[visual-test-story.txt](assets/TASK-003/visual-test-story.txt)、[visual-build.txt](assets/TASK-003/visual-build.txt)。
+
+Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0.1:4173/`。扩展后的 [visual-browser-checks.mjs](assets/TASK-003/visual-browser-checks.mjs) 除保留上一轮全部文案与交互断言外，还逐节点检查背景 URL、`complete` 和 `naturalWidth > 0`；16 张背景均被实际加载，四组合全部通过，[运行摘要](assets/TASK-003/visual-browser-run.txt)与[完整 JSON](assets/TASK-003/visual-browser-checks.json)已保存。
+
+已目视检查 [1440 首页](assets/TASK-003/visual-00-home-1440.png)、[390 第二次选择](assets/TASK-003/visual-01-regret-make-space-390-second-choice.png)、[1440 结局](assets/TASK-003/visual-03-cherish-make-space-1440-ending.png)和 [320 最长结局](assets/TASK-003/visual-06-longest-320-ending.png)：背景可见，中文对白与操作保持清晰，无横向溢出或按钮遮挡。三视口、完整键盘路径、重听、刷新、取消/Escape、确认退出和快速双击继续通过；减少动态效果下场景动画为 `none`。
+
+完整回归记录 142 次请求，唯一资源为本地 HTML、JS、CSS、favicon 和 16 张 SVG；外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。请求总数包含反复导航与重载，16 张 SVG 是唯一背景资源清单，不将其误写为 142 个不同资源。
+
+实体设备、真实读屏和原生 200% 缩放仍未验证。临时无头浏览器已停止；生产预览保留供用户查看。未合并 main、未部署。

@@ -76,6 +76,35 @@ button:focus-visible,
     linear-gradient(135deg, hsl(var(--night)) 0%, hsl(229 48% 8%) 55%, hsl(var(--night)) 100%);
 }
 
+.scene-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: #050810;
+}
+
+.scene-background-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
+  opacity: 0.82;
+  animation: scene-reveal 560ms ease-out both;
+  user-select: none;
+}
+
+.scene-background-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, hsl(var(--night) / 0.78) 0%, hsl(var(--night) / 0.46) 42%, hsl(var(--night) / 0.4) 68%, hsl(var(--night) / 0.66) 100%),
+    linear-gradient(0deg, hsl(230 60% 3% / 0.92) 0%, transparent 46%, hsl(var(--night) / 0.34) 100%);
+}
+
 .app-background::before {
   position: absolute;
   inset: 0;
@@ -751,6 +780,11 @@ button:focus-visible,
   background: hsl(var(--violet));
   font-size: 14px;
   font-weight: 600;
+}
+
+@keyframes scene-reveal {
+  from { opacity: 0; }
+  to { opacity: 0.82; }
 }
 
 @keyframes screen-enter {

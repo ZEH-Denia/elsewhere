@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { CallCard } from './components/CallCard'
+import { SceneBackground, type SceneName } from './components/SceneBackground'
 import {
   advanceOpening,
   chooseOpening,
@@ -12,6 +13,46 @@ import {
 } from './story/opening'
 
 type View = 'home' | 'intro' | 'incoming' | 'call'
+
+function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>): SceneName {
+  if (view === 'home' || view === 'intro') return 'home'
+  if (view === 'incoming') return 'incoming'
+
+  switch (node.id) {
+    case 'opening-03':
+    case 'opening-05':
+      return 'music'
+    case 'opening-04':
+    case 'opening-06':
+      return 'reality'
+    case 'first-response':
+      return 'first-choice'
+    case 'regret-feedback-01':
+    case 'regret-feedback-02':
+      return 'regret'
+    case 'cherish-feedback-01':
+    case 'cherish-feedback-02':
+      return 'cherish'
+    case 'next-step':
+      return 'second-choice'
+    case 'make-space-feedback':
+      return 'make-space'
+    case 'reach-out-feedback':
+      return 'reach-out'
+    case 'call-farewell':
+      return 'farewell'
+    case 'regret-make-space':
+      return 'ending-regret-space'
+    case 'regret-reach-out':
+      return 'ending-regret-reach'
+    case 'cherish-make-space':
+      return 'ending-cherish-space'
+    case 'cherish-reach-out':
+      return 'ending-cherish-reach'
+    default:
+      return 'opening'
+  }
+}
 
 function Arrow({ returning = false }: { returning?: boolean }) {
   return (
@@ -35,6 +76,7 @@ function App() {
   const confirmDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
+  const sceneName = getSceneName(view, currentNode)
 
   useEffect(() => {
     const dialog = confirmDialog.current
@@ -81,6 +123,7 @@ function App() {
 
   return (
     <div className="app-background min-h-svh text-mist">
+      <SceneBackground scene={sceneName} />
       <div className="ambient ambient-violet" aria-hidden="true" />
       <div className="ambient ambient-cyan" aria-hidden="true" />
 

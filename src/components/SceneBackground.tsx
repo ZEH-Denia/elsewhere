@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 export type SceneName =
   | 'home'
   | 'incoming'
@@ -17,12 +19,36 @@ export type SceneName =
   | 'ending-cherish-reach'
 
 export function SceneBackground({ scene, preview = false }: { scene: SceneName; preview?: boolean }) {
+  const [currentScene, setCurrentScene] = useState(scene)
+  const [previousScene, setPreviousScene] = useState<SceneName | null>(null)
+
+  useEffect(() => {
+    if (scene === currentScene) return
+    setPreviousScene(currentScene)
+    setCurrentScene(scene)
+  }, [scene, currentScene])
+
+  useEffect(() => {
+    if (!previousScene) return
+    const timeout = window.setTimeout(() => setPreviousScene(null), 220)
+    return () => window.clearTimeout(timeout)
+  }, [previousScene])
+
   return (
-    <div className={`scene-background${preview ? ' is-previewing' : ''}`} data-scene={scene} aria-hidden="true">
+    <div className={`scene-background${preview ? ' is-previewing' : ''}`} data-scene={currentScene} aria-hidden="true">
+      {previousScene && (
+        <img
+          key={previousScene}
+          className="scene-background-image scene-previous"
+          src={`/backgrounds/${previousScene}.svg`}
+          alt=""
+          draggable={false}
+        />
+      )}
       <img
-        key={scene}
-        className="scene-background-image"
-        src={`/backgrounds/${scene}.svg`}
+        key={currentScene}
+        className={`scene-background-image scene-current${previousScene ? ' is-entering' : ''}`}
+        src={`/backgrounds/${currentScene}.svg`}
         alt=""
         draggable={false}
       />

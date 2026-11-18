@@ -270,3 +270,19 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 独立 Edge 生产浏览器除完整四组合和原有回归外，新增验证：首次与第二次选项在鼠标移入时进入对应场景、移出后恢复选择页；纯键盘 Tab 聚焦 regret 与 make-space 时也出现相同预览，Enter/Space 后才推进。全部断言通过，见 [运行摘要](assets/TASK-003/immersive-browser-run.txt)、[完整 JSON](assets/TASK-003/immersive-browser-checks.json)和[可复跑脚本](assets/TASK-003/immersive-browser-checks.mjs)。166 次请求仅包含本地资源，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。
 
 已目视检查 [1440 无框对白](assets/TASK-003/immersive-03-cherish-make-space-1440-dialogue.png)、[390 无框对白](assets/TASK-003/immersive-01-regret-make-space-390-dialogue.png)、[regret 全局预览](assets/TASK-003/immersive-01-regret-first-preview.png)和 [make-space 全局预览](assets/TASK-003/immersive-01-make-space-preview.png)：文字融入场景且清晰，选项不再局限于孤立按钮，整体画面会回应选择。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。
+
+## 15. 平稳切换与全界面统一
+
+日期：2026-11-18（Asia/Shanghai）。用户反馈“太闪了，而且所有界面都尽量维持这个风格”。本轮降低动态刺激，并把暖米无框风格扩展到首页、来电与结局。
+
+- `src/components/SceneBackground.tsx`：改为保留 previous/current 两层本地 SVG 的 220ms 交叉淡化，旧画面不会在新画面出现前消失；不再从空白淡入。减少动态效果仍直接呈现最终画面。
+- `src/index.css`：移除预览缩放、饱和度跳变、页面进入动画、按钮和选项的位移动效，仅保留必要颜色变化与短交叉淡化。预览功能本身保留，但实测 `transform: none`。
+- 首页与来电的 CallCard 改为暖米半透明、轻模糊的无框表面，移除白色卡片、强阴影和扫光；前言补充同色文字柔光。
+- 结局摘要移除独立白框、边框和阴影，采用与主线一致的局部柔光和无框排版；重听/返回继续低强调。确认退出对话框作为功能性模态保留独立阅读表面。
+- 两次选择、鼠标/键盘场景预览、结局映射和所有操作步骤未改变。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 26.57 kB / gzip 6.49 kB，JS 239.31 kB / gzip 74.80 kB。日志见 [calm-typecheck.txt](assets/TASK-003/calm-typecheck.txt)、[calm-test-story.txt](assets/TASK-003/calm-test-story.txt)、[calm-build.txt](assets/TASK-003/calm-build.txt)。
+
+独立 Edge 生产浏览器等待 previous 层退出后再核对场景，避免把过渡旧帧写成最终画面；四组合、两轮鼠标预览与恢复、键盘预览、三视口、完整键盘、重置和减少动态效果全部通过。最终 162 次请求仅包含本地资源，外部请求、加载失败和控制台异常均为 `[]`，见 [运行摘要](assets/TASK-003/calm-browser-run.txt)、[完整 JSON](assets/TASK-003/calm-browser-checks.json)与[可复跑脚本](assets/TASK-003/calm-browser-checks.mjs)。
+
+已目视检查 [1440 首页](assets/TASK-003/calm-00-home-1440.png)、[1440 对白](assets/TASK-003/calm-03-cherish-make-space-1440-dialogue.png)、[1440 结局](assets/TASK-003/calm-03-cherish-make-space-1440-ending.png)和 [选项预览](assets/TASK-003/calm-01-regret-first-preview.png)：所有界面风格一致，没有突兀白框或放大跳亮，文字保持清晰。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。

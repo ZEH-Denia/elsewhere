@@ -334,3 +334,19 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 独立 Edge 在 1366×768 下再次完成全剧情、一屏高度、鼠标/键盘预览与手机布局回归，全部通过；160 次请求仅包含本地资源，外部请求、加载失败和控制台异常均为 `[]`，见 [运行摘要](assets/TASK-003/soft-browser-run-1366.txt)与[完整 JSON](assets/TASK-003/soft-browser-checks-1366.json)。
 
 已目视检查 [首页](assets/TASK-003/soft-00-home-1366.png)、[对白](assets/TASK-003/soft-03-cherish-make-space-1366-dialogue.png)和 [结局](assets/TASK-003/soft-03-cherish-make-space-1366-ending.png)：白色光晕明显收敛，文字与背景对比自然，无内容遮挡。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。
+
+## 19. 弱化返回首页，突出主行动
+
+日期：2026-11-19（Asia/Shanghai）。用户希望弱化“返回首页”的视觉效果，让注意力集中在进入来电和后续推进上。本轮只调整按钮层级与位置，不改变导航逻辑。
+
+- `src/App.tsx` 为三处“返回首页”增加 `home-return-action`，不修改 `returnHome`、按钮顺序或键盘行为。
+- `src/index.css` 将其改为透明背景、无实心边框、12px 文字和 16px 返回箭头，保留 46px 触控高度与可见焦点。
+- 桌面 ≥640px：前言与来电页的“返回首页”位于操作区最右侧，不再与“进入来电／接听”并列争夺中心位置。
+- 手机 <640px：返回入口放在主按钮下方，避免覆盖全宽主行动；结局页同样突出“重听这通来电”，返回首页保持轻量文字链接。
+- 未修改继续按钮、两次选择、确认退出或场景预览，桌面一屏布局保持。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 28.62 kB / gzip 6.80 kB，JS 239.37 kB / gzip 74.80 kB。日志见 [action-typecheck.txt](assets/TASK-003/action-typecheck.txt)、[action-test-story.txt](assets/TASK-003/action-test-story.txt)、[action-build.txt](assets/TASK-003/action-build.txt)。
+
+独立 Edge 在 1366×768 和 390px 手机视口下完成前言、来电、四组合、键盘、重置和布局回归，全部通过；156 次请求仅包含本地资源，外部请求、加载失败和控制台异常均为 `[]`，见 [运行摘要](assets/TASK-003/action-browser-run-1366.txt)与[完整 JSON](assets/TASK-003/action-browser-checks-1366.json)。
+
+已目视检查 [桌面前言](assets/TASK-003/action-intro-action-1366.png)、[桌面来电](assets/TASK-003/action-incoming-action-1366.png)、[手机来电](assets/TASK-003/action-incoming-action-390.png)与 [结局](assets/TASK-003/action-03-cherish-make-space-1366-ending.png)：进入来电、接听和重听成为明确主行动，返回首页退居次要位置且不遮挡内容。实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。

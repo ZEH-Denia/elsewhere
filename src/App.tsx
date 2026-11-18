@@ -197,7 +197,7 @@ function App() {
                 <button type="button" className="primary-action group" onClick={showIncoming}>
                   <span>进入来电</span><span className="action-icon"><Arrow /></span>
                 </button>
-                <button type="button" className="secondary-action group" onClick={returnHome}>
+                <button type="button" className="secondary-action group home-return-action" onClick={returnHome}>
                   <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
                 </button>
               </div>
@@ -217,7 +217,7 @@ function App() {
                   <button type="button" className="primary-action group" onClick={answerCall}>
                     <span>接听</span><span className="action-icon"><Arrow /></span>
                   </button>
-                  <button type="button" className="secondary-action group" onClick={returnHome}>
+                  <button type="button" className="secondary-action group home-return-action" onClick={returnHome}>
                     <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
                   </button>
                 </div>
@@ -308,7 +308,7 @@ function App() {
                 <button type="button" className="primary-action group" onClick={showIncoming}>
                   <span>重听这通来电</span><span className="action-icon"><Arrow returning /></span>
                 </button>
-                <button type="button" className="secondary-action group" onClick={returnHome}>
+                <button type="button" className="secondary-action group home-return-action" onClick={returnHome}>
                   <span>返回首页</span><span className="action-icon"><Arrow /></span>
                 </button>
               </div>

@@ -375,13 +375,9 @@ button:focus-visible,
 .call-card {
   position: relative;
   z-index: 1;
-  padding: 26px;
-  overflow: hidden;
-  border: 1px solid hsl(var(--night-raised) / 0.38);
-  border-radius: 28px;
-  background: hsl(var(--night) / 0.34);
-  box-shadow: none;
-  backdrop-filter: blur(14px);
+  padding: 12px 0 0;
+  color: hsl(var(--mist));
+  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
 }
 
 .call-card::after {
@@ -390,7 +386,8 @@ button:focus-visible,
 
 .call-card-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 12px;
   color: hsl(var(--dim));
   font-family: var(--font-mono);
   font-size: 9px;
@@ -466,8 +463,9 @@ button:focus-visible,
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  padding-top: 20px;
-  border-top: 1px solid hsl(var(--line) / 0.5);
+  max-width: 340px;
+  margin: 0 auto;
+  padding-top: 16px;
 }
 
 .world-labels > span {
@@ -475,10 +473,8 @@ button:focus-visible,
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 40px;
-  padding: 8px;
-  border: 1px solid hsl(var(--line) / 0.7);
-  border-radius: 12px;
+  min-height: 32px;
+  padding: 4px;
   color: hsl(var(--soft));
   font-size: 12px;
   white-space: nowrap;
@@ -970,8 +966,7 @@ button:focus-visible,
   }
 
   .call-card {
-    padding: 20px;
-    border-radius: 24px;
+    padding: 8px 0 0;
   }
 
   .parallel-outline {
@@ -1183,7 +1178,7 @@ button:focus-visible,
   }
 
   .call-card {
-    padding: 20px;
+    padding: 8px 0 0;
   }
 
   .caller-main {

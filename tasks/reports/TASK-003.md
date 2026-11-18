@@ -306,3 +306,17 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 | 1440×900 | 同样全部通过 | [摘要](assets/TASK-003/fit-browser-run-1440.txt) / [JSON](assets/TASK-003/fit-browser-checks-1440.json) |
 
 两轮分别记录 156/158 次本地请求，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`。已目视检查 [1366 首页](assets/TASK-003/fit-00-home-1366.png)、[1366 对白](assets/TASK-003/fit-03-cherish-make-space-1366-dialogue.png)和 [1366 结局](assets/TASK-003/fit-03-cherish-make-space-1366-ending.png)：完整内容在一屏内可见，文字无裁切或遮挡。未验证所有可能桌面高度、实体设备、真实读屏和原生 200% 缩放；生产预览保留供用户查看，未合并 main、未部署。
+
+## 17. 开始页与剧情页完全统一
+
+日期：2026-11-19（Asia/Shanghai）。用户指出开始页残留的白色卡片不好看，且与后续界面不统一。本轮移除最后一处面板式视觉，不改交互。
+
+- `src/index.css` 的 `.call-card` 取消边框、圆角、背景、模糊和阴影，改为透明无框的电话身份区域，并使用与对白相同的局部文字柔光。
+- “PARALLEL CALL / 001”改为居中轻量标记；“现实 · 工程 / 平行 · 音乐”取消独立标签框、边框与底色，直接融入场景。
+- 同步收紧桌面和手机卡片内边距，保留电话符号、身份、世界标签及所有文字。开始页、来电、主线、选择和结局现在使用同一套暖米无框视觉语言。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 27.82 kB / gzip 6.70 kB，JS 239.31 kB / gzip 74.80 kB。日志见 [unified-typecheck.txt](assets/TASK-003/unified-typecheck.txt)、[unified-test-story.txt](assets/TASK-003/unified-test-story.txt)、[unified-build.txt](assets/TASK-003/unified-build.txt)。
+
+独立 Edge 在 1366×768 下再次完成全剧情、一屏高度、两轮场景预览、完整键盘及手机布局回归，全部通过；159 次请求仅包含本地资源，外部请求、加载失败和控制台异常均为 `[]`，见 [运行摘要](assets/TASK-003/unified-browser-run-1366.txt)与[完整 JSON](assets/TASK-003/unified-browser-checks-1366.json)。
+
+已目视对照 [开始页](assets/TASK-003/unified-00-home-1366.png)、[后续对白](assets/TASK-003/unified-03-cherish-make-space-1366-dialogue.png)和 [结局](assets/TASK-003/unified-03-cherish-make-space-1366-ending.png)：前后均无突兀白色面板，电话身份、对白和结局自然融入同一背景风格。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。

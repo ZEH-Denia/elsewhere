@@ -106,8 +106,8 @@ button:focus-visible,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, hsl(var(--night) / 0.62) 0%, hsl(var(--night) / 0.38) 42%, hsl(var(--night) / 0.36) 68%, hsl(var(--night) / 0.58) 100%),
-    linear-gradient(0deg, hsl(var(--night) / 0.78) 0%, transparent 58%, hsl(var(--night) / 0.2) 100%);
+    linear-gradient(90deg, hsl(var(--night) / 0.56) 0%, hsl(var(--night) / 0.32) 42%, hsl(var(--night) / 0.32) 68%, hsl(var(--night) / 0.52) 100%),
+    linear-gradient(0deg, hsl(var(--night) / 0.72) 0%, transparent 58%, hsl(var(--night) / 0.16) 100%);
 }
 
 .app-background::before {
@@ -127,13 +127,13 @@ button:focus-visible,
 .ambient-violet {
   top: 5%;
   right: -14rem;
-  background: hsl(var(--violet) / 0.12);
+  background: hsl(var(--violet) / 0.06);
 }
 
 .ambient-cyan {
   bottom: -22rem;
   left: 12%;
-  background: hsl(var(--accent) / 0.06);
+  background: hsl(var(--accent) / 0.03);
 }
 
 .app-header {
@@ -313,7 +313,7 @@ button:focus-visible,
 
 .home-copy {
   grid-area: copy;
-  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .home-title {
@@ -359,7 +359,7 @@ button:focus-visible,
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  text-shadow: 0 1px 18px hsl(var(--night) / 0.82);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .call-visual {
@@ -377,7 +377,7 @@ button:focus-visible,
   z-index: 1;
   padding: 12px 0 0;
   color: hsl(var(--mist));
-  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .call-card::after {
@@ -502,7 +502,7 @@ button:focus-visible,
 }
 
 .intro-layout {
-  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .intro-heading {
@@ -551,7 +551,7 @@ button:focus-visible,
 
 .incoming-copy {
   grid-area: copy;
-  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .incoming-copy h1 {
@@ -578,7 +578,7 @@ button:focus-visible,
 
 .incoming-actions {
   grid-area: actions;
-  text-shadow: 0 1px 18px hsl(var(--night) / 0.82);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .incoming-actions .action-row {
@@ -600,7 +600,7 @@ button:focus-visible,
   z-index: -1;
   content: "";
   pointer-events: none;
-  background: radial-gradient(ellipse at 50% 46%, hsl(var(--night) / 0.94) 0%, hsl(var(--night) / 0.76) 45%, hsl(var(--night) / 0.18) 76%, transparent 100%);
+  background: radial-gradient(ellipse at 50% 46%, hsl(var(--night) / 0.76) 0%, hsl(var(--night) / 0.56) 45%, hsl(var(--night) / 0.08) 76%, transparent 100%);
   filter: blur(16px);
 }
 
@@ -611,7 +611,7 @@ button:focus-visible,
   gap: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid hsl(var(--line) / 0.28);
-  text-shadow: 0 1px 18px hsl(var(--night) / 0.82);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .call-session-header h1 {
@@ -661,7 +661,7 @@ button:focus-visible,
   justify-content: center;
   margin: 20px 0 16px;
   padding: 30px 0;
-  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .dialogue-speaker {
@@ -721,7 +721,7 @@ button:focus-visible,
   font-size: 28px;
   font-weight: 500;
   line-height: 1.5;
-  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .choice-options {
@@ -771,7 +771,7 @@ button:focus-visible,
   z-index: -1;
   content: "";
   pointer-events: none;
-  background: radial-gradient(ellipse at 50% 46%, hsl(var(--night) / 0.9) 0%, hsl(var(--night) / 0.7) 48%, transparent 82%);
+  background: radial-gradient(ellipse at 50% 46%, hsl(var(--night) / 0.76) 0%, hsl(var(--night) / 0.56) 48%, transparent 82%);
   filter: blur(16px);
 }
 
@@ -782,7 +782,7 @@ button:focus-visible,
   font-weight: 600;
   line-height: 1.14;
   letter-spacing: -0.045em;
-  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .end-reflection {
@@ -793,7 +793,7 @@ button:focus-visible,
   font-size: 19px;
   line-height: 1.9;
   text-align: center;
-  text-shadow: 0 1px 22px hsl(var(--night) / 0.86);
+  text-shadow: 0 1px 12px hsl(var(--night) / 0.58);
 }
 
 .end-choice {

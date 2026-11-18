@@ -320,3 +320,17 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 独立 Edge 在 1366×768 下再次完成全剧情、一屏高度、两轮场景预览、完整键盘及手机布局回归，全部通过；159 次请求仅包含本地资源，外部请求、加载失败和控制台异常均为 `[]`，见 [运行摘要](assets/TASK-003/unified-browser-run-1366.txt)与[完整 JSON](assets/TASK-003/unified-browser-checks-1366.json)。
 
 已目视对照 [开始页](assets/TASK-003/unified-00-home-1366.png)、[后续对白](assets/TASK-003/unified-03-cherish-make-space-1366-dialogue.png)和 [结局](assets/TASK-003/unified-03-cherish-make-space-1366-ending.png)：前后均无突兀白色面板，电话身份、对白和结局自然融入同一背景风格。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。
+
+## 18. 降低白色光晕与文字泛光
+
+日期：2026-11-19（Asia/Shanghai）。用户反馈“白色光太亮”。本轮只降低发光与遮罩强度，不改变统一无框布局和交互。
+
+- 对白与结局的径向柔光中心不透明度由 0.94/0.90 降至 0.76，中段降至 0.56，缩小明显发白区域。
+- 文字阴影由 22px / 0.86 和 18px / 0.82 统一降为 12px / 0.58，减少文字周围泛白和模糊感。
+- 背景遮罩与环境光同步减弱，保留场景层次和文字可读性；未改变暖米色、字体、按钮、场景映射或一屏布局。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 27.83 kB / gzip 6.68 kB，JS 239.31 kB / gzip 74.80 kB。日志见 [soft-typecheck.txt](assets/TASK-003/soft-typecheck.txt)、[soft-test-story.txt](assets/TASK-003/soft-test-story.txt)、[soft-build.txt](assets/TASK-003/soft-build.txt)。
+
+独立 Edge 在 1366×768 下再次完成全剧情、一屏高度、鼠标/键盘预览与手机布局回归，全部通过；160 次请求仅包含本地资源，外部请求、加载失败和控制台异常均为 `[]`，见 [运行摘要](assets/TASK-003/soft-browser-run-1366.txt)与[完整 JSON](assets/TASK-003/soft-browser-checks-1366.json)。
+
+已目视检查 [首页](assets/TASK-003/soft-00-home-1366.png)、[对白](assets/TASK-003/soft-03-cherish-make-space-1366-dialogue.png)和 [结局](assets/TASK-003/soft-03-cherish-make-space-1366-ending.png)：白色光晕明显收敛，文字与背景对比自然，无内容遮挡。未执行自动化 WCAG 对比度评分；实体设备、真实读屏和原生 200% 缩放仍未验证。生产预览保留供用户查看，未合并 main、未部署。

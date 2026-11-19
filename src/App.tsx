@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { CallCard } from './components/CallCard'
+import { CallCard, CallState } from './components/CallCard'
 import { SceneBackground, type SceneName } from './components/SceneBackground'
 import {
   advanceOpening,
@@ -92,7 +92,7 @@ function App() {
   const confirmDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
-  const sceneName = previewScene ?? getSceneName(view, currentNode)
+  const sceneName = getSceneName(view, currentNode)
 
   useEffect(() => {
     setPreviewScene(null)
@@ -142,8 +142,8 @@ function App() {
   const selectedNextStep = secondChoice.options.find(({ id }) => id === safeProgress.nextStepId)
 
   return (
-    <div className="app-background min-h-svh text-mist">
-      <SceneBackground scene={sceneName} preview={previewScene !== null} />
+    <div className="app-background min-h-svh text-mist" data-view={view}>
+      <SceneBackground scene={sceneName} preview={previewScene} />
       <div className="ambient ambient-violet" aria-hidden="true" />
       <div className="ambient ambient-cyan" aria-hidden="true" />
 
@@ -151,9 +151,9 @@ function App() {
         <header className="app-header">
           <div className="flex items-center gap-3" aria-label="Elsewhere">
             <span className="brand-mark" aria-hidden="true"><span /></span>
-            <span className="font-mono text-xs font-medium tracking-[0.24em] text-mist">ELSEWHERE</span>
+            <span className="header-brand font-mono text-xs font-medium tracking-[0.24em]">ELSEWHERE</span>
           </div>
-          <p className="font-mono text-[10px] tracking-[0.16em] text-dim sm:text-xs">平行人生 <span className="mx-2 text-line-strong">/</span> 001</p>
+          <p className="header-meta font-mono text-[10px] tracking-[0.16em] sm:text-xs">平行人生 <span className="header-sep mx-2">/</span> 001</p>
         </header>
 
         <main className="app-main">
@@ -199,7 +199,7 @@ function App() {
                 <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
                 <p>这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。</p>
               </div>
-              <CallCard className="incoming-call" />
+              <CallCard className="incoming-call" object status="ringing" />
               <div className="incoming-actions">
                 <p className="quiet-note">剧情模拟，不会请求麦克风或通知权限。</p>
               </div>
@@ -213,6 +213,7 @@ function App() {
                 <div>
                   <p className="eyebrow"><span />另一个你 · 来自平行世界的自己</p>
                   <h1 ref={callHeading} tabIndex={-1} id="call-title">第一通来电</h1>
+                  <div className="call-live-state"><CallState status="connected" /></div>
                 </div>
                 <button type="button" className="end-call-action" onClick={() => setConfirmOpen(true)}>结束通话</button>
               </div>
@@ -279,6 +280,7 @@ function App() {
             <section className="screen-enter end-layout" aria-labelledby="end-title" data-ending-id={currentNode.id}>
               <p className="eyebrow"><span />剧情结局</p>
               <h1 ref={endHeading} tabIndex={-1} id="end-title">{currentNode.title}</h1>
+              <div className="call-live-state end-call-state"><CallState status="ended" /></div>
               <div className="end-reflection">
                 {selectedOption && <p className="end-choice">你的回应：{selectedOption.label}</p>}
                 {selectedNextStep && <p className="end-choice">下一步：{selectedNextStep.label}</p>}

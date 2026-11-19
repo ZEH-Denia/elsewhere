@@ -3,8 +3,8 @@ import { mkdir, writeFile } from 'node:fs/promises'
 const outputDirectory = new URL('../public/backgrounds/', import.meta.url)
 
 const scenes = {
-  home: { phone: 0.28 },
-  incoming: { phone: 1, right: 1.2 },
+  home: { phone: 0.18 },
+  incoming: { phone: 0, right: 1.2 },
   opening: { phone: 0.55 },
   music: { focus: 'right', motif: 'music', right: 1.25, left: 0.55 },
   reality: { focus: 'left', motif: 'reality', left: 1.2, right: 0.55 },
@@ -212,7 +212,7 @@ ${dawn}
   <path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#080d14" stroke-width="15"/><path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#607080" stroke-opacity=".12" stroke-width="2"/>
   <rect x="102" y="164" width="532" height="502" rx="3" fill="none" stroke="#9aabba" stroke-opacity=".12"/><rect x="806" y="164" width="532" height="502" rx="3" fill="none" stroke="#aa9bb8" stroke-opacity=".12"/>
   ${rainLines(150, config.rain ?? 0.2, 27)}
-  ${focusShade}${split}${phone(config.phone ?? 0)}${motif(config.motif)}${tint}
+${`  ${focusShade}${split}${phone(config.phone ?? 0)}${motif(config.motif)}${tint}`.trimEnd()}
   <rect width="1440" height="900" fill="url(#warmWash)"/>
   <rect y="606" width="1440" height="294" fill="url(#bottomShade)"/><rect width="1440" height="900" fill="url(#vignette)"/><rect width="1440" height="900" filter="url(#grain)" opacity=".38"/>
 </svg>

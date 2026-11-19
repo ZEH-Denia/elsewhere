@@ -416,3 +416,37 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 | 1440×900 | `(720, 822)` | `(720, 822)` | `(720, 822)` | [通过](assets/TASK-003/position-browser-run-1440.txt) |
 
 完整 JSON 分别见 [1366 证据](assets/TASK-003/position-browser-checks-1366.json)和 [1440 证据](assets/TASK-003/position-browser-checks-1440.json)。已目视对照 [开始体验](assets/TASK-003/position-00-home-1366.png)、[进入来电](assets/TASK-003/position-intro-action-1366.png)和[接听](assets/TASK-003/position-incoming-action-1366.png)，主按钮位置一致，内容无遮挡，桌面无需纵向滚动。后续界面设计也应优先保持连续行动的位置稳定，避免无意义的鼠标往返。未合并 main、未部署。
+
+## 23. 夜色插画与局部纸衬底（PASS 后视觉精修）
+
+日期：2026-11-19（Asia/Shanghai）。团队转达 Grok 的界面批评，随后明确修正合成方式：插画不透明度升到 1，房间直接画在窗框里；去掉全幅横竖米色渐变、径向雾和大面积文字投影；只在文字所在的中缝保留局部纸色衬底，并向左右淡出；同时完成手机单列、来电物体化、行动层级和颜色角色的调整。
+
+- `src/index.css`：删除整窗米色渐变、柔和泛光、对话/结局径向雾与全幅 scrim；`.scene-background` 只保留 `#e4dace` 作为 SVG 视口底色，当前场景 `opacity: 1`。新增 `.screen-enter::before`，按视图读取 `--veil-alpha`、`--veil-width`、`--veil-fade`，仅做水平方向的纸色渐变，不再加纵向遮罩。
+- 衬底参数：首页 `0.56 / 760px / 11%`，前言 `0.66 / 860px / 8%`，来电 `0.78 / 820px / 11%`，通话、选择与结局 `0.86 / 900px / 6.5%`；1440 下受内容列上限影响实测 880px。手机 <640px 时衬底上下各外扩 16px、宽度 `calc(100% + 12px)`、圆角 18px，横向 6%–94% 淡出。
+- 标题、正文、选项和按钮恢复实色；全局 `.text-shadow` 与标题投影为 `none`。`index.html` 的 `theme-color` 从 `#070b1c` 改为 `#e4dace`，与页面底色一致。
+- 换场恢复 220ms 交叉淡化：旧场景保留 `is-outgoing` 层而不是先消失，活动层始终 `opacity: 1`，避免中缝出现白场。悬停/键盘预览改为独立 `.scene-preview` 覆盖层，基础场景保持不动，预览层淡入到 1，边框切换为平行世界的灰紫色。
+- 手机改为单列，主按钮直接落在正文下方，不再浮在标题旁；≤639px 隐藏页眉元信息，≤389px 隐藏页脚；桌面 `.app-main` 使用 `justify-content: safe center`，内容不再被强制顶到上方。
+- 来电卡成为独立纸面物体，状态为待接通、通话中、已结束，铃响与通话各 5 格信号，结束显示平线；`scripts/generate-backgrounds.mjs` 把首页听筒调淡到 `0.18`、来电场景移除重复听筒并调整右侧乐器，16 张 SVG 已重新生成。
+- 颜色角色分开：赤陶 `--accent` 仍是唯一实心行动色，平行/音乐使用灰紫 `--parallel`，通话状态使用青灰 `--signal`，结束通话使用暗红 `--danger`。结局主按钮“重听这通来电”保持赤陶实心，“返回首页”降为透明次级链接；对白“继续”改为整行翻页动作，带细线与右侧动作图标。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 30.61 kB / gzip 7.31 kB，JS 239.93 kB / gzip 75.18 kB。日志见 [refine-typecheck.txt](assets/TASK-003/refine-typecheck.txt)、[refine-test-story.txt](assets/TASK-003/refine-test-story.txt)、[refine-build.txt](assets/TASK-003/refine-build.txt)。
+
+[visual-refinement-checks.mjs](assets/TASK-003/visual-refinement-checks.mjs) 通过独立无头 Edge（CDP 9225，启用避免后台冻结的渲染参数）访问生产预览 `http://127.0.0.1:4173/`，逐屏断言并保存 [完整 JSON](assets/TASK-003/visual-refinement-checks.json) 与截图。结果 `all calibration checks passed`，`failures` 和 `consoleEvents` 均为 `[]`：
+
+| 检查 | 实测 |
+| --- | --- |
+| 场景层不透明度 | 1440 首页、对白、结局均为 `1` |
+| 衬底宽度 | 首页 760px、前言 860px、对白/结局 880px，均为水平渐变、无纵向 mask |
+| 文字投影 | 各屏标题 `text-shadow: none` |
+| 主按钮与标题 | 1440/1366/390/320 均无重叠，无横向溢出 |
+| 换场采样 | 旧场景层 1 个、活动层 `1`、旧层 `0.37`，中缝底色 `rgb(228, 218, 206)` 无白场 |
+| 悬停预览 | 基础场景仍为 `first-choice.svg`，预览层 `regret.svg` 不透明度 `1`，边框切换为 `rgba(114, 90, 124, 0.55)` |
+| 来电状态 | 接听前 `ringing`、5 格信号；接通后 `connected`；结局 `ended` 平线 |
+| 结局行动 | 主按钮赤陶实心，返回首页透明次级，二者背景不同 |
+| 对白继续 | 1440 下 780×52，整行翻页 |
+| 减少动态效果 | 模拟 `prefers-reduced-motion: reduce`：换场时旧层 `visibility: hidden`，当前层 `visible` / `1` |
+| 手机 | 390 单列、主按钮在正文下方、页眉元信息隐藏；320 页脚隐藏 |
+
+已目视检查 [1440 首页](assets/TASK-003/visual-home-1440.png)、[1366 首页](assets/TASK-003/visual-home-1366.png)、[1440 前言](assets/TASK-003/visual-intro-1440.png)、[1440 来电](assets/TASK-003/visual-incoming-1440.png)、[1440 对白](assets/TASK-003/visual-dialogue-1440.png)、[1440 选项预览](assets/TASK-003/visual-choice-preview-1440.png)、[1440 结局](assets/TASK-003/visual-ending-1440.png)、[390 首页](assets/TASK-003/visual-home-390.png)、[390 对白](assets/TASK-003/visual-dialogue-390.png)、[390 选择](assets/TASK-003/visual-choice-390.png)、[320 首页](assets/TASK-003/visual-home-320.png)与[320 前言](assets/TASK-003/visual-intro-320.png)。首轮截图中对白左侧的来电者、通话状态与进度小字落在衬底淡出带内，已把通话衬底由 800px 提高到 880px（有效宽度）并把淡出从 11% 收紧到 6.5%，前言同步调整到 860px / 8%，重新截图后文字回到纸面上，左右书桌与乐器仍可见。
+
+本轮未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未执行原生浏览器 200% 缩放，未做自动化 WCAG 对比度评分；减少动态效果仅通过 CDP 媒体模拟验证，未在真实系统设置下人工体验；仅验证 320×568、390×844、1366×768、1440×900。该精修发生在 Codex 上次 PASS 之后，尚未经过复审，不据此自称 PASS。未合并 main、未部署、未进入下一任务，等待 Codex 对照真实代码与截图复核。

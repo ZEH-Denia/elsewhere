@@ -1,0 +1,1557 @@
+{
+  "date": "2026-11-19",
+  "preview": "http://127.0.0.1:4173/",
+  "desktop": {
+    "home": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "home",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "center",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 792,
+          "top": 64,
+          "bottom": 856,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "veil": {
+        "width": "760px",
+        "height": "652.891px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 11%, rgba(233, 228, 221, 0.56) 89%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 270,
+        "y": 160,
+        "width": 900,
+        "height": 601,
+        "top": 160,
+        "bottom": 760,
+        "left": 270,
+        "right": 1170
+      },
+      "heading": "Elsewhere未接来电",
+      "headingRect": {
+        "x": 270,
+        "y": 191,
+        "width": 900,
+        "height": 98,
+        "top": 191,
+        "bottom": 289,
+        "left": 270,
+        "right": 1170
+      },
+      "primary": "开始体验",
+      "primaryRect": {
+        "x": 628,
+        "y": 796,
+        "width": 184,
+        "height": 52,
+        "top": 796,
+        "bottom": 848,
+        "left": 628,
+        "right": 812
+      },
+      "journeyRect": {
+        "x": 48,
+        "y": 796,
+        "width": 1344,
+        "height": 52,
+        "top": 796,
+        "bottom": 848,
+        "left": 48,
+        "right": 1392
+      },
+      "overlap": false,
+      "cards": [
+        {
+          "classes": "call-card",
+          "rect": {
+            "x": 500,
+            "y": 407,
+            "width": 440,
+            "height": 281,
+            "top": 407,
+            "bottom": 688,
+            "left": 500,
+            "right": 940
+          },
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(37, 33, 29)",
+          "status": "idle",
+          "state": "idle",
+          "signalBars": 5,
+          "flatline": false
+        }
+      ],
+      "callLiveState": "",
+      "endActions": [],
+      "headerMeta": "block",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-home-1440.png"
+    },
+    "intro": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "intro",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "center",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 792,
+          "top": 64,
+          "bottom": 856,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "veil": {
+        "width": "860px",
+        "height": "375.625px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 8%, rgba(233, 228, 221, 0.66) 92%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 290,
+        "y": 298,
+        "width": 860,
+        "height": 324,
+        "top": 298,
+        "bottom": 622,
+        "left": 290,
+        "right": 1150
+      },
+      "heading": "如果当年选择了音乐，你现在会在哪里？",
+      "headingRect": {
+        "x": 300,
+        "y": 336,
+        "width": 840,
+        "height": 128,
+        "top": 336,
+        "bottom": 463,
+        "left": 300,
+        "right": 1140
+      },
+      "primary": "进入来电",
+      "primaryRect": {
+        "x": 628,
+        "y": 796,
+        "width": 184,
+        "height": 52,
+        "top": 796,
+        "bottom": 848,
+        "left": 628,
+        "right": 812
+      },
+      "journeyRect": {
+        "x": 48,
+        "y": 796,
+        "width": 1344,
+        "height": 52,
+        "top": 796,
+        "bottom": 848,
+        "left": 48,
+        "right": 1392
+      },
+      "overlap": false,
+      "cards": [],
+      "callLiveState": "",
+      "endActions": [],
+      "headerMeta": "block",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-intro-1440.png"
+    },
+    "incoming": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "incoming",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "center",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 792,
+          "top": 64,
+          "bottom": 856,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "veil": {
+        "width": "800px",
+        "height": "660.125px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 11%, rgba(233, 228, 221, 0.78) 89%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/incoming.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 330,
+        "y": 156,
+        "width": 780,
+        "height": 608,
+        "top": 156,
+        "bottom": 764,
+        "left": 330,
+        "right": 1110
+      },
+      "heading": "另一个你，正在来电",
+      "headingRect": {
+        "x": 330,
+        "y": 190,
+        "width": 780,
+        "height": 100,
+        "top": 190,
+        "bottom": 290,
+        "left": 330,
+        "right": 1110
+      },
+      "primary": "接听",
+      "primaryRect": {
+        "x": 628,
+        "y": 796,
+        "width": 184,
+        "height": 52,
+        "top": 796,
+        "bottom": 848,
+        "left": 628,
+        "right": 812
+      },
+      "journeyRect": {
+        "x": 48,
+        "y": 796,
+        "width": 1344,
+        "height": 52,
+        "top": 796,
+        "bottom": 848,
+        "left": 48,
+        "right": 1392
+      },
+      "overlap": false,
+      "cards": [
+        {
+          "classes": "call-card is-object",
+          "rect": {
+            "x": 500,
+            "y": 343,
+            "width": 440,
+            "height": 313,
+            "top": 343,
+            "bottom": 656,
+            "left": 500,
+            "right": 940
+          },
+          "background": "rgba(243, 241, 236, 0.55)",
+          "border": "rgba(197, 189, 181, 0.5)",
+          "status": "ringing",
+          "state": "ringing",
+          "signalBars": 5,
+          "flatline": false
+        }
+      ],
+      "callLiveState": "",
+      "endActions": [],
+      "headerMeta": "block",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-incoming-1440.png"
+    },
+    "dialogue": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "call",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "center",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 792,
+          "top": 64,
+          "bottom": 856,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "veil": {
+        "width": "880px",
+        "height": "518.188px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/opening.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 290,
+        "y": 227,
+        "width": 860,
+        "height": 466,
+        "top": 227,
+        "bottom": 693,
+        "left": 290,
+        "right": 1150
+      },
+      "heading": "第一通来电",
+      "headingRect": {
+        "x": 326,
+        "y": 281,
+        "width": 224,
+        "height": 33,
+        "top": 281,
+        "bottom": 314,
+        "left": 326,
+        "right": 550
+      },
+      "primary": "继续",
+      "primaryRect": {
+        "x": 330,
+        "y": 615,
+        "width": 780,
+        "height": 52,
+        "top": 615,
+        "bottom": 667,
+        "left": 330,
+        "right": 1110
+      },
+      "journeyRect": null,
+      "overlap": false,
+      "cards": [],
+      "callLiveState": "connected",
+      "endActions": [],
+      "headerMeta": "block",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": {
+        "x": 330,
+        "y": 615,
+        "width": 780,
+        "height": 52,
+        "top": 615,
+        "bottom": 667,
+        "left": 330,
+        "right": 1110
+      },
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-dialogue-1440.png"
+    },
+    "ending": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "call",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "center",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 792,
+          "top": 64,
+          "bottom": 856,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "veil": {
+        "width": "880px",
+        "height": "450.859px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/ending-regret-space.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "/backgrounds/make-space.svg",
+        "previewOpacity": "0",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 290,
+        "y": 261,
+        "width": 860,
+        "height": 399,
+        "top": 261,
+        "bottom": 659,
+        "left": 290,
+        "right": 1150
+      },
+      "heading": "把旋律找回来",
+      "headingRect": {
+        "x": 290,
+        "y": 298,
+        "width": 860,
+        "height": 59,
+        "top": 298,
+        "bottom": 357,
+        "left": 290,
+        "right": 1150
+      },
+      "primary": "重听这通来电",
+      "primaryRect": {
+        "x": 571,
+        "y": 607,
+        "width": 186,
+        "height": 52,
+        "top": 607,
+        "bottom": 659,
+        "left": 571,
+        "right": 757
+      },
+      "journeyRect": null,
+      "overlap": false,
+      "cards": [],
+      "callLiveState": "ended",
+      "endActions": [
+        {
+          "text": "重听这通来电",
+          "background": "rgb(148, 78, 56)",
+          "color": "rgb(255, 255, 255)",
+          "border": "rgb(148, 78, 56)",
+          "shadow": "none"
+        },
+        {
+          "text": "返回首页",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(103, 96, 91)",
+          "border": "rgba(0, 0, 0, 0)",
+          "shadow": "none"
+        }
+      ],
+      "headerMeta": "block",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-ending-1440.png"
+    },
+    "home1366": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "document": {
+        "width": 1366,
+        "clientWidth": 1366,
+        "height": 768
+      },
+      "view": "home",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "center",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1270,
+          "height": 660,
+          "top": 64,
+          "bottom": 724,
+          "left": 48,
+          "right": 1318
+        }
+      },
+      "veil": {
+        "width": "760px",
+        "height": "652.891px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 11%, rgba(233, 228, 221, 0.56) 89%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1340,
+          "height": 742,
+          "top": 13,
+          "bottom": 755,
+          "left": 13,
+          "right": 1353
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 233,
+        "y": 94,
+        "width": 900,
+        "height": 601,
+        "top": 94,
+        "bottom": 694,
+        "left": 233,
+        "right": 1133
+      },
+      "heading": "Elsewhere未接来电",
+      "headingRect": {
+        "x": 233,
+        "y": 125,
+        "width": 900,
+        "height": 98,
+        "top": 125,
+        "bottom": 223,
+        "left": 233,
+        "right": 1133
+      },
+      "primary": "开始体验",
+      "primaryRect": {
+        "x": 591,
+        "y": 664,
+        "width": 184,
+        "height": 52,
+        "top": 664,
+        "bottom": 716,
+        "left": 591,
+        "right": 775
+      },
+      "journeyRect": {
+        "x": 48,
+        "y": 664,
+        "width": 1270,
+        "height": 52,
+        "top": 664,
+        "bottom": 716,
+        "left": 48,
+        "right": 1318
+      },
+      "overlap": false,
+      "cards": [
+        {
+          "classes": "call-card",
+          "rect": {
+            "x": 463,
+            "y": 341,
+            "width": 440,
+            "height": 281,
+            "top": 341,
+            "bottom": 622,
+            "left": 463,
+            "right": 903
+          },
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(37, 33, 29)",
+          "status": "idle",
+          "state": "idle",
+          "signalBars": 5,
+          "flatline": false
+        }
+      ],
+      "callLiveState": "",
+      "endActions": [],
+      "headerMeta": "block",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-home-1366.png"
+    }
+  },
+  "mobile": {
+    "home": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "clientWidth": 390,
+        "height": 844
+      },
+      "view": "home",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "flex-start",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 350,
+          "height": 740,
+          "top": 58,
+          "bottom": 798,
+          "left": 20,
+          "right": 370
+        }
+      },
+      "veil": {
+        "width": "362px",
+        "height": "600.562px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 6%, rgba(233, 228, 221, 0.56) 94%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 364,
+          "height": 818,
+          "top": 13,
+          "bottom": 831,
+          "left": 13,
+          "right": 377
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 20,
+        "y": 100,
+        "width": 350,
+        "height": 569,
+        "top": 100,
+        "bottom": 668,
+        "left": 20,
+        "right": 370
+      },
+      "heading": "Elsewhere未接来电",
+      "headingRect": {
+        "x": 20,
+        "y": 135,
+        "width": 350,
+        "height": 69,
+        "top": 135,
+        "bottom": 204,
+        "left": 20,
+        "right": 370
+      },
+      "primary": "开始体验",
+      "primaryRect": {
+        "x": 20,
+        "y": 696,
+        "width": 184,
+        "height": 52,
+        "top": 696,
+        "bottom": 748,
+        "left": 20,
+        "right": 204
+      },
+      "journeyRect": {
+        "x": 20,
+        "y": 696,
+        "width": 184,
+        "height": 52,
+        "top": 696,
+        "bottom": 748,
+        "left": 20,
+        "right": 204
+      },
+      "overlap": false,
+      "cards": [
+        {
+          "classes": "call-card",
+          "rect": {
+            "x": 20,
+            "y": 314,
+            "width": 350,
+            "height": 310,
+            "top": 314,
+            "bottom": 624,
+            "left": 20,
+            "right": 370
+          },
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(37, 33, 29)",
+          "status": "idle",
+          "state": "idle",
+          "signalBars": 5,
+          "flatline": false
+        }
+      ],
+      "callLiveState": "",
+      "endActions": [],
+      "headerMeta": "none",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-home-390.png"
+    },
+    "intro": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "clientWidth": 390,
+        "height": 844
+      },
+      "view": "intro",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "flex-start",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 350,
+          "height": 740,
+          "top": 58,
+          "bottom": 798,
+          "left": 20,
+          "right": 370
+        }
+      },
+      "veil": {
+        "width": "362px",
+        "height": "298.281px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 6%, rgba(233, 228, 221, 0.66) 94%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 364,
+          "height": 818,
+          "top": 13,
+          "bottom": 831,
+          "left": 13,
+          "right": 377
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 20,
+        "y": 222,
+        "width": 350,
+        "height": 266,
+        "top": 222,
+        "bottom": 488,
+        "left": 20,
+        "right": 370
+      },
+      "heading": "如果当年选择了音乐，你现在会在哪里？",
+      "headingRect": {
+        "x": 20,
+        "y": 261,
+        "width": 350,
+        "height": 78,
+        "top": 261,
+        "bottom": 339,
+        "left": 20,
+        "right": 370
+      },
+      "primary": "进入来电",
+      "primaryRect": {
+        "x": 20,
+        "y": 516,
+        "width": 296,
+        "height": 52,
+        "top": 516,
+        "bottom": 568,
+        "left": 20,
+        "right": 316
+      },
+      "journeyRect": {
+        "x": 20,
+        "y": 516,
+        "width": 296,
+        "height": 110,
+        "top": 516,
+        "bottom": 626,
+        "left": 20,
+        "right": 316
+      },
+      "overlap": false,
+      "cards": [],
+      "callLiveState": "",
+      "endActions": [],
+      "headerMeta": "none",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-intro-390.png"
+    },
+    "incoming": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 375,
+        "clientWidth": 375,
+        "height": 903
+      },
+      "view": "incoming",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "flex-start",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 335,
+          "height": 799,
+          "top": 58,
+          "bottom": 857,
+          "left": 20,
+          "right": 355
+        }
+      },
+      "veil": {
+        "width": "347px",
+        "height": "640.859px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 6%, rgba(233, 228, 221, 0.78) 94%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/incoming.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 349,
+          "height": 877,
+          "top": 13,
+          "bottom": 890,
+          "left": 13,
+          "right": 362
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 20,
+        "y": 80,
+        "width": 335,
+        "height": 609,
+        "top": 80,
+        "bottom": 689,
+        "left": 20,
+        "right": 355
+      },
+      "heading": "另一个你，正在来电",
+      "headingRect": {
+        "x": 20,
+        "y": 118,
+        "width": 335,
+        "height": 91,
+        "top": 118,
+        "bottom": 209,
+        "left": 20,
+        "right": 355
+      },
+      "primary": "接听",
+      "primaryRect": {
+        "x": 20,
+        "y": 717,
+        "width": 296,
+        "height": 52,
+        "top": 717,
+        "bottom": 769,
+        "left": 20,
+        "right": 316
+      },
+      "journeyRect": {
+        "x": 20,
+        "y": 717,
+        "width": 296,
+        "height": 110,
+        "top": 717,
+        "bottom": 827,
+        "left": 20,
+        "right": 316
+      },
+      "overlap": false,
+      "cards": [
+        {
+          "classes": "call-card is-object",
+          "rect": {
+            "x": 20,
+            "y": 303,
+            "width": 335,
+            "height": 342,
+            "top": 303,
+            "bottom": 644,
+            "left": 20,
+            "right": 355
+          },
+          "background": "rgba(243, 241, 236, 0.55)",
+          "border": "rgba(197, 189, 181, 0.5)",
+          "status": "ringing",
+          "state": "ringing",
+          "signalBars": 5,
+          "flatline": false
+        }
+      ],
+      "callLiveState": "",
+      "endActions": [],
+      "headerMeta": "none",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-incoming-390.png"
+    },
+    "dialogue": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "clientWidth": 390,
+        "height": 844
+      },
+      "view": "call",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "flex-start",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 350,
+          "height": 740,
+          "top": 58,
+          "bottom": 798,
+          "left": 20,
+          "right": 370
+        }
+      },
+      "veil": {
+        "width": "362px",
+        "height": "511.484px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/opening.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 364,
+          "height": 818,
+          "top": 13,
+          "bottom": 831,
+          "left": 13,
+          "right": 377
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 20,
+        "y": 184,
+        "width": 350,
+        "height": 479,
+        "top": 184,
+        "bottom": 664,
+        "left": 20,
+        "right": 370
+      },
+      "heading": "第一通来电",
+      "headingRect": {
+        "x": 40,
+        "y": 235,
+        "width": 181,
+        "height": 29,
+        "top": 235,
+        "bottom": 263,
+        "left": 40,
+        "right": 221
+      },
+      "primary": "继续",
+      "primaryRect": {
+        "x": 40,
+        "y": 585,
+        "width": 310,
+        "height": 51,
+        "top": 585,
+        "bottom": 636,
+        "left": 40,
+        "right": 350
+      },
+      "journeyRect": null,
+      "overlap": false,
+      "cards": [],
+      "callLiveState": "connected",
+      "endActions": [],
+      "headerMeta": "none",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": {
+        "x": 40,
+        "y": 585,
+        "width": 310,
+        "height": 51,
+        "top": 585,
+        "bottom": 636,
+        "left": 40,
+        "right": 350
+      },
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-dialogue-390.png"
+    },
+    "choice": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "clientWidth": 390,
+        "height": 844
+      },
+      "view": "call",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "flex-start",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 350,
+          "height": 740,
+          "top": 58,
+          "bottom": 798,
+          "left": 20,
+          "right": 370
+        }
+      },
+      "veil": {
+        "width": "362px",
+        "height": "516.359px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/first-choice.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 364,
+          "height": 818,
+          "top": 13,
+          "bottom": 831,
+          "left": 13,
+          "right": 377
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 20,
+        "y": 182,
+        "width": 350,
+        "height": 484,
+        "top": 182,
+        "bottom": 666,
+        "left": 20,
+        "right": 370
+      },
+      "heading": "第一通来电",
+      "headingRect": {
+        "x": 40,
+        "y": 232,
+        "width": 181,
+        "height": 29,
+        "top": 232,
+        "bottom": 261,
+        "left": 40,
+        "right": 221
+      },
+      "primary": "",
+      "primaryRect": null,
+      "journeyRect": null,
+      "overlap": false,
+      "cards": [],
+      "callLiveState": "connected",
+      "endActions": [],
+      "headerMeta": "none",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-choice-390.png"
+    },
+    "home320": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "document": {
+        "width": 305,
+        "clientWidth": 305,
+        "height": 754
+      },
+      "view": "home",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "flex-start",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 265,
+          "height": 696,
+          "top": 58,
+          "bottom": 754,
+          "left": 20,
+          "right": 285
+        }
+      },
+      "veil": {
+        "width": "277px",
+        "height": "596.328px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 6%, rgba(233, 228, 221, 0.56) 94%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 279,
+          "height": 728,
+          "top": 13,
+          "bottom": 741,
+          "left": 13,
+          "right": 292
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 20,
+        "y": 80,
+        "width": 265,
+        "height": 564,
+        "top": 80,
+        "bottom": 644,
+        "left": 20,
+        "right": 285
+      },
+      "heading": "Elsewhere未接来电",
+      "headingRect": {
+        "x": 20,
+        "y": 116,
+        "width": 265,
+        "height": 65,
+        "top": 116,
+        "bottom": 180,
+        "left": 20,
+        "right": 285
+      },
+      "primary": "开始体验",
+      "primaryRect": {
+        "x": 20,
+        "y": 672,
+        "width": 172,
+        "height": 52,
+        "top": 672,
+        "bottom": 724,
+        "left": 20,
+        "right": 192
+      },
+      "journeyRect": {
+        "x": 20,
+        "y": 672,
+        "width": 172,
+        "height": 52,
+        "top": 672,
+        "bottom": 724,
+        "left": 20,
+        "right": 192
+      },
+      "overlap": false,
+      "cards": [
+        {
+          "classes": "call-card",
+          "rect": {
+            "x": 20,
+            "y": 290,
+            "width": 265,
+            "height": 310,
+            "top": 290,
+            "bottom": 600,
+            "left": 20,
+            "right": 285
+          },
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(37, 33, 29)",
+          "status": "idle",
+          "state": "idle",
+          "signalBars": 5,
+          "flatline": false
+        }
+      ],
+      "callLiveState": "",
+      "endActions": [],
+      "headerMeta": "none",
+      "footer": "none",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-home-320.png"
+    },
+    "intro320": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "document": {
+        "width": 320,
+        "clientWidth": 320,
+        "height": 568
+      },
+      "view": "intro",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "flex-start",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 280,
+          "height": 510,
+          "top": 58,
+          "bottom": 568,
+          "left": 20,
+          "right": 300
+        }
+      },
+      "veil": {
+        "width": "292px",
+        "height": "337.031px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 6%, rgba(233, 228, 221, 0.66) 94%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 294,
+          "height": 542,
+          "top": 13,
+          "bottom": 555,
+          "left": 13,
+          "right": 307
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "screen": {
+        "x": 20,
+        "y": 87,
+        "width": 280,
+        "height": 305,
+        "top": 87,
+        "bottom": 393,
+        "left": 20,
+        "right": 300
+      },
+      "heading": "如果当年选择了音乐，你现在会在哪里？",
+      "headingRect": {
+        "x": 20,
+        "y": 127,
+        "width": 280,
+        "height": 116,
+        "top": 127,
+        "bottom": 243,
+        "left": 20,
+        "right": 300
+      },
+      "primary": "进入来电",
+      "primaryRect": {
+        "x": 20,
+        "y": 421,
+        "width": 280,
+        "height": 52,
+        "top": 421,
+        "bottom": 473,
+        "left": 20,
+        "right": 300
+      },
+      "journeyRect": {
+        "x": 20,
+        "y": 421,
+        "width": 280,
+        "height": 110,
+        "top": 421,
+        "bottom": 531,
+        "left": 20,
+        "right": 300
+      },
+      "overlap": false,
+      "cards": [],
+      "callLiveState": "",
+      "endActions": [],
+      "headerMeta": "none",
+      "footer": "none",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-intro-320.png"
+    }
+  },
+  "preview_state": {
+    "firstChoice": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "call",
+      "main": {
+        "display": "flex",
+        "direction": "column",
+        "justify": "safe center",
+        "align": "center",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 792,
+          "top": 64,
+          "bottom": 856,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "veil": {
+        "width": "880px",
+        "height": "499.188px",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)",
+        "maskImage": "none"
+      },
+      "scene": {
+        "src": "/backgrounds/first-choice.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "/backgrounds/regret.svg",
+        "previewOpacity": "1",
+        "previewing": true,
+        "border": "rgba(114, 90, 124, 0.55)"
+      },
+      "screen": {
+        "x": 290,
+        "y": 236,
+        "width": 860,
+        "height": 447,
+        "top": 236,
+        "bottom": 684,
+        "left": 290,
+        "right": 1150
+      },
+      "heading": "第一通来电",
+      "headingRect": {
+        "x": 326,
+        "y": 290,
+        "width": 224,
+        "height": 33,
+        "top": 290,
+        "bottom": 323,
+        "left": 326,
+        "right": 550
+      },
+      "primary": "",
+      "primaryRect": null,
+      "journeyRect": null,
+      "overlap": false,
+      "cards": [],
+      "callLiveState": "connected",
+      "endActions": [],
+      "headerMeta": "block",
+      "footer": "flex",
+      "titleShadow": "none",
+      "dialogueContinue": null,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/visual-choice-preview-1440.png"
+    }
+  },
+  "failures": [],
+  "consoleEvents": [],
+  "transition": {
+    "outgoing": 1,
+    "activeOpacity": "1",
+    "outgoingOpacity": "0.365155",
+    "paperGap": "rgb(228, 218, 206)"
+  },
+  "reducedMotion": {
+    "outgoingCount": 1,
+    "outgoingVisibility": "hidden",
+    "activeOpacity": "1",
+    "activeVisibility": "visible"
+  },
+  "result": "all calibration checks passed"
+}

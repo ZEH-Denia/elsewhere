@@ -21,6 +21,8 @@ const scenes = {
   'ending-cherish-reach': { dawn: true, motif: 'reach', warm: true },
 }
 
+const uiLift = 60
+
 function randomGenerator(initialSeed) {
   let seed = initialSeed
   return () => {
@@ -179,6 +181,7 @@ function renderScene(name, config) {
     : config.warm
       ? '<rect width="1440" height="900" fill="#9b6946" opacity=".09"/>'
       : ''
+  const motifLift = config.motif === 'music' || config.motif === 'reality' ? uiLift : 0
   const split = config.split ? '<path d="M720 112V754" stroke="#b2d9d7" stroke-opacity=".1" stroke-width="2" stroke-dasharray="2 14"/>' : ''
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title desc">
@@ -205,14 +208,16 @@ function renderScene(name, config) {
   <rect width="1440" height="900" fill="url(#night)"/>
   <ellipse cx="360" cy="340" rx="460" ry="370" fill="#b47b58" opacity=".09"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#a86c6c" opacity=".1"/>
 ${dawn}
+  <g transform="translate(0 -${uiLift})">
   <path d="M0 112H1440V754H0Z" fill="#080d15" opacity=".9"/><path d="M0 112H1440M0 754H1440" stroke="#6d8296" stroke-opacity=".14"/>
   <g filter="url(#shadow)"><rect x="72" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#344250" stroke-opacity=".55"/><rect x="92" y="154" width="552" height="522" rx="4" fill="#111923" stroke="#637484" stroke-opacity=".18"/><rect x="776" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#454057" stroke-opacity=".58"/><rect x="796" y="154" width="552" height="522" rx="4" fill="#171522" stroke="#756887" stroke-opacity=".18"/></g>
   <g opacity="${left}">${leftRoom()}</g><g opacity="${right}">${rightRoom()}</g>
   <rect x="102" y="164" width="532" height="502" fill="url(#glass)" opacity=".32"/>
   <path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#080d14" stroke-width="15"/><path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#607080" stroke-opacity=".12" stroke-width="2"/>
   <rect x="102" y="164" width="532" height="502" rx="3" fill="none" stroke="#9aabba" stroke-opacity=".12"/><rect x="806" y="164" width="532" height="502" rx="3" fill="none" stroke="#aa9bb8" stroke-opacity=".12"/>
+  </g>
   ${rainLines(150, config.rain ?? 0.2, 27)}
-${`  ${focusShade}${split}${phone(config.phone ?? 0)}${motif(config.motif)}${tint}`.trimEnd()}
+${`  <g transform="translate(0 -${uiLift})">${focusShade}${split}${phone(config.phone ?? 0)}<g transform="translate(0 ${motifLift})">${motif(config.motif)}</g></g>${tint}`.trimEnd()}
   <rect width="1440" height="900" fill="url(#warmWash)"/>
   <rect y="606" width="1440" height="294" fill="url(#bottomShade)"/><rect width="1440" height="900" fill="url(#vignette)"/><rect width="1440" height="900" filter="url(#grain)" opacity=".38"/>
 </svg>

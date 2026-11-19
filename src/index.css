@@ -94,12 +94,14 @@ button:focus-visible,
   height: 100%;
   object-fit: cover;
   object-position: center 46%;
-  opacity: 0.72;
+  visibility: hidden;
+  opacity: 0;
   user-select: none;
 }
 
-.scene-background-image.scene-current.is-entering {
-  animation: scene-crossfade 220ms ease-out both;
+.scene-background-image.is-active {
+  visibility: visible;
+  opacity: 0.72;
 }
 
 .scene-background-scrim {
@@ -876,11 +878,6 @@ button:focus-visible,
   background: hsl(var(--violet));
   font-size: 14px;
   font-weight: 600;
-}
-
-@keyframes scene-crossfade {
-  from { opacity: 0; }
-  to { opacity: 0.72; }
 }
 
 @media (max-width: 899px) {

@@ -382,3 +382,18 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 - 已验证 320×568、390×844、1366×768、1440×900，不声称覆盖所有设备、浏览器和桌面高度；团队主观体验与下一任务批准仍需另行确认。
 
 交接后 Qoder 停止修改，等待 Codex 对照真实代码、测试和生产预览复审。未经团队批准不合并 main、不部署、不进入下一任务。
+
+## 21. 恒亮无闪场景切换
+
+日期：2026-11-19（Asia/Shanghai）。用户反馈选择下一步时整个浅色界面会闪烁，要求白色保持常亮。本轮取消场景透明度过渡，不改变既定暖米无框风格。
+
+- `src/components/SceneBackground.tsx` 移除 previous/current 状态、定时器和 220ms 交叉淡化，改为一次渲染全部 16 张本地 SVG；仅当前场景使用 `scene-current is-active`。
+- `src/index.css` 对非当前场景设置 `visibility: hidden; opacity: 0`，当前场景直接显示，没有任何透明度动画或过渡。暖米底色、白色柔光和阅读区域不随选择明暗变化。
+- 全部场景在首个页面加载，后续选择只切换显示内容，避免新图片加载前的空白闪烁。鼠标/键盘预览仍按原规则恢复，正式选择仍只由点击、Enter 或 Space 推进。
+- README 同步为“16 张场景一次加载，切换时无透明度动画，界面亮度保持恒定”。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 28.55 kB / gzip 6.76 kB，JS 239.27 kB / gzip 74.77 kB。日志见 [steady-typecheck.txt](assets/TASK-003/steady-typecheck.txt)、[steady-test-story.txt](assets/TASK-003/steady-test-story.txt)、[steady-build.txt](assets/TASK-003/steady-build.txt)。
+
+独立 Edge 在 1366×768 下逐节点断言：16 个场景层全部加载完成、只有 1 个 `is-active` 层、当前层 `animation-name: none`，并再次通过四组合、鼠标/键盘预览、重置和桌面一屏回归。最终 229 次请求仅包含本地应用与同一组 16 张场景，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`，见 [运行摘要](assets/TASK-003/steady-browser-run-1366.txt)和[完整 JSON](assets/TASK-003/steady-browser-checks-1366.json)。
+
+已检查 [选项预览](assets/TASK-003/steady-01-regret-first-preview.png)与[对白](assets/TASK-003/steady-03-cherish-make-space-1366-dialogue.png)，暖米底色与白色柔光保持恒定。此前 `1704507` 的 Codex PASS 不包含本轮恒亮修正；本轮仍不据此自称 PASS。实体设备、真实读屏和原生 200% 缩放仍未验证，未合并 main、未部署。

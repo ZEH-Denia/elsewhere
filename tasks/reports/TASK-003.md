@@ -477,3 +477,39 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 - 独立 Edge（CDP 9225，`CDP_PORT=9225`）用现有视觉检查脚本访问生产预览，结果 `all calibration checks passed`，`failures` 与 console error/warning 均为 `[]`，见 [检查 JSON](assets/TASK-003/bg-lift-checks.json)、[首页](assets/TASK-003/bg-lift-home-1440.png)、[对白](assets/TASK-003/bg-lift-dialogue-1440.png)、[选项预览](assets/TASK-003/bg-lift-choice-1440.png)。这些截图是“旧布局 + 新背景”的兼容性证据，不是最终 galgame 布局。
 - 四张参考图已更新：[对白 1440](assets/TASK-003/reference-galgame-dialogue-1440.png)、[选择 1440](assets/TASK-003/reference-galgame-choice-1440.png)、[对白 390](assets/TASK-003/reference-galgame-dialogue-390.png)、[选择 390](assets/TASK-003/reference-galgame-choice-390.png)。
 - 尚未把底部对话框/选项布局写进 `src/`；仍等待方向确认。实体设备、真实读屏、原生 200% 缩放未验证；参考页为静态模拟，不代表应用已实现。未合并 main、未部署。
+
+## 26. Galgame 式底部对话框与选项按钮落地
+
+日期：2026-11-20（Asia/Shanghai）。团队以“开始落地”批准参考方向。本轮把对白、选择两屏改为底部纸面交互，去掉通话与选择视图的中央纸雾；首页、前言、来电和结局保留原有局部衬底与居中结构。
+
+- `src/App.tsx`：通话中页眉由产品元信息切换为“第一通来电 + 结束通话”，结束通话仍打开原确认对话框；通话中隐藏全局页脚，`<main>` 增加 `is-call` 以便操作区贴底。对白与选择共用 `.call-dock`：选择时选项在上、提示面板在下，对白时只有面板。说话人标签显示通话信号、说话人和“来自平行世界的自己 / 通话之外 / 此刻的你”；页脚显示“主线 01 / 07”“选择 01 / 02”等进度。对白“继续”缩为文字加 34px 赤陶实心圆，不再整行铺满。原剧情推进、键盘焦点、选择预览和结束流程未改。
+- `src/index.css`：新增 `.call-dock`、`.dialogue-panel`、`.dialogue-speaker-tab`、`.choice-prompt`、`.choice-options` 与 `.choice-option`。桌面面板宽 1120px、最小高 166px（短视口 150px），纸面渐变 `0.90 / 0.86`、14px 背景模糊、16px 圆角；选项宽 760px、高 60px（短视口 56px）、纸面 `0.97`。桌面面板位于视口底部 50px（短视口 30px、手机 32px），选项与面板间距 18px（短视口 14px、手机 24px）。手机面板全宽、内边距 24/20/12、正文 20px，隐藏选项序号、页脚提示与说话人来源，选项改为两列网格（序号列收起）。
+- `.call-session::before` 设为 `display: none`，通话与选择视图不再绘制中央纸衬底；`.app-main.is-call` 取消居中与内边距，让操作区落在背景重绘预留的底部带内。首页、前言、来电、结局的 `.screen-enter::before` 保持不变。
+- 首轮截图中页眉“结束通话”使用暗色 `--dim`，在夜色页眉上几乎不可见；改为纸色 `hsl(var(--night) / 0.56)`、悬停 `0.92` 加 `0.08` 纸色底，保留 44px 触控高度后重新构建并复测。
+- `README.md` 的界面描述同步为底部纸面对话框/选项、通话视图无中央白雾、其余视图保留局部衬底，运行命令与测试说明未改。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 33.25 kB / gzip 7.83 kB，JS 240.16 kB / gzip 75.40 kB。日志见 [galgame-typecheck.txt](assets/TASK-003/galgame-typecheck.txt)、[galgame-test-story.txt](assets/TASK-003/galgame-test-story.txt)、[galgame-build.txt](assets/TASK-003/galgame-build.txt)。
+
+[galgame-layout-checks.mjs](assets/TASK-003/galgame-layout-checks.mjs) 通过独立无头 Edge（`CDP_PORT=9225`）访问生产预览 `http://127.0.0.1:4173/`，结果 `all galgame layout checks passed`，`failures` 与 `consoleEvents` 均为 `[]`，完整数据见 [galgame-layout-checks.json](assets/TASK-003/galgame-layout-checks.json)：
+
+| 检查 | 实测 |
+| --- | --- |
+| 中央纸雾 | 对白/选择 `.call-session::before` 为 `none`；首页仍为 `block` 且绘有渐变 |
+| 场景层 | 各视口当前场景 `opacity: 1` |
+| 页眉 | “第一通来电”与“结束通话”存在，产品元信息隐藏；结束通话 1440 下 54×44，390/320 下 45×44 |
+| 页脚 | 通话/选择期间 `.app-footer` 不渲染 |
+| 桌面面板 | 1440：1120×155，y 715–870；1366：1120×154，y 584–738 |
+| 选择堆叠 | 1440 选项 y 584–706、面板 y 720；1366 选项 y 452–574、面板 y 588，二者不重叠 |
+| 手机面板 | 390：350 宽，y 635–812（对白）/662–812（选择）；320：280 宽，y 359–536 /386–536 |
+| 手机选项 | 390 选项 y 520–638；320 选项 y 223–362，均在面板上方且不越过页眉 |
+| 一屏 | 四种视口 `scrollHeight` 均不超过视口高度，无横向溢出 |
+| 继续按钮 | 1440 下宽小于 180px，高 44px |
+| 选择信息 | 桌面显示序号、两行文案与预览提示；390/320 隐藏序号、提示和说话人来源 |
+| 预览 | 悬停与键盘聚焦均把 `regret.svg` 预览层升到 `1`，基础场景不变，边框转灰紫 |
+| 结束通话 | 确认对话框可打开并由“取消”关闭 |
+| 结局 | 保留页眉、页脚、已结束状态与两个 CTA；主按钮赤陶实心，返回首页透明 |
+| 减少动态效果 | 模拟 `prefers-reduced-motion: reduce`：旧场景 `visibility: hidden`，当前场景 `visible` / `1`，面板仍可读 |
+
+已目视检查下列最终截图：[1440 首页](assets/TASK-003/galgame-home-1440.png)、[1440 对白](assets/TASK-003/galgame-dialogue-1440.png)、[1366 对白](assets/TASK-003/galgame-dialogue-1366.png)、[1440 选择](assets/TASK-003/galgame-choice-1440.png)、[1366 选择](assets/TASK-003/galgame-choice-1366.png)、[1440 预览](assets/TASK-003/galgame-choice-preview-1440.png)、[1440 结局](assets/TASK-003/galgame-ending-1440.png)、[390 首页](assets/TASK-003/galgame-home-390.png)、[390 对白](assets/TASK-003/galgame-dialogue-390.png)、[390 选择](assets/TASK-003/galgame-choice-390.png)、[320 首页](assets/TASK-003/galgame-home-320.png)、[320 对白](assets/TASK-003/galgame-dialogue-320.png)与[320 选择](assets/TASK-003/galgame-choice-320.png)。书桌、显示器、吉他、键盘和两间房在桌面仍可见；面板只落在底部暗带，对白文字、选项和页眉控件无裁切、无遮挡。
+
+本轮未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未执行原生浏览器 200% 缩放，未在 Safari/Firefox 实测；减少动态效果仅通过 CDP 媒体模拟验证；仅覆盖 320×568、390×844、1366×768、1440×900。结局页按批准范围保持原有居中纸衬底，未改为底部对话框。该实现发生在 Codex 上次 PASS 之后，尚未复审，不据此自称 PASS。未合并 main、未部署、未进入下一任务，等待 Codex 对照真实代码与截图复核。

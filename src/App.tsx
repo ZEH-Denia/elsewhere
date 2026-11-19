@@ -138,6 +138,28 @@ function App() {
   const liveText = currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing'
     ? `${currentNode.speaker}：${currentNode.text}`
     : ''
+  const callActive = view === 'call' && currentNode.kind !== 'end'
+  const speakerOrigin = currentNode.kind === 'choice'
+    ? '来自平行世界的自己'
+    : currentNode.kind === 'end'
+      ? ''
+      : currentNode.speaker === '另一个你'
+        ? '来自平行世界的自己'
+        : currentNode.speaker === '旁白'
+          ? '通话之外'
+          : '此刻的你'
+  const dialogueStep = currentNode.kind === 'dialogue'
+    ? openingDialogue.findIndex(({ id }) => id === currentNode.id) + 1
+    : 0
+  const panelProgress = currentNode.kind === 'dialogue'
+    ? `主线 ${String(dialogueStep).padStart(2, '0')} / 07`
+    : currentNode.kind === 'choice'
+      ? `选择 ${currentNode.id === 'first-response' ? '01' : '02'} / 02`
+      : currentNode.kind === 'closing'
+        ? currentNode.id === 'opening-closing' ? '共同衔接' : '通话尾声'
+        : currentNode.kind === 'feedback'
+          ? safeProgress.nextStepId ? '行动反馈' : `回应反馈 ${currentNode.id.endsWith('01') ? '01' : '02'} / 02`
+          : ''
   const selectedOption = firstChoice.options.find(({ id }) => id === safeProgress.choiceId)
   const selectedNextStep = secondChoice.options.find(({ id }) => id === safeProgress.nextStepId)
 
@@ -153,10 +175,17 @@ function App() {
             <span className="brand-mark" aria-hidden="true"><span /></span>
             <span className="header-brand font-mono text-xs font-medium tracking-[0.24em]">ELSEWHERE</span>
           </div>
-          <p className="header-meta font-mono text-[10px] tracking-[0.16em] sm:text-xs">平行人生 <span className="header-sep mx-2">/</span> 001</p>
+          {callActive ? (
+            <div className="header-call">
+              <h1 ref={callHeading} tabIndex={-1} id="call-title" className="header-call-title">第一通来电</h1>
+              <button type="button" className="end-call-action header-end-call" onClick={() => setConfirmOpen(true)}>结束通话</button>
+            </div>
+          ) : (
+            <p className="header-meta font-mono text-[10px] tracking-[0.16em] sm:text-xs">平行人生 <span className="header-sep mx-2">/</span> 001</p>
+          )}
         </header>
 
-        <main className="app-main">
+        <main className={`app-main${callActive ? ' is-call' : ''}`}>
           {view === 'home' && (
             <section className="screen-enter home-layout" aria-labelledby="home-title">
               <div className="home-copy">
@@ -209,37 +238,38 @@ function App() {
           {view === 'call' && currentNode.kind !== 'end' && (
             <section className="screen-enter call-session" aria-labelledby="call-title">
               <p className="sr-only" aria-live="polite" aria-atomic="true">{liveText}</p>
-              <div className="call-session-header">
-                <div>
-                  <p className="eyebrow"><span />另一个你 · 来自平行世界的自己</p>
-                  <h1 ref={callHeading} tabIndex={-1} id="call-title">第一通来电</h1>
-                  <div className="call-live-state"><CallState status="connected" /></div>
-                </div>
-                <button type="button" className="end-call-action" onClick={() => setConfirmOpen(true)}>结束通话</button>
-              </div>
-
-              {currentNode.kind === 'dialogue' && (
-                <div className="dialogue-stage">
-                  <p className="dialogue-progress">主线 {String(openingDialogue.findIndex(({ id }) => id === currentNode.id) + 1).padStart(2, '0')} / 07</p>
-                  <article className="dialogue-card">
-                    <p className="dialogue-speaker">{currentNode.speaker}</p>
+              <div className={`call-dock${currentNode.kind === 'choice' ? ' is-choice' : ''}`}>
+                <article className={`dialogue-panel${currentNode.kind === 'choice' ? ' is-prompt' : ''}`}>
+                  <div className="dialogue-speaker-tab">
+                    <span className="dialogue-speaker-state call-live-state"><CallState status="connected" showLabel={false} /></span>
+                    <span className="speaker-name">{currentNode.kind === 'choice' ? '另一个你' : currentNode.speaker}</span>
+                    {speakerOrigin && <span className="speaker-origin">{speakerOrigin}</span>}
+                  </div>
+                  {currentNode.kind === 'choice' ? (
+                    <div className="choice-prompt">
+                      <p className="choice-kicker"><span />{currentNode.id === 'first-response' ? '第一次选择' : '第二次选择'}</p>
+                      <h2 ref={choiceHeading} tabIndex={-1} id="choice-title">
+                        {currentNode.id === 'first-response' ? '你想怎么回答？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
+                      </h2>
+                    </div>
+                  ) : (
                     <p className="dialogue-text">{currentNode.text}</p>
-                  </article>
-                  <button type="button" className="primary-action group dialogue-continue" onClick={() => setProgress(advanceOpening)}>
-                    <span>继续</span><span className="action-icon"><Arrow /></span>
-                  </button>
-                </div>
-              )}
+                  )}
+                  <div className="dialogue-panel-footer">
+                    <p className="dialogue-progress">{panelProgress}</p>
+                    {currentNode.kind === 'choice' ? (
+                      <p className="choice-hint">移入选项可预览另一条路 · 选择会改变走向</p>
+                    ) : (
+                      <button type="button" className="dialogue-continue" onClick={() => setProgress(advanceOpening)}>
+                        <span>继续</span><span className="action-icon"><Arrow /></span>
+                      </button>
+                    )}
+                  </div>
+                </article>
 
-              {currentNode.kind === 'choice' && (
-                <div className="choice-stage">
-                  <p className="dialogue-progress">{currentNode.id === 'first-response' ? '第一次选择' : '第二次选择'}</p>
-                  {currentNode.id === 'next-step' && <p className="dialogue-speaker">另一个你</p>}
-                  <h2 ref={choiceHeading} tabIndex={-1} id="choice-title">
-                    {currentNode.id === 'first-response' ? '你想怎么回答？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
-                  </h2>
+                {currentNode.kind === 'choice' && (
                   <div className="choice-options" aria-labelledby="choice-title">
-                    {currentNode.options.map((option) => (
+                    {currentNode.options.map((option, index) => (
                       <button
                         key={option.id}
                         type="button"
@@ -250,29 +280,14 @@ function App() {
                         onBlur={() => setPreviewScene(null)}
                         onClick={() => setProgress((current) => chooseOpening(current, option.id))}
                       >
-                        <span>{option.label}</span><Arrow />
+                        <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
+                        <span className="choice-label">{option.label}</span>
+                        <span className="choice-arrow"><Arrow /></span>
                       </button>
                     ))}
                   </div>
-                </div>
-              )}
-
-              {(currentNode.kind === 'feedback' || currentNode.kind === 'closing') && (
-                <div className="dialogue-stage">
-                  <p className="dialogue-progress">
-                    {currentNode.kind === 'closing'
-                      ? currentNode.id === 'opening-closing' ? '共同衔接' : '通话尾声'
-                      : safeProgress.nextStepId ? '行动反馈' : `回应反馈 ${currentNode.id.endsWith('01') ? '01' : '02'} / 02`}
-                  </p>
-                  <article className="dialogue-card">
-                    <p className="dialogue-speaker">{currentNode.speaker}</p>
-                    <p className="dialogue-text">{currentNode.text}</p>
-                  </article>
-                  <button type="button" className="primary-action group dialogue-continue" onClick={() => setProgress(advanceOpening)}>
-                    <span>继续</span><span className="action-icon"><Arrow /></span>
-                  </button>
-                </div>
-              )}
+                )}
+              </div>
             </section>
           )}
 
@@ -317,10 +332,12 @@ function App() {
           )}
         </main>
 
-        <footer className="app-footer">
-          <span>AN INTERACTIVE STORY</span>
-          <span>此刻 · 另一种可能</span>
-        </footer>
+        {!callActive && (
+          <footer className="app-footer">
+            <span>AN INTERACTIVE STORY</span>
+            <span>此刻 · 另一种可能</span>
+          </footer>
+        )}
       </div>
 
       <dialog

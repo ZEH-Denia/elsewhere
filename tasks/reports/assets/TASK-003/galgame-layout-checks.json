@@ -1,0 +1,2114 @@
+{
+  "date": "2026-11-20",
+  "preview": "http://127.0.0.1:4173/",
+  "viewports": {
+    "home1440": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "home",
+      "main": {
+        "classes": "app-main",
+        "padding": "20px 0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 792,
+          "top": 64,
+          "bottom": 856,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "block",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 11%, rgba(233, 228, 221, 0.56) 89%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1344,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1392
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "block"
+      },
+      "footer": "flex",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "BODY",
+      "activeText": "ELSEWHERE平行人生 / 001来自另一个世界的信号Elsewhere未接",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-home-1440.png"
+    },
+    "dialogue1440": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 836,
+          "top": 64,
+          "bottom": 900,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/opening.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1344,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1392
+        },
+        "call": {
+          "x": 1260,
+          "y": 10,
+          "width": 132,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1260,
+          "right": 1392
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 1338,
+          "y": 10,
+          "width": 54,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1338,
+          "right": 1392
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 160,
+        "y": 64,
+        "width": 1120,
+        "height": 836,
+        "top": 64,
+        "bottom": 900,
+        "left": 160,
+        "right": 1280
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 160,
+        "y": 715,
+        "width": 1120,
+        "height": 155,
+        "top": 715,
+        "bottom": 870,
+        "left": 160,
+        "right": 1280
+      },
+      "panel": {
+        "rect": {
+          "x": 160,
+          "y": 715,
+          "width": 1120,
+          "height": 155,
+          "top": 715,
+          "bottom": 870,
+          "left": 160,
+          "right": 1280
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "block",
+        "progress": "主线 01 / 07",
+        "line": "喂？先别挂——如果我说，我也是你呢？",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": {
+          "x": 1166,
+          "y": 813,
+          "width": 73,
+          "height": 44,
+          "top": 813,
+          "bottom": 857,
+          "left": 1166,
+          "right": 1239
+        },
+        "iconBackground": "rgb(148, 78, 56)"
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "header-call-title",
+      "activeText": "第一通来电",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-dialogue-1440.png"
+    },
+    "choice1440": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 836,
+          "top": 64,
+          "bottom": 900,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/first-choice.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1344,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1392
+        },
+        "call": {
+          "x": 1260,
+          "y": 10,
+          "width": 132,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1260,
+          "right": 1392
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 1338,
+          "y": 10,
+          "width": 54,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1338,
+          "right": 1392
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 160,
+        "y": 64,
+        "width": 1120,
+        "height": 836,
+        "top": 64,
+        "bottom": 900,
+        "left": 160,
+        "right": 1280
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 160,
+        "y": 584,
+        "width": 1120,
+        "height": 286,
+        "top": 584,
+        "bottom": 870,
+        "left": 160,
+        "right": 1280
+      },
+      "panel": {
+        "rect": {
+          "x": 160,
+          "y": 720,
+          "width": 1120,
+          "height": 150,
+          "top": 720,
+          "bottom": 870,
+          "left": 160,
+          "right": 1280
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "block",
+        "progress": "选择 01 / 02",
+        "line": "",
+        "hintDisplay": "block"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": {
+          "x": 340,
+          "y": 584,
+          "width": 760,
+          "height": 122,
+          "top": 584,
+          "bottom": 706,
+          "left": 340,
+          "right": 1100
+        },
+        "count": 2,
+        "labels": [
+          "我有点遗憾，当年没有继续学音乐。",
+          "我很珍惜，现在拥有的生活。"
+        ],
+        "rects": [
+          {
+            "x": 340,
+            "y": 584,
+            "width": 760,
+            "height": 56,
+            "top": 584,
+            "bottom": 640,
+            "left": 340,
+            "right": 1100
+          },
+          {
+            "x": 340,
+            "y": 650,
+            "width": 760,
+            "height": 56,
+            "top": 650,
+            "bottom": 706,
+            "left": 340,
+            "right": 1100
+          }
+        ],
+        "indexDisplay": "block",
+        "background": "rgba(243, 241, 236, 0.97)",
+        "heading": "你想怎么回答？"
+      },
+      "activeElement": "H2",
+      "activeText": "你想怎么回答？",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "none",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-choice-1440.png"
+    },
+    "dialogue1366": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "document": {
+        "width": 1366,
+        "clientWidth": 1366,
+        "height": 768
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1270,
+          "height": 704,
+          "top": 64,
+          "bottom": 768,
+          "left": 48,
+          "right": 1318
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/opening.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1340,
+          "height": 742,
+          "top": 13,
+          "bottom": 755,
+          "left": 13,
+          "right": 1353
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1270,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1318
+        },
+        "call": {
+          "x": 1186,
+          "y": 10,
+          "width": 132,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1186,
+          "right": 1318
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 1264,
+          "y": 10,
+          "width": 54,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1264,
+          "right": 1318
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 123,
+        "y": 64,
+        "width": 1120,
+        "height": 704,
+        "top": 64,
+        "bottom": 768,
+        "left": 123,
+        "right": 1243
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 123,
+        "y": 584,
+        "width": 1120,
+        "height": 154,
+        "top": 584,
+        "bottom": 738,
+        "left": 123,
+        "right": 1243
+      },
+      "panel": {
+        "rect": {
+          "x": 123,
+          "y": 584,
+          "width": 1120,
+          "height": 154,
+          "top": 584,
+          "bottom": 738,
+          "left": 123,
+          "right": 1243
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "block",
+        "progress": "主线 01 / 07",
+        "line": "喂？先别挂——如果我说，我也是你呢？",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": {
+          "x": 1129,
+          "y": 681,
+          "width": 73,
+          "height": 44,
+          "top": 681,
+          "bottom": 725,
+          "left": 1129,
+          "right": 1202
+        },
+        "iconBackground": "rgb(148, 78, 56)"
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "header-call-title",
+      "activeText": "第一通来电",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-dialogue-1366.png"
+    },
+    "choice1366": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "document": {
+        "width": 1366,
+        "clientWidth": 1366,
+        "height": 768
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1270,
+          "height": 704,
+          "top": 64,
+          "bottom": 768,
+          "left": 48,
+          "right": 1318
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/first-choice.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1340,
+          "height": 742,
+          "top": 13,
+          "bottom": 755,
+          "left": 13,
+          "right": 1353
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1270,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1318
+        },
+        "call": {
+          "x": 1186,
+          "y": 10,
+          "width": 132,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1186,
+          "right": 1318
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 1264,
+          "y": 10,
+          "width": 54,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1264,
+          "right": 1318
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 123,
+        "y": 64,
+        "width": 1120,
+        "height": 704,
+        "top": 64,
+        "bottom": 768,
+        "left": 123,
+        "right": 1243
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 123,
+        "y": 452,
+        "width": 1120,
+        "height": 286,
+        "top": 452,
+        "bottom": 738,
+        "left": 123,
+        "right": 1243
+      },
+      "panel": {
+        "rect": {
+          "x": 123,
+          "y": 588,
+          "width": 1120,
+          "height": 150,
+          "top": 588,
+          "bottom": 738,
+          "left": 123,
+          "right": 1243
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "block",
+        "progress": "选择 01 / 02",
+        "line": "",
+        "hintDisplay": "block"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": {
+          "x": 303,
+          "y": 452,
+          "width": 760,
+          "height": 122,
+          "top": 452,
+          "bottom": 574,
+          "left": 303,
+          "right": 1063
+        },
+        "count": 2,
+        "labels": [
+          "我有点遗憾，当年没有继续学音乐。",
+          "我很珍惜，现在拥有的生活。"
+        ],
+        "rects": [
+          {
+            "x": 303,
+            "y": 452,
+            "width": 760,
+            "height": 56,
+            "top": 452,
+            "bottom": 508,
+            "left": 303,
+            "right": 1063
+          },
+          {
+            "x": 303,
+            "y": 518,
+            "width": 760,
+            "height": 56,
+            "top": 518,
+            "bottom": 574,
+            "left": 303,
+            "right": 1063
+          }
+        ],
+        "indexDisplay": "block",
+        "background": "rgba(243, 241, 236, 0.97)",
+        "heading": "你想怎么回答？"
+      },
+      "activeElement": "H2",
+      "activeText": "你想怎么回答？",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "none",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-choice-1366.png"
+    },
+    "home390": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "clientWidth": 390,
+        "height": 844
+      },
+      "view": "home",
+      "main": {
+        "classes": "app-main",
+        "padding": "22px 0px 30px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 350,
+          "height": 740,
+          "top": 58,
+          "bottom": 798,
+          "left": 20,
+          "right": 370
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 364,
+          "height": 818,
+          "top": 13,
+          "bottom": 831,
+          "left": 13,
+          "right": 377
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "block",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 6%, rgba(233, 228, 221, 0.56) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 350,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 370
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "none"
+      },
+      "footer": "flex",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "BODY",
+      "activeText": "ELSEWHERE平行人生 / 001来自另一个世界的信号Elsewhere未接",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-home-390.png"
+    },
+    "dialogue390": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "clientWidth": 390,
+        "height": 844
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 350,
+          "height": 786,
+          "top": 58,
+          "bottom": 844,
+          "left": 20,
+          "right": 370
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/opening.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 364,
+          "height": 818,
+          "top": 13,
+          "bottom": 831,
+          "left": 13,
+          "right": 377
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 350,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 370
+        },
+        "call": {
+          "x": 259,
+          "y": 7,
+          "width": 111,
+          "height": 44,
+          "top": 7,
+          "bottom": 51,
+          "left": 259,
+          "right": 370
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 325,
+          "y": 7,
+          "width": 45,
+          "height": 44,
+          "top": 7,
+          "bottom": 51,
+          "left": 325,
+          "right": 370
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 20,
+        "y": 58,
+        "width": 350,
+        "height": 786,
+        "top": 58,
+        "bottom": 844,
+        "left": 20,
+        "right": 370
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 20,
+        "y": 635,
+        "width": 350,
+        "height": 177,
+        "top": 635,
+        "bottom": 812,
+        "left": 20,
+        "right": 370
+      },
+      "panel": {
+        "rect": {
+          "x": 20,
+          "y": 635,
+          "width": 350,
+          "height": 177,
+          "top": 635,
+          "bottom": 812,
+          "left": 20,
+          "right": 370
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "none",
+        "progress": "主线 01 / 07",
+        "line": "喂？先别挂——如果我说，我也是你呢？",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": {
+          "x": 284,
+          "y": 757,
+          "width": 65,
+          "height": 42,
+          "top": 757,
+          "bottom": 799,
+          "left": 284,
+          "right": 349
+        },
+        "iconBackground": "rgb(148, 78, 56)"
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "header-call-title",
+      "activeText": "第一通来电",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-dialogue-390.png"
+    },
+    "choice390": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "clientWidth": 390,
+        "height": 844
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 350,
+          "height": 786,
+          "top": 58,
+          "bottom": 844,
+          "left": 20,
+          "right": 370
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/first-choice.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 364,
+          "height": 818,
+          "top": 13,
+          "bottom": 831,
+          "left": 13,
+          "right": 377
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 350,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 370
+        },
+        "call": {
+          "x": 259,
+          "y": 7,
+          "width": 111,
+          "height": 44,
+          "top": 7,
+          "bottom": 51,
+          "left": 259,
+          "right": 370
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 325,
+          "y": 7,
+          "width": 45,
+          "height": 44,
+          "top": 7,
+          "bottom": 51,
+          "left": 325,
+          "right": 370
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 20,
+        "y": 58,
+        "width": 350,
+        "height": 786,
+        "top": 58,
+        "bottom": 844,
+        "left": 20,
+        "right": 370
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 20,
+        "y": 520,
+        "width": 350,
+        "height": 292,
+        "top": 520,
+        "bottom": 812,
+        "left": 20,
+        "right": 370
+      },
+      "panel": {
+        "rect": {
+          "x": 20,
+          "y": 662,
+          "width": 350,
+          "height": 150,
+          "top": 662,
+          "bottom": 812,
+          "left": 20,
+          "right": 370
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "none",
+        "progress": "选择 01 / 02",
+        "line": "",
+        "hintDisplay": "none"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": {
+          "x": 20,
+          "y": 520,
+          "width": 350,
+          "height": 118,
+          "top": 520,
+          "bottom": 638,
+          "left": 20,
+          "right": 370
+        },
+        "count": 2,
+        "labels": [
+          "我有点遗憾，当年没有继续学音乐。",
+          "我很珍惜，现在拥有的生活。"
+        ],
+        "rects": [
+          {
+            "x": 20,
+            "y": 520,
+            "width": 350,
+            "height": 54,
+            "top": 520,
+            "bottom": 574,
+            "left": 20,
+            "right": 370
+          },
+          {
+            "x": 20,
+            "y": 584,
+            "width": 350,
+            "height": 54,
+            "top": 584,
+            "bottom": 638,
+            "left": 20,
+            "right": 370
+          }
+        ],
+        "indexDisplay": "none",
+        "background": "rgba(243, 241, 236, 0.97)",
+        "heading": "你想怎么回答？"
+      },
+      "activeElement": "H2",
+      "activeText": "你想怎么回答？",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "none",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-choice-390.png"
+    },
+    "home320": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "document": {
+        "width": 305,
+        "clientWidth": 305,
+        "height": 754
+      },
+      "view": "home",
+      "main": {
+        "classes": "app-main",
+        "padding": "22px 0px 30px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 265,
+          "height": 696,
+          "top": 58,
+          "bottom": 754,
+          "left": 20,
+          "right": 285
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 279,
+          "height": 728,
+          "top": 13,
+          "bottom": 741,
+          "left": 13,
+          "right": 292
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "block",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 6%, rgba(233, 228, 221, 0.56) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 265,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 285
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "none"
+      },
+      "footer": "none",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "BODY",
+      "activeText": "ELSEWHERE平行人生 / 001来自另一个世界的信号Elsewhere未接",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-home-320.png"
+    },
+    "dialogue320": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "document": {
+        "width": 320,
+        "clientWidth": 320,
+        "height": 568
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 280,
+          "height": 510,
+          "top": 58,
+          "bottom": 568,
+          "left": 20,
+          "right": 300
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/opening.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 294,
+          "height": 542,
+          "top": 13,
+          "bottom": 555,
+          "left": 13,
+          "right": 307
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 280,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 300
+        },
+        "call": {
+          "x": 193,
+          "y": 7,
+          "width": 107,
+          "height": 44,
+          "top": 7,
+          "bottom": 51,
+          "left": 193,
+          "right": 300
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 255,
+          "y": 7,
+          "width": 45,
+          "height": 44,
+          "top": 7,
+          "bottom": 51,
+          "left": 255,
+          "right": 300
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 20,
+        "y": 58,
+        "width": 280,
+        "height": 510,
+        "top": 58,
+        "bottom": 568,
+        "left": 20,
+        "right": 300
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 20,
+        "y": 359,
+        "width": 280,
+        "height": 177,
+        "top": 359,
+        "bottom": 536,
+        "left": 20,
+        "right": 300
+      },
+      "panel": {
+        "rect": {
+          "x": 20,
+          "y": 359,
+          "width": 280,
+          "height": 177,
+          "top": 359,
+          "bottom": 536,
+          "left": 20,
+          "right": 300
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "none",
+        "progress": "主线 01 / 07",
+        "line": "喂？先别挂——如果我说，我也是你呢？",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": {
+          "x": 214,
+          "y": 481,
+          "width": 65,
+          "height": 42,
+          "top": 481,
+          "bottom": 523,
+          "left": 214,
+          "right": 279
+        },
+        "iconBackground": "rgb(148, 78, 56)"
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "header-call-title",
+      "activeText": "第一通来电",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-dialogue-320.png"
+    },
+    "choice320": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "document": {
+        "width": 320,
+        "clientWidth": 320,
+        "height": 568
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 280,
+          "height": 510,
+          "top": 58,
+          "bottom": 568,
+          "left": 20,
+          "right": 300
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/first-choice.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 294,
+          "height": 542,
+          "top": 13,
+          "bottom": 555,
+          "left": 13,
+          "right": 307
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 280,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 300
+        },
+        "call": {
+          "x": 193,
+          "y": 7,
+          "width": 107,
+          "height": 44,
+          "top": 7,
+          "bottom": 51,
+          "left": 193,
+          "right": 300
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 255,
+          "y": 7,
+          "width": 45,
+          "height": 44,
+          "top": 7,
+          "bottom": 51,
+          "left": 255,
+          "right": 300
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 20,
+        "y": 58,
+        "width": 280,
+        "height": 510,
+        "top": 58,
+        "bottom": 568,
+        "left": 20,
+        "right": 300
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 20,
+        "y": 223,
+        "width": 280,
+        "height": 314,
+        "top": 223,
+        "bottom": 536,
+        "left": 20,
+        "right": 300
+      },
+      "panel": {
+        "rect": {
+          "x": 20,
+          "y": 386,
+          "width": 280,
+          "height": 150,
+          "top": 386,
+          "bottom": 536,
+          "left": 20,
+          "right": 300
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "none",
+        "progress": "选择 01 / 02",
+        "line": "",
+        "hintDisplay": "none"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": {
+          "x": 20,
+          "y": 223,
+          "width": 280,
+          "height": 140,
+          "top": 223,
+          "bottom": 362,
+          "left": 20,
+          "right": 300
+        },
+        "count": 2,
+        "labels": [
+          "我有点遗憾，当年没有继续学音乐。",
+          "我很珍惜，现在拥有的生活。"
+        ],
+        "rects": [
+          {
+            "x": 20,
+            "y": 223,
+            "width": 280,
+            "height": 76,
+            "top": 223,
+            "bottom": 298,
+            "left": 20,
+            "right": 300
+          },
+          {
+            "x": 20,
+            "y": 308,
+            "width": 280,
+            "height": 54,
+            "top": 308,
+            "bottom": 362,
+            "left": 20,
+            "right": 300
+          }
+        ],
+        "indexDisplay": "none",
+        "background": "rgba(243, 241, 236, 0.97)",
+        "heading": "你想怎么回答？"
+      },
+      "activeElement": "H2",
+      "activeText": "你想怎么回答？",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "none",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-choice-320.png"
+    }
+  },
+  "previewState": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "document": {
+      "width": 1440,
+      "clientWidth": 1440,
+      "height": 900
+    },
+    "view": "call",
+    "main": {
+      "classes": "app-main is-call",
+      "padding": "0px",
+      "rect": {
+        "x": 48,
+        "y": 64,
+        "width": 1344,
+        "height": 836,
+        "top": 64,
+        "bottom": 900,
+        "left": 48,
+        "right": 1392
+      }
+    },
+    "scene": {
+      "src": "/backgrounds/first-choice.svg",
+      "opacity": "1",
+      "rect": {
+        "x": 13,
+        "y": 13,
+        "width": 1414,
+        "height": 874,
+        "top": 13,
+        "bottom": 887,
+        "left": 13,
+        "right": 1427
+      },
+      "previewSrc": "/backgrounds/regret.svg",
+      "previewOpacity": "1",
+      "previewing": true,
+      "border": "rgba(114, 90, 124, 0.55)"
+    },
+    "veil": {
+      "display": "none",
+      "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+    },
+    "header": {
+      "rect": {
+        "x": 48,
+        "y": 0,
+        "width": 1344,
+        "height": 64,
+        "top": 0,
+        "bottom": 64,
+        "left": 48,
+        "right": 1392
+      },
+      "call": {
+        "x": 1260,
+        "y": 10,
+        "width": 132,
+        "height": 44,
+        "top": 10,
+        "bottom": 54,
+        "left": 1260,
+        "right": 1392
+      },
+      "callTitle": "第一通来电",
+      "endCall": "结束通话",
+      "endCallRect": {
+        "x": 1338,
+        "y": 10,
+        "width": 54,
+        "height": 44,
+        "top": 10,
+        "bottom": 54,
+        "left": 1338,
+        "right": 1392
+      },
+      "metaDisplay": "absent"
+    },
+    "footer": "absent",
+    "session": {
+      "x": 160,
+      "y": 64,
+      "width": 1120,
+      "height": 836,
+      "top": 64,
+      "bottom": 900,
+      "left": 160,
+      "right": 1280
+    },
+    "sessionVeil": "none",
+    "dock": {
+      "x": 160,
+      "y": 584,
+      "width": 1120,
+      "height": 286,
+      "top": 584,
+      "bottom": 870,
+      "left": 160,
+      "right": 1280
+    },
+    "panel": {
+      "rect": {
+        "x": 160,
+        "y": 720,
+        "width": 1120,
+        "height": 150,
+        "top": 720,
+        "bottom": 870,
+        "left": 160,
+        "right": 1280
+      },
+      "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+      "backdropFilter": "blur(14px)",
+      "speaker": "另一个你",
+      "origin": "来自平行世界的自己",
+      "originDisplay": "block",
+      "progress": "选择 01 / 02",
+      "line": "",
+      "hintDisplay": "block"
+    },
+    "continue": {
+      "rect": null,
+      "iconBackground": ""
+    },
+    "choices": {
+      "rect": {
+        "x": 340,
+        "y": 584,
+        "width": 760,
+        "height": 122,
+        "top": 584,
+        "bottom": 706,
+        "left": 340,
+        "right": 1100
+      },
+      "count": 2,
+      "labels": [
+        "我有点遗憾，当年没有继续学音乐。",
+        "我很珍惜，现在拥有的生活。"
+      ],
+      "rects": [
+        {
+          "x": 340,
+          "y": 584,
+          "width": 760,
+          "height": 56,
+          "top": 584,
+          "bottom": 640,
+          "left": 340,
+          "right": 1100
+        },
+        {
+          "x": 340,
+          "y": 650,
+          "width": 760,
+          "height": 56,
+          "top": 650,
+          "bottom": 706,
+          "left": 340,
+          "right": 1100
+        }
+      ],
+      "indexDisplay": "block",
+      "background": "rgba(243, 241, 236, 0.97)",
+      "heading": "你想怎么回答？"
+    },
+    "activeElement": "BODY",
+    "activeText": "ELSEWHERE第一通来电结束通话另一个你来自平行世界的自己第一次选择你想怎么",
+    "endActions": [],
+    "callLiveState": "connected",
+    "titleShadow": "none",
+    "dialogOpen": false,
+    "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-choice-preview-1440.png"
+  },
+  "keyboardState": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "document": {
+      "width": 1440,
+      "clientWidth": 1440,
+      "height": 900
+    },
+    "view": "call",
+    "main": {
+      "classes": "app-main is-call",
+      "padding": "0px",
+      "rect": {
+        "x": 48,
+        "y": 64,
+        "width": 1344,
+        "height": 836,
+        "top": 64,
+        "bottom": 900,
+        "left": 48,
+        "right": 1392
+      }
+    },
+    "scene": {
+      "src": "/backgrounds/first-choice.svg",
+      "opacity": "1",
+      "rect": {
+        "x": 13,
+        "y": 13,
+        "width": 1414,
+        "height": 874,
+        "top": 13,
+        "bottom": 887,
+        "left": 13,
+        "right": 1427
+      },
+      "previewSrc": "/backgrounds/regret.svg",
+      "previewOpacity": "1",
+      "previewing": true,
+      "border": "rgba(114, 90, 124, 0.55)"
+    },
+    "veil": {
+      "display": "none",
+      "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+    },
+    "header": {
+      "rect": {
+        "x": 48,
+        "y": 0,
+        "width": 1344,
+        "height": 64,
+        "top": 0,
+        "bottom": 64,
+        "left": 48,
+        "right": 1392
+      },
+      "call": {
+        "x": 1260,
+        "y": 10,
+        "width": 132,
+        "height": 44,
+        "top": 10,
+        "bottom": 54,
+        "left": 1260,
+        "right": 1392
+      },
+      "callTitle": "第一通来电",
+      "endCall": "结束通话",
+      "endCallRect": {
+        "x": 1338,
+        "y": 10,
+        "width": 54,
+        "height": 44,
+        "top": 10,
+        "bottom": 54,
+        "left": 1338,
+        "right": 1392
+      },
+      "metaDisplay": "absent"
+    },
+    "footer": "absent",
+    "session": {
+      "x": 160,
+      "y": 64,
+      "width": 1120,
+      "height": 836,
+      "top": 64,
+      "bottom": 900,
+      "left": 160,
+      "right": 1280
+    },
+    "sessionVeil": "none",
+    "dock": {
+      "x": 160,
+      "y": 584,
+      "width": 1120,
+      "height": 286,
+      "top": 584,
+      "bottom": 870,
+      "left": 160,
+      "right": 1280
+    },
+    "panel": {
+      "rect": {
+        "x": 160,
+        "y": 720,
+        "width": 1120,
+        "height": 150,
+        "top": 720,
+        "bottom": 870,
+        "left": 160,
+        "right": 1280
+      },
+      "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+      "backdropFilter": "blur(14px)",
+      "speaker": "另一个你",
+      "origin": "来自平行世界的自己",
+      "originDisplay": "block",
+      "progress": "选择 01 / 02",
+      "line": "",
+      "hintDisplay": "block"
+    },
+    "continue": {
+      "rect": null,
+      "iconBackground": ""
+    },
+    "choices": {
+      "rect": {
+        "x": 340,
+        "y": 584,
+        "width": 760,
+        "height": 122,
+        "top": 584,
+        "bottom": 706,
+        "left": 340,
+        "right": 1100
+      },
+      "count": 2,
+      "labels": [
+        "我有点遗憾，当年没有继续学音乐。",
+        "我很珍惜，现在拥有的生活。"
+      ],
+      "rects": [
+        {
+          "x": 340,
+          "y": 584,
+          "width": 760,
+          "height": 56,
+          "top": 584,
+          "bottom": 640,
+          "left": 340,
+          "right": 1100
+        },
+        {
+          "x": 340,
+          "y": 650,
+          "width": 760,
+          "height": 56,
+          "top": 650,
+          "bottom": 706,
+          "left": 340,
+          "right": 1100
+        }
+      ],
+      "indexDisplay": "block",
+      "background": "rgba(243, 241, 236, 0.97)",
+      "heading": "你想怎么回答？"
+    },
+    "activeElement": "choice-option",
+    "activeText": "01我有点遗憾，当年没有继续学音乐。",
+    "endActions": [],
+    "callLiveState": "connected",
+    "titleShadow": "none",
+    "dialogOpen": false
+  },
+  "ending": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "document": {
+      "width": 1440,
+      "clientWidth": 1440,
+      "height": 900
+    },
+    "view": "call",
+    "main": {
+      "classes": "app-main",
+      "padding": "20px 0px",
+      "rect": {
+        "x": 48,
+        "y": 64,
+        "width": 1344,
+        "height": 792,
+        "top": 64,
+        "bottom": 856,
+        "left": 48,
+        "right": 1392
+      }
+    },
+    "scene": {
+      "src": "/backgrounds/ending-regret-space.svg",
+      "opacity": "1",
+      "rect": {
+        "x": 13,
+        "y": 13,
+        "width": 1414,
+        "height": 874,
+        "top": 13,
+        "bottom": 887,
+        "left": 13,
+        "right": 1427
+      },
+      "previewSrc": "/backgrounds/make-space.svg",
+      "previewOpacity": "0",
+      "previewing": false,
+      "border": "rgba(197, 189, 181, 0.45)"
+    },
+    "veil": {
+      "display": "block",
+      "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+    },
+    "header": {
+      "rect": {
+        "x": 48,
+        "y": 0,
+        "width": 1344,
+        "height": 64,
+        "top": 0,
+        "bottom": 64,
+        "left": 48,
+        "right": 1392
+      },
+      "call": null,
+      "callTitle": "",
+      "endCall": "",
+      "endCallRect": null,
+      "metaDisplay": "block"
+    },
+    "footer": "flex",
+    "session": null,
+    "sessionVeil": "absent",
+    "dock": null,
+    "panel": {
+      "rect": null,
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "speaker": "",
+      "origin": "",
+      "originDisplay": "absent",
+      "progress": "",
+      "line": "",
+      "hintDisplay": "absent"
+    },
+    "continue": {
+      "rect": null,
+      "iconBackground": ""
+    },
+    "choices": {
+      "rect": null,
+      "count": 0,
+      "labels": [],
+      "rects": [],
+      "indexDisplay": "absent",
+      "background": "",
+      "heading": ""
+    },
+    "activeElement": "H1",
+    "activeText": "把旋律找回来",
+    "endActions": [
+      {
+        "text": "重听这通来电",
+        "background": "rgb(148, 78, 56)",
+        "color": "rgb(255, 255, 255)"
+      },
+      {
+        "text": "返回首页",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(103, 96, 91)"
+      }
+    ],
+    "callLiveState": "ended",
+    "titleShadow": "",
+    "dialogOpen": false,
+    "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-ending-1440.png"
+  },
+  "reducedMotion": {
+    "outgoingCount": 1,
+    "outgoingVisibility": "hidden",
+    "activeOpacity": "1",
+    "activeVisibility": "visible",
+    "panelBackdrop": "blur(14px)"
+  },
+  "failures": [],
+  "consoleEvents": [],
+  "confirm": {
+    "opened": true,
+    "closed": true
+  },
+  "result": "all galgame layout checks passed"
+}

@@ -1,5 +1,7 @@
 # Codex × Qoder 文件协作协议
 
+> 2026-11-19 最新状态：TASK-003 复审 PASS，等待团队批准下一任务；PR #3 已合并较早版本，后续修改仍在 task-003。下文旧的 FIX 指令为历史记录。
+
 > 最新状态：TASK-003 初审 FIX；Qoder 请阅读 tasks/reviews/TASK-003.md 并按 R1 返修，详见当前任务。
 
 > 最新状态：TASK-002 已 PASS 并归档；团队要求准备下一步，TASK-003 已下发至 task-003。Qoder 以 [当前任务](../tasks/current.md)及剧情用稿为准；下文先前任务交接保留为历史。

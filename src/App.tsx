@@ -174,10 +174,6 @@ function App() {
               <CallCard className="home-call" />
 
               <div className="home-actions">
-                <button ref={startButton} type="button" className="primary-action group" onClick={() => setView('intro')}>
-                  <span>开始体验</span>
-                  <span className="action-icon"><Arrow /></span>
-                </button>
                 <p className="quiet-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>
               </div>
             </section>
@@ -193,14 +189,6 @@ function App() {
                 <p>想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。</p>
                 <p>这是一段虚构的平行人生，不代表对未来的预测。</p>
               </div>
-              <div className="action-row">
-                <button type="button" className="primary-action group" onClick={showIncoming}>
-                  <span>进入来电</span><span className="action-icon"><Arrow /></span>
-                </button>
-                <button type="button" className="secondary-action group home-return-action" onClick={returnHome}>
-                  <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
-                </button>
-              </div>
             </section>
           )}
 
@@ -213,14 +201,6 @@ function App() {
               </div>
               <CallCard className="incoming-call" />
               <div className="incoming-actions">
-                <div className="action-row">
-                  <button type="button" className="primary-action group" onClick={answerCall}>
-                    <span>接听</span><span className="action-icon"><Arrow /></span>
-                  </button>
-                  <button type="button" className="secondary-action group home-return-action" onClick={returnHome}>
-                    <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
-                  </button>
-                </div>
                 <p className="quiet-note">剧情模拟，不会请求麦克风或通知权限。</p>
               </div>
             </section>
@@ -313,6 +293,25 @@ function App() {
                 </button>
               </div>
             </section>
+          )}
+
+          {view !== 'call' && (
+            <div className="journey-actions">
+              <button
+                ref={view === 'home' ? startButton : undefined}
+                type="button"
+                className="primary-action group"
+                onClick={view === 'home' ? () => setView('intro') : view === 'intro' ? showIncoming : answerCall}
+              >
+                <span>{view === 'home' ? '开始体验' : view === 'intro' ? '进入来电' : '接听'}</span>
+                <span className="action-icon"><Arrow /></span>
+              </button>
+              {view !== 'home' && (
+                <button type="button" className="secondary-action group home-return-action journey-return-action" onClick={returnHome}>
+                  <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
+                </button>
+              )}
+            </div>
           )}
         </main>
 

@@ -397,3 +397,22 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 独立 Edge 在 1366×768 下逐节点断言：16 个场景层全部加载完成、只有 1 个 `is-active` 层、当前层 `animation-name: none`，并再次通过四组合、鼠标/键盘预览、重置和桌面一屏回归。最终 229 次请求仅包含本地应用与同一组 16 张场景，外部请求、加载失败、页面异常及 console error/warning 均为 `[]`，见 [运行摘要](assets/TASK-003/steady-browser-run-1366.txt)和[完整 JSON](assets/TASK-003/steady-browser-checks-1366.json)。
 
 已检查 [选项预览](assets/TASK-003/steady-01-regret-first-preview.png)与[对白](assets/TASK-003/steady-03-cherish-make-space-1366-dialogue.png)，暖米底色与白色柔光保持恒定。此前 `1704507` 的 Codex PASS 不包含本轮恒亮修正；本轮仍不据此自称 PASS。实体设备、真实读屏和原生 200% 缩放仍未验证，未合并 main、未部署。
+
+## 22. 连续主行动位置稳定
+
+日期：2026-11-19（Asia/Shanghai）。用户要求“开始体验、进入来电、接听”尽量处于相同位置，减少鼠标移动，并将连续操作的位置稳定性纳入以后设计。本轮将三个主按钮统一到共享行动区。
+
+- `src/App.tsx` 移除三处分散的主按钮，在 `main` 内增加统一 `journey-actions`：按当前视图显示开始体验、进入来电或接听；首页焦点 ref 与三种原有点击行为保持不变。返回首页继续作为次级链接。
+- `src/index.css` 在桌面 ≥900px 将共享行动区固定于 `app-main` 的相同底部锚点，并为内容预留空间；手机 <640px 使用自然文档流，主按钮全宽、返回首页位于下方，不遮挡内容。
+- 桌面主按钮始终居中，返回首页位于行动区右侧；没有修改后续对白继续按钮、两次选择、结局操作或恒亮场景切换。
+
+最终 `npm run typecheck`、15/15 剧情测试和 `npm run build` 均退出 0；CSS 29.18 kB / gzip 6.86 kB，JS 238.71 kB / gzip 74.79 kB。日志见 [position-typecheck.txt](assets/TASK-003/position-typecheck.txt)、[position-test-story.txt](assets/TASK-003/position-test-story.txt)、[position-build.txt](assets/TASK-003/position-build.txt)。
+
+[position-browser-checks.mjs](assets/TASK-003/position-browser-checks.mjs) 在每次进入下一步前直接读取主按钮 `getBoundingClientRect()` 的中心坐标，并断言三步 X/Y 完全一致：
+
+| 视口 | 开始体验 | 进入来电 | 接听 | 结果 |
+| --- | --- | --- | --- | --- |
+| 1366×768 | `(683, 690)` | `(683, 690)` | `(683, 690)` | [通过](assets/TASK-003/position-browser-run-1366.txt) |
+| 1440×900 | `(720, 822)` | `(720, 822)` | `(720, 822)` | [通过](assets/TASK-003/position-browser-run-1440.txt) |
+
+完整 JSON 分别见 [1366 证据](assets/TASK-003/position-browser-checks-1366.json)和 [1440 证据](assets/TASK-003/position-browser-checks-1440.json)。已目视对照 [开始体验](assets/TASK-003/position-00-home-1366.png)、[进入来电](assets/TASK-003/position-intro-action-1366.png)和[接听](assets/TASK-003/position-incoming-action-1366.png)，主按钮位置一致，内容无遮挡，桌面无需纵向滚动。后续界面设计也应优先保持连续行动的位置稳定，避免无意义的鼠标往返。未合并 main、未部署。

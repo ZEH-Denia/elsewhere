@@ -148,6 +148,7 @@ button:focus-visible,
 }
 
 .app-main {
+  position: relative;
   display: flex;
   flex: 1;
   align-items: center;
@@ -1345,6 +1346,61 @@ button:focus-visible,
     position: absolute;
     top: 3px;
     right: 0;
+  }
+}
+
+.journey-actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+@media (max-width: 639px) {
+  .journey-actions .primary-action,
+  .journey-return-action {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .journey-return-action {
+    margin-top: -4px;
+  }
+}
+
+@media (min-width: 900px) {
+  .home-layout,
+  .intro-layout,
+  .incoming-layout {
+    padding-bottom: 88px;
+  }
+
+  .journey-actions {
+    position: absolute;
+    right: 0;
+    bottom: 28px;
+    left: 0;
+    margin: 0;
+  }
+
+  .journey-return-action {
+    position: absolute;
+    top: 3px;
+    right: 0;
+  }
+}
+
+@media (min-width: 900px) and (max-height: 900px) {
+  .home-layout,
+  .intro-layout,
+  .incoming-layout {
+    padding-bottom: 72px;
+  }
+
+  .journey-actions {
+    bottom: 8px;
   }
 }
 

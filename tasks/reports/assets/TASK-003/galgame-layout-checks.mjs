@@ -411,11 +411,21 @@ try {
   assert.notEqual(preview.scene.border, choice1440.scene.border)
 
   await clickText('我有点遗憾，当年没有继续学音乐。')
+  await settle(320)
+  const feedback1440 = await snapshot()
+  report.viewports.feedback1440 = { ...feedback1440, screenshot: await screenshot('feedback-1440') }
+  assert.equal(feedback1440.scene.src, '/backgrounds/regret.svg', 'first feedback uses the regret scene')
+  assert.equal(feedback1440.scene.opacity, '1', 'first feedback keeps its scene visible')
   await clickText('继续')
   await clickText('继续')
   await clickText('继续')
   await waitFor("Boolean(document.querySelector('#choice-title'))")
   await clickText('给喜欢的事留一点时间。')
+  await settle(320)
+  const actionFeedback1440 = await snapshot()
+  report.viewports.actionFeedback1440 = { ...actionFeedback1440, screenshot: await screenshot('feedback-action-1440') }
+  assert.equal(actionFeedback1440.scene.src, '/backgrounds/make-space.svg', 'action feedback uses the chosen scene')
+  assert.equal(actionFeedback1440.scene.opacity, '1', 'action feedback keeps its scene visible')
   await clickText('继续')
   await clickText('继续')
   await waitFor("Boolean(document.querySelector('#end-title'))")

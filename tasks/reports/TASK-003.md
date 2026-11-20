@@ -543,3 +543,15 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 已目视检查三屏最终截图：[1440 首页](assets/TASK-003/galgame-home-1440.png)、[1440 前言](assets/TASK-003/galgame-intro-1440.png)、[1440 来电](assets/TASK-003/galgame-incoming-1440.png)、[1366 首页](assets/TASK-003/galgame-home-1366.png)、[1366 前言](assets/TASK-003/galgame-intro-1366.png)、[1366 来电](assets/TASK-003/galgame-incoming-1366.png)、[390 首页](assets/TASK-003/galgame-home-390.png)、[390 前言](assets/TASK-003/galgame-intro-390.png)、[390 来电](assets/TASK-003/galgame-incoming-390.png)、[320 首页](assets/TASK-003/galgame-home-320.png)、[320 前言](assets/TASK-003/galgame-intro-320.png)与[320 来电](assets/TASK-003/galgame-incoming-320.png)。书桌、显示器、吉他、键盘和两间房均完整可见，面板只覆盖底部暗带，文字与按钮无裁切；对白、选择与结局截图同文件重跑后保持一致。
 
 本轮未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未执行原生浏览器 200% 缩放，未在 Safari/Firefox 实测；减少动态效果仍为 CDP 媒体模拟；仅覆盖 320×568、390×844、1366×768、1440×900。结局页未按“123”范围调整，若团队希望结局也统一到底部面板，需另行确认。该实现尚未复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务，等待 Codex 对照真实代码与截图复核。
+
+## 28. 修复回应反馈阶段的场景图消失
+
+日期：2026-11-20（Asia/Shanghai）。团队反馈“回应反馈阶段怎么没有图片了”。复现确认：进入第一次选择的反馈后，场景层 `src` 为 `/backgrounds/regret.svg`、`visibility: visible`，但 `opacity: 0`，所以画面只剩底部面板与深色底。
+
+- 根因在 `SceneBackground` 的预览状态：选择时鼠标聚焦触发 `regret` 预览，节点切换后 App 清空预览，但组件内的 `previewScene` 未清除。反馈场景同样是 `regret`，该 `<img>` 同时带有 `scene-current is-active` 与 `scene-preview`，后者的 `opacity: 0` 覆盖了当前场景，导致图片不可见。相同问题会影响 `cherish`、`make-space`、`reach-out` 等“预览场景与反馈场景同名”的路径。
+- 修复 `src/components/SceneBackground.tsx`：预览关闭后延迟 220ms 清除 `previewScene`，保留原有淡出；同时当前场景不再附加 `scene-preview` / `is-preview-visible`，保证 `is-active` 始终可见。未修改 CSS、剧情或交互流程。
+- 复现脚本先点击“我有点遗憾，当年没有继续学音乐。”，进入反馈后实测 `/backgrounds/regret.svg` 的 `opacity` 从 `0` 恢复为 `1`；截图为 [反馈 1440](assets/TASK-003/galgame-feedback-1440.png)。第二次选择后的 [行动反馈 1440](assets/TASK-003/galgame-feedback-action-1440.png) 同样显示 `/backgrounds/make-space.svg`，`opacity: 1`。
+- [galgame-layout-checks.mjs](assets/TASK-003/galgame-layout-checks.mjs) 增加两段回归断言：第一次反馈必须使用 `regret.svg` 且 `opacity: 1`；第二次行动反馈必须使用 `make-space.svg` 且 `opacity: 1`。完整重跑结果为 `all galgame layout checks passed`，`failures` 与 `consoleEvents` 均为 `[]`，见 [galgame-layout-checks.json](assets/TASK-003/galgame-layout-checks.json)。
+- 最终 `npm run typecheck`、15/15 剧情测试与 `npm run build` 均退出 0；CSS 34.98 kB / gzip 8.07 kB，JS 241.33 kB / gzip 75.45 kB。悬停/键盘预览、场景换场、对白与选择布局仍通过同一次检查。
+
+本轮未使用实体设备或真实读屏，未在 Safari/Firefox 实测；修复尚未复审，不据此自称 PASS。未合并 main、未部署、未进入下一任务。

@@ -39,7 +39,8 @@ export function SceneBackground({ scene, preview = null }: { scene: SceneName; p
   useEffect(() => {
     if (!activePreview) {
       setPreviewVisible(false)
-      return
+      const timer = window.setTimeout(() => setPreviewScene(null), 220)
+      return () => window.clearTimeout(timer)
     }
 
     setPreviewScene(activePreview)
@@ -53,8 +54,8 @@ export function SceneBackground({ scene, preview = null }: { scene: SceneName; p
         const classes = ['scene-background-image']
         if (name === scene) classes.push('scene-current', 'is-active')
         if (name === outgoing) classes.push('scene-previous', 'is-outgoing')
-        if (name === previewScene) classes.push('scene-preview')
-        if (name === previewScene && activePreview && previewVisible) classes.push('is-preview-visible')
+        if (name === previewScene && name !== scene) classes.push('scene-preview')
+        if (name === previewScene && name !== scene && activePreview && previewVisible) classes.push('is-preview-visible')
 
         return (
           <img

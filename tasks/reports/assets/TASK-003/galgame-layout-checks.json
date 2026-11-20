@@ -814,6 +814,332 @@
       "dialogOpen": false,
       "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-choice-1440.png"
     },
+    "feedback1440": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 836,
+          "top": 64,
+          "bottom": 900,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
+      },
+      "scene": {
+        "src": "/backgrounds/regret.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1344,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1392
+        },
+        "call": {
+          "x": 1260,
+          "y": 10,
+          "width": 132,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1260,
+          "right": 1392
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 1338,
+          "y": 10,
+          "width": 54,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1338,
+          "right": 1392
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 160,
+        "y": 64,
+        "width": 1120,
+        "height": 836,
+        "top": 64,
+        "bottom": 900,
+        "left": 160,
+        "right": 1280
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 160,
+        "y": 673,
+        "width": 1120,
+        "height": 197,
+        "top": 673,
+        "bottom": 870,
+        "left": 160,
+        "right": 1280
+      },
+      "panel": {
+        "rect": {
+          "x": 160,
+          "y": 673,
+          "width": 1120,
+          "height": 197,
+          "top": 673,
+          "bottom": 870,
+          "left": 160,
+          "right": 1280
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "block",
+        "progress": "回应反馈 01 / 02",
+        "line": "我有时也会想，如果当年选了工程，是不是就能少一些不安。也许我们都看到了对方那边的光。",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": {
+          "x": 1166,
+          "y": 813,
+          "width": 73,
+          "height": 44,
+          "top": 813,
+          "bottom": 857,
+          "left": 1166,
+          "right": 1239
+        },
+        "iconBackground": "rgb(148, 78, 56)"
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "BODY",
+      "activeText": "ELSEWHERE第一通来电结束通话另一个你：我有时也会想，如果当年选了工程，是",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-feedback-1440.png"
+    },
+    "actionFeedback1440": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "call",
+      "main": {
+        "classes": "app-main is-call",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 836,
+          "top": 64,
+          "bottom": 900,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
+      },
+      "scene": {
+        "src": "/backgrounds/make-space.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1344,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1392
+        },
+        "call": {
+          "x": 1260,
+          "y": 10,
+          "width": 132,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1260,
+          "right": 1392
+        },
+        "callTitle": "第一通来电",
+        "endCall": "结束通话",
+        "endCallRect": {
+          "x": 1338,
+          "y": 10,
+          "width": 54,
+          "height": 44,
+          "top": 10,
+          "bottom": 54,
+          "left": 1338,
+          "right": 1392
+        },
+        "metaDisplay": "absent"
+      },
+      "footer": "absent",
+      "session": {
+        "x": 160,
+        "y": 64,
+        "width": 1120,
+        "height": 836,
+        "top": 64,
+        "bottom": 900,
+        "left": 160,
+        "right": 1280
+      },
+      "sessionVeil": "none",
+      "dock": {
+        "x": 160,
+        "y": 715,
+        "width": 1120,
+        "height": 155,
+        "top": 715,
+        "bottom": 870,
+        "left": 160,
+        "right": 1280
+      },
+      "panel": {
+        "rect": {
+          "x": 160,
+          "y": 715,
+          "width": 1120,
+          "height": 155,
+          "top": 715,
+          "bottom": 870,
+          "left": 160,
+          "right": 1280
+        },
+        "backgroundImage": "linear-gradient(rgba(243, 241, 236, 0.9), rgba(233, 228, 221, 0.86))",
+        "backdropFilter": "blur(14px)",
+        "speaker": "另一个你",
+        "origin": "来自平行世界的自己",
+        "originDisplay": "block",
+        "progress": "行动反馈",
+        "line": "不用急着证明什么。先给自己留一小段时间，也许就够了。",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": {
+          "x": 1166,
+          "y": 813,
+          "width": 73,
+          "height": 44,
+          "top": 813,
+          "bottom": 857,
+          "left": 1166,
+          "right": 1239
+        },
+        "iconBackground": "rgb(148, 78, 56)"
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "BODY",
+      "activeText": "ELSEWHERE第一通来电结束通话另一个你：不用急着证明什么。先给自己留一小段",
+      "endActions": [],
+      "callLiveState": "connected",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-feedback-action-1440.png"
+    },
     "home1366": {
       "viewport": {
         "width": 1366,
@@ -3671,8 +3997,8 @@
         "left": 13,
         "right": 1427
       },
-      "previewSrc": "/backgrounds/make-space.svg",
-      "previewOpacity": "0",
+      "previewSrc": "",
+      "previewOpacity": "",
       "previewing": false,
       "border": "rgba(197, 189, 181, 0.45)"
     },

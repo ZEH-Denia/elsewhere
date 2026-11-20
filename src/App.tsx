@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { CallCard, CallState } from './components/CallCard'
 import { SceneBackground, type SceneName } from './components/SceneBackground'
 import { SceneWhispers } from './components/SceneWhispers'
@@ -148,6 +148,15 @@ function App() {
     setView('call')
   }
 
+  function advanceOnSurfaceClick(event: MouseEvent<HTMLDivElement>) {
+    if (view !== 'call' || confirmOpen) return
+    if (currentNode.kind !== 'dialogue' && currentNode.kind !== 'feedback' && currentNode.kind !== 'closing') return
+    const target = event.target
+    if (target instanceof Element && target.closest('button, a, input, select, textarea, dialog, [role="dialog"]')) return
+    if (window.getSelection()?.toString()) return
+    setProgress(advanceOpening)
+  }
+
   const liveText = currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing'
     ? `${currentNode.speaker}：${currentNode.text}`
     : ''
@@ -177,7 +186,7 @@ function App() {
   const selectedNextStep = secondChoice.options.find(({ id }) => id === safeProgress.nextStepId)
 
   return (
-    <div className="app-background min-h-svh text-mist" data-view={view}>
+    <div className="app-background min-h-svh text-mist" data-view={view} onClick={advanceOnSurfaceClick}>
       <SceneBackground scene={sceneName} preview={previewScene} />
       {previewScene === null && <SceneWhispers scene={sceneName} />}
       <div className="ambient ambient-violet" aria-hidden="true" />

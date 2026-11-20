@@ -583,3 +583,35 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 已目视检查新增截图：[接起电话 1440](assets/TASK-003/galgame-scene-connection-1440.png)、[质疑 1440](assets/TASK-003/galgame-scene-doubt-1440.png)、[排练 1440](assets/TASK-003/galgame-scene-rehearsal-1440.png)、[实习 1440](assets/TASK-003/galgame-scene-desk-1440.png)、[追问 1440](assets/TASK-003/galgame-scene-question-1440.png)、[不安 1440](assets/TASK-003/galgame-scene-regret-quiet-1440.png)、[杂音渐弱 1440](assets/TASK-003/galgame-scene-closing-1440.png)、[390 近景质疑](assets/TASK-003/galgame-scene-doubt-390.png)、[390 排练](assets/TASK-003/galgame-scene-rehearsal-390.png)、[390 追问](assets/TASK-003/galgame-scene-question-390.png)、[390 珍惜反馈](assets/TASK-003/galgame-scene-cherish-morning-390.png)。桌面双室构图与手机中央裁切下主体均可见，底部面板未遮挡关键母题。原有 [galgame-layout-checks.mjs](assets/TASK-003/galgame-layout-checks.mjs) 同一次重跑仍为 `all galgame layout checks passed`，三屏、对白、选择、预览、反馈与结局布局无回退。
 
 本轮未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未在 Safari/Firefox 实测；动效在无头 Edge 中按实际 `Animation.playState` 验证，减少动态效果仍为 CDP 媒体模拟；新增画面尚未复审，不据此自称 PASS。未合并 main、未部署、未进入下一任务。
+
+## 30. 修复切换页面时的画面闪烁
+
+日期：2026-11-20（Asia/Shanghai）。团队反馈“切换页面时画面有闪烁”。复现后确认有两个来源：
+
+1. 换场时新场景 `<img>` 立即挂载并开始显示，旧场景在其上做 220ms 淡出；新图尚未完成 SVG 解码时会短暂空白，旧图淡出过程把 `.scene-background` 的浅米色底（`#e4dace`）露出来，形成一次亮闪。
+2. 选择页悬停两个选项时，预览图被直接替换挂载；新预览未解码时整层为空，底层画面会瞬间透出。
+
+修复只改渲染层，不动剧情、文案与交互：
+
+- `src/components/SceneBackground.tsx` 改为“旧图保持不动、新图解码后覆盖淡入”的分层结构。新场景先以 `opacity: 0` 挂载并调用 `Image.decode()`；解码完成后才加上 `is-visible` 淡入，旧层在新层完全可见前始终保持 `opacity: 1`，确认 300ms 后移除。快速连续推进时保留最多几层过渡，最终只保留最新一层。
+- 预览使用同一套分层逻辑：悬停选项 A 切到 B 时，B 解码完成后才覆盖淡入，A 不被瞬间丢弃；离开选项时先 240ms 淡出再卸载。
+- 全局图片缓存在模块级 `Map`，启动时预载 24 张，解码结果供换场与预览共用；`.scene-current` 只标在最新一层，保留旧检查脚本的约定。
+- `.scene-background` 的兜底底色由浅米色 `#e4dace` 改为与插画夜空一致的 `#05090f`，即使出现极端帧也不会亮闪。
+- 舞台衬底会随视图切换从 0.56 渐变到 0.86（宽度 760→900px），此前是瞬间跳变。本轮用 `@property` 注册 `--veil-alpha` 与 `--veil-width`，并给 `.app-background` 加 320ms 过渡，使首页→前言→来电→通话的明暗过渡连续；减少动态效果时由全局规则关闭。
+
+新增 [scene-transition-checks.mjs](assets/TASK-003/scene-transition-checks.mjs)，在独立无头 Edge 157（`CDP_PORT=9224`）访问生产预览 `http://127.0.0.1:4173/`，用真实鼠标事件执行换场，并在每次换场期间逐帧记录所有场景层的 `opacity` 与图片 `complete/naturalWidth`，计算叠加覆盖率（1 表示画面完全被图片覆盖，0 表示露出底）。结果见 [scene-transition-checks.json](assets/TASK-003/scene-transition-checks.json)：
+
+| 检查 | 实测 |
+| --- | --- |
+| 首页→前言、前言→来电、来电→通话 | 最短覆盖率 1.000，0 个空白帧 |
+| 首次“继续”、70ms 内连续两次“继续” | 最短覆盖率 1.000，0 个空白帧 |
+| 第一次选择悬停 A→B→移开 | 最短覆盖率 1.000，0 个空白帧 |
+| 390 手机：首页→前言→来电→通话 | 最短覆盖率 1.000，0 个空白帧 |
+| 未解码图层 | 所有采样帧中均没有“透明度 > 0.01 但图片未就绪”的图层 |
+| 资源与控制台 | 无失败请求、无异常、无警告 |
+
+同一次验证中，[scene-motion-checks.mjs](assets/TASK-003/scene-motion-checks.mjs) 重跑仍为 `all scene and motion checks passed`（24 张画面、逐句映射、默认动效 `running`、减少动态效果全部停止）；[galgame-layout-checks.mjs](assets/TASK-003/galgame-layout-checks.mjs) 重跑仍为 `all galgame layout checks passed`。`npm run typecheck`、15/15 剧情测试与 `npm run build` 均退出 0；CSS 35.31 kB / gzip 8.12 kB，JS 242.61 kB / gzip 75.82 kB。日志见 [galgame-typecheck.txt](assets/TASK-003/galgame-typecheck.txt)、[galgame-test-story.txt](assets/TASK-003/galgame-test-story.txt)、[galgame-build.txt](assets/TASK-003/galgame-build.txt)。
+
+换场过程中的实际截图：[首页→前言](assets/TASK-003/transition-home-to-intro-mid.png)、[前言→来电](assets/TASK-003/transition-intro-to-incoming-mid.png)、[来电→通话](assets/TASK-003/transition-incoming-to-call-mid.png)、[通话首次继续](assets/TASK-003/transition-call-first-advance-mid.png)、[390 来电→通话](assets/TASK-003/transition-mobile-incoming-to-call-mid.png)、[390 通话稳定后](assets/TASK-003/transition-mobile-call-settled.png)。截图取在点击后约 70ms，仍为完整画面，未见米色空白。
+
+本轮未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未在 Safari/Firefox 实测（`@property` 在旧浏览器会退化为原来的瞬时切换）；叠层覆盖率与解码就绪来自页面内 `requestAnimationFrame` 采样，不是录屏分析。该修复尚未复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。

@@ -88,7 +88,7 @@
           "x": 10,
           "y": 11,
           "width": 1420,
-          "height": 877,
+          "height": 878,
           "top": 11,
           "bottom": 889,
           "left": 10,
@@ -246,7 +246,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 8%, rgba(233, 228, 221, 0.66) 92%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.635) 8%, rgba(233, 228, 221, 0.635) 92%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -409,7 +409,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 11%, rgba(233, 228, 221, 0.78) 89%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.682) 11%, rgba(233, 228, 221, 0.682) 89%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -518,7 +518,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.733) 6.5%, rgba(233, 228, 221, 0.733) 93.5%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -1384,7 +1384,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 8%, rgba(233, 228, 221, 0.66) 92%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.643) 8%, rgba(233, 228, 221, 0.643) 92%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -1547,7 +1547,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 11%, rgba(233, 228, 221, 0.78) 89%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.67) 11%, rgba(233, 228, 221, 0.67) 89%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -1656,7 +1656,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.745) 6.5%, rgba(233, 228, 221, 0.745) 93.5%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -2196,7 +2196,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 6%, rgba(233, 228, 221, 0.66) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.643) 6%, rgba(233, 228, 221, 0.643) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -2359,7 +2359,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 6%, rgba(233, 228, 221, 0.78) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.737) 6%, rgba(233, 228, 221, 0.737) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -2468,7 +2468,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.824) 6%, rgba(233, 228, 221, 0.824) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -3008,7 +3008,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 6%, rgba(233, 228, 221, 0.66) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.63) 6%, rgba(233, 228, 221, 0.63) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -3171,7 +3171,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 6%, rgba(233, 228, 221, 0.78) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.745) 6%, rgba(233, 228, 221, 0.745) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -3280,7 +3280,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.827) 6%, rgba(233, 228, 221, 0.827) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -4071,8 +4071,8 @@
     "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-ending-1440.png"
   },
   "reducedMotion": {
-    "outgoingCount": 1,
-    "outgoingVisibility": "hidden",
+    "outgoingCount": 0,
+    "outgoingVisibility": "absent",
     "activeOpacity": "1",
     "activeVisibility": "visible",
     "panelBackdrop": "blur(14px)"

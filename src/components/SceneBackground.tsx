@@ -29,60 +29,126 @@ const sceneNames = [
 
 export type SceneName = (typeof sceneNames)[number]
 
-export function SceneBackground({ scene, preview = null }: { scene: SceneName; preview?: SceneName | null }) {
-  const [outgoing, setOutgoing] = useState<SceneName | null>(null)
-  const [previewScene, setPreviewScene] = useState<SceneName | null>(null)
-  const [previewVisible, setPreviewVisible] = useState(false)
-  const previousScene = useRef(scene)
-  const activePreview = preview && preview !== scene ? preview : null
-  const mountedScenes = [...new Set([scene, outgoing, previewScene].filter((name): name is SceneName => Boolean(name)))]
+type SceneLayer = { key: number; name: SceneName }
+
+const imageCache = new Map<SceneName, HTMLImageElement>()
+
+function whenDecoded(name: SceneName) {
+  let image = imageCache.get(name)
+  if (!image) {
+    image = new Image()
+    image.src = `/backgrounds/${name}.svg`
+    imageCache.set(name, image)
+  }
+
+  return image.decode().catch(
+    () =>
+      new Promise<void>((resolve) => {
+        if (image.complete) {
+          resolve()
+          return
+        }
+        image.addEventListener('load', () => resolve(), { once: true })
+        image.addEventListener('error', () => resolve(), { once: true })
+      }),
+  )
+}
+
+function useFadeLayers(target: SceneName | null) {
+  const [layers, setLayers] = useState<SceneLayer[]>([])
+  const [readyKeys, setReadyKeys] = useState<number[]>([])
+  const layersRef = useRef(layers)
+  const keyRef = useRef(0)
 
   useEffect(() => {
-    for (const name of sceneNames) {
-      const image = new Image()
-      image.src = `/backgrounds/${name}.svg`
-    }
-  }, [])
+    layersRef.current = layers
+  }, [layers])
 
   useEffect(() => {
-    if (previousScene.current === scene) return
-    setOutgoing(previousScene.current)
-    previousScene.current = scene
-    const timer = window.setTimeout(() => setOutgoing(null), 240)
-    return () => window.clearTimeout(timer)
-  }, [scene])
-
-  useEffect(() => {
-    if (!activePreview) {
-      setPreviewVisible(false)
-      const timer = window.setTimeout(() => setPreviewScene(null), 220)
+    if (!target) {
+      setReadyKeys((current) => (current.length ? [] : current))
+      const timer = window.setTimeout(() => setLayers((current) => (current.length ? [] : current)), 260)
       return () => window.clearTimeout(timer)
     }
 
-    setPreviewScene(activePreview)
-    const frame = window.requestAnimationFrame(() => setPreviewVisible(true))
-    return () => window.cancelAnimationFrame(frame)
-  }, [activePreview])
+    const top = layersRef.current[layersRef.current.length - 1]
+    if (top && top.name === target) {
+      void whenDecoded(target).then(() => {
+        setReadyKeys((current) => (current.includes(top.key) ? current : [...current, top.key]))
+      })
+      return
+    }
+
+    const key = ++keyRef.current
+    setLayers((current) => [...current, { key, name: target }])
+    let cancelled = false
+    void whenDecoded(target).then(() => {
+      if (!cancelled) {
+        setReadyKeys((current) => (current.includes(key) ? current : [...current, key]))
+      }
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [target])
+
+  useEffect(() => {
+    const top = layers[layers.length - 1]
+    if (!top || !readyKeys.includes(top.key)) return
+    const timer = window.setTimeout(() => {
+      setLayers((current) => {
+        const last = current[current.length - 1]
+        return last ? [last] : current
+      })
+    }, 320)
+    return () => window.clearTimeout(timer)
+  }, [layers, readyKeys])
+
+  return { layers, readyKeys }
+}
+
+export function SceneBackground({ scene, preview = null }: { scene: SceneName; preview?: SceneName | null }) {
+  const activePreview = preview && preview !== scene ? preview : null
+  const sceneLayers = useFadeLayers(scene)
+  const previewLayers = useFadeLayers(activePreview)
+
+  useEffect(() => {
+    for (const name of sceneNames) {
+      if (imageCache.has(name)) continue
+      const image = new Image()
+      image.src = `/backgrounds/${name}.svg`
+      imageCache.set(name, image)
+    }
+  }, [])
 
   return (
     <div className={`scene-background${activePreview ? ' is-previewing' : ''}`} data-scene={scene} aria-hidden="true">
-      {mountedScenes.map((name) => {
-        const classes = ['scene-background-image']
-        if (name === scene) classes.push('scene-current', 'is-active')
-        if (name === outgoing) classes.push('scene-previous', 'is-outgoing')
-        if (name === previewScene && name !== scene) classes.push('scene-preview')
-        if (name === previewScene && name !== scene && activePreview && previewVisible) classes.push('is-preview-visible')
-
+      {sceneLayers.layers.map((layer, index) => {
+        const isLatest = index === sceneLayers.layers.length - 1
         return (
-          <img
-            key={name}
-            className={classes.join(' ')}
-            src={`/backgrounds/${name}.svg`}
-            alt=""
-            draggable={false}
-          />
+          <div
+            key={layer.key}
+            className={`scene-layer${sceneLayers.readyKeys.includes(layer.key) ? ' is-visible' : ''}`}
+            style={{ zIndex: index + 1 }}
+          >
+            <img
+              className={`scene-background-image ${isLatest ? 'scene-current' : 'scene-previous'}`}
+              src={`/backgrounds/${layer.name}.svg`}
+              alt=""
+              draggable={false}
+            />
+          </div>
         )
       })}
+      {previewLayers.layers.map((layer, index) => (
+        <div
+          key={`preview-${layer.key}`}
+          className={`scene-layer${previewLayers.readyKeys.includes(layer.key) ? ' is-visible' : ''}`}
+          style={{ zIndex: 10 + index }}
+        >
+          <img className="scene-background-image scene-preview" src={`/backgrounds/${layer.name}.svg`} alt="" draggable={false} />
+        </div>
+      ))}
     </div>
   )
 }

@@ -953,3 +953,59 @@ git restore --source=965c1b2 -- src/App.tsx src/index.css
 - 页面动画统一向上淡入，不区分前进和后退方向。
 - 台词动画按节点 id 触发；选项页、结局页走页面动画，不单独给选项文字加入场动画。
 - 未在实体手机、Safari 或 Firefox 实测；本轮尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。
+
+## 36. 真人使用方式自查与修正
+
+日期：2026-11-20（Asia/Shanghai）。团队要求“你自己复查，看看有没有需要改进的地方，眼光要挑剔，更像真人一样使用”。本轮按桌面鼠标、键盘、手机触摸、快速连点、拖选文字、320/390 小屏和完整剧情路径实际走查，修掉 7 个会影响真实使用的问题；第 31、32、34 节中关于 450ms 悬停延迟、Tab 先到热点、卡片 0.92 透明度的描述是当时状态，以本节为准。
+
+### 发现并修复
+
+| 问题 | 真人场景 | 修正 |
+| --- | --- | --- |
+| 双击会连跳页面 | 双击“开始体验”会直接进入来电；双击“进入来电”会直接接听；双击“接听”会跳过第一句 | 所有导航、选项、继续、结局动作忽略 `event.detail > 1` 的第二次点击；鼠标双击与触摸双点都实测只执行一次 |
+| 选中台词后点击仍推进 | 想复制/选中一句台词，松开鼠标后剧情跳走 | 在 `pointerdown` 捕获阶段记录选区，并在 click 时再次检查非空选区；选中后第一次点击只取消选中，不推进 |
+| 键盘 Tab 先到“画面细节” | 首页第一次 Tab 先展开吉他纸条，主行动“开始体验”排在其后 | 把 `SceneWhispers` 移到主内容之后；现在第一次 Tab 是“开始体验”，第二次才是画面细节 |
+| 首页/来电卡片透出白色矩形 | 卡片右缘能清楚看到背后墙上的乐谱，像渲染坏了一块 | 把首页/来电卡片的纸面提高到 0.99 / 0.985 不透明度；保留边框、阴影与轻背景质感，矩形消失 |
+| 选择后反馈可能不朗读 | 页面过渡把整页重新挂载，`aria-live` 区域一起重建 | 把 `aria-live` 朗读区移到页面过渡外层，并限定只在通话中输出；选择后反馈文本仍可被读出 |
+| 辉光 450ms 才展开 | 鼠标已经停在光上，纸条迟迟不出来，像没反应 | 悬停意图延迟缩短到 150ms；仍能过滤鼠标横扫，但接触感更直接 |
+| 双击画面热点会开了又关 | 双击吉他辉光，纸条闪一下又收起 | 热点点击同样忽略第二次 `detail > 1`，只钉住一次 |
+
+### 修改前 / 修改后
+
+- [修改前：卡片右缘透出乐谱矩形](assets/TASK-003/review-home-before-1440.png)
+- [修改后：卡片纸面干净](assets/TASK-003/review-home-1440.png)
+
+### 本轮验证
+
+环境同第 32 节。以下均通过：
+
+| 检查 | 结果 | 证据 |
+| --- | --- | --- |
+| `npm run typecheck` | 通过 | [review-typecheck.txt](assets/TASK-003/review-typecheck.txt) |
+| `npm run test:story` | 15/15 通过 | [review-test-story.txt](assets/TASK-003/review-test-story.txt) |
+| `npm run build` | 20 modules；CSS 39.11 kB / gzip 8.88 kB；JS 249.94 kB / gzip 78.31 kB | [review-build.txt](assets/TASK-003/review-build.txt) |
+| 点击/双击/选区/朗读区 | 18 项全部通过；含鼠标双击、触摸双点、选中台词不推进、反馈 `aria-live` 在过渡外层 | [click-advance-checks.json](assets/TASK-003/click-advance-checks.json) |
+| 低语热点 | 19 项全部通过；Tab 顺序为主行动 → 画面细节；150ms 意图延迟生效 | [glow-checks.json](assets/TASK-003/glow-checks.json) |
+| 页面过渡 | 8 项全部通过 | [page-transition-checks.json](assets/TASK-003/page-transition-checks.json) |
+| Galgame 布局 | `all galgame layout checks passed`，含 320/390/1024/1440 | [galgame-layout-checks.json](assets/TASK-003/galgame-layout-checks.json) |
+| 场景与动效 | `all scene and motion checks passed` | [scene-motion-checks.json](assets/TASK-003/scene-motion-checks.json) |
+
+所有浏览器检查的 `failures` 与 `consoleEvents` 均为 `[]`。
+
+### 还需观察，但本轮未改
+
+- 结局画面的大纸衬底仍让背景里的吉他琴颈和挂钟轻微透出，文字可读；如果团队希望更干净，可以给结局加局部实色纸面或单独提高结局衬底，不必动其他页面。
+- 页面切换只有新页面入场，没有旧页面退场；旧内容会直接卸载，背景层保持连续。
+- 首页/来电卡片为了消除透视矩形已接近不透明，牺牲了一部分“透出插画”的感觉；这是刻意取舍。
+- `reality` 画面同时有房间显示器和一块浮动浏览器窗口，功能不同、不是重复道具；如果团队仍觉得像两块屏幕，可只保留浮动窗口。
+- 点击任意处推进仍只是指针捷径；没有新增全局“空格/方向键继续”，键盘仍使用“继续”按钮。
+- 鼠标双击通过真实鼠标事件验证；触摸双点通过 CDP 触摸模拟验证，未使用实体手机或平板，未在 Safari/Firefox 实测，`aria-live` 只验证了结构与文本，未运行真实 VoiceOver/NVDA。
+- 本轮尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。
+
+### 回退
+
+本轮改动基线为 `6e05d32`。回退：
+
+```bash
+git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWhispers.tsx
+```

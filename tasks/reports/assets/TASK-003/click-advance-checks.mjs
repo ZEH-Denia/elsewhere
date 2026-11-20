@@ -103,6 +103,26 @@ async function click(selector, text = '') {
   await clickAt(point.x, point.y)
 }
 
+async function doubleClickAt(point) {
+  await send('Input.dispatchMouseEvent', { type: 'mouseMoved', ...point })
+  await send('Input.dispatchMouseEvent', { type: 'mousePressed', ...point, button: 'left', clickCount: 1 })
+  await send('Input.dispatchMouseEvent', { type: 'mouseReleased', ...point, button: 'left', clickCount: 1 })
+  await settle(30)
+  await send('Input.dispatchMouseEvent', { type: 'mousePressed', ...point, button: 'left', clickCount: 2 })
+  await send('Input.dispatchMouseEvent', { type: 'mouseReleased', ...point, button: 'left', clickCount: 2 })
+  await settle(700)
+}
+
+async function doubleTapAt(point) {
+  const touchPoints = [{ ...point, radiusX: 1, radiusY: 1, force: 1, id: 1 }]
+  await send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints })
+  await send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
+  await settle(60)
+  await send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints })
+  await send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
+  await settle(700)
+}
+
 async function surfaceClick() {
   const size = await evaluate("({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })")
   await clickAt(Math.round(size.width * 0.06), Math.round(size.height * 0.36))
@@ -122,6 +142,8 @@ async function state() {
       return Boolean(bubble && Number.parseFloat(getComputedStyle(bubble).opacity) > 0.99)
     })(),
     whisper: Boolean(document.querySelector('.scene-whisper')),
+    live: document.querySelector('.app-background > p[aria-live]')?.textContent?.trim() ?? null,
+    liveInsideScreen: Boolean(document.querySelector('.screen-transition p[aria-live]')),
   }))()`)
 }
 
@@ -164,7 +186,25 @@ await waitFor("document.querySelector('.app-background')?.dataset.view === 'call
 await waitText('喂？先别挂')
 const opening = await state()
 assert.equal(opening.progress, '主线 01 / 07')
+assert.ok(opening.live.includes('喂？先别挂'), 'live region announces the opening line')
+assert.equal(opening.liveInsideScreen, false, 'live region stays outside the page transition')
 report.checks.push({ name: 'call-opening', ...opening })
+
+const selectedText = await evaluate(`(() => {
+  const element = document.querySelector('.dialogue-text')
+  const range = document.createRange()
+  range.selectNodeContents(element)
+  const selection = window.getSelection()
+  selection.removeAllRanges()
+  selection.addRange(range)
+  return selection.toString()
+})()`)
+assert.ok(selectedText.includes('喂？先别挂'), 'dialogue text can be selected')
+await surfaceClick()
+await settle(220)
+const afterSelection = await state()
+assert.equal(afterSelection.progress, '主线 01 / 07', 'clicking after selecting text does not advance')
+report.checks.push({ name: 'selection-guard', selected: selectedText, ...afterSelection })
 
 await surfaceClick()
 await waitProgress('主线 02 / 07')
@@ -225,6 +265,8 @@ await waitFor("Boolean(document.querySelector('.dialogue-text'))")
 await waitProgress('回应反馈 01 / 02')
 const feedback = await state()
 assert.equal(feedback.choices, 0)
+assert.ok(feedback.live.includes('我有时也会想'), 'live region survives the page transition and announces feedback')
+assert.equal(feedback.liveInsideScreen, false)
 await surfaceClick()
 await waitProgress('回应反馈 02 / 02')
 await surfaceClick()
@@ -277,6 +319,37 @@ await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, dev
 await settle(200)
 await navigateHome()
 report.checks.push({ name: 'final-home', ...(await state()) })
+
+await navigateHome()
+await doubleClickAt(await pointOf('button', '开始体验'))
+const doubleStart = await state()
+assert.equal(doubleStart.view, 'intro', 'double-clicking 开始体验 does not skip the intro')
+await doubleClickAt(await pointOf('button', '进入来电'))
+const doubleEnter = await state()
+assert.equal(doubleEnter.view, 'incoming', 'double-clicking 进入来电 does not skip the incoming screen')
+await doubleClickAt(await pointOf('button', '接听'))
+const doubleAnswer = await state()
+assert.equal(doubleAnswer.view, 'call')
+assert.equal(doubleAnswer.progress, '主线 01 / 07', 'double-clicking 接听 does not skip the first line')
+report.checks.push({ name: 'double-click-guard', start: doubleStart.view, enter: doubleEnter.view, answer: doubleAnswer.progress })
+
+await setViewport(390, 844)
+await send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 })
+await navigateHome()
+await doubleTapAt(await pointOf('button', '开始体验'))
+const tapStart = await state()
+assert.equal(tapStart.view, 'intro', 'double-tapping 开始体验 does not skip the intro')
+await doubleTapAt(await pointOf('button', '进入来电'))
+const tapEnter = await state()
+assert.equal(tapEnter.view, 'incoming', 'double-tapping 进入来电 does not skip the incoming screen')
+await doubleTapAt(await pointOf('button', '接听'))
+const tapAnswer = await state()
+assert.equal(tapAnswer.view, 'call')
+assert.equal(tapAnswer.progress, '主线 01 / 07', 'double-tapping 接听 does not skip the first line')
+report.checks.push({ name: 'double-tap-guard', start: tapStart.view, enter: tapEnter.view, answer: tapAnswer.progress })
+await send('Emulation.setTouchEmulationEnabled', { enabled: false })
+await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false })
+
 assert.deepEqual(failures, [], 'no failed requests')
 assert.deepEqual(consoleEvents, [], 'no console errors')
 report.result = 'all click-to-advance checks passed'

@@ -96,6 +96,7 @@ function App() {
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [previewScene, setPreviewScene] = useState<SceneName | null>(null)
   const previousView = useRef<View>('home')
+  const selectionOnPointerDown = useRef(false)
   const startButton = useRef<HTMLButtonElement>(null)
   const introHeading = useRef<HTMLHeadingElement>(null)
   const incomingHeading = useRef<HTMLHeadingElement>(null)
@@ -132,20 +133,33 @@ function App() {
     if (currentNode.kind === 'end') endHeading.current?.focus()
   }, [currentNode.kind, safeProgress.nodeId])
 
-  function returnHome() {
+  function returnHome(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
     setConfirmOpen(false)
     setProgress(createInitialOpeningProgress())
     setView('home')
   }
 
-  function showIncoming() {
+  function startStory(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
+    setView('intro')
+  }
+
+  function showIncoming(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
     setProgress(createInitialOpeningProgress())
     setView('incoming')
   }
 
-  function answerCall() {
+  function answerCall(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
     setProgress(createInitialOpeningProgress())
     setView('call')
+  }
+
+  function advanceStory(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
+    setProgress(advanceOpening)
   }
 
   function advanceOnSurfaceClick(event: MouseEvent<HTMLDivElement>) {
@@ -153,11 +167,15 @@ function App() {
     if (currentNode.kind !== 'dialogue' && currentNode.kind !== 'feedback' && currentNode.kind !== 'closing') return
     const target = event.target
     if (target instanceof Element && target.closest('button, a, input, select, textarea, dialog, [role="dialog"]')) return
-    if (window.getSelection()?.toString()) return
+    if (selectionOnPointerDown.current || window.getSelection()?.toString()) {
+      selectionOnPointerDown.current = false
+      return
+    }
+    if (event.detail > 1) return
     setProgress(advanceOpening)
   }
 
-  const liveText = currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing'
+  const liveText = view === 'call' && (currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing')
     ? `${currentNode.speaker}：${currentNode.text}`
     : ''
   const callActive = view === 'call' && currentNode.kind !== 'end'
@@ -193,9 +211,16 @@ function App() {
         : 'call-dialogue'
 
   return (
-    <div className="app-background min-h-svh text-mist" data-view={view} onClick={advanceOnSurfaceClick}>
+    <div
+      className="app-background min-h-svh text-mist"
+      data-view={view}
+      onClick={advanceOnSurfaceClick}
+      onPointerDownCapture={() => {
+        selectionOnPointerDown.current = Boolean(window.getSelection()?.toString())
+      }}
+    >
       <SceneBackground scene={sceneName} preview={previewScene} />
-      {previewScene === null && <SceneWhispers scene={sceneName} />}
+      <p className="sr-only" aria-live="polite" aria-atomic="true">{liveText}</p>
       <div className="ambient ambient-violet" aria-hidden="true" />
       <div className="ambient ambient-cyan" aria-hidden="true" />
 
@@ -237,7 +262,7 @@ function App() {
                       <p className="quiet-note prelude-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>
                     </div>
                     <div className="prelude-actions">
-                      <button ref={startButton} type="button" className="primary-action group" onClick={() => setView('intro')}>
+                      <button ref={startButton} type="button" className="primary-action group" onClick={startStory}>
                         <span>开始体验</span><span className="action-icon"><Arrow /></span>
                       </button>
                     </div>
@@ -301,7 +326,6 @@ function App() {
 
             {view === 'call' && currentNode.kind !== 'end' && (
               <section className="screen-enter call-session" aria-labelledby="call-title">
-                <p className="sr-only" aria-live="polite" aria-atomic="true">{liveText}</p>
                 <div className={`call-dock${currentNode.kind === 'choice' ? ' is-choice' : ''}`}>
                   <article className={`dialogue-panel${currentNode.kind === 'choice' ? ' is-prompt' : ''}`}>
                     <div className="dialogue-speaker-tab">
@@ -324,7 +348,7 @@ function App() {
                       {currentNode.kind === 'choice' ? (
                         <p className="choice-hint">移入选项可预览另一条路 · 选择会改变走向</p>
                       ) : (
-                        <button type="button" className="dialogue-continue" onClick={() => setProgress(advanceOpening)}>
+                        <button type="button" className="dialogue-continue" onClick={advanceStory}>
                           <span>继续</span><span className="action-icon"><Arrow /></span>
                         </button>
                       )}
@@ -342,7 +366,10 @@ function App() {
                           onMouseLeave={() => setPreviewScene(null)}
                           onFocus={() => setPreviewScene(getChoicePreviewScene(option.id))}
                           onBlur={() => setPreviewScene(null)}
-                          onClick={() => setProgress((current) => chooseOpening(current, option.id))}
+                          onClick={(event) => {
+                            if (event.detail > 1) return
+                            setProgress((current) => chooseOpening(current, option.id))
+                          }}
                         >
                           <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
                           <span className="choice-label">{option.label}</span>
@@ -386,6 +413,8 @@ function App() {
           </footer>
         )}
       </div>
+
+      {previewScene === null && <SceneWhispers scene={sceneName} />}
 
       <dialog
         ref={confirmDialog}

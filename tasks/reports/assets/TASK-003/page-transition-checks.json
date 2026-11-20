@@ -17,8 +17,8 @@
         "screen": "intro",
         "animationName": "screen-page-in",
         "duration": "0.38s",
-        "opacity": 0.310674,
-        "transform": "matrix(1, 0, 0, 1, 0, 6.89326)",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 10)",
         "scrollWidth": 1440,
         "clientWidth": 1440
       },
@@ -58,8 +58,8 @@
       "screen": "call-dialogue",
       "animationName": "screen-page-in",
       "duration": "0.38s",
-      "opacity": 0.999118,
-      "transform": "matrix(1, 0, 0, 1, 0, 0.00881555)",
+      "opacity": 0.999117,
+      "transform": "matrix(1, 0, 0, 1, 0, 0.00882726)",
       "scrollWidth": 1440,
       "clientWidth": 1440
     },

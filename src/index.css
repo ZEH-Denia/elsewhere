@@ -969,7 +969,7 @@ button:focus-visible,
 
 .prelude-stage .call-card.is-object {
   padding: 18px 22px 16px;
-  background: linear-gradient(180deg, hsl(var(--night-raised) / 0.92), hsl(var(--night) / 0.88));
+  background: linear-gradient(180deg, hsl(var(--night-raised) / 0.99), hsl(var(--night) / 0.985));
   backdrop-filter: blur(14px);
 }
 

@@ -25,7 +25,7 @@ type Whisper = {
   edge?: WhisperEdge
 }
 
-const HOVER_DELAY = 450
+const HOVER_DELAY = 150
 
 const whispers: Partial<Record<SceneName, Whisper[]>> = {
   home: [{
@@ -329,7 +329,10 @@ export function SceneWhispers({ scene }: { scene: SceneName }) {
               onPointerLeave={() => hide(item.id)}
               onFocus={() => showNow(item.id)}
               onBlur={() => hide(item.id)}
-              onClick={() => togglePin(item.id)}
+              onClick={(event) => {
+                if (event.detail > 1) return
+                togglePin(item.id)
+              }}
             >
               <span
                 className="scene-whisper-anchor"

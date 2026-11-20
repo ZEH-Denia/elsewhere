@@ -11,7 +11,9 @@
       "endTitle": null,
       "dialogOpen": false,
       "bubbleOpen": false,
-      "whisper": true
+      "whisper": true,
+      "live": "",
+      "liveInsideScreen": false
     },
     {
       "name": "intro-surface",
@@ -23,7 +25,9 @@
       "endTitle": null,
       "dialogOpen": false,
       "bubbleOpen": false,
-      "whisper": true
+      "whisper": true,
+      "live": "",
+      "liveInsideScreen": false
     },
     {
       "name": "incoming-surface",
@@ -39,7 +43,24 @@
       "endTitle": null,
       "dialogOpen": false,
       "bubbleOpen": false,
-      "whisper": true
+      "whisper": true,
+      "live": "另一个你：喂？先别挂——如果我说，我也是你呢？",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "selection-guard",
+      "selected": "喂？先别挂——如果我说，我也是你呢？",
+      "view": "call",
+      "text": "喂？先别挂——如果我说，我也是你呢？",
+      "progress": "主线 01 / 07",
+      "speaker": "另一个你",
+      "choices": 0,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": true,
+      "live": "另一个你：喂？先别挂——如果我说，我也是你呢？",
+      "liveInsideScreen": false
     },
     {
       "name": "surface-advance",
@@ -51,7 +72,9 @@
       "endTitle": null,
       "dialogOpen": false,
       "bubbleOpen": false,
-      "whisper": true
+      "whisper": true,
+      "live": "你：这是什么恶作剧？",
+      "liveInsideScreen": false
     },
     {
       "name": "panel-text-advance",
@@ -73,7 +96,9 @@
       "endTitle": null,
       "dialogOpen": false,
       "bubbleOpen": false,
-      "whisper": false
+      "whisper": false,
+      "live": "你：……没有。我留在了原来的路上，当时觉得它更稳妥。",
+      "liveInsideScreen": false
     },
     {
       "name": "whisper-guard",
@@ -90,7 +115,9 @@
       "endTitle": null,
       "dialogOpen": false,
       "bubbleOpen": false,
-      "whisper": false
+      "whisper": false,
+      "live": "",
+      "liveInsideScreen": false
     },
     {
       "name": "feedback-advance",
@@ -107,7 +134,9 @@
       "endTitle": null,
       "dialogOpen": false,
       "bubbleOpen": false,
-      "whisper": false
+      "whisper": false,
+      "live": "",
+      "liveInsideScreen": false
     },
     {
       "name": "ending-surface",
@@ -126,7 +155,9 @@
       "endTitle": null,
       "dialogOpen": false,
       "bubbleOpen": false,
-      "whisper": false
+      "whisper": false,
+      "live": "你：这是什么恶作剧？",
+      "liveInsideScreen": false
     },
     {
       "name": "final-home",
@@ -138,7 +169,21 @@
       "endTitle": null,
       "dialogOpen": false,
       "bubbleOpen": false,
-      "whisper": true
+      "whisper": true,
+      "live": "",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "double-click-guard",
+      "start": "intro",
+      "enter": "incoming",
+      "answer": "主线 01 / 07"
+    },
+    {
+      "name": "double-tap-guard",
+      "start": "intro",
+      "enter": "incoming",
+      "answer": "主线 01 / 07"
     }
   ],
   "failures": [],

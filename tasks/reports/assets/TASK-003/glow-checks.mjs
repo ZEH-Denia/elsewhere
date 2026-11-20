@@ -303,10 +303,10 @@ const edgePoint = {
   y: initial.button.y + initial.button.height * 0.26,
 }
 await moveTo(edgePoint.x, edgePoint.y)
-await settle(220)
+await settle(70)
 const early = await whisperState()
-assert.equal(early.opacity, 0, 'note waits for intent even inside the expanded glow')
-await settle(360)
+assert.equal(early.opacity, 0, 'note waits briefly for intent even inside the expanded glow')
+await settle(140)
 await waitFor("(() => { const b = document.querySelector('.scene-whisper-bubble'); return b && Number.parseFloat(getComputedStyle(b).opacity) > 0.99 })()", 2000)
 const hovered = await whisperState()
 assert.equal(hovered.open, true)
@@ -314,13 +314,23 @@ assert.equal(hovered.visibility, 'visible')
 assert.ok(hovered.opacity >= 0.99)
 assert.ok(hovered.bubbleInScene, 'bubble stays inside the scene frame')
 assert.ok(hovered.haloOpacity > initial.haloOpacity, 'hover slightly strengthens the glow')
-report.checks.push({ name: 'home-hover-450ms', ...hovered })
+report.checks.push({ name: 'home-hover-intent', ...hovered })
 report.shots.push(await screenshot('home-hover-1440'))
 
 await moveTo(2, 2)
 await settle(260)
 const left = await whisperState()
 assert.equal(left.opacity, 0, 'bubble closes after the pointer leaves')
+
+await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9 })
+await send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9 })
+await settle(120)
+const firstTab = await evaluate(`(() => {
+  const element = document.activeElement
+  return { className: element ? element.className : null, text: element ? element.textContent.trim() : null }
+})()`)
+assert.ok(firstTab.className.includes('primary-action'), 'Tab reaches the primary action first')
+assert.ok(firstTab.text.includes('开始体验'))
 
 await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9 })
 await send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9 })
@@ -332,14 +342,14 @@ const tabbed = await evaluate(`(() => {
     focusVisible: element ? element.matches(':focus-visible') : false,
   }
 })()`)
-assert.ok(tabbed.className.includes('scene-whisper'), 'Tab reaches the hotspot before the main action')
+assert.ok(tabbed.className.includes('scene-whisper'), 'Tab reaches the hotspot after the main action')
 assert.equal(tabbed.focusVisible, true, 'keyboard focus shows the visible focus ring')
 await waitFor("(() => { const b = document.querySelector('.scene-whisper-bubble'); return b && Number.parseFloat(getComputedStyle(b).opacity) > 0.99 })()", 2000)
 const focused = await whisperState()
 assert.equal(focused.open, true, 'keyboard focus opens the whisper immediately')
 assert.ok(focused.opacity >= 0.99, 'focused bubble is fully visible')
 assert.ok(focused.focusRingOpacity > 0, 'focused hotspot draws a visible focus ring')
-report.checks.push({ name: 'home-keyboard-focus', ...focused, focusVisible: tabbed.focusVisible })
+report.checks.push({ name: 'home-keyboard-focus', ...focused, focusVisible: tabbed.focusVisible, firstFocus: firstTab.className })
 report.shots.push(await screenshot('home-keyboard-1440'))
 
 await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Enter', code: 'Enter', text: '\r', unmodifiedText: '\r', windowsVirtualKeyCode: 13, nativeVirtualKeyCode: 13 })

@@ -36,9 +36,10 @@
     "normal": {
       "rain": "rain-drift",
       "mote": "mote-rise",
-      "appScene": "scene-drift",
+      "appScene": "none",
+      "appSceneTransform": "none",
       "rainRunning": "running",
-      "appSceneRunning": "running",
+      "appSceneRunning": null,
       "reduce": false
     },
     "reduced": {

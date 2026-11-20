@@ -700,3 +700,80 @@ git restore --source=ae59b15 -- src/App.tsx src/index.css
 ### 限制
 
 低语热点按设计只在桌面鼠标与键盘环境出现，没有手机触摸替代交互；未使用实体手机或平板，未在 Safari/Firefox 实测，未运行 VoiceOver/NVDA 等真实读屏（可访问性结论来自 Chromium 可访问性树）。小点需要用户主动发现，本轮没有加入首次提示动画或教学层。纸条会遮住母题周围一小块插画，已通过调整挂钟热点到表盘下沿、限制纸条宽度减少遮挡。该交互尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。
+
+## 32. 物件辉光与边缘光（替代小点，桌面悬停）
+
+日期：2026-11-20（Asia/Shanghai）。团队先要求“可交互物件不要用点来引导，用物体周围的淡淡的暖色辉光来吸引视线”，随后要求“加一个呼吸，并且扩大交互面积，只要鼠标接触这团辉光就可以触发。像吉他这类物件你重新设计一个边缘光方案”，并选定八物件混合方案：“就这样”。本轮只替换桌面低语热点的视觉引导与命中方式，不改剧情、文案、选择、面板布局、场景插画和手机端布局，也未新增依赖。
+
+### 视觉与交互模型
+
+- 移除全部 9px 暗紫小点。八张剧情画面改为物件自身发光，暖色取自现有插画的灯与木色，不再出现独立的 UI 标记。
+- 按团队选定清单分两种光：
+  - 边缘光：首页吉他、排练乐谱、不安结局旧吉他。沿物件轮廓生成方向性边缘光，亮部朝向场景光源，暗部收在背光侧。
+  - 呼吸辉光：接听话筒、质疑照片、实习挂钟、追问声波、共同衔接波纹。物件周围一团柔和椭圆光晕。
+- 两种光都以 6.8s 周期呼吸：静止时低亮度，峰值约 1.5 倍；悬停或键盘聚焦时整体平滑提亮，并保留呼吸，不会突然定格。
+- 命中区从 44×44px 扩大到覆盖物件与辉光：1440×900 实测宽 275–354px、高 216–334px。鼠标或触控笔进入辉光范围即计时展开纸条，移出立即收起；点击钉住、Escape 收起、Tab 聚焦立即展开的规则保持不变。
+- 辉光层位于场景插画之上、正文内容之下，使用 `screen` 混合；纸条与按钮位于内容之上，不改变既有阅读层级。手机、粗指针设备和 `max-width: 759px` 继续隐藏该层。
+
+### 实现要点
+
+- 八物件坐标与台词沿用第 31 节，按新命中区重新校准；纸条锚点仍在物件母题上，尾巴指向发光物件。
+- 边缘光由 SVG 轮廓 + `feMorphology` 外扩 + `feComposite` 取环 + 模糊 + 暖色填充构成，再用线性渐变遮罩控制受光方向。吉他使用独立琴身、琴颈、琴头轮廓；乐谱使用圆角矩形轮廓。乐谱内部有轻微摆动，故采用更宽的外扩与模糊，避免细边在摆动时脱节。
+- 吉他与乐谱的边缘光变换直接复用场景相机参数（首页/不安结局的吉他、排练的乐谱），与插画使用同一套 `translate/scale/rotate`，因此换场与窄屏裁切后仍贴合物件，不依赖位图轮廓识别。
+- 呼吸亮度通过 `@property` 注册的四个数值变量驱动，CSS 变量参与 `opacity` 关键帧；悬停时提高上下限，过渡由变量自身插值完成。减少动态效果下停止动画，只保留静态亮度。
+- 为保证边缘光不被缩放带偏，移除 `.scene-background-image` 上 38s 的 `scene-drift` 整体缓慢缩放；雨丝、尘埃、灯光、信号等 SVG 内部动效全部保留。场景插画现在 `transform: none`。
+- 首页命中区上沿覆盖琴头（场景坐标 y=330），下沿在 1024×768 下仍高于阅读面板；不安结局的命中区按同一规则收短。其余物件不与任何 `.prelude-panel` / `.dialogue-panel` 相交。
+
+### 本轮验证
+
+环境：macOS arm64、Node v24.22.1、独立无头 Edge `157.0.4341.60`、生产预览 `http://127.0.0.1:4173/`（本轮构建产物）。以下命令均退出 0：
+
+| 检查 | 实际结果 | 原始输出 |
+| --- | --- | --- |
+| `npm run typecheck` | `tsc --noEmit` 通过 | [glow-typecheck.txt](assets/TASK-003/glow-typecheck.txt) |
+| `npm run test:story` | 15/15 通过，0 failed | [glow-test-story.txt](assets/TASK-003/glow-test-story.txt) |
+| `npm run build` | 20 modules；CSS 38.69 kB / gzip 8.77 kB；JS 249.22 kB / gzip 78.07 kB | [glow-build.txt](assets/TASK-003/glow-build.txt) |
+| Galgame 布局检查 | `all galgame layout checks passed`，`failures` / `consoleEvents` 均为 `[]` | [galgame-layout-checks.json](assets/TASK-003/galgame-layout-checks.json) |
+| 场景与动效检查 | `all scene and motion checks passed`，雨丝与尘埃仍运行；场景图 `animation: none`、`transform: none`；减少动态效果下两者都停止 | [scene-motion-checks.json](assets/TASK-003/scene-motion-checks.json) |
+
+新增 [glow-checks.mjs](assets/TASK-003/glow-checks.mjs)，19 项检查全部通过，完整数据见 [glow-checks.json](assets/TASK-003/glow-checks.json)；`failures` 与 `consoleEvents` 均为 `[]`：
+
+| 检查 | 实测 |
+| --- | --- |
+| 八张画面 | 每张只有一团辉光；吉他/乐谱场景各有 1 处边缘光，其余 0；无残留小点 |
+| 层级 | 辉光层 `z-index: 5`、`mix-blend-mode: screen`；按钮 `z-index: 21`，展开时 22；辉光不拦截指针 |
+| 呼吸 | 默认 `whisper-halo-breathe` / `whisper-edge-breathe` 运行；首页静置时光晕透明度 0.511、边缘光 0.472 |
+| 悬停提亮 | 进入辉光 450ms 后纸条展开，光晕 0.810、边缘光 0.804；离开关闭 |
+| 命中区 | 1440×900 下 275–354px 宽、216–334px 高，远大于 44px；命中区内的最上层元素就是按钮 |
+| 偏移命中 | 在命中区边缘（宽 22%、高 18%）进入也能展开，验证“接触辉光即触发”，而非只有物件中心 |
+| 面板避让 | 1440×900、1024×768、768×900 下，首页、通话、质疑照片、不安旧吉他的命中区与纸条均不与纸面面板相交 |
+| 键盘 | Tab 聚焦即展开，焦点环透明度 1；Enter 钉住后 Tab 移开仍保留；Escape 关闭 |
+| 点击 | 点击钉住，Escape 关闭 |
+| 可访问性树 | `button` / `画面细节` / 台词作为 description |
+| 预览暂停 | 选项预览时低语层卸载，移开后恢复 |
+| 减少动态效果 | 呼吸动画为 `none`；光晕静态 0.86、边缘光 0.82；纸条过渡 0s，展开后仍可读 |
+| 手机 390 | 覆盖层 `display: none`，辉光 SVG 宽度为 0，不会留下可聚焦的隐形按钮 |
+
+实际截图（均已逐张目视纸条在圆角内、不压标题与主行动；辉光贴合物件）：
+
+[首页静置 1440](assets/TASK-003/glow-home-idle-1440.png) · [首页悬停 1440](assets/TASK-003/glow-home-hover-1440.png) · [首页键盘焦点 1440](assets/TASK-003/glow-home-keyboard-1440.png) · [接听话筒 1440](assets/TASK-003/glow-connection-hover-1440.png) · [质疑照片 1440](assets/TASK-003/glow-doubt-hover-1440.png) · [排练乐谱 1440](assets/TASK-003/glow-rehearsal-hover-1440.png) · [实习挂钟 1440](assets/TASK-003/glow-desk-hover-1440.png) · [追问声波 1440](assets/TASK-003/glow-question-hover-1440.png) · [不安旧吉他 1440](assets/TASK-003/glow-regret-quiet-hover-1440.png) · [共同衔接波纹 1440](assets/TASK-003/glow-closing-hover-1440.png) · [首页 1024](assets/TASK-003/glow-home-1024.png) · [不安旧吉他 1024](assets/TASK-003/glow-regret-quiet-hover-1024.png) · [首页 768](assets/TASK-003/glow-home-768.png) · [手机 390](assets/TASK-003/glow-mobile-home-390.png)
+
+设计过程参考图：[旧小点对照](assets/TASK-003/reference-guitar-before-dot.png)、[边缘光静置](assets/TASK-003/reference-guitar-edge-hover.png)、[呼吸低点](assets/TASK-003/reference-guitar-edge-low-crop.png)、[呼吸高点](assets/TASK-003/reference-guitar-edge-high-crop.png)、[呼吸示意](assets/TASK-003/reference-guitar-edge-breath.gif)。
+
+### 备份与回退
+
+开始前已把原文件复制到 `/Users/zeh/Documents/elsewhere-backups/2026-11-20-pre-glow/`（`SceneWhispers.tsx`、`App.tsx`、`index.css`、`scripts/generate-backgrounds.mjs`），基线提交 `9a867c8` 记录于 `BASELINE_COMMIT.txt`。本轮实际只改 `src/components/SceneWhispers.tsx` 与 `src/index.css`；回退命令：
+
+```bash
+git restore --source=9a867c8 -- src/components/SceneWhispers.tsx src/index.css
+```
+
+`App.tsx`、场景生成脚本与全部 SVG 背景本轮未改动；备份目录保留完整副本，可在不回滚 Git 的情况下逐文件对照。
+
+### 限制
+
+- 悬停仍保留 450ms 意图延迟：只有进入辉光并停留约半秒才展开，避免大命中区被鼠标横扫时连续弹字；它略长于“接触即触发”的字面预期，若团队希望更即时可单独调短。
+- 辉光与边缘光是静态几何叠加，不逐帧读取插画像素；乐谱内部摆动幅度小，已用更宽边缘容忍，但极端缩小窗口时仍可能出现 1–2px 的贴合误差。
+- 首页命中区为避开 1024×768 的阅读面板，下沿停在吉他下侧，未覆盖面板下方的空白画面。
+- 该交互只在桌面鼠标/触控笔与键盘出现，没有手机触摸替代；未使用实体手机或平板，未在 Safari/Firefox 实测，未运行真实读屏（可访问性结论来自 Chromium 可访问性树）。
+- 本轮重跑 Galgame 布局与场景动效检查时，重新生成了对应截图和 JSON（不再包含小点）；本改动尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。

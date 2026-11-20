@@ -231,6 +231,7 @@ const probe = await evaluate(`(async () => {
     rain: getComputedStyle(doc.querySelector('.rain-drift')).animationName,
     mote: getComputedStyle(doc.querySelector('.mote')).animationName,
     appScene: getComputedStyle(document.querySelector('.scene-current')).animationName,
+    appSceneTransform: getComputedStyle(document.querySelector('.scene-current')).transform,
     rainRunning: doc.querySelector('.rain-drift').getAnimations()[0]?.playState ?? null,
     appSceneRunning: document.querySelector('.scene-current').getAnimations()[0]?.playState ?? null,
     reduce: frame.contentWindow.matchMedia('(prefers-reduced-motion: reduce)').matches,
@@ -239,9 +240,10 @@ const probe = await evaluate(`(async () => {
 report.motion.normal = probe
 assert.notEqual(probe.rain, 'none', 'rain drift animates by default')
 assert.notEqual(probe.mote, 'none', 'dust motes animate by default')
-assert.equal(probe.appScene, 'scene-drift', 'active scene gently drifts by default')
+assert.equal(probe.appScene, 'none', 'scene image itself no longer scales')
+assert.equal(probe.appSceneTransform, 'none', 'scene image keeps its geometry for glow alignment')
 assert.equal(probe.rainRunning, 'running', 'rain drift is actually running')
-assert.equal(probe.appSceneRunning, 'running', 'scene drift is actually running')
+assert.equal(probe.appSceneRunning, null, 'scene image has no animation to run')
 assert.equal(probe.reduce, false)
 
 await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] })
@@ -261,9 +263,9 @@ const reduced = await evaluate(`(() => {
 report.motion.reduced = reduced
 assert.equal(reduced.rain, 'none', 'rain drift stops with reduced motion')
 assert.equal(reduced.mote, 'none', 'dust motes stop with reduced motion')
-assert.equal(reduced.appScene, 'none', 'active scene drift stops with reduced motion')
+assert.equal(reduced.appScene, 'none', 'scene image has no drift to stop')
 assert.equal(reduced.rainAnimations, 0, 'SVG animations are removed with reduced motion')
-assert.equal(reduced.appSceneAnimations, 0, 'scene drift is removed with reduced motion')
+assert.equal(reduced.appSceneAnimations, 0, 'scene image keeps no animation under reduced motion')
 assert.equal(reduced.reduce, true, 'reduced-motion emulation reaches SVG subframe')
 
 await evaluate("document.getElementById('motion-probe')?.remove()")

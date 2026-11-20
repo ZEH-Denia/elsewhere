@@ -4055,9 +4055,14 @@
     "activeText": "把旋律找回来",
     "endActions": [
       {
-        "text": "重听这通来电",
+        "text": "继续",
         "background": "rgb(148, 78, 56)",
         "color": "rgb(255, 255, 255)"
+      },
+      {
+        "text": "重听这通来电",
+        "background": "rgba(243, 241, 236, 0.65)",
+        "color": "rgb(37, 33, 29)"
       },
       {
         "text": "返回首页",

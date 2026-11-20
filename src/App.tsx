@@ -12,12 +12,32 @@ import {
   openingDialogue,
   secondChoice,
 } from './story/opening'
+import {
+  advanceCareer,
+  canOpenFinale,
+  chooseCareerFirst,
+  chooseCareerSecond,
+  createCareerProgress,
+  finale,
+  getCareer,
+  getCareerChoice,
+  getCareerEnding,
+  getCareerLetter,
+  getCareerLine,
+  getFinaleOpening,
+  getPrologueText,
+  identities,
+  prologue,
+} from './story/expansion'
+import type { CareerId, PlayerIdentity, StoryLine } from './story/expansionTypes'
+import type { CareerProgress } from './story/expansion'
 
-type View = 'home' | 'intro' | 'incoming' | 'call'
+type View = 'home' | 'intro' | 'incoming' | 'call' | 'identity' | 'hub' | 'career' | 'letter' | 'finale'
 
 function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>): SceneName {
-  if (view === 'home' || view === 'intro') return 'home'
+  if (view === 'home' || view === 'intro' || view === 'letter') return 'home'
   if (view === 'incoming') return 'incoming'
+  if (view === 'identity' || view === 'hub' || view === 'career' || view === 'finale') return 'connection'
 
   switch (node.id) {
     case 'opening-01':
@@ -82,6 +102,36 @@ function getChoicePreviewScene(optionId: string): SceneName | null {
   }
 }
 
+function careerProgressLabel(progress: CareerProgress): string {
+  switch (progress.phase) {
+    case 'dialogue':
+      return `对白 ${String(progress.lineIndex + 1).padStart(2, '0')}`
+    case 'identity':
+      return '身份回应'
+    case 'first-choice':
+    case 'first-feedback':
+      return '第一次选择'
+    case 'transition':
+      return '共同衔接'
+    case 'second-choice':
+    case 'second-feedback':
+      return '第二次选择'
+    case 'ending':
+      return '剧情结局'
+    case 'letter':
+      return '一周后的信'
+    default:
+      return '第二通来电'
+  }
+}
+
+function expansionSpeakerOrigin(speaker: string | undefined): string {
+  if (speaker === '另一个你') return '来自平行世界的自己'
+  if (speaker === '旁白') return '通话之外'
+  if (speaker === '你（内心）') return '此刻的你'
+  return '此刻的你'
+}
+
 function Arrow({ returning = false }: { returning?: boolean }) {
   return (
     <svg className={returning ? 'rotate-180' : ''} viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -95,6 +145,12 @@ function App() {
   const [progress, setProgress] = useState(createInitialOpeningProgress)
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [previewScene, setPreviewScene] = useState<SceneName | null>(null)
+  const [identity, setIdentity] = useState<PlayerIdentity | null>(null)
+  const [firstEnding, setFirstEnding] = useState<string | null>(null)
+  const [readCareers, setReadCareers] = useState<CareerId[]>([])
+  const [careerProgress, setCareerProgress] = useState<CareerProgress | null>(null)
+  const [finaleStep, setFinaleStep] = useState(0)
+  const [finaleLetterOpen, setFinaleLetterOpen] = useState(false)
   const previousView = useRef<View>('home')
   const selectionOnPointerDown = useRef(false)
   const startButton = useRef<HTMLButtonElement>(null)
@@ -103,10 +159,32 @@ function App() {
   const callHeading = useRef<HTMLHeadingElement>(null)
   const choiceHeading = useRef<HTMLHeadingElement>(null)
   const endHeading = useRef<HTMLHeadingElement>(null)
+  const identityHeading = useRef<HTMLHeadingElement>(null)
+  const hubHeading = useRef<HTMLHeadingElement>(null)
+  const letterHeading = useRef<HTMLHeadingElement>(null)
+  const finaleHeading = useRef<HTMLHeadingElement>(null)
   const confirmDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
   const sceneName = getSceneName(view, currentNode)
+  const activeCareer = careerProgress ? getCareer(careerProgress.careerId) : null
+  const careerLine = careerProgress ? getCareerLine(careerProgress) : null
+  const careerChoice = careerProgress ? getCareerChoice(careerProgress) : null
+  const careerEnding = careerProgress ? getCareerEnding(careerProgress) : null
+  const careerLetter = careerProgress ? getCareerLetter(careerProgress) : null
+  const prologueText = getPrologueText(firstEnding, identity)
+  const finaleLines: StoryLine[] = [
+    { speaker: '另一个你', text: getFinaleOpening(firstEnding) },
+    ...finale.lines,
+  ]
+  const finaleLine = finaleStep < finaleLines.length ? finaleLines[finaleStep] : null
+  const finaleDone = finaleStep >= finaleLines.length || finaleLetterOpen
+  const hubPrologueLines: StoryLine[] = [
+    ...prologue.bridge.slice(0, 2),
+    { speaker: '另一个你', text: prologueText.musicOpening },
+    ...prologue.bridge.slice(2),
+    ...prologue.handoff,
+  ]
 
   useEffect(() => {
     setPreviewScene(null)
@@ -126,7 +204,16 @@ function App() {
     if (view === 'intro') introHeading.current?.focus()
     if (view === 'incoming') incomingHeading.current?.focus()
     if (view === 'call') callHeading.current?.focus()
+    if (view === 'identity') identityHeading.current?.focus()
+    if (view === 'hub') hubHeading.current?.focus()
+    if (view === 'letter') letterHeading.current?.focus()
+    if (view === 'career' || view === 'finale') callHeading.current?.focus()
   }, [confirmOpen, view])
+
+  useEffect(() => {
+    if (view === 'career' && careerProgress?.phase === 'letter') letterHeading.current?.focus()
+    if (view === 'finale' && finaleDone) finaleHeading.current?.focus()
+  }, [view, careerProgress?.phase, finaleDone])
 
   useEffect(() => {
     if (currentNode.kind === 'choice') choiceHeading.current?.focus()
@@ -137,6 +224,12 @@ function App() {
     if (event.detail > 1) return
     setConfirmOpen(false)
     setProgress(createInitialOpeningProgress())
+    setIdentity(null)
+    setFirstEnding(null)
+    setReadCareers([])
+    setCareerProgress(null)
+    setFinaleStep(0)
+    setFinaleLetterOpen(false)
     setView('home')
   }
 
@@ -162,9 +255,79 @@ function App() {
     setProgress(advanceOpening)
   }
 
+  function startExpansion(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
+    if (currentNode.kind === 'end') setFirstEnding(currentNode.id)
+    setCareerProgress(null)
+    setView('identity')
+  }
+
+  function chooseIdentity(option: PlayerIdentity) {
+    setIdentity(option)
+    setView('hub')
+  }
+
+  function startCareer(careerId: CareerId) {
+    setCareerProgress(createCareerProgress(careerId, identity ?? 'steady'))
+    setView('career')
+  }
+
+  function advanceCareerStory(event?: MouseEvent<HTMLButtonElement>) {
+    if (event && event.detail > 1) return
+    setCareerProgress((current) => (current ? advanceCareer(current) : current))
+  }
+
+  function chooseCareer(optionId: string) {
+    setCareerProgress((current) => {
+      if (!current) return current
+      if (current.phase === 'first-choice') return chooseCareerFirst(current, optionId)
+      if (current.phase === 'second-choice') return chooseCareerSecond(current, optionId)
+      return current
+    })
+  }
+
+  function finishCareer(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
+    if (careerProgress) {
+      const careerId = careerProgress.careerId
+      setReadCareers((current) => current.includes(careerId) ? current : [...current, careerId])
+    }
+    setCareerProgress(null)
+    setView('hub')
+  }
+
+  function restartCareer(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1 || !careerProgress) return
+    setCareerProgress(createCareerProgress(careerProgress.careerId, identity ?? 'steady'))
+    setView('career')
+  }
+
+  function startFinale(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
+    setFinaleStep(0)
+    setFinaleLetterOpen(false)
+    setView('finale')
+  }
+
+  function advanceFinale(event?: MouseEvent<HTMLButtonElement>) {
+    if (event && event.detail > 1) return
+    if (finaleDone) return
+    setFinaleStep((current) => {
+      const next = current + 1
+      if (next >= finaleLines.length) setFinaleLetterOpen(true)
+      return next
+    })
+  }
+
+  function returnToHub(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
+    setFinaleStep(0)
+    setFinaleLetterOpen(false)
+    setView('hub')
+  }
+
   function advanceOnSurfaceClick(event: MouseEvent<HTMLDivElement>) {
-    if (view !== 'call' || confirmOpen) return
-    if (currentNode.kind !== 'dialogue' && currentNode.kind !== 'feedback' && currentNode.kind !== 'closing') return
+    if (confirmOpen) return
     const target = event.target
     if (target instanceof Element && target.closest('button, a, input, select, textarea, dialog, [role="dialog"]')) return
     if (selectionOnPointerDown.current || window.getSelection()?.toString()) {
@@ -172,13 +335,44 @@ function App() {
       return
     }
     if (event.detail > 1) return
-    setProgress(advanceOpening)
+
+    if (view === 'call') {
+      if (currentNode.kind !== 'dialogue' && currentNode.kind !== 'feedback' && currentNode.kind !== 'closing') return
+      setProgress(advanceOpening)
+      return
+    }
+
+    if (view === 'career' && careerProgress) {
+      if (!['dialogue', 'identity', 'first-feedback', 'transition', 'second-feedback'].includes(careerProgress.phase)) return
+      advanceCareerStory()
+      return
+    }
+
+    if (view === 'finale' && !finaleDone) {
+      advanceFinale()
+    }
   }
 
-  const liveText = view === 'call' && (currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing')
+  const openingLive = view === 'call' && (currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing')
     ? `${currentNode.speaker}：${currentNode.text}`
     : ''
-  const callActive = view === 'call' && currentNode.kind !== 'end'
+  const careerLive = view === 'career' && careerProgress
+    ? careerLine
+      ? `${careerLine.speaker}：${careerLine.text}`
+      : careerChoice
+        ? careerChoice.prompt
+        : careerEnding
+          ? `${careerEnding.title}。${careerEnding.summary}`
+          : ''
+    : ''
+  const finaleLive = view === 'finale' && finaleLine ? `${finaleLine.speaker}：${finaleLine.text}` : ''
+  const liveText = openingLive || careerLive || finaleLive
+  const expansionCallActive = Boolean(
+    (view === 'career' && careerProgress && careerProgress.phase !== 'letter') ||
+    (view === 'finale' && !finaleLetterOpen),
+  )
+  const callActive = (view === 'call' && currentNode.kind !== 'end') || expansionCallActive
+  const callTitle = view === 'call' ? '第一通来电' : '第二通来电'
   const speakerOrigin = currentNode.kind === 'choice'
     ? '来自平行世界的自己'
     : currentNode.kind === 'end'
@@ -202,13 +396,19 @@ function App() {
           : ''
   const selectedOption = firstChoice.options.find(({ id }) => id === safeProgress.choiceId)
   const selectedNextStep = secondChoice.options.find(({ id }) => id === safeProgress.nextStepId)
-  const screenKey = view !== 'call'
-    ? view
-    : currentNode.kind === 'end'
-      ? 'call-end'
-      : currentNode.kind === 'choice'
-        ? `call-${currentNode.id}`
-        : 'call-dialogue'
+  const screenKey = view === 'career'
+    ? careerProgress
+      ? `career-${careerProgress.careerId}-${careerProgress.phase === 'letter' ? 'letter' : 'call'}`
+      : 'career'
+    : view === 'finale'
+      ? finaleLetterOpen ? 'finale-letter' : 'finale'
+      : view !== 'call'
+        ? view
+        : currentNode.kind === 'end'
+          ? 'call-end'
+          : currentNode.kind === 'choice'
+            ? `call-${currentNode.id}`
+            : 'call-dialogue'
 
   return (
     <div
@@ -232,7 +432,7 @@ function App() {
           </div>
           {callActive ? (
             <div className="header-call">
-              <h1 ref={callHeading} tabIndex={-1} id="call-title" className="header-call-title">第一通来电</h1>
+              <h1 ref={callHeading} tabIndex={-1} id="call-title" className="header-call-title">{callTitle}</h1>
               <button type="button" className="end-call-action header-end-call" onClick={() => setConfirmOpen(true)}>结束通话</button>
             </div>
           ) : (
@@ -393,7 +593,10 @@ function App() {
                   <p>{currentNode.summary}</p>
                 </div>
                 <div className="action-row">
-                  <button type="button" className="primary-action group" onClick={showIncoming}>
+                  <button type="button" className="primary-action group" onClick={startExpansion}>
+                    <span>继续</span><span className="action-icon"><Arrow /></span>
+                  </button>
+                  <button type="button" className="secondary-action group" onClick={showIncoming}>
                     <span>重听这通来电</span><span className="action-icon"><Arrow returning /></span>
                   </button>
                   <button type="button" className="secondary-action group home-return-action" onClick={returnHome}>
@@ -401,6 +604,240 @@ function App() {
                   </button>
                 </div>
               </section>
+            )}
+
+            {view === 'identity' && (
+              <section className="screen-enter prelude identity-screen" aria-labelledby="identity-title">
+                <div className="prelude-dock">
+                  <article className="prelude-panel identity-panel">
+                    <div className="prelude-copy">
+                      <p className="eyebrow"><span />第一章之后</p>
+                      <h1 ref={identityHeading} tabIndex={-1} id="identity-title" className="section-heading">
+                        现在的你，更接近哪一种？
+                      </h1>
+                      <p className="section-note">这个选择只改变你回应另一个自己的方式，不改变第一章的选择和结局。</p>
+                    </div>
+                    <div className="identity-options">
+                      {identities.map((option, index) => (
+                        <button
+                          key={option.id}
+                          type="button"
+                          className="identity-option"
+                          onClick={() => chooseIdentity(option.id)}
+                        >
+                          <span className="identity-index">{String(index + 1).padStart(2, '0')}</span>
+                          <span className="identity-copy">
+                            <strong>{option.label}</strong>
+                            <span>{option.description}</span>
+                          </span>
+                          <span className="choice-arrow"><Arrow /></span>
+                        </button>
+                      ))}
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+
+            {view === 'hub' && (
+              <section className="screen-enter prelude hub-screen" aria-labelledby="hub-title">
+                <div className="prelude-dock">
+                  <article className="prelude-panel hub-panel">
+                    <div className="prelude-copy">
+                      <p className="eyebrow"><span />第二通来电 · 线路总机</p>
+                      <h1 ref={hubHeading} tabIndex={-1} id="hub-title" className="section-heading">
+                        另一个世界，未知线路
+                      </h1>
+                      <p className="hub-later">{prologueText.laterYou}</p>
+                      <div className="hub-script">
+                        {hubPrologueLines.map((line, index) => (
+                          <p key={`${line.speaker}-${index}`} className="hub-line">
+                            <span className="hub-speaker">{line.speaker}</span>
+                            <span>{line.text}</span>
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="hub-cards" aria-label="可接听的线路">
+                      {prologue.cards.map((card) => {
+                        const read = readCareers.includes(card.id)
+                        return (
+                          <button
+                            key={card.id}
+                            type="button"
+                            className={`hub-card${read ? ' is-read' : ''}`}
+                            onClick={() => startCareer(card.id)}
+                          >
+                            <span className="hub-card-time">{card.time}</span>
+                            <strong className="hub-card-title">{card.label}</strong>
+                            <span className="hub-card-hook">{card.hook}</span>
+                            <span className="hub-card-status">{read ? '已接听 · 重听' : '接听'}</span>
+                          </button>
+                        )
+                      })}
+                    </div>
+
+                    {canOpenFinale({ identity, firstEnding, readCareers, finaleSeen: false }) && (
+                      <div className="hub-finale">
+                        <p>「还有一通，来自你自己。」</p>
+                        <button type="button" className="primary-action group" onClick={startFinale}>
+                          <span>接听最后一通</span><span className="action-icon"><Arrow /></span>
+                        </button>
+                      </div>
+                    )}
+                  </article>
+                </div>
+              </section>
+            )}
+
+            {view === 'career' && careerProgress && activeCareer && (
+              careerProgress.phase === 'letter' ? (
+                <section className="screen-enter prelude letter-screen" aria-labelledby="letter-title">
+                  <div className="prelude-dock">
+                    <article className="prelude-panel letter-panel">
+                      <div className="prelude-copy">
+                        <p className="eyebrow"><span />一周后的信 · {activeCareer.title}</p>
+                        <h1 ref={letterHeading} tabIndex={-1} id="letter-title" className="section-heading">
+                          另一条线路的回信
+                        </h1>
+                        {careerLetter && (
+                          <>
+                            <p className="letter-opening">{careerLetter.opening}</p>
+                            <p className="letter-body">{careerLetter.body}</p>
+                            <p className="letter-sign">——另一个你</p>
+                          </>
+                        )}
+                      </div>
+                      <div className="action-row letter-actions">
+                        <button type="button" className="primary-action group" onClick={finishCareer}>
+                          <span>读完，回总机</span><span className="action-icon"><Arrow /></span>
+                        </button>
+                        <button type="button" className="secondary-action group" onClick={restartCareer}>
+                          <span>重听这条线</span><span className="action-icon"><Arrow returning /></span>
+                        </button>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+              ) : (
+                <section className="screen-enter call-session" aria-labelledby="career-title">
+                  <div className={`call-dock${careerChoice ? ' is-choice' : ''}`}>
+                    <article className={`dialogue-panel${careerChoice ? ' is-prompt' : ''}`}>
+                      <div className="dialogue-speaker-tab">
+                        <span className="dialogue-speaker-state call-live-state"><CallState status="connected" showLabel={false} /></span>
+                        <span className="speaker-name">
+                          {careerChoice ? '另一个你' : careerEnding ? '第二通来电' : careerLine?.speaker ?? '另一个你'}
+                        </span>
+                        <span className="speaker-origin">
+                          {careerChoice || careerEnding ? '来自平行世界的自己' : expansionSpeakerOrigin(careerLine?.speaker)}
+                        </span>
+                      </div>
+
+                      {careerEnding ? (
+                        <div className="career-ending">
+                          <p className="choice-kicker"><span />剧情结局</p>
+                          <h2 id="career-title">{careerEnding.title}</h2>
+                          <p className="dialogue-text">{careerEnding.summary}</p>
+                          <p className="career-last-line">{careerEnding.lastLine}</p>
+                          <button type="button" className="dialogue-continue" onClick={advanceCareerStory}>
+                            <span>读这封信</span><span className="action-icon"><Arrow /></span>
+                          </button>
+                        </div>
+                      ) : careerChoice ? (
+                        <div className="choice-prompt">
+                          <p className="choice-kicker"><span />{careerProgress.phase === 'first-choice' ? '第一次选择' : '第二次选择'}</p>
+                          <h2 id="career-title">{careerChoice.prompt}</h2>
+                        </div>
+                      ) : (
+                        <p
+                          key={`${careerProgress.phase}-${careerProgress.lineIndex}-${careerProgress.feedbackIndex}`}
+                          className="dialogue-text dialogue-line"
+                        >
+                          {careerLine?.text}
+                        </p>
+                      )}
+
+                      <div className="dialogue-panel-footer">
+                        <p className="dialogue-progress">{activeCareer.title} · {careerProgressLabel(careerProgress)}</p>
+                        {careerChoice ? (
+                          <p className="choice-hint">选择会改变这条线路的走向</p>
+                        ) : careerEnding ? null : (
+                          <button type="button" className="dialogue-continue" onClick={advanceCareerStory}>
+                            <span>继续</span><span className="action-icon"><Arrow /></span>
+                          </button>
+                        )}
+                      </div>
+                    </article>
+
+                    {careerChoice && (
+                      <div className="choice-options" aria-labelledby="career-title">
+                        {careerChoice.options.map((option, index) => (
+                          <button
+                            key={option.id}
+                            type="button"
+                            className="choice-option"
+                            onClick={() => chooseCareer(option.id)}
+                          >
+                            <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
+                            <span className="choice-label">{option.label}</span>
+                            <span className="choice-arrow"><Arrow /></span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </section>
+              )
+            )}
+
+            {view === 'finale' && (
+              finaleDone ? (
+                <section className="screen-enter prelude letter-screen" aria-labelledby="finale-title">
+                  <div className="prelude-dock">
+                    <article className="prelude-panel letter-panel finale-letter-panel">
+                      <div className="prelude-copy">
+                        <p className="eyebrow"><span />最后一封信 · 最初的线路</p>
+                        <h1 ref={finaleHeading} tabIndex={-1} id="finale-title" className="section-heading">
+                          下次换你打给我
+                        </h1>
+                        <p className="letter-body">{finale.letter}</p>
+                        <p className="letter-sign">——另一个你</p>
+                      </div>
+                      <div className="action-row letter-actions">
+                        <button type="button" className="primary-action group" onClick={returnToHub}>
+                          <span>返回总机</span><span className="action-icon"><Arrow returning /></span>
+                        </button>
+                        <button type="button" className="secondary-action group" onClick={returnHome}>
+                          <span>返回首页</span><span className="action-icon"><Arrow /></span>
+                        </button>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+              ) : (
+                <section className="screen-enter call-session" aria-labelledby="finale-call-title">
+                  <div className="call-dock">
+                    <article className="dialogue-panel">
+                      <div className="dialogue-speaker-tab">
+                        <span className="dialogue-speaker-state call-live-state"><CallState status="connected" showLabel={false} /></span>
+                        <span className="speaker-name">{finaleLine?.speaker ?? '另一个你'}</span>
+                        <span className="speaker-origin">来自平行世界的自己</span>
+                      </div>
+                      <h2 id="finale-call-title" className="sr-only">最后的回电</h2>
+                      <p key={`finale-${finaleStep}`} className="dialogue-text dialogue-line">
+                        {finaleLine?.text}
+                      </p>
+                      <div className="dialogue-panel-footer">
+                        <p className="dialogue-progress">最初的线路 · 最后一通回电</p>
+                        <button type="button" className="dialogue-continue" onClick={advanceFinale}>
+                          <span>继续</span><span className="action-icon"><Arrow /></span>
+                        </button>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+              )
             )}
 
           </div>
@@ -414,7 +851,7 @@ function App() {
         )}
       </div>
 
-      {previewScene === null && <SceneWhispers scene={sceneName} />}
+      {previewScene === null && ['home', 'intro', 'incoming', 'call'].includes(view) && <SceneWhispers scene={sceneName} />}
 
       <dialog
         ref={confirmDialog}

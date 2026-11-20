@@ -1009,3 +1009,60 @@ git restore --source=965c1b2 -- src/App.tsx src/index.css
 ```bash
 git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWhispers.tsx
 ```
+
+## 37. 修订版扩展剧情落地（数据层 + 可玩 UI）
+
+日期：2026-11-20（Asia/Shanghai）。团队要求把修订润色版剧本落实，“一步一步改”。本轮在 task-003 上先完成剧情数据层与一条可玩主流程，不改第一通已验证的剧情节点与结局逻辑。
+
+### 第一步：剧情数据层（提交 `8ef00f8`）
+
+- 新增 [src/story/expansionTypes.ts](../../src/story/expansionTypes.ts)、[src/story/expansionData.ts](../../src/story/expansionData.ts)、[src/story/expansion.ts](../../src/story/expansion.ts)。
+- 按修订版 DOCX 结构化了：
+  - 三种“现在的你”：`steady` / `working` / `turning`
+  - 第二通序幕：四种第一章结局对应的“后来的你”和音乐自我开场句、转接与线路总机
+  - 医生 / 教师 / 设计师 / 创业者四条职业线：16–18 个对白节点、两次选择、四条反馈路径
+  - 16 个职业结局、16 封职业信、每职业三种身份回应与信件开头
+  - 最终回电与最后一封信
+- [tests/expansion.test.mjs](../../tests/expansion.test.mjs) 检查：数据完整、四职业 × 四组合 = 16 条路径、身份只影响回应/信件开头、兜底文案、读完任一条信件解锁尾声、重置清空。
+- `npm run test:story` 改为同时运行第一通与扩展测试，当前 20/20 通过。
+
+### 第二步：可玩 UI
+
+- 第一通结局页新增“继续”，进入身份选择；保留重听和返回首页。
+- 身份选择页：三张身份卡，写入本次会话状态。
+- 第二通总机：显示“后来的你”、音乐自我开场、转接台词、四张线路卡；已读线路显示“已接听 · 重听”；读完任一条信件后出现“还有一通，来自你自己”和最后一通入口。
+- 职业通话复用现有对白/选择面板：
+  - 对白、身份回应、第一次选择、反馈、共同衔接、第二次选择、反馈、结局均可推进。
+  - 医生线的第二次选择仍是玩家自己的行动；教师、设计师、创业者线按修订版显示“你想对另一个你说句什么”，选项和对白按修订文案展示。
+  - 结局后点击“读这封信”进入信件页；只有点击“读完，回总机”才标记已接听。
+  - 信件页使用身份开头 + 结局专属正文；支持“重听这条线”。
+- 尾声：总机解锁入口 → 最后一通回电（按第一章结局播放开场）→ 最后一封信 → 返回总机/返回首页。
+- 详情页点击画面任意处继续、按钮防双击、键盘按钮与页面过渡沿用现有实现；新增页面标题在切换时获得焦点。
+- [src/index.css](../../src/index.css) 增加身份选项、总机卡片、信件页和职业结局的基础布局；手机端总机卡片两列、窄至 359px 一列，避免横向溢出。
+
+### 本轮验证
+
+环境同第 32 节。以下命令均退出 0：
+
+| 检查 | 结果 | 证据 |
+| --- | --- | --- |
+| `npm run typecheck` | 通过 | [expansion-typecheck.txt](assets/TASK-003/expansion-typecheck.txt) |
+| `npm run test:story` | 20/20 通过（含扩展数据） | [expansion-test-story.txt](assets/TASK-003/expansion-test-story.txt) |
+| `npm run build` | 20 modules；CSS 43.50 kB / gzip 9.57 kB；JS 294.84 kB / gzip 91.63 kB | [expansion-build.txt](assets/TASK-003/expansion-build.txt) |
+| 扩展真实浏览器流程 | 11 项通过：第一章结局继续、身份、总机、医生完整路径、身份回应、信件、已读解锁、尾声、返回总机、390 总机/职业页 | [expansion-checks.json](assets/TASK-003/expansion-checks.json) |
+| 第一通回归 | 点击/双击/选区 18 项、低语 19 项、页面过渡 8 项、布局、场景动效全部通过 | 对应 JSON 已更新 |
+
+实际截图：
+
+[身份选择 1440](assets/TASK-003/expansion-identity-1440.png) · [总机 1440](assets/TASK-003/expansion-hub-1440.png) · [医生第一次选择 1440](assets/TASK-003/expansion-career-choice-1440.png) · [医生结局 1440](assets/TASK-003/expansion-career-ending-1440.png) · [职业信件 1440](assets/TASK-003/expansion-letter-1440.png) · [已读总机与尾声入口 1440](assets/TASK-003/expansion-hub-read-1440.png) · [最终回电 1440](assets/TASK-003/expansion-finale-1440.png) · [最后一封信 1440](assets/TASK-003/expansion-finale-letter-1440.png) · [总机 390](assets/TASK-003/expansion-hub-390.png) · [职业页 390](assets/TASK-003/expansion-career-390.png)
+
+### 已知限制
+
+- 职业通话目前统一使用 `connection` 场景作为占位，医院、教室、工作室、办公室的专属插画尚未制作。
+- 浏览器只完整走了医生线；教师、设计师、创业者线由数据测试覆盖 16 条组合，尚未逐条做浏览器端到端。教师线在 390 仅验证了开场布局。
+- 总机在手机端内容较长，允许纵向滚动；尚未做更紧凑的单屏压缩。
+- 未使用实体手机、Safari/Firefox 或真实读屏；本扩展尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。
+
+### 回退
+
+本轮 UI 开始前的完整副本在 `/Users/zeh/Documents/elsewhere-backups/2026-11-20-pre-expansion-ui/`（`App.tsx`、`index.css`），数据层基线为 `8ef00f8`。需要回退 UI 时可 `git restore --source=8ef00f8 -- src/App.tsx src/index.css`；数据层也可回到该提交之前。

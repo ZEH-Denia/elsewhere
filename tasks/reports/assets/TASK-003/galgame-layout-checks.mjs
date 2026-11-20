@@ -439,8 +439,10 @@ try {
   assert.equal(ending1440.footer, 'flex', 'ending keeps the global footer')
   assert.equal(ending1440.veil.display, 'block', 'ending keeps its local paper backing')
   assert.notEqual(ending1440.veil.backgroundImage, 'none', 'ending backing is painted')
-  assert.equal(ending1440.endActions.length, 2)
-  assert.equal(ending1440.endActions[0].text, '重听这通来电')
+  assert.equal(ending1440.endActions.length, 3)
+  assert.equal(ending1440.endActions[0].text, '继续')
+  assert.equal(ending1440.endActions[1].text, '重听这通来电')
+  assert.equal(ending1440.endActions[2].text, '返回首页')
   assert.notEqual(ending1440.endActions[0].background, ending1440.endActions[1].background)
 
   await setViewport(1366, 768)

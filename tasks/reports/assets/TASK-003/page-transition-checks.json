@@ -17,8 +17,8 @@
         "screen": "intro",
         "animationName": "screen-page-in",
         "duration": "0.38s",
-        "opacity": 0.158623,
-        "transform": "matrix(1, 0, 0, 1, 0, 8.41377)",
+        "opacity": 0.310219,
+        "transform": "matrix(1, 0, 0, 1, 0, 6.89781)",
         "scrollWidth": 1440,
         "clientWidth": 1440
       },

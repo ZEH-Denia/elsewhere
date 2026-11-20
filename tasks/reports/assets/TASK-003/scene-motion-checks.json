@@ -206,6 +206,30 @@
       "rain": true,
       "motes": true
     },
+    "doctor": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "teacher": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "designer": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "founder": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
     "question": {
       "motionGuard": true,
       "animatedElements": 40,

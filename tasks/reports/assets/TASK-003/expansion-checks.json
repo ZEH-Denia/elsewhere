@@ -182,6 +182,37 @@
       "finalTitle": null
     },
     {
+      "name": "career-exit-preserves-read",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
       "name": "mobile-hub-390",
       "view": "hub",
       "heading": "另一个世界，未知线路",
@@ -225,6 +256,96 @@
       "finaleLine": false,
       "overflow": false,
       "finalTitle": null
+    },
+    {
+      "name": "compact-career-1024",
+      "view": "career",
+      "heading": "第二通来电",
+      "line": "下午四点四十。最后一排的窗还亮着，粉笔灰在光里慢慢落。另一个你把一摞作文本挪到桌角，袖口沾着一点红笔印。",
+      "progress": "教师 · 最后一排的窗 · 对白 01",
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "compact-hub-1024",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "narrow-hub-320",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "narrow-career-320",
+      "view": "career",
+      "heading": "第二通来电",
+      "line": "凌晨一点。屋里只亮着显示器，桌上咖啡已经凉了。另一个你把第十二版修改意见拖到屏幕角落，像拖走一块石头。",
+      "progress": "设计师 · 第十二版 · 对白 01",
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
     }
   ],
   "shots": [
@@ -236,8 +357,14 @@
     "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-hub-read-1440.png",
     "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-finale-1440.png",
     "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-finale-letter-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-designer-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-founder-1440.png",
     "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-hub-390.png",
-    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-390.png"
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-390.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-1024.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-hub-1024.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-hub-320.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-320.png"
   ],
   "failures": [],
   "consoleEvents": [],

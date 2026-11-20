@@ -34,10 +34,11 @@ import type { CareerProgress } from './story/expansion'
 
 type View = 'home' | 'intro' | 'incoming' | 'call' | 'identity' | 'hub' | 'career' | 'letter' | 'finale'
 
-function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>): SceneName {
+function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>, careerId: CareerId | null): SceneName {
   if (view === 'home' || view === 'intro' || view === 'letter') return 'home'
   if (view === 'incoming') return 'incoming'
-  if (view === 'identity' || view === 'hub' || view === 'career' || view === 'finale') return 'connection'
+  if (view === 'career') return careerId ?? 'connection'
+  if (view === 'identity' || view === 'hub' || view === 'finale') return 'connection'
 
   switch (node.id) {
     case 'opening-01':
@@ -144,6 +145,7 @@ function App() {
   const [view, setView] = useState<View>('home')
   const [progress, setProgress] = useState(createInitialOpeningProgress)
   const [confirmOpen, setConfirmOpen] = useState(false)
+  const [confirmTarget, setConfirmTarget] = useState<'home' | 'hub'>('home')
   const [previewScene, setPreviewScene] = useState<SceneName | null>(null)
   const [identity, setIdentity] = useState<PlayerIdentity | null>(null)
   const [firstEnding, setFirstEnding] = useState<string | null>(null)
@@ -166,7 +168,9 @@ function App() {
   const confirmDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
-  const sceneName = getSceneName(view, currentNode)
+  const sceneName = view === 'career' && careerProgress?.phase === 'letter'
+    ? 'home'
+    : getSceneName(view, currentNode, careerProgress?.careerId ?? null)
   const activeCareer = careerProgress ? getCareer(careerProgress.careerId) : null
   const careerLine = careerProgress ? getCareerLine(careerProgress) : null
   const careerChoice = careerProgress ? getCareerChoice(careerProgress) : null
@@ -219,6 +223,24 @@ function App() {
     if (currentNode.kind === 'choice') choiceHeading.current?.focus()
     if (currentNode.kind === 'end') endHeading.current?.focus()
   }, [currentNode.kind, safeProgress.nodeId])
+
+  function openEndConfirm() {
+    setConfirmTarget(view === 'career' || view === 'finale' ? 'hub' : 'home')
+    setConfirmOpen(true)
+  }
+
+  function confirmEnd(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1) return
+    if (confirmTarget === 'home') {
+      returnHome(event)
+      return
+    }
+    setConfirmOpen(false)
+    setCareerProgress(null)
+    setFinaleStep(0)
+    setFinaleLetterOpen(false)
+    setView('hub')
+  }
 
   function returnHome(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
@@ -433,7 +455,7 @@ function App() {
           {callActive ? (
             <div className="header-call">
               <h1 ref={callHeading} tabIndex={-1} id="call-title" className="header-call-title">{callTitle}</h1>
-              <button type="button" className="end-call-action header-end-call" onClick={() => setConfirmOpen(true)}>结束通话</button>
+              <button type="button" className="end-call-action header-end-call" onClick={openEndConfirm}>结束通话</button>
             </div>
           ) : (
             <p className="header-meta font-mono text-[10px] tracking-[0.16em] sm:text-xs">平行人生 <span className="header-sep mx-2">/</span> 001</p>
@@ -634,6 +656,11 @@ function App() {
                         </button>
                       ))}
                     </div>
+                    <div className="screen-back-row">
+                      <button type="button" className="panel-return-action group" onClick={returnHome}>
+                        <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
+                      </button>
+                    </div>
                   </article>
                 </div>
               </section>
@@ -686,6 +713,11 @@ function App() {
                         </button>
                       </div>
                     )}
+                    <div className="screen-back-row">
+                      <button type="button" className="panel-return-action group" onClick={returnHome}>
+                        <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
+                      </button>
+                    </div>
                   </article>
                 </div>
               </section>
@@ -863,11 +895,11 @@ function App() {
         }}
         onClose={() => setConfirmOpen(false)}
       >
-        <h2 id="confirm-title">结束本次通话并返回首页？</h2>
-        <p>当前对话与选择将清空。</p>
+        <h2 id="confirm-title">{confirmTarget === 'hub' ? '结束本次通话并返回总机？' : '结束本次通话并返回首页？'}</h2>
+        <p>{confirmTarget === 'hub' ? '当前职业线进度将清空，已读信件保留。' : '当前对话与选择将清空。'}</p>
         <div className="action-row">
           <button type="button" className="secondary-action" onClick={() => setConfirmOpen(false)}>取消</button>
-          <button type="button" className="danger-action" onClick={returnHome}>确认结束</button>
+          <button type="button" className="danger-action" onClick={confirmEnd}>{confirmTarget === 'hub' ? '确认返回总机' : '确认结束'}</button>
         </div>
       </dialog>
     </div>

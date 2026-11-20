@@ -1048,7 +1048,7 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 | --- | --- | --- |
 | `npm run typecheck` | 通过 | [expansion-typecheck.txt](assets/TASK-003/expansion-typecheck.txt) |
 | `npm run test:story` | 20/20 通过（含扩展数据） | [expansion-test-story.txt](assets/TASK-003/expansion-test-story.txt) |
-| `npm run build` | 20 modules；CSS 43.50 kB / gzip 9.57 kB；JS 294.84 kB / gzip 91.63 kB | [expansion-build.txt](assets/TASK-003/expansion-build.txt) |
+| `npm run build` | 20 modules；CSS 43.57 kB / gzip 9.60 kB；JS 295.80 kB / gzip 91.80 kB | [expansion-build.txt](assets/TASK-003/expansion-build.txt) |
 | 扩展真实浏览器流程 | 11 项通过：第一章结局继续、身份、总机、医生完整路径、身份回应、信件、已读解锁、尾声、返回总机、390 总机/职业页 | [expansion-checks.json](assets/TASK-003/expansion-checks.json) |
 | 第一通回归 | 点击/双击/选区 18 项、低语 19 项、页面过渡 8 项、布局、场景动效全部通过 | 对应 JSON 已更新 |
 
@@ -1066,3 +1066,50 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 ### 回退
 
 本轮 UI 开始前的完整副本在 `/Users/zeh/Documents/elsewhere-backups/2026-11-20-pre-expansion-ui/`（`App.tsx`、`index.css`），数据层基线为 `8ef00f8`。需要回退 UI 时可 `git restore --source=8ef00f8 -- src/App.tsx src/index.css`；数据层也可回到该提交之前。
+
+## 38. 四职业专属场景与最终校验
+
+日期：2026-11-20（Asia/Shanghai）。团队要求“全部做好，插画等等东西，最后直接校验”。本轮补齐四条职业线的专属场景，并处理职业中途退出总机的导航，最后跑完整回归。
+
+### 专属场景
+
+- [scripts/generate-backgrounds.mjs](../../scripts/generate-backgrounds.mjs) 新增 `careerRoom(kind)`，用现有双室、雨夜、暖光与玻璃质感生成四张职业场景：
+  - [doctor.svg](../../public/backgrounds/doctor.svg)：急诊走廊、抢救床、输液架、自动贩卖机、红十字与闪烁灯管。
+  - [teacher.svg](../../public/backgrounds/teacher.svg)：放学后的教室、黑板、最后一排窗、讲桌与学生纸张。
+  - [designer.svg](../../public/backgrounds/designer.svg)：工作室显示器、墙上草图、冷咖啡、台灯/桌面与绿植。
+  - [founder.svg](../../public/backgrounds/founder.svg)：白板与便利贴、雨窗、三张桌子、绿植和小服务器。
+- 背景总数从 24 增至 28；`SceneBackground` 预加载与类型联合新增四张场景。
+- 职业通话按 `careerId` 使用对应场景；职业信件回到 `home`；总机、身份选择和最终回电继续使用 `connection`。
+- 场景沿用代码生成、无远程素材；雨丝、尘埃、灯光漂移与减少动态效果规则保持一致。
+
+### 导航补齐
+
+- 职业/最终通话中途点击“结束通话”时，确认文案改为“结束本次通话并返回总机？”，确认后保留身份、第一章结局和已读信件，只清空当前职业进度。
+- 身份选择和总机新增“返回首页”；返回首页仍清空整轮进度。
+- 读完职业信后仍通过“读完，回总机”标记已接听；中途退出不标记。
+
+### 最终校验
+
+环境同第 32 节。以下全部实际执行、退出 0，`failures` 与 `consoleEvents` 均为 `[]`：
+
+| 检查 | 结果 | 证据 |
+| --- | --- | --- |
+| `npm run typecheck` | 通过 | [expansion-typecheck.txt](assets/TASK-003/expansion-typecheck.txt) |
+| `npm run test:story` | 20/20 通过 | [expansion-test-story.txt](assets/TASK-003/expansion-test-story.txt) |
+| `npm run build` | CSS 43.57 kB / gzip 9.60 kB；JS 295.80 kB / gzip 91.80 kB | [expansion-build.txt](assets/TASK-003/expansion-build.txt) |
+| 扩展浏览器流程 | **16 项全部通过**：四职业场景、身份/总机、医生完整路径、信件已读、中途退出保留已读、尾声、1024/390/320 无横向溢出 | [expansion-checks.json](assets/TASK-003/expansion-checks.json) |
+| 第一通回归 | 点击/双击/选区 18 项、低语 19 项、页面过渡 8 项、Galgame 布局、28 张场景与动效全部通过 | 对应 JSON 已更新 |
+
+截图：
+
+[身份 1440](assets/TASK-003/expansion-identity-1440.png) · [总机 1440](assets/TASK-003/expansion-hub-1440.png) · [医生选择 1440](assets/TASK-003/expansion-career-choice-1440.png) · [医生结局 1440](assets/TASK-003/expansion-career-ending-1440.png) · [职业信件 1440](assets/TASK-003/expansion-letter-1440.png) · [最终回电 1440](assets/TASK-003/expansion-finale-1440.png) · [最后一封信 1440](assets/TASK-003/expansion-finale-letter-1440.png) · [总机 1024](assets/TASK-003/expansion-hub-1024.png) · [总机 320](assets/TASK-003/expansion-hub-320.png) · [设计师场景 1440](assets/TASK-003/expansion-career-designer-1440.png) · [创业者场景 1440](assets/TASK-003/expansion-career-founder-1440.png) · [教师场景 390](assets/TASK-003/expansion-career-390.png) · [设计师 320](assets/TASK-003/expansion-career-320.png)
+
+### 仍存在的限制
+
+- 浏览器完整读到信件的路径仍只走了医生线；教师、设计师、创业者四条分支由数据测试覆盖 16 条组合，四张场景均已截图，但未逐条走完浏览器 16 结局。
+- 总机在手机端内容较长，允许纵向滚动，尚未压缩成单屏。
+- 未使用实体手机、Safari/Firefox 或真实读屏；本轮尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署。
+
+### 回退
+
+四职业场景由 `node scripts/generate-backgrounds.mjs` 重新生成；UI 开始前的 App/CSS 副本仍在 `/Users/zeh/Documents/elsewhere-backups/2026-11-20-pre-expansion-ui/`。数据层基线为 `8ef00f8`，扩展 UI 提交为 `0e6e63d`。

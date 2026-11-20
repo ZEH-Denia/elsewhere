@@ -2381,3 +2381,9 @@ button:focus-visible,
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.screen-back-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}

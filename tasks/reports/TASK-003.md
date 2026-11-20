@@ -1159,3 +1159,36 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 - 浏览器只完整走了医生线并验证四场景轮换；教师、设计师、创业者线的四张场景均已生成并验证首屏，但未逐条走完 16 个结局的完整浏览器路径。
 - 总机在手机端仍允许纵向滚动；未使用实体手机、Safari/Firefox 或真实读屏。
 - 本轮尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署。
+
+## 40. 职业配图重画：让每张图都能直接看出职业
+
+日期：2026-11-20（Asia/Shanghai）。团队反馈“重新审视所有配图，图片里要有与选择的职业相符的特征，几张图片都没体现出职业特征”。复核确认：旧的 16 张职业图虽然换了道具，但共用同一办公室骨架，缩小后只剩“暗房间 + 桌椅”，职业信息主要依赖界面文字。
+
+### 本轮重画
+
+- 新增 [scripts/career-scenes.mjs](../../scripts/career-scenes.mjs)，独立绘制 16 张职业场景；`generate-backgrounds.mjs` 只负责场景配置、双室外框与导出。
+- 每张图至少保留一个远距离可辨认的主道具，并在窗框左右留出完整标识，不再让关键中文压在竖向窗棂上。
+- 医生线：急诊红十字/24H 标识、心电监护、病床与输液架；分诊台/叫号屏/轮椅；值班室、刷手服、听诊器与亮屏售货机；夜间病房的隔帘、病床、监护仪与静音标识。
+- 教师线：黑板公式/倒计时/时钟与成排课桌；窗边课桌、书包与粉笔尘；教师办公室软木板、成摞作业与红笔批改；教室门牌、储物柜、月考通知与拖把桶。
+- 设计师线：设计软件界面（画布、`Aa`、工具栏、图层与色板）、数位板/压感笔/潘通色卡；草图墙与“第 12 版”；凌晨 01:12 的显示器；倾斜绘图桌、草图纸、马克笔与色卡。
+- 创业者线：白板增长曲线、第 3 周/MVP/上线标签与三台笔记本；会议角白板与会议桌；雨窗办公室的路线便签与纸箱；机房机柜、指示灯、终端与上线检查清单。
+- 同时修复所有描边路径缺失 `fill="none"` 导致的黑色填充（创业者增长曲线黑块等），并调整被窗棂切开的公式、标牌和检查清单位置。
+
+### 实际校验
+
+| 检查 | 结果 |
+| --- | --- |
+| `npm run typecheck` | 通过 |
+| `npm run test:story` | 20/20 通过 |
+| `npm run build` | CSS 43.57 kB / gzip 9.60 kB；JS 296.59 kB / gzip 92.08 kB |
+| 扩展浏览器流程 | 17 项通过，`failures` / `consoleEvents` 均为 `[]` |
+| 全量场景 | 40 张 SVG 全部通过动效保护/雨丝/尘埃检查；`scene-motion-checks.json` 中 40 项 `fileChecks` 全部为 true |
+| 第一通回归 | 点击 18、低语 19、页面过渡 8、布局检查全部通过 |
+
+更新截图：[医生分诊（第一次选择）](assets/TASK-003/expansion-career-choice-1440.png)、[设计师](assets/TASK-003/expansion-career-designer-1440.png)、[创业者](assets/TASK-003/expansion-career-founder-1440.png)、[医生结局](assets/TASK-003/expansion-career-ending-1440.png)、[教师 390](assets/TASK-003/expansion-career-390.png)、[医生 1024](assets/TASK-003/expansion-career-1024.png)、[320](assets/TASK-003/expansion-career-320.png)。
+
+### 仍存在的限制
+
+- 应用内完整走通的仍是医生线；教师/设计师/创业者线的四张场景已逐张检查 SVG 和首屏，但未逐条走完 16 个结局的浏览器路径。
+- 未使用实体手机、Safari/Firefox 或真实读屏。
+- 本轮未经 Codex 复审，不据此自称 PASS；未合并 main、未部署。

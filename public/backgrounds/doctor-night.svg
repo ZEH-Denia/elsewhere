@@ -88,27 +88,68 @@
     <path d="M322 582Q350 566 382 578L398 650H306Z" fill="#11171e" opacity=".88"/>
   </g></g><g opacity="1.12"><g clip-path="url(#rightClip)">
     <rect x="806" y="164" width="532" height="502" fill="url(#rightRoom)"/>
-    <g class="anim glow-drift"><ellipse cx="1110" cy="348" rx="290" ry="268" fill="url(#stageGlow)"/></g>
-    <path d="M1080 156H1180L1300 666H884Z" fill="url(#spotlight)"/>
+    <rect x="806" y="164" width="532" height="502" fill="#1b1a20" opacity="0.34"/>
+    <g class="anim glow-drift"><ellipse cx="1110" cy="348" rx="290" ry="268" fill="url(#stageGlow)" opacity="0.78"/></g>
+    <path d="M1080 156H1180L1300 666H884Z" fill="url(#spotlight)" opacity=".7"/>
     <path d="M806 540L1338 504V666H806Z" fill="url(#floor)"/>
-    <path d="M806 561L1338 523M806 614L1338 567M924 666L1008 524M1150 666L1160 516" stroke="#a392b1" stroke-opacity=".055"/>
+    <path fill="none" d="M806 561L1338 523M806 614L1338 567M924 666L1008 524M1150 666L1160 516" stroke="#a392b1" stroke-opacity=".055"/>
 
-    <rect x="842" y="208" width="306" height="222" rx="3" fill="#0b1720" stroke="#50636e" stroke-opacity=".45"/>
-    <path d="M842 314H1148M994 208V430" stroke="#3b4d58" stroke-width="8"/>
-    <path d="M860 240H980M860 264H980M860 288H940M1010 240H1128M1010 264H1128" stroke="#8fb4c0" stroke-opacity=".12" stroke-width="3"/>
-    <g class="anim glow-drift"><ellipse cx="1200" cy="344" rx="150" ry="150" fill="url(#stageGlow)" opacity=".55"/></g>
-    <g transform="translate(1180 204)">
-      <rect width="142" height="42" rx="5" fill="#3a2024" stroke="#a86c6c" stroke-opacity=".45"/>
-      <path d="M24 20H118" stroke="#d79a9a" stroke-opacity=".6" stroke-width="4" stroke-linecap="round"/>
-    </g>
-    <g transform="translate(1166 468)">
-      <path d="M0 22L176 10L190 36L-12 50Z" fill="#131b23" stroke="#6f7e8a" stroke-opacity=".4"/>
-      <path d="M10 24H170L176 34H4Z" fill="#9bb3ba" opacity=".25"/>
-      <path d="M34 40V76M154 32V68" stroke="#7d8d96" stroke-width="4"/>
-      <circle cx="32" cy="80" r="6" fill="#1a2228" stroke="#8ba0a8"/><circle cx="156" cy="72" r="6" fill="#1a2228" stroke="#8ba0a8"/>
-    </g>
-    <path d="M1120 430H1320" stroke="#6c818c" stroke-opacity=".3" stroke-width="3"/>
-    <rect x="806" y="164" width="532" height="502" fill="url(#glass)" opacity=".26"/>
+      <rect x="806" y="164" width="532" height="300" fill="#0a1a24" opacity=".46"/>
+      <path d="M806 300L1338 452V666H806Z" fill="#0d1419" opacity=".72"/>
+      <path fill="none" d="M806 300L1338 452M806 382L1338 488M806 470L1338 526M806 558L1338 566" stroke="#8fa6ad" stroke-opacity=".1"/>
+      <path fill="none" d="M1072 250V520" stroke="#6f858e" stroke-opacity=".18" stroke-width="3"/>
+      <path fill="none" d="M886 164H1258" stroke="#6e828a" stroke-opacity=".3" stroke-width="5"/>
+      <g class="anim blink"><rect x="920" y="176" width="76" height="6" rx="3" fill="#d9edf0" opacity=".34"/><rect x="1120" y="176" width="76" height="6" rx="3" fill="#d9edf0" opacity=".28"/></g>
+      <g transform="translate(1008 204)">
+    <rect width="128" height="58" rx="4" fill="#0d161c" stroke="#9ccdd2" stroke-opacity=".55"/>
+    <rect x="5" y="5" width="118" height="48" rx="2" fill="none" stroke="#9ccdd2" stroke-opacity=".18"/>
+
+    <text x="64" y="30" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="19" font-weight="600" fill="#9ccdd2" fill-opacity="0.92" text-anchor="middle" letter-spacing="0.6">静</text>
+    <text x="64" y="49" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9" font-weight="600" fill="#9ccdd2" fill-opacity="0.55" text-anchor="middle" letter-spacing="1.4">NIGHT WARD</text>
+  </g>
+      <path d="M1174 196H1298V226H1174Z" fill="#132229" stroke="#75888f" stroke-opacity=".4"/>
+      <path fill="none" d="M1188 204H1284M1188 212H1264" stroke="#d5e4e4" stroke-opacity=".3" stroke-width="2"/>
+      <g transform="translate(826 230)">
+        <path fill="none" d="M0 0H190M0 22H190" stroke="#82959c" stroke-opacity=".28" stroke-width="4"/>
+        <path d="M14 22Q36 80 20 212M56 22Q34 90 54 218M100 22Q122 84 104 212M144 22Q124 92 142 218M182 22Q166 82 178 210" fill="none" stroke="#a8b9bd" stroke-opacity=".16" stroke-width="11"/>
+        <path fill="none" d="M46 148H154" stroke="#6c7d84" stroke-opacity=".28" stroke-width="3"/>
+        <g transform="translate(40 188)">
+    <rect x="0" y="-78" width="12" height="80" rx="4" fill="#3f525a" stroke="#a7b8bc" stroke-opacity=".32"/>
+    <rect x="106" y="-78" width="12" height="80" rx="4" fill="#3f525a" stroke="#a7b8bc" stroke-opacity=".32"/>
+    <rect x="12" y="-40" width="94" height="24" rx="10" fill="#dce8e8" opacity=".44"/>
+    <path d="M20 -18H98V12H20Z" fill="#c9dadb" opacity=".34"/>
+    <path d="M20 -18H73V12H20Z" fill="#eef6f4" opacity=".34"/>
+    <path d="M30 -34H47V-18H30Z" fill="#f1f6f2" opacity=".52"/>
+    <path fill="none" d="M36 -48H100M36 -48V-16M70 -48V-16M100 -48V-16" stroke="#b6c8cb" stroke-width="3"/>
+    <path fill="none" d="M42 -33H92M42 10H92" stroke="#a9bbbe" stroke-opacity=".36" stroke-width="3"/>
+    <path fill="none" d="M52 12V46M66 12V46M52 46H66" stroke="#6d7f85" stroke-width="4"/>
+    <circle cx="54" cy="56" r="9" fill="#161d22" stroke="#93a6aa" stroke-width="2"/>
+    <circle cx="64" cy="56" r="9" fill="#161d22" stroke="#93a6aa" stroke-width="2"/>
+  </g>
+      </g>
+      <g transform="translate(1162 460)">
+        <path d="M0 0H196L180 20H15Z" fill="#4a5052" stroke="#aab7b8" stroke-opacity=".32"/>
+        <path fill="none" d="M24 20V66M166 20V66" stroke="#20262a" stroke-width="8"/>
+        <path d="M28 4H164L156 20H32Z" fill="#c9d7d7" opacity=".34"/>
+        <circle cx="34" cy="70" r="9" fill="#182024" stroke="#9dafb1" stroke-width="2"/>
+        <circle cx="156" cy="70" r="9" fill="#182024" stroke="#9dafb1" stroke-width="2"/>
+      </g>
+      <g transform="translate(1268 332)">
+    <path fill="none" d="M0 -8V142M-17 142H17M0 -8H13" stroke="#b8c9cc" stroke-opacity=".72" stroke-width="3" stroke-linecap="round"/>
+    <rect x="-10" y="6" width="25" height="47" rx="7" fill="#d9eef0" opacity=".4" stroke="#d9eef0" stroke-opacity=".45"/>
+    <path fill="none" d="M-2 16V42M4 16V42" stroke="#effafa" stroke-opacity=".4" stroke-width="2"/>
+    <path d="M0 54V88Q0 104 22 104H54" fill="none" stroke="#c9e4e6" stroke-opacity=".55" stroke-width="2" stroke-dasharray="3 7"/>
+    <circle cx="-13" cy="142" r="5" fill="#1c252a" stroke="#8fa2a7"/>
+    <circle cx="13" cy="142" r="5" fill="#1c252a" stroke="#8fa2a7"/>
+  </g>
+      <g transform="translate(1214 302)">
+        <rect width="92" height="64" rx="4" fill="#102029" stroke="#89a1a8" stroke-opacity=".4"/>
+        <path d="M10 20H32L40 9L50 44L60 24H82" fill="none" stroke="#8fd0d6" stroke-opacity=".72" stroke-width="2.5"/>
+        <path fill="none" d="M10 52H82" stroke="#8fd0d6" stroke-opacity=".18"/>
+      </g>
+      <circle cx="1210" cy="418" r="3" fill="#d79a9a" opacity=".6"/>
+      <path fill="none" d="M838 552L1318 526" stroke="#8fa0a5" stroke-opacity=".12" stroke-width="2"/>
+    <rect x="806" y="164" width="532" height="502" fill="url(#glass)" opacity=".12"/>
   </g></g>
   <rect x="102" y="164" width="532" height="502" fill="url(#glass)" opacity=".32"/>
   <path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#080d14" stroke-width="15"/><path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#607080" stroke-opacity=".12" stroke-width="2"/>

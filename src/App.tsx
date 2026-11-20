@@ -185,52 +185,85 @@ function App() {
           )}
         </header>
 
-        <main className={`app-main${callActive ? ' is-call' : ''}`}>
+        <main className={`app-main${callActive ? ' is-call' : view !== 'call' ? ' is-prelude' : ''}`}>
           {view === 'home' && (
-            <section className="screen-enter home-layout" aria-labelledby="home-title">
-              <div className="home-copy">
-                <p className="eyebrow"><span />来自另一个世界的信号</p>
-                <h1 id="home-title" className="home-title">
-                  <span className="home-title-brand">Elsewhere</span>
-                  <span className="home-title-cn">未接来电</span>
-                </h1>
-                <div className="home-intro">
-                  <p>如果当年，你选择了另一条路。</p>
-                  <p>平行世界的你，正在来电。</p>
-                </div>
+            <section className="screen-enter prelude" aria-labelledby="home-title">
+              <div className="prelude-stage">
+                <CallCard className="home-call" object />
               </div>
-
-              <CallCard className="home-call" />
-
-              <div className="home-actions">
-                <p className="quiet-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>
+              <div className="prelude-dock">
+                <article className="prelude-panel">
+                  <div className="prelude-copy">
+                    <p className="eyebrow"><span />来自另一个世界的信号</p>
+                    <h1 id="home-title" className="home-title">
+                      <span className="home-title-brand">Elsewhere</span>
+                      <span className="home-title-cn">未接来电</span>
+                    </h1>
+                    <div className="home-intro">
+                      <p>如果当年，你选择了另一条路。</p>
+                      <p>平行世界的你，正在来电。</p>
+                    </div>
+                    <p className="quiet-note prelude-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>
+                  </div>
+                  <div className="prelude-actions">
+                    <button ref={startButton} type="button" className="primary-action group" onClick={() => setView('intro')}>
+                      <span>开始体验</span><span className="action-icon"><Arrow /></span>
+                    </button>
+                  </div>
+                </article>
               </div>
             </section>
           )}
 
           {view === 'intro' && (
-            <section className="screen-enter intro-layout" aria-labelledby="intro-title">
-              <p className="eyebrow"><span />来电前言</p>
-              <h1 ref={introHeading} tabIndex={-1} id="intro-title" className="intro-heading">
-                如果当年选择了音乐，<br className="hidden sm:block" />你现在会在哪里？
-              </h1>
-              <div className="intro-copy">
-                <p>想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。</p>
-                <p>这是一段虚构的平行人生，不代表对未来的预测。</p>
+            <section className="screen-enter prelude" aria-labelledby="intro-title">
+              <div className="prelude-dock">
+                <article className="prelude-panel">
+                  <div className="prelude-copy">
+                    <p className="eyebrow"><span />来电前言</p>
+                    <h1 ref={introHeading} tabIndex={-1} id="intro-title" className="intro-heading">
+                      如果当年选择了音乐，<br className="hidden sm:block" />你现在会在哪里？
+                    </h1>
+                    <div className="intro-copy">
+                      <p>想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。</p>
+                      <p>这是一段虚构的平行人生，不代表对未来的预测。</p>
+                    </div>
+                  </div>
+                  <div className="prelude-actions">
+                    <button type="button" className="panel-return-action group" onClick={returnHome}>
+                      <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
+                    </button>
+                    <button type="button" className="primary-action group" onClick={showIncoming}>
+                      <span>进入来电</span><span className="action-icon"><Arrow /></span>
+                    </button>
+                  </div>
+                </article>
               </div>
             </section>
           )}
 
           {view === 'incoming' && (
-            <section className="screen-enter incoming-layout" aria-labelledby="incoming-title">
-              <div className="incoming-copy">
-                <p className="eyebrow"><span />一通来自平行世界的来电</p>
-                <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
-                <p>这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。</p>
+            <section className="screen-enter prelude prelude-incoming" aria-labelledby="incoming-title">
+              <div className="prelude-stage">
+                <CallCard className="incoming-call" object status="ringing" />
               </div>
-              <CallCard className="incoming-call" object status="ringing" />
-              <div className="incoming-actions">
-                <p className="quiet-note">剧情模拟，不会请求麦克风或通知权限。</p>
+              <div className="prelude-dock">
+                <article className="prelude-panel">
+                  <div className="prelude-copy">
+                    <p className="eyebrow"><span />一通来自平行世界的来电</p>
+                    <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
+                    <p className="incoming-note">这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。</p>
+                    <p className="quiet-note prelude-note">剧情模拟，不会请求麦克风或通知权限。</p>
+                  </div>
+                  <div className="prelude-actions">
+                    <button type="button" className="panel-return-action group" onClick={returnHome}>
+                      <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
+                    </button>
+                    <button type="button" className="primary-action group" onClick={answerCall}>
+                      <span>接听</span><span className="action-icon"><Arrow /></span>
+                    </button>
+                  </div>
+                </article>
               </div>
             </section>
           )}
@@ -312,27 +345,9 @@ function App() {
             </section>
           )}
 
-          {view !== 'call' && (
-            <div className="journey-actions">
-              <button
-                ref={view === 'home' ? startButton : undefined}
-                type="button"
-                className="primary-action group"
-                onClick={view === 'home' ? () => setView('intro') : view === 'intro' ? showIncoming : answerCall}
-              >
-                <span>{view === 'home' ? '开始体验' : view === 'intro' ? '进入来电' : '接听'}</span>
-                <span className="action-icon"><Arrow /></span>
-              </button>
-              {view !== 'home' && (
-                <button type="button" className="secondary-action group home-return-action journey-return-action" onClick={returnHome}>
-                  <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
-                </button>
-              )}
-            </div>
-          )}
         </main>
 
-        {!callActive && (
+        {view === 'call' && currentNode.kind === 'end' && (
           <footer className="app-footer">
             <span>AN INTERACTIVE STORY</span>
             <span>此刻 · 另一种可能</span>

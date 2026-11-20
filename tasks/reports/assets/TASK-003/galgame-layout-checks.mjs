@@ -155,11 +155,22 @@ async function snapshot() {
     const choiceHeading = document.querySelector('#choice-title')
     const active = document.activeElement
     const endActions = [...document.querySelectorAll('.end-layout .action-row button')]
+    const preludeHeading = document.querySelector('.home-title-cn') ?? document.querySelector('.prelude h1')
+    const preludePanel = document.querySelector('.prelude-panel')
     return {
       viewport: { width: innerWidth, height: innerHeight },
       document: { width: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth, height: document.documentElement.scrollHeight },
       view: document.querySelector('.app-background')?.dataset.view || '',
       main: { classes: main?.className || '', padding: main ? getComputedStyle(main).padding : '', rect: box(main) },
+      prelude: {
+        panel: box(preludePanel),
+        stage: box(document.querySelector('.prelude-stage')),
+        card: box(document.querySelector('.prelude-stage .call-card')),
+        primary: box(document.querySelector('.prelude-actions .primary-action')),
+        return: box(document.querySelector('.panel-return-action')),
+        headingFont: preludeHeading ? parseFloat(getComputedStyle(preludeHeading).fontSize) : 0,
+        copy: box(document.querySelector('.prelude-copy')),
+      },
       scene: {
         src: scene?.getAttribute('src') || '',
         opacity: scene ? getComputedStyle(scene).opacity : '',
@@ -225,6 +236,32 @@ async function snapshot() {
 
 function assertPage(snapshot) {
   assert.ok(snapshot.document.width <= snapshot.viewport.width, `no horizontal overflow at ${snapshot.viewport.width}: ${snapshot.document.width}`)
+}
+
+function assertPrelude(snapshot, { mobile = false, card = true } = {}) {
+  assertPage(snapshot)
+  assert.equal(snapshot.veil.display, 'none', 'prelude has no central paper veil')
+  assert.equal(snapshot.scene.opacity, '1', 'prelude scene is fully opaque')
+  assert.equal(snapshot.footer, 'absent', 'prelude has no global footer')
+  assert.ok(snapshot.prelude.panel, 'prelude panel exists')
+  assert.ok(snapshot.prelude.primary, 'prelude primary action exists')
+  assert.ok(snapshot.prelude.panel.bottom <= snapshot.viewport.height, 'prelude panel is on screen')
+  assert.ok(snapshot.prelude.panel.left >= 0 && snapshot.prelude.panel.right <= snapshot.viewport.width, 'prelude panel has no horizontal overflow')
+  assert.ok(snapshot.document.height <= snapshot.viewport.height + 1, 'prelude fits one screen')
+  assert.ok(snapshot.prelude.headingFont >= (mobile ? 26 : 30), `prelude heading is legible: ${snapshot.prelude.headingFont}`)
+  if (!card) return
+  if (mobile) {
+    assert.equal(snapshot.prelude.card.width, 0, 'mobile hides the call card stage')
+  } else {
+    assert.ok(snapshot.prelude.card.width > 0, 'desktop keeps the call card visible')
+    assert.ok(snapshot.prelude.panel.top > snapshot.prelude.card.bottom, 'panel sits below the card')
+  }
+}
+
+function assertPrimaryAligned(a, b, label) {
+  assert.ok(Math.abs(a.prelude.primary.left - b.prelude.primary.left) <= 1, `${label} primary left aligns`)
+  assert.ok(Math.abs(a.prelude.primary.top - b.prelude.primary.top) <= 1, `${label} primary top aligns: ${a.prelude.primary.top} vs ${b.prelude.primary.top}`)
+  assert.ok(Math.abs(a.prelude.primary.width - b.prelude.primary.width) <= 1, `${label} primary width aligns`)
 }
 
 function assertLayout(snapshot, expectedWidth) {
@@ -300,6 +337,27 @@ const report = {
   consoleEvents,
 }
 
+async function capturePreludes(name, { mobile = false } = {}) {
+  await navigateHome()
+  const home = await snapshot()
+  assertPrelude(home, { mobile })
+  report.viewports[`home${name}`] = { ...home, screenshot: await screenshot(`home-${name}`) }
+  await clickText('开始体验')
+  await waitFor("Boolean(document.querySelector('#intro-title'))")
+  const intro = await snapshot()
+  assertPrelude(intro, { mobile, card: false })
+  assertPrimaryAligned(home, intro, `${name} home/intro`)
+  report.viewports[`intro${name}`] = { ...intro, screenshot: await screenshot(`intro-${name}`) }
+  await clickText('进入来电')
+  await waitFor("Boolean(document.querySelector('#incoming-title'))")
+  const incoming = await snapshot()
+  assertPrelude(incoming, { mobile })
+  assertPrimaryAligned(home, incoming, `${name} home/incoming`)
+  report.viewports[`incoming${name}`] = { ...incoming, screenshot: await screenshot(`incoming-${name}`) }
+  await navigateHome()
+  return home
+}
+
 try {
   await send('Page.enable')
   await send('Runtime.enable')
@@ -308,14 +366,7 @@ try {
   await send('Page.bringToFront')
 
   await setViewport(1440, 900)
-  await navigateHome()
-  const home1440 = await snapshot()
-  assertPage(home1440)
-  assert.equal(home1440.veil.display, 'block', 'home keeps its local paper backing')
-  assert.notEqual(home1440.veil.backgroundImage, 'none', 'home backing is painted')
-  assert.equal(home1440.scene.opacity, '1')
-  report.viewports.home1440 = { ...home1440, screenshot: await screenshot('home-1440') }
-
+  await capturePreludes('1440')
   await openCall()
   const dialogue1440 = await snapshot()
   assertDialogue(dialogue1440, 1120)
@@ -374,12 +425,14 @@ try {
   assert.equal(ending1440.callLiveState, 'ended', 'ending shows the call has ended')
   assert.equal(ending1440.header.callTitle, '', 'ending restores the product header')
   assert.equal(ending1440.footer, 'flex', 'ending keeps the global footer')
+  assert.equal(ending1440.veil.display, 'block', 'ending keeps its local paper backing')
+  assert.notEqual(ending1440.veil.backgroundImage, 'none', 'ending backing is painted')
   assert.equal(ending1440.endActions.length, 2)
   assert.equal(ending1440.endActions[0].text, '重听这通来电')
   assert.notEqual(ending1440.endActions[0].background, ending1440.endActions[1].background)
 
   await setViewport(1366, 768)
-  await navigateHome()
+  await capturePreludes('1366')
   await openCall()
   const dialogue1366 = await snapshot()
   assertDialogue(dialogue1366, 1120)
@@ -390,11 +443,8 @@ try {
   report.viewports.choice1366 = { ...choice1366, screenshot: await screenshot('choice-1366') }
 
   await setViewport(390, 844)
-  await navigateHome()
-  const home390 = await snapshot()
-  assertPage(home390)
+  const home390 = await capturePreludes('390', { mobile: true })
   assert.equal(home390.header.metaDisplay, 'none')
-  report.viewports.home390 = { ...home390, screenshot: await screenshot('home-390') }
   await openCall()
   const dialogue390 = await snapshot()
   assertDialogue(dialogue390, 350)
@@ -409,11 +459,8 @@ try {
   report.viewports.choice390 = { ...choice390, screenshot: await screenshot('choice-390') }
 
   await setViewport(320, 568)
-  await navigateHome()
-  const home320 = await snapshot()
-  assertPage(home320)
-  assert.equal(home320.footer, 'none')
-  report.viewports.home320 = { ...home320, screenshot: await screenshot('home-320') }
+  const home320 = await capturePreludes('320', { mobile: true })
+  assert.equal(home320.header.metaDisplay, 'none')
   await openCall()
   const dialogue320 = await snapshot()
   assertDialogue(dialogue320, 280)

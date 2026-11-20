@@ -14,17 +14,71 @@
       },
       "view": "home",
       "main": {
-        "classes": "app-main",
-        "padding": "20px 0px",
+        "classes": "app-main is-prelude",
+        "padding": "0px",
         "rect": {
           "x": 48,
           "y": 64,
           "width": 1344,
-          "height": 792,
+          "height": 836,
           "top": 64,
-          "bottom": 856,
+          "bottom": 900,
           "left": 48,
           "right": 1392
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 160,
+          "y": 634,
+          "width": 1120,
+          "height": 236,
+          "top": 634,
+          "bottom": 870,
+          "left": 160,
+          "right": 1280
+        },
+        "stage": {
+          "x": 160,
+          "y": 64,
+          "width": 1120,
+          "height": 570,
+          "top": 64,
+          "bottom": 634,
+          "left": 160,
+          "right": 1280
+        },
+        "card": {
+          "x": 530,
+          "y": 194,
+          "width": 380,
+          "height": 309,
+          "top": 194,
+          "bottom": 504,
+          "left": 530,
+          "right": 910
+        },
+        "primary": {
+          "x": 1055,
+          "y": 793,
+          "width": 184,
+          "height": 52,
+          "top": 793,
+          "bottom": 845,
+          "left": 1055,
+          "right": 1239
+        },
+        "return": null,
+        "headingFont": 44,
+        "copy": {
+          "x": 201,
+          "y": 659,
+          "width": 798,
+          "height": 186,
+          "top": 659,
+          "bottom": 845,
+          "left": 201,
+          "right": 999
         }
       },
       "scene": {
@@ -46,7 +100,7 @@
         "border": "rgba(197, 189, 181, 0.45)"
       },
       "veil": {
-        "display": "block",
+        "display": "none",
         "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 11%, rgba(233, 228, 221, 0.56) 89%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
@@ -66,7 +120,7 @@
         "endCallRect": null,
         "metaDisplay": "block"
       },
-      "footer": "flex",
+      "footer": "absent",
       "session": null,
       "sessionVeil": "absent",
       "dock": null,
@@ -95,12 +149,320 @@
         "heading": ""
       },
       "activeElement": "BODY",
-      "activeText": "ELSEWHERE平行人生 / 001来自另一个世界的信号Elsewhere未接",
+      "activeText": "ELSEWHERE平行人生 / 001PARALLEL CALL001另一个你来",
       "endActions": [],
       "callLiveState": "",
       "titleShadow": "",
       "dialogOpen": false,
       "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-home-1440.png"
+    },
+    "intro1440": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "intro",
+      "main": {
+        "classes": "app-main is-prelude",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 836,
+          "top": 64,
+          "bottom": 900,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 160,
+          "y": 634,
+          "width": 1120,
+          "height": 236,
+          "top": 634,
+          "bottom": 870,
+          "left": 160,
+          "right": 1280
+        },
+        "stage": null,
+        "card": null,
+        "primary": {
+          "x": 1055,
+          "y": 793,
+          "width": 184,
+          "height": 52,
+          "top": 793,
+          "bottom": 845,
+          "left": 1055,
+          "right": 1239
+        },
+        "return": {
+          "x": 1159,
+          "y": 737,
+          "width": 80,
+          "height": 44,
+          "top": 737,
+          "bottom": 781,
+          "left": 1159,
+          "right": 1239
+        },
+        "headingFont": 36,
+        "copy": {
+          "x": 201,
+          "y": 659,
+          "width": 798,
+          "height": 186,
+          "top": 659,
+          "bottom": 845,
+          "left": 201,
+          "right": 999
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 8%, rgba(233, 228, 221, 0.66) 92%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1344,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1392
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "block"
+      },
+      "footer": "absent",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "intro-heading",
+      "activeText": "如果当年选择了音乐，你现在会在哪里？",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-intro-1440.png"
+    },
+    "incoming1440": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "document": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "height": 900
+      },
+      "view": "incoming",
+      "main": {
+        "classes": "app-main is-prelude",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1344,
+          "height": 836,
+          "top": 64,
+          "bottom": 900,
+          "left": 48,
+          "right": 1392
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 160,
+          "y": 639,
+          "width": 1120,
+          "height": 231,
+          "top": 639,
+          "bottom": 870,
+          "left": 160,
+          "right": 1280
+        },
+        "stage": {
+          "x": 160,
+          "y": 64,
+          "width": 1120,
+          "height": 575,
+          "top": 64,
+          "bottom": 639,
+          "left": 160,
+          "right": 1280
+        },
+        "card": {
+          "x": 530,
+          "y": 197,
+          "width": 380,
+          "height": 309,
+          "top": 197,
+          "bottom": 506,
+          "left": 530,
+          "right": 910
+        },
+        "primary": {
+          "x": 1055,
+          "y": 793,
+          "width": 184,
+          "height": 52,
+          "top": 793,
+          "bottom": 845,
+          "left": 1055,
+          "right": 1239
+        },
+        "return": {
+          "x": 1159,
+          "y": 737,
+          "width": 80,
+          "height": 44,
+          "top": 737,
+          "bottom": 781,
+          "left": 1159,
+          "right": 1239
+        },
+        "headingFont": 38,
+        "copy": {
+          "x": 201,
+          "y": 664,
+          "width": 798,
+          "height": 181,
+          "top": 664,
+          "bottom": 845,
+          "left": 201,
+          "right": 999
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/incoming.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1414,
+          "height": 874,
+          "top": 13,
+          "bottom": 887,
+          "left": 13,
+          "right": 1427
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 11%, rgba(233, 228, 221, 0.78) 89%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1344,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1392
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "block"
+      },
+      "footer": "absent",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "H1",
+      "activeText": "另一个你，正在来电",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-incoming-1440.png"
     },
     "dialogue1440": {
       "viewport": {
@@ -126,6 +488,15 @@
           "left": 48,
           "right": 1392
         }
+      },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
       },
       "scene": {
         "src": "/backgrounds/opening.svg",
@@ -281,6 +652,15 @@
           "right": 1392
         }
       },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
+      },
       "scene": {
         "src": "/backgrounds/first-choice.svg",
         "opacity": "1",
@@ -434,6 +814,468 @@
       "dialogOpen": false,
       "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-choice-1440.png"
     },
+    "home1366": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "document": {
+        "width": 1366,
+        "clientWidth": 1366,
+        "height": 768
+      },
+      "view": "home",
+      "main": {
+        "classes": "app-main is-prelude",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1270,
+          "height": 704,
+          "top": 64,
+          "bottom": 768,
+          "left": 48,
+          "right": 1318
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 123,
+          "y": 502,
+          "width": 1120,
+          "height": 236,
+          "top": 502,
+          "bottom": 738,
+          "left": 123,
+          "right": 1243
+        },
+        "stage": {
+          "x": 123,
+          "y": 64,
+          "width": 1120,
+          "height": 438,
+          "top": 64,
+          "bottom": 502,
+          "left": 123,
+          "right": 1243
+        },
+        "card": {
+          "x": 493,
+          "y": 128,
+          "width": 380,
+          "height": 309,
+          "top": 128,
+          "bottom": 438,
+          "left": 493,
+          "right": 873
+        },
+        "primary": {
+          "x": 1018,
+          "y": 661,
+          "width": 184,
+          "height": 52,
+          "top": 661,
+          "bottom": 713,
+          "left": 1018,
+          "right": 1202
+        },
+        "return": null,
+        "headingFont": 44,
+        "copy": {
+          "x": 164,
+          "y": 527,
+          "width": 798,
+          "height": 186,
+          "top": 527,
+          "bottom": 713,
+          "left": 164,
+          "right": 962
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1340,
+          "height": 742,
+          "top": 13,
+          "bottom": 755,
+          "left": 13,
+          "right": 1353
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 11%, rgba(233, 228, 221, 0.56) 89%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1270,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1318
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "block"
+      },
+      "footer": "absent",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "BODY",
+      "activeText": "ELSEWHERE平行人生 / 001PARALLEL CALL001另一个你来",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-home-1366.png"
+    },
+    "intro1366": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "document": {
+        "width": 1366,
+        "clientWidth": 1366,
+        "height": 768
+      },
+      "view": "intro",
+      "main": {
+        "classes": "app-main is-prelude",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1270,
+          "height": 704,
+          "top": 64,
+          "bottom": 768,
+          "left": 48,
+          "right": 1318
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 123,
+          "y": 502,
+          "width": 1120,
+          "height": 236,
+          "top": 502,
+          "bottom": 738,
+          "left": 123,
+          "right": 1243
+        },
+        "stage": null,
+        "card": null,
+        "primary": {
+          "x": 1018,
+          "y": 661,
+          "width": 184,
+          "height": 52,
+          "top": 661,
+          "bottom": 713,
+          "left": 1018,
+          "right": 1202
+        },
+        "return": {
+          "x": 1122,
+          "y": 605,
+          "width": 80,
+          "height": 44,
+          "top": 605,
+          "bottom": 649,
+          "left": 1122,
+          "right": 1202
+        },
+        "headingFont": 36,
+        "copy": {
+          "x": 164,
+          "y": 527,
+          "width": 798,
+          "height": 186,
+          "top": 527,
+          "bottom": 713,
+          "left": 164,
+          "right": 962
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1340,
+          "height": 742,
+          "top": 13,
+          "bottom": 755,
+          "left": 13,
+          "right": 1353
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 8%, rgba(233, 228, 221, 0.66) 92%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1270,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1318
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "block"
+      },
+      "footer": "absent",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "intro-heading",
+      "activeText": "如果当年选择了音乐，你现在会在哪里？",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-intro-1366.png"
+    },
+    "incoming1366": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "document": {
+        "width": 1366,
+        "clientWidth": 1366,
+        "height": 768
+      },
+      "view": "incoming",
+      "main": {
+        "classes": "app-main is-prelude",
+        "padding": "0px",
+        "rect": {
+          "x": 48,
+          "y": 64,
+          "width": 1270,
+          "height": 704,
+          "top": 64,
+          "bottom": 768,
+          "left": 48,
+          "right": 1318
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 123,
+          "y": 507,
+          "width": 1120,
+          "height": 231,
+          "top": 507,
+          "bottom": 738,
+          "left": 123,
+          "right": 1243
+        },
+        "stage": {
+          "x": 123,
+          "y": 64,
+          "width": 1120,
+          "height": 443,
+          "top": 64,
+          "bottom": 507,
+          "left": 123,
+          "right": 1243
+        },
+        "card": {
+          "x": 493,
+          "y": 131,
+          "width": 380,
+          "height": 309,
+          "top": 131,
+          "bottom": 440,
+          "left": 493,
+          "right": 873
+        },
+        "primary": {
+          "x": 1018,
+          "y": 661,
+          "width": 184,
+          "height": 52,
+          "top": 661,
+          "bottom": 713,
+          "left": 1018,
+          "right": 1202
+        },
+        "return": {
+          "x": 1122,
+          "y": 605,
+          "width": 80,
+          "height": 44,
+          "top": 605,
+          "bottom": 649,
+          "left": 1122,
+          "right": 1202
+        },
+        "headingFont": 38,
+        "copy": {
+          "x": 164,
+          "y": 532,
+          "width": 798,
+          "height": 181,
+          "top": 532,
+          "bottom": 713,
+          "left": 164,
+          "right": 962
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/incoming.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 1340,
+          "height": 742,
+          "top": 13,
+          "bottom": 755,
+          "left": 13,
+          "right": 1353
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 11%, rgba(233, 228, 221, 0.78) 89%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 48,
+          "y": 0,
+          "width": 1270,
+          "height": 64,
+          "top": 0,
+          "bottom": 64,
+          "left": 48,
+          "right": 1318
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "block"
+      },
+      "footer": "absent",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "H1",
+      "activeText": "另一个你，正在来电",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-incoming-1366.png"
+    },
     "dialogue1366": {
       "viewport": {
         "width": 1366,
@@ -458,6 +1300,15 @@
           "left": 48,
           "right": 1318
         }
+      },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
       },
       "scene": {
         "src": "/backgrounds/opening.svg",
@@ -612,6 +1463,15 @@
           "left": 48,
           "right": 1318
         }
+      },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
       },
       "scene": {
         "src": "/backgrounds/first-choice.svg",
@@ -778,17 +1638,71 @@
       },
       "view": "home",
       "main": {
-        "classes": "app-main",
-        "padding": "22px 0px 30px",
+        "classes": "app-main is-prelude",
+        "padding": "0px",
         "rect": {
           "x": 20,
           "y": 58,
           "width": 350,
-          "height": 740,
+          "height": 786,
           "top": 58,
-          "bottom": 798,
+          "bottom": 844,
           "left": 20,
           "right": 370
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 20,
+          "y": 512,
+          "width": 350,
+          "height": 300,
+          "top": 512,
+          "bottom": 812,
+          "left": 20,
+          "right": 370
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "card": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "primary": {
+          "x": 41,
+          "y": 735,
+          "width": 308,
+          "height": 52,
+          "top": 735,
+          "bottom": 787,
+          "left": 41,
+          "right": 349
+        },
+        "return": null,
+        "headingFont": 40,
+        "copy": {
+          "x": 41,
+          "y": 537,
+          "width": 206,
+          "height": 170,
+          "top": 537,
+          "bottom": 707,
+          "left": 41,
+          "right": 247
         }
       },
       "scene": {
@@ -810,7 +1724,7 @@
         "border": "rgba(197, 189, 181, 0.45)"
       },
       "veil": {
-        "display": "block",
+        "display": "none",
         "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 6%, rgba(233, 228, 221, 0.56) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
@@ -830,7 +1744,7 @@
         "endCallRect": null,
         "metaDisplay": "none"
       },
-      "footer": "flex",
+      "footer": "absent",
       "session": null,
       "sessionVeil": "absent",
       "dock": null,
@@ -859,12 +1773,320 @@
         "heading": ""
       },
       "activeElement": "BODY",
-      "activeText": "ELSEWHERE平行人生 / 001来自另一个世界的信号Elsewhere未接",
+      "activeText": "ELSEWHERE平行人生 / 001PARALLEL CALL001另一个你来",
       "endActions": [],
       "callLiveState": "",
       "titleShadow": "",
       "dialogOpen": false,
       "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-home-390.png"
+    },
+    "intro390": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "clientWidth": 390,
+        "height": 844
+      },
+      "view": "intro",
+      "main": {
+        "classes": "app-main is-prelude",
+        "padding": "0px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 350,
+          "height": 786,
+          "top": 58,
+          "bottom": 844,
+          "left": 20,
+          "right": 370
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 20,
+          "y": 445,
+          "width": 350,
+          "height": 367,
+          "top": 445,
+          "bottom": 812,
+          "left": 20,
+          "right": 370
+        },
+        "stage": null,
+        "card": null,
+        "primary": {
+          "x": 41,
+          "y": 735,
+          "width": 308,
+          "height": 52,
+          "top": 735,
+          "bottom": 787,
+          "left": 41,
+          "right": 349
+        },
+        "return": {
+          "x": 41,
+          "y": 683,
+          "width": 308,
+          "height": 44,
+          "top": 683,
+          "bottom": 727,
+          "left": 41,
+          "right": 349
+        },
+        "headingFont": 28,
+        "copy": {
+          "x": 41,
+          "y": 470,
+          "width": 308,
+          "height": 195,
+          "top": 470,
+          "bottom": 665,
+          "left": 41,
+          "right": 349
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 364,
+          "height": 818,
+          "top": 13,
+          "bottom": 831,
+          "left": 13,
+          "right": 377
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 6%, rgba(233, 228, 221, 0.66) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 350,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 370
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "none"
+      },
+      "footer": "absent",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "intro-heading",
+      "activeText": "如果当年选择了音乐，你现在会在哪里？",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-intro-390.png"
+    },
+    "incoming390": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "width": 390,
+        "clientWidth": 390,
+        "height": 844
+      },
+      "view": "incoming",
+      "main": {
+        "classes": "app-main is-prelude",
+        "padding": "0px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 350,
+          "height": 786,
+          "top": 58,
+          "bottom": 844,
+          "left": 20,
+          "right": 370
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 20,
+          "y": 463,
+          "width": 350,
+          "height": 349,
+          "top": 463,
+          "bottom": 812,
+          "left": 20,
+          "right": 370
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "card": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "primary": {
+          "x": 41,
+          "y": 735,
+          "width": 308,
+          "height": 52,
+          "top": 735,
+          "bottom": 787,
+          "left": 41,
+          "right": 349
+        },
+        "return": {
+          "x": 41,
+          "y": 683,
+          "width": 308,
+          "height": 44,
+          "top": 683,
+          "bottom": 727,
+          "left": 41,
+          "right": 349
+        },
+        "headingFont": 30,
+        "copy": {
+          "x": 41,
+          "y": 488,
+          "width": 308,
+          "height": 177,
+          "top": 488,
+          "bottom": 665,
+          "left": 41,
+          "right": 349
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/incoming.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 364,
+          "height": 818,
+          "top": 13,
+          "bottom": 831,
+          "left": 13,
+          "right": 377
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 6%, rgba(233, 228, 221, 0.78) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 350,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 370
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "none"
+      },
+      "footer": "absent",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "H1",
+      "activeText": "另一个你，正在来电",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-incoming-390.png"
     },
     "dialogue390": {
       "viewport": {
@@ -890,6 +2112,15 @@
           "left": 20,
           "right": 370
         }
+      },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
       },
       "scene": {
         "src": "/backgrounds/opening.svg",
@@ -1044,6 +2275,15 @@
           "left": 20,
           "right": 370
         }
+      },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
       },
       "scene": {
         "src": "/backgrounds/first-choice.svg",
@@ -1204,23 +2444,77 @@
         "height": 568
       },
       "document": {
-        "width": 305,
-        "clientWidth": 305,
-        "height": 754
+        "width": 320,
+        "clientWidth": 320,
+        "height": 568
       },
       "view": "home",
       "main": {
-        "classes": "app-main",
-        "padding": "22px 0px 30px",
+        "classes": "app-main is-prelude",
+        "padding": "0px",
         "rect": {
           "x": 20,
           "y": 58,
-          "width": 265,
-          "height": 696,
+          "width": 280,
+          "height": 510,
           "top": 58,
-          "bottom": 754,
+          "bottom": 568,
           "left": 20,
-          "right": 285
+          "right": 300
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 20,
+          "y": 236,
+          "width": 280,
+          "height": 300,
+          "top": 236,
+          "bottom": 536,
+          "left": 20,
+          "right": 300
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "card": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "primary": {
+          "x": 39,
+          "y": 461,
+          "width": 242,
+          "height": 52,
+          "top": 461,
+          "bottom": 513,
+          "left": 39,
+          "right": 281
+        },
+        "return": null,
+        "headingFont": 36,
+        "copy": {
+          "x": 39,
+          "y": 259,
+          "width": 206,
+          "height": 165,
+          "top": 259,
+          "bottom": 424,
+          "left": 39,
+          "right": 245
         }
       },
       "scene": {
@@ -1229,12 +2523,12 @@
         "rect": {
           "x": 13,
           "y": 13,
-          "width": 279,
-          "height": 728,
+          "width": 294,
+          "height": 542,
           "top": 13,
-          "bottom": 741,
+          "bottom": 555,
           "left": 13,
-          "right": 292
+          "right": 307
         },
         "previewSrc": "",
         "previewOpacity": "",
@@ -1242,19 +2536,19 @@
         "border": "rgba(197, 189, 181, 0.45)"
       },
       "veil": {
-        "display": "block",
+        "display": "none",
         "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.56) 6%, rgba(233, 228, 221, 0.56) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
           "x": 20,
           "y": 0,
-          "width": 265,
+          "width": 280,
           "height": 58,
           "top": 0,
           "bottom": 58,
           "left": 20,
-          "right": 285
+          "right": 300
         },
         "call": null,
         "callTitle": "",
@@ -1262,7 +2556,7 @@
         "endCallRect": null,
         "metaDisplay": "none"
       },
-      "footer": "none",
+      "footer": "absent",
       "session": null,
       "sessionVeil": "absent",
       "dock": null,
@@ -1291,12 +2585,320 @@
         "heading": ""
       },
       "activeElement": "BODY",
-      "activeText": "ELSEWHERE平行人生 / 001来自另一个世界的信号Elsewhere未接",
+      "activeText": "ELSEWHERE平行人生 / 001PARALLEL CALL001另一个你来",
       "endActions": [],
       "callLiveState": "",
       "titleShadow": "",
       "dialogOpen": false,
       "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-home-320.png"
+    },
+    "intro320": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "document": {
+        "width": 320,
+        "clientWidth": 320,
+        "height": 568
+      },
+      "view": "intro",
+      "main": {
+        "classes": "app-main is-prelude",
+        "padding": "0px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 280,
+          "height": 510,
+          "top": 58,
+          "bottom": 568,
+          "left": 20,
+          "right": 300
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 20,
+          "y": 122,
+          "width": 280,
+          "height": 414,
+          "top": 122,
+          "bottom": 536,
+          "left": 20,
+          "right": 300
+        },
+        "stage": null,
+        "card": null,
+        "primary": {
+          "x": 39,
+          "y": 461,
+          "width": 242,
+          "height": 52,
+          "top": 461,
+          "bottom": 513,
+          "left": 39,
+          "right": 281
+        },
+        "return": {
+          "x": 39,
+          "y": 409,
+          "width": 242,
+          "height": 44,
+          "top": 409,
+          "bottom": 453,
+          "left": 39,
+          "right": 281
+        },
+        "headingFont": 26,
+        "copy": {
+          "x": 39,
+          "y": 145,
+          "width": 242,
+          "height": 248,
+          "top": 145,
+          "bottom": 393,
+          "left": 39,
+          "right": 281
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/home.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 294,
+          "height": 542,
+          "top": 13,
+          "bottom": 555,
+          "left": 13,
+          "right": 307
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 6%, rgba(233, 228, 221, 0.66) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 280,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 300
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "none"
+      },
+      "footer": "absent",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "intro-heading",
+      "activeText": "如果当年选择了音乐，你现在会在哪里？",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-intro-320.png"
+    },
+    "incoming320": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "document": {
+        "width": 320,
+        "clientWidth": 320,
+        "height": 568
+      },
+      "view": "incoming",
+      "main": {
+        "classes": "app-main is-prelude",
+        "padding": "0px",
+        "rect": {
+          "x": 20,
+          "y": 58,
+          "width": 280,
+          "height": 510,
+          "top": 58,
+          "bottom": 568,
+          "left": 20,
+          "right": 300
+        }
+      },
+      "prelude": {
+        "panel": {
+          "x": 20,
+          "y": 198,
+          "width": 280,
+          "height": 338,
+          "top": 198,
+          "bottom": 536,
+          "left": 20,
+          "right": 300
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "card": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "bottom": 0,
+          "left": 0,
+          "right": 0
+        },
+        "primary": {
+          "x": 39,
+          "y": 461,
+          "width": 242,
+          "height": 52,
+          "top": 461,
+          "bottom": 513,
+          "left": 39,
+          "right": 281
+        },
+        "return": {
+          "x": 39,
+          "y": 409,
+          "width": 242,
+          "height": 44,
+          "top": 409,
+          "bottom": 453,
+          "left": 39,
+          "right": 281
+        },
+        "headingFont": 28,
+        "copy": {
+          "x": 39,
+          "y": 221,
+          "width": 242,
+          "height": 172,
+          "top": 221,
+          "bottom": 393,
+          "left": 39,
+          "right": 281
+        }
+      },
+      "scene": {
+        "src": "/backgrounds/incoming.svg",
+        "opacity": "1",
+        "rect": {
+          "x": 13,
+          "y": 13,
+          "width": 294,
+          "height": 542,
+          "top": 13,
+          "bottom": 555,
+          "left": 13,
+          "right": 307
+        },
+        "previewSrc": "",
+        "previewOpacity": "",
+        "previewing": false,
+        "border": "rgba(197, 189, 181, 0.45)"
+      },
+      "veil": {
+        "display": "none",
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 6%, rgba(233, 228, 221, 0.78) 94%, rgba(233, 228, 221, 0) 100%)"
+      },
+      "header": {
+        "rect": {
+          "x": 20,
+          "y": 0,
+          "width": 280,
+          "height": 58,
+          "top": 0,
+          "bottom": 58,
+          "left": 20,
+          "right": 300
+        },
+        "call": null,
+        "callTitle": "",
+        "endCall": "",
+        "endCallRect": null,
+        "metaDisplay": "none"
+      },
+      "footer": "absent",
+      "session": null,
+      "sessionVeil": "absent",
+      "dock": null,
+      "panel": {
+        "rect": null,
+        "backgroundImage": "",
+        "backdropFilter": "",
+        "speaker": "",
+        "origin": "",
+        "originDisplay": "absent",
+        "progress": "",
+        "line": "",
+        "hintDisplay": "absent"
+      },
+      "continue": {
+        "rect": null,
+        "iconBackground": ""
+      },
+      "choices": {
+        "rect": null,
+        "count": 0,
+        "labels": [],
+        "rects": [],
+        "indexDisplay": "absent",
+        "background": "",
+        "heading": ""
+      },
+      "activeElement": "H1",
+      "activeText": "另一个你，正在来电",
+      "endActions": [],
+      "callLiveState": "",
+      "titleShadow": "",
+      "dialogOpen": false,
+      "screenshot": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-incoming-320.png"
     },
     "dialogue320": {
       "viewport": {
@@ -1322,6 +2924,15 @@
           "left": 20,
           "right": 300
         }
+      },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
       },
       "scene": {
         "src": "/backgrounds/opening.svg",
@@ -1476,6 +3087,15 @@
           "left": 20,
           "right": 300
         }
+      },
+      "prelude": {
+        "panel": null,
+        "stage": null,
+        "card": null,
+        "primary": null,
+        "return": null,
+        "headingFont": 0,
+        "copy": null
       },
       "scene": {
         "src": "/backgrounds/first-choice.svg",
@@ -1656,6 +3276,15 @@
         "right": 1392
       }
     },
+    "prelude": {
+      "panel": null,
+      "stage": null,
+      "card": null,
+      "primary": null,
+      "return": null,
+      "headingFont": 0,
+      "copy": null
+    },
     "scene": {
       "src": "/backgrounds/first-choice.svg",
       "opacity": "1",
@@ -1834,6 +3463,15 @@
         "right": 1392
       }
     },
+    "prelude": {
+      "panel": null,
+      "stage": null,
+      "card": null,
+      "primary": null,
+      "return": null,
+      "headingFont": 0,
+      "copy": null
+    },
     "scene": {
       "src": "/backgrounds/first-choice.svg",
       "opacity": "1",
@@ -2010,6 +3648,15 @@
         "left": 48,
         "right": 1392
       }
+    },
+    "prelude": {
+      "panel": null,
+      "stage": null,
+      "card": null,
+      "primary": null,
+      "return": null,
+      "headingFont": 0,
+      "copy": null
     },
     "scene": {
       "src": "/backgrounds/ending-regret-space.svg",

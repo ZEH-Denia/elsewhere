@@ -513,3 +513,33 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 已目视检查下列最终截图：[1440 首页](assets/TASK-003/galgame-home-1440.png)、[1440 对白](assets/TASK-003/galgame-dialogue-1440.png)、[1366 对白](assets/TASK-003/galgame-dialogue-1366.png)、[1440 选择](assets/TASK-003/galgame-choice-1440.png)、[1366 选择](assets/TASK-003/galgame-choice-1366.png)、[1440 预览](assets/TASK-003/galgame-choice-preview-1440.png)、[1440 结局](assets/TASK-003/galgame-ending-1440.png)、[390 首页](assets/TASK-003/galgame-home-390.png)、[390 对白](assets/TASK-003/galgame-dialogue-390.png)、[390 选择](assets/TASK-003/galgame-choice-390.png)、[320 首页](assets/TASK-003/galgame-home-320.png)、[320 对白](assets/TASK-003/galgame-dialogue-320.png)与[320 选择](assets/TASK-003/galgame-choice-320.png)。书桌、显示器、吉他、键盘和两间房在桌面仍可见；面板只落在底部暗带，对白文字、选项和页眉控件无裁切、无遮挡。
 
 本轮未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未执行原生浏览器 200% 缩放，未在 Safari/Firefox 实测；减少动态效果仅通过 CDP 媒体模拟验证；仅覆盖 320×568、390×844、1366×768、1440×900。结局页按批准范围保持原有居中纸衬底，未改为底部对话框。该实现发生在 Codex 上次 PASS 之后，尚未复审，不据此自称 PASS。未合并 main、未部署、未进入下一任务，等待 Codex 对照真实代码与截图复核。
+
+## 27. 首页、前言与来电统一到底部纸面面板
+
+日期：2026-11-20（Asia/Shanghai）。团队反馈“123 的白雾也改掉，和后面的保持统一”：首页、前言、来电三屏仍在中央铺纸雾，与对白/选择视图的底部纸面不一致。本轮只调整这三屏的布局与样式，结局页按 123 的范围保持原有居中纸衬底。
+
+- `src/App.tsx`：三屏改为 `.prelude` 结构，上方 `.prelude-stage` 保留可自由观看的插画与纸面来电卡，下方 `.prelude-dock > .prelude-panel` 承载标题、正文与操作；`<main>` 增加 `is-prelude`，取消居中内边距。首页与来电的桌面/平板保留居中来电卡，手机 ≤639px 隐藏该卡，只保留插画与底部面板；前言没有来电卡。三屏的返回首页与主行动都进入纸面面板，主按钮钉在面板右下角。
+- `src/index.css`：新增 `.prelude`、`.prelude-stage`、`.prelude-dock`、`.prelude-panel`、`.prelude-copy`、`.prelude-actions`、`.panel-return-action` 及四档视口规则；`.prelude::before` 设为 `display: none`，三屏不再绘制中央纸雾，插画不透明度保持 1。面板使用与对白一致的纸面渐变、14px 背景模糊、16px 圆角，桌面最小高 240px（短视口 220px、手机 300px），手机内边距 24/20、返回首页右对齐。
+- 中途发现来电页文案与按钮左右错位：旧规则 `.incoming-copy { grid-area: copy; }` 作用于新面板网格，生成了不存在的命名区域。已把区块语义移到 `.prelude-incoming`，并按 `.prelude-incoming h1`、`.prelude-incoming .incoming-note` 重写选择器；随后删除不再使用的 `home-layout`、`home-copy`、`home-actions`、`intro-layout`、`incoming-layout`、`incoming-copy`、`incoming-actions`、`journey-actions`、`journey-return-action` 及其媒体查询，CSS 由 37.62 kB 降至 34.98 kB。
+- 320px 前言标题使用 `text-wrap: balance`，避免末行只剩“里？”；390/320 三屏主按钮位置一致，桌面主按钮固定在面板底部，鼠标从“开始体验”“进入来电”到“接听”无需移动。
+- 全局页脚仅在结局页渲染；首页、前言、来电不再显示页脚，页眉与场景切换逻辑未改。
+
+最终 `npm run typecheck`、15/15 剧情测试与 `npm run build` 均退出 0；CSS 34.98 kB / gzip 8.07 kB，JS 241.25 kB / gzip 75.44 kB。日志见 [galgame-typecheck.txt](assets/TASK-003/galgame-typecheck.txt)、[galgame-test-story.txt](assets/TASK-003/galgame-test-story.txt)、[galgame-build.txt](assets/TASK-003/galgame-build.txt)。
+
+[galgame-layout-checks.mjs](assets/TASK-003/galgame-layout-checks.mjs) 已扩展三屏检查，仍通过独立无头 Edge（`CDP_PORT=9225`）以真实鼠标事件点击生产预览 `http://127.0.0.1:4173/`，结果 `all galgame layout checks passed`，`failures` 与 `consoleEvents` 均为 `[]`，完整数据见 [galgame-layout-checks.json](assets/TASK-003/galgame-layout-checks.json)：
+
+| 检查 | 实测 |
+| --- | --- |
+| 中央纸雾 | 三屏 `.screen-enter::before` 均为 `none`，插画 `opacity: 1` |
+| 页脚 | 三屏均不渲染 `.app-footer`；结局仍为 `flex` |
+| 桌面面板 | 1440：首页/前言 y 634–870，来电 y 639–870；1366：y 502–738 / 507–738 |
+| 手机面板 | 390：y 512–812 / 445–812 / 463–812；320：y 236–536 / 122–536 / 198–536 |
+| 主行动对齐 | 1440 三屏均为 x 1055、y 793、184×52；1366 均为 x 1018、y 661；390 均为 x 41、y 735、308×52；320 均为 x 39、y 461、242×52 |
+| 来电卡 | 桌面与 1366 保留 380px 来电卡；390/320 卡片宽度为 0，只保留插画和面板 |
+| 标题字号 | 1440/1366 首页 44px、前言 36px、来电 38px；390 为 40/28/30px；320 为 36/26/28px |
+| 一屏 | 四种视口 `scrollHeight` 均不超过视口高度，无横向溢出 |
+| 结局 | 仍保留页眉、页脚、纸衬底与两个 CTA；`veil: block`、`footer: flex` |
+
+已目视检查三屏最终截图：[1440 首页](assets/TASK-003/galgame-home-1440.png)、[1440 前言](assets/TASK-003/galgame-intro-1440.png)、[1440 来电](assets/TASK-003/galgame-incoming-1440.png)、[1366 首页](assets/TASK-003/galgame-home-1366.png)、[1366 前言](assets/TASK-003/galgame-intro-1366.png)、[1366 来电](assets/TASK-003/galgame-incoming-1366.png)、[390 首页](assets/TASK-003/galgame-home-390.png)、[390 前言](assets/TASK-003/galgame-intro-390.png)、[390 来电](assets/TASK-003/galgame-incoming-390.png)、[320 首页](assets/TASK-003/galgame-home-320.png)、[320 前言](assets/TASK-003/galgame-intro-320.png)与[320 来电](assets/TASK-003/galgame-incoming-320.png)。书桌、显示器、吉他、键盘和两间房均完整可见，面板只覆盖底部暗带，文字与按钮无裁切；对白、选择与结局截图同文件重跑后保持一致。
+
+本轮未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未执行原生浏览器 200% 缩放，未在 Safari/Firefox 实测；减少动态效果仍为 CDP 媒体模拟；仅覆盖 320×568、390×844、1366×768、1440×900。结局页未按“123”范围调整，若团队希望结局也统一到底部面板，需另行确认。该实现尚未复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务，等待 Codex 对照真实代码与截图复核。

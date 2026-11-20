@@ -217,7 +217,22 @@ function motif(kind) {
   return ''
 }
 
-function leftRoom() {
+function deskLamp() {
+  return `<g class="anim glow-drift"><ellipse cx="490" cy="470" rx="176" ry="172" fill="url(#lampGlow)"/></g>
+    <path d="M493 423L530 340M530 340L500 318" stroke="#5b5e60" stroke-width="8" stroke-linecap="round"/>
+    <path d="M470 304Q501 286 529 315L511 348Q484 340 470 304Z" fill="#c59b63"/>
+    <path d="M476 308Q499 297 520 316" stroke="#ffe0a4" stroke-opacity=".65" stroke-width="3"/>
+    <ellipse cx="493" cy="428" rx="46" ry="9" fill="#6c6558"/><ellipse cx="493" cy="426" rx="34" ry="5" fill="#d3b785" opacity=".55"/>
+    <path d="M481 348L405 523H581L514 348Z" fill="#f2bd78" opacity=".065"/>`
+}
+
+function wallScore() {
+  return `<rect x="846" y="246" width="112" height="150" rx="3" fill="#171822" stroke="#76677f" stroke-opacity=".32"/><rect x="858" y="258" width="88" height="126" fill="#d6cdbc" opacity=".72"/>
+    <path d="M870 278H930M870 291H930M870 304H930M870 317H930M870 330H930M870 343H930M870 356H930" stroke="#554f55" stroke-opacity=".65" stroke-width="2"/>
+    <g fill="#4a4350" opacity=".8"><ellipse cx="885" cy="287" rx="5" ry="3"/><ellipse cx="915" cy="313" rx="5" ry="3"/><ellipse cx="891" cy="340" rx="5" ry="3"/><path d="M889 286V270M919 312V294M895 339V321" stroke="#4a4350" stroke-width="2"/></g>`
+}
+
+function leftRoom({ showLamp = true } = {}) {
   return `<g clip-path="url(#leftClip)">
     <rect x="102" y="164" width="532" height="502" fill="url(#leftRoom)"/>
     <ellipse cx="444" cy="440" rx="250" ry="240" fill="url(#lampGlow)" opacity=".26"/>
@@ -235,12 +250,7 @@ function leftRoom() {
     <path d="M360 202H374V236H360ZM378 196H396V236H378ZM400 207H412V236H400ZM417 190H439V236H417Z" fill="#58606a"/>
     <rect x="446" y="204" width="92" height="28" rx="2" fill="#1a252f" stroke="#83919a" stroke-opacity=".15"/>
     <path d="M458 211H522M458 218H506M458 225H516" stroke="#8b9ba3" stroke-opacity=".22" stroke-width="3"/>
-    <g class="anim glow-drift"><ellipse cx="490" cy="470" rx="176" ry="172" fill="url(#lampGlow)"/></g>
-    <path d="M493 423L530 340M530 340L500 318" stroke="#5b5e60" stroke-width="8" stroke-linecap="round"/>
-    <path d="M470 304Q501 286 529 315L511 348Q484 340 470 304Z" fill="#c59b63"/>
-    <path d="M476 308Q499 297 520 316" stroke="#ffe0a4" stroke-opacity=".65" stroke-width="3"/>
-    <ellipse cx="493" cy="428" rx="46" ry="9" fill="#6c6558"/><ellipse cx="493" cy="426" rx="34" ry="5" fill="#d3b785" opacity=".55"/>
-    <path d="M481 348L405 523H581L514 348Z" fill="#f2bd78" opacity=".065"/>
+    ${showLamp ? deskLamp() : ''}
     <path d="M138 560L590 532L632 566L110 602Z" fill="#463e35"/><path d="M110 602L632 566V584L110 622Z" fill="#24252a"/>
     <path d="M154 614L150 666M574 586L584 666" stroke="#1a1d23" stroke-width="17"/>
     <path d="M138 560L590 532" stroke="#b49670" stroke-opacity=".35" stroke-width="3"/>
@@ -254,7 +264,7 @@ function leftRoom() {
   </g>`
 }
 
-function rightRoom() {
+function rightRoom({ showSheet = true, showGuitar = true } = {}) {
   return `<g clip-path="url(#rightClip)">
     <rect x="806" y="164" width="532" height="502" fill="url(#rightRoom)"/>
     <g class="anim glow-drift"><ellipse cx="1110" cy="348" rx="290" ry="268" fill="url(#stageGlow)"/></g>
@@ -263,12 +273,10 @@ function rightRoom() {
     <ellipse cx="1115" cy="626" rx="218" ry="44" fill="#c5a0dc" opacity=".07" filter="url(#blur8)"/>
     <path d="M806 540L1338 504V666H806Z" fill="url(#floor)"/>
     <path d="M806 561L1338 523M806 614L1338 567M924 666L1008 524M1150 666L1160 516" stroke="#a392b1" stroke-opacity=".055"/>
-    <rect x="846" y="246" width="112" height="150" rx="3" fill="#171822" stroke="#76677f" stroke-opacity=".32"/><rect x="858" y="258" width="88" height="126" fill="#d6cdbc" opacity=".72"/>
-    <path d="M870 278H930M870 291H930M870 304H930M870 317H930M870 330H930M870 343H930M870 356H930" stroke="#554f55" stroke-opacity=".65" stroke-width="2"/>
-    <g fill="#4a4350" opacity=".8"><ellipse cx="885" cy="287" rx="5" ry="3"/><ellipse cx="915" cy="313" rx="5" ry="3"/><ellipse cx="891" cy="340" rx="5" ry="3"/><path d="M889 286V270M919 312V294M895 339V321" stroke="#4a4350" stroke-width="2"/></g>
+    ${showSheet ? wallScore() : ''}
     <path d="M1100 356V602M1100 584L1048 630M1100 584L1150 630" stroke="#151720" stroke-width="8" stroke-linecap="round"/><path d="M1100 360V588M1100 584L1048 630M1100 584L1150 630" stroke="#85828d" stroke-opacity=".55" stroke-width="2"/>
     <path d="M1098 374L1162 344" stroke="#777482" stroke-width="5" stroke-linecap="round"/><rect x="1152" y="323" width="18" height="42" rx="9" fill="#171922" stroke="#a29baa" stroke-opacity=".65" transform="rotate(58 1161 344)"/>
-    ${guitar(900, 378)}
+    ${showGuitar ? guitar(900, 378) : ''}
     <g transform="translate(1142 500)"><path d="M0 22L154 12L174 40L-12 54Z" fill="#191b25" stroke="#6d6879" stroke-opacity=".5"/><path d="M8 25L147 17L154 32L2 42Z" fill="#d3d0ca" opacity=".82"/><path d="M24 24L25 40M42 23L43 39M60 22L61 38M78 21L79 37M96 20L97 36M114 19L115 35M132 18L133 34" stroke="#36333e" stroke-width="2"/><path d="M34 23L34 32M70 21L70 30M88 20L88 29M124 18L124 27" stroke="#171820" stroke-width="7"/><path d="M20 52L4 128M146 42L164 120" stroke="#252630" stroke-width="8"/></g>
     <rect x="806" y="164" width="532" height="502" fill="url(#glass)" opacity=".42"/>
   </g>`
@@ -289,6 +297,9 @@ function renderScene(name, config) {
       ? '<rect width="1440" height="900" fill="#9b6946" opacity=".09"/>'
       : ''
   const motifLift = config.motif === 'music' || config.motif === 'reality' ? uiLift : 0
+  const motifHasScore = config.motif === 'sheet' || config.motif === 'music'
+  const motifHasGuitar = config.motif === 'guitar' || config.motif === 'space'
+  const motifHasLamp = config.motif === 'lamp'
   const split = config.split ? '<path d="M720 112V754" stroke="#b2d9d7" stroke-opacity=".1" stroke-width="2" stroke-dasharray="2 14"/>' : ''
   const camera = config.camera ? cameraTransform(config.camera, config.zoom ?? 1.15) : ''
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -320,7 +331,7 @@ ${dawn}
   <g transform="translate(0 -${uiLift}) ${camera}">
   <path d="M0 112H1440V754H0Z" fill="#080d15" opacity=".9"/><path d="M0 112H1440M0 754H1440" stroke="#6d8296" stroke-opacity=".14"/>
   <g filter="url(#shadow)"><rect x="72" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#344250" stroke-opacity=".55"/><rect x="92" y="154" width="552" height="522" rx="4" fill="#111923" stroke="#637484" stroke-opacity=".18"/><rect x="776" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#454057" stroke-opacity=".58"/><rect x="796" y="154" width="552" height="522" rx="4" fill="#171522" stroke="#756887" stroke-opacity=".18"/></g>
-  <g opacity="${left}">${leftRoom()}</g><g opacity="${right}">${rightRoom()}</g>
+  <g opacity="${left}">${leftRoom({ showLamp: !motifHasLamp })}</g><g opacity="${right}">${rightRoom({ showSheet: !motifHasScore, showGuitar: !motifHasGuitar })}</g>
   <rect x="102" y="164" width="532" height="502" fill="url(#glass)" opacity=".32"/>
   <path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#080d14" stroke-width="15"/><path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#607080" stroke-opacity=".12" stroke-width="2"/>
   <rect x="102" y="164" width="532" height="502" rx="3" fill="none" stroke="#9aabba" stroke-opacity=".12"/><rect x="806" y="164" width="532" height="502" rx="3" fill="none" stroke="#aa9bb8" stroke-opacity=".12"/>
@@ -336,6 +347,7 @@ ${`  <g transform="translate(0 -${uiLift}) ${camera}">${focusShade}${split}${pho
 
 await mkdir(outputDirectory, { recursive: true })
 for (const [name, config] of Object.entries(scenes)) {
-  await writeFile(new URL(`${name}.svg`, outputDirectory), renderScene(name, config))
+  const svg = renderScene(name, config).replace(/[ \t]+$/gm, '')
+  await writeFile(new URL(`${name}.svg`, outputDirectory), svg)
 }
 console.log(`Generated ${Object.keys(scenes).length} local SVG backgrounds.`)

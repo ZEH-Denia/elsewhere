@@ -777,3 +777,60 @@ git restore --source=9a867c8 -- src/components/SceneWhispers.tsx src/index.css
 - 首页命中区为避开 1024×768 的阅读面板，下沿停在吉他下侧，未覆盖面板下方的空白画面。
 - 该交互只在桌面鼠标/触控笔与键盘出现，没有手机触摸替代；未使用实体手机或平板，未在 Safari/Firefox 实测，未运行真实读屏（可访问性结论来自 Chromium 可访问性树）。
 - 本轮重跑 Galgame 布局与场景动效检查时，重新生成了对应截图和 JSON（不再包含小点）；本改动尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。
+
+## 33. 重复道具清理（场景母题只保留一份）
+
+日期：2026-11-20（Asia/Shanghai）。团队在查看画面后指出“为什么有几个画面有两个相同的东西”，确认后要求“重复道具清理”。本轮只调整场景插画的共享房间道具，不改辉光交互、剧情、文案、布局和手机端规则；舞台母题（乐谱、吉他、台灯）在每张画面里只保留一份。
+
+### 处理原则
+
+左右两间房是“现实 / 平行世界”的双联构图，窗、桌、书架、显示器等房间家具会成对出现，这是刻意保留的对照关系。清理的是**同一类叙事母题的重复**：当画面中央已经有乐谱、吉他或台灯时，不再让共享房间里出现第二件同类物件。
+
+| 画面 | 重复来源 | 处理 |
+| --- | --- | --- |
+| rehearsal / music | 右房墙上固定挂一张装饰乐谱，画面中央又有一张乐谱或浮动五线谱 | 隐藏墙上装饰乐谱，只留中央母题 |
+| regret / make-space | 右房固定放一把吉他，中央母题又有一把 | 隐藏右房吉他，只留中央吉他 |
+| ending-regret-space / ending-cherish-space | 同上的“留出空间”母题叠加右房吉他 | 隐藏右房吉他 |
+| cherish / cherish-morning | 左房书桌有一盏台灯，中央又有一盏落地灯 | 隐藏书桌台灯，只留中央落地灯 |
+
+### 实现
+
+- [scripts/generate-backgrounds.mjs](../../scripts/generate-backgrounds.mjs) 把书桌台灯、墙上乐谱、右房吉他拆成独立片段，房间函数接收开关：`leftRoom({ showLamp })`、`rightRoom({ showSheet, showGuitar })`。
+- `renderScene` 按母题推导开关：`sheet` / `music` 隐藏墙上乐谱；`guitar` / `space` 隐藏右房吉他；`lamp` 隐藏书桌台灯。其余画面保持原样。
+- 重新生成全部 24 张 SVG，只有 8 张受影响：`rehearsal`、`music`、`regret`、`make-space`、`ending-regret-space`、`ending-cherish-space`、`cherish`、`cherish-morning`；其余 16 张逐字节未变。
+- 清理后逐张检查：排练/音乐各 1 份乐谱，后悔/留出空间/两种结局各 1 把吉他，珍惜/珍惜清晨各 1 盏灯。
+- 质疑画面的两张拍立得**保留**：台词即“两张照片，背面写着同一天”，属于剧情线索，不是重复道具。
+- 共享房间的窗、桌、灯位等对照关系不变；只移除与母题撞车的物件。
+
+### 本轮验证
+
+环境同第 32 节，生产预览 `http://127.0.0.1:4173/`（本轮构建产物）。命令均退出 0：
+
+| 检查 | 实际结果 | 原始输出 |
+| --- | --- | --- |
+| `npm run typecheck` | `tsc --noEmit` 通过 | [dedup-typecheck.txt](assets/TASK-003/dedup-typecheck.txt) |
+| `npm run test:story` | 15/15 通过，0 failed | [dedup-test-story.txt](assets/TASK-003/dedup-test-story.txt) |
+| `npm run build` | 20 modules；CSS 38.69 kB / gzip 8.77 kB；JS 249.22 kB / gzip 78.07 kB | [dedup-build.txt](assets/TASK-003/dedup-build.txt) |
+| 低语交互检查 | 19 项全部通过，`failures` / `consoleEvents` 均为 `[]`；排练边缘光仍贴住唯一一张乐谱 | [glow-checks.json](assets/TASK-003/glow-checks.json) |
+| Galgame 布局检查 | `all galgame layout checks passed` | [galgame-layout-checks.json](assets/TASK-003/galgame-layout-checks.json) |
+| 场景与动效检查 | `all scene and motion checks passed` | [scene-motion-checks.json](assets/TASK-003/scene-motion-checks.json) |
+
+场景画面已逐张目视：
+
+[排练：只剩中央乐谱](assets/TASK-003/dedup-rehearsal-1440.png) · [后悔：只剩中央吉他](assets/TASK-003/dedup-regret-1440.png) · [留出空间：只剩中央吉他](assets/TASK-003/dedup-make-space-1440.png) · [珍惜清晨：只剩中央落地灯](assets/TASK-003/dedup-cherish-morning-1440.png)
+
+应用内截图：[排练悬停（新背景）](assets/TASK-003/glow-rehearsal-hover-1440.png)、[后悔反馈 1440](assets/TASK-003/galgame-feedback-1440.png)、[行动反馈 1440](assets/TASK-003/galgame-feedback-action-1440.png)、[结局 1440](assets/TASK-003/galgame-ending-1440.png)、[珍惜清晨 390](assets/TASK-003/galgame-scene-cherish-morning-390.png)。
+
+### 备份与回退
+
+开始前已备份到 `/Users/zeh/Documents/elsewhere-backups/2026-11-20-pre-dedup/`：生成脚本、全部 `backgrounds/` SVG，以及基线提交 `af05de1`。回退：
+
+```bash
+git restore --source=af05de1 -- scripts/generate-backgrounds.mjs public/backgrounds
+```
+
+### 限制
+
+- 左右两间房的窗、桌、书架、显示器仍按双联构图成对出现；本轮没有把两间房彻底改成不同布局。
+- 质疑画面的两张拍立得、接听/追问/衔接的“电话图标 + 声波/波纹”属于剧情语义，未按重复道具清理。
+- 未使用实体手机或平板，未在 Safari/Firefox 实测。本轮改动尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。

@@ -70,12 +70,7 @@
     <path d="M360 202H374V236H360ZM378 196H396V236H378ZM400 207H412V236H400ZM417 190H439V236H417Z" fill="#58606a"/>
     <rect x="446" y="204" width="92" height="28" rx="2" fill="#1a252f" stroke="#83919a" stroke-opacity=".15"/>
     <path d="M458 211H522M458 218H506M458 225H516" stroke="#8b9ba3" stroke-opacity=".22" stroke-width="3"/>
-    <g class="anim glow-drift"><ellipse cx="490" cy="470" rx="176" ry="172" fill="url(#lampGlow)"/></g>
-    <path d="M493 423L530 340M530 340L500 318" stroke="#5b5e60" stroke-width="8" stroke-linecap="round"/>
-    <path d="M470 304Q501 286 529 315L511 348Q484 340 470 304Z" fill="#c59b63"/>
-    <path d="M476 308Q499 297 520 316" stroke="#ffe0a4" stroke-opacity=".65" stroke-width="3"/>
-    <ellipse cx="493" cy="428" rx="46" ry="9" fill="#6c6558"/><ellipse cx="493" cy="426" rx="34" ry="5" fill="#d3b785" opacity=".55"/>
-    <path d="M481 348L405 523H581L514 348Z" fill="#f2bd78" opacity=".065"/>
+
     <path d="M138 560L590 532L632 566L110 602Z" fill="#463e35"/><path d="M110 602L632 566V584L110 622Z" fill="#24252a"/>
     <path d="M154 614L150 666M574 586L584 666" stroke="#1a1d23" stroke-width="17"/>
     <path d="M138 560L590 532" stroke="#b49670" stroke-opacity=".35" stroke-width="3"/>

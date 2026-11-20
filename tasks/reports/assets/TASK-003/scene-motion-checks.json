@@ -232,13 +232,13 @@
     },
     "cherish": {
       "motionGuard": true,
-      "animatedElements": 26,
+      "animatedElements": 25,
       "rain": true,
       "motes": true
     },
     "cherish-morning": {
       "motionGuard": true,
-      "animatedElements": 26,
+      "animatedElements": 25,
       "rain": true,
       "motes": true
     },

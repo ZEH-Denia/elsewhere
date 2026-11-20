@@ -165,7 +165,8 @@ await waitFor(viewIs('career'))
 await settle(500)
 const doctorStart = await state()
 assert.ok(doctorStart.line.includes('凌晨两点十七分'))
-assert.ok((await evaluate("document.querySelector('.scene-current')?.getAttribute('src')")).endsWith('/doctor.svg'), 'doctor uses the doctor scene')
+const doctorScenes = new Set([await evaluate("document.querySelector('.scene-current')?.getAttribute('src')")])
+assert.ok([...doctorScenes][0].endsWith('/doctor.svg'), 'doctor uses the doctor scene')
 let identityResponseSeen = false
 for (let index = 0; index < 35; index += 1) {
   const current = await state()
@@ -174,10 +175,13 @@ for (let index = 0; index < 35; index += 1) {
     assert.ok(current.line.includes('你想起明天早上的周报'))
   }
   if (current.choices.length) break
+  doctorScenes.add(await evaluate("document.querySelector('.scene-current')?.getAttribute('src')"))
   await click('.dialogue-continue')
   await settle(280)
 }
 assert.equal(identityResponseSeen, true, 'working identity line appears before the first choice')
+assert.equal(doctorScenes.size, 4, 'doctor dialogue rotates through four career scenes')
+report.checks.push({ name: 'doctor-scene-rotation', scenes: [...doctorScenes] })
 const doctorChoice = await state()
 assert.deepEqual(doctorChoice.choices.map((text) => text.includes('我羡慕你') || text.includes('听起来很累')), [true, true])
 report.checks.push({ name: 'doctor-identity-and-first-choice', ...doctorChoice })

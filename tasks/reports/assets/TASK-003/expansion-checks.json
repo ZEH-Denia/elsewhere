@@ -47,6 +47,15 @@
       "finalTitle": null
     },
     {
+      "name": "doctor-scene-rotation",
+      "scenes": [
+        "/backgrounds/doctor.svg",
+        "/backgrounds/doctor-triage.svg",
+        "/backgrounds/doctor-break.svg",
+        "/backgrounds/doctor-night.svg"
+      ]
+    },
+    {
       "name": "doctor-identity-and-first-choice",
       "view": "career",
       "heading": "第二通来电",

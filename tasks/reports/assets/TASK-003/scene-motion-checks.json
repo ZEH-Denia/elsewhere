@@ -212,9 +212,45 @@
       "rain": true,
       "motes": true
     },
+    "doctor-triage": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "doctor-break": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "doctor-night": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
     "teacher": {
       "motionGuard": true,
       "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "teacher-window": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "teacher-office": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "teacher-corridor": {
+      "motionGuard": true,
+      "animatedElements": 25,
       "rain": true,
       "motes": true
     },
@@ -224,9 +260,45 @@
       "rain": true,
       "motes": true
     },
+    "designer-wall": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "designer-night": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "designer-sketch": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
     "founder": {
       "motionGuard": true,
       "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "founder-meeting": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "founder-window": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "founder-server": {
+      "motionGuard": true,
+      "animatedElements": 25,
       "rain": true,
       "motes": true
     },

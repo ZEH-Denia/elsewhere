@@ -198,7 +198,7 @@ await record('opening-closing-mobile', 'closing', true)
 
 report.steps = steps
 
-const files = ['home', 'incoming', 'opening', 'connection', 'doubt', 'music', 'reality', 'rehearsal', 'desk', 'doctor', 'teacher', 'designer', 'founder', 'question', 'first-choice', 'regret', 'regret-quiet', 'cherish', 'cherish-morning', 'second-choice', 'make-space', 'reach-out', 'closing', 'farewell', 'ending-regret-space', 'ending-regret-reach', 'ending-cherish-space', 'ending-cherish-reach']
+const files = ['home', 'incoming', 'opening', 'connection', 'doubt', 'music', 'reality', 'rehearsal', 'desk', 'doctor', 'doctor-triage', 'doctor-break', 'doctor-night', 'teacher', 'teacher-window', 'teacher-office', 'teacher-corridor', 'designer', 'designer-wall', 'designer-night', 'designer-sketch', 'founder', 'founder-meeting', 'founder-window', 'founder-server', 'question', 'first-choice', 'regret', 'regret-quiet', 'cherish', 'cherish-morning', 'second-choice', 'make-space', 'reach-out', 'closing', 'farewell', 'ending-regret-space', 'ending-regret-reach', 'ending-cherish-space', 'ending-cherish-reach']
 const fileChecks = {}
 for (const name of files) {
   const text = await readFile(new URL(`../../../../public/backgrounds/${name}.svg`, import.meta.url), 'utf8')

@@ -103,6 +103,25 @@ function getChoicePreviewScene(optionId: string): SceneName | null {
   }
 }
 
+const CAREER_SCENES: Record<CareerId, [SceneName, SceneName, SceneName, SceneName]> = {
+  doctor: ['doctor', 'doctor-triage', 'doctor-break', 'doctor-night'],
+  teacher: ['teacher', 'teacher-window', 'teacher-office', 'teacher-corridor'],
+  designer: ['designer', 'designer-wall', 'designer-night', 'designer-sketch'],
+  founder: ['founder', 'founder-meeting', 'founder-window', 'founder-server'],
+}
+
+function careerSceneFor(progress: CareerProgress): SceneName {
+  const scenes = CAREER_SCENES[progress.careerId]
+  if (progress.phase === 'dialogue') {
+    const total = getCareer(progress.careerId).dialogue.length
+    const segment = Math.min(3, Math.floor(progress.lineIndex / Math.ceil(total / 4)))
+    return scenes[segment]
+  }
+  if (progress.phase === 'identity' || progress.phase === 'first-choice' || progress.phase === 'first-feedback') return scenes[1]
+  if (progress.phase === 'transition' || progress.phase === 'second-choice') return scenes[2]
+  return scenes[3]
+}
+
 function careerProgressLabel(progress: CareerProgress): string {
   switch (progress.phase) {
     case 'dialogue':
@@ -168,8 +187,8 @@ function App() {
   const confirmDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
-  const sceneName = view === 'career' && careerProgress?.phase === 'letter'
-    ? 'home'
+  const sceneName = view === 'career' && careerProgress
+    ? careerProgress.phase === 'letter' ? 'home' : careerSceneFor(careerProgress)
     : getSceneName(view, currentNode, careerProgress?.careerId ?? null)
   const activeCareer = careerProgress ? getCareer(careerProgress.careerId) : null
   const careerLine = careerProgress ? getCareerLine(careerProgress) : null

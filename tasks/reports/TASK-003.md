@@ -1048,7 +1048,7 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 | --- | --- | --- |
 | `npm run typecheck` | 通过 | [expansion-typecheck.txt](assets/TASK-003/expansion-typecheck.txt) |
 | `npm run test:story` | 20/20 通过（含扩展数据） | [expansion-test-story.txt](assets/TASK-003/expansion-test-story.txt) |
-| `npm run build` | 20 modules；CSS 43.57 kB / gzip 9.60 kB；JS 295.80 kB / gzip 91.80 kB | [expansion-build.txt](assets/TASK-003/expansion-build.txt) |
+| `npm run build` | 20 modules；CSS 43.57 kB / gzip 9.60 kB；JS 296.59 kB / gzip 92.08 kB | [expansion-build.txt](assets/TASK-003/expansion-build.txt) |
 | 扩展真实浏览器流程 | 11 项通过：第一章结局继续、身份、总机、医生完整路径、身份回应、信件、已读解锁、尾声、返回总机、390 总机/职业页 | [expansion-checks.json](assets/TASK-003/expansion-checks.json) |
 | 第一通回归 | 点击/双击/选区 18 项、低语 19 项、页面过渡 8 项、布局、场景动效全部通过 | 对应 JSON 已更新 |
 
@@ -1096,7 +1096,7 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 | --- | --- | --- |
 | `npm run typecheck` | 通过 | [expansion-typecheck.txt](assets/TASK-003/expansion-typecheck.txt) |
 | `npm run test:story` | 20/20 通过 | [expansion-test-story.txt](assets/TASK-003/expansion-test-story.txt) |
-| `npm run build` | CSS 43.57 kB / gzip 9.60 kB；JS 295.80 kB / gzip 91.80 kB | [expansion-build.txt](assets/TASK-003/expansion-build.txt) |
+| `npm run build` | CSS 43.57 kB / gzip 9.60 kB；JS 296.59 kB / gzip 92.08 kB | [expansion-build.txt](assets/TASK-003/expansion-build.txt) |
 | 扩展浏览器流程 | **16 项全部通过**：四职业场景、身份/总机、医生完整路径、信件已读、中途退出保留已读、尾声、1024/390/320 无横向溢出 | [expansion-checks.json](assets/TASK-003/expansion-checks.json) |
 | 第一通回归 | 点击/双击/选区 18 项、低语 19 项、页面过渡 8 项、Galgame 布局、28 张场景与动效全部通过 | 对应 JSON 已更新 |
 
@@ -1113,3 +1113,49 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 ### 回退
 
 四职业场景由 `node scripts/generate-backgrounds.mjs` 重新生成；UI 开始前的 App/CSS 副本仍在 `/Users/zeh/Documents/elsewhere-backups/2026-11-20-pre-expansion-ui/`。数据层基线为 `8ef00f8`，扩展 UI 提交为 `0e6e63d`。
+
+## 39. 每条职业线扩充到 4 张场景
+
+日期：2026-11-20（Asia/Shanghai）。团队反馈“背景图片太单一，每条线至少加3幅图片”。本轮在原有一张职业场景之外，为每条职业线新增 3 张，共 4 张；背景总数从 28 增至 **40**。
+
+### 新增场景
+
+| 职业线 | 四张场景 |
+| --- | --- |
+| 医生 | 急诊走廊（原）、分诊台、休息室/贩卖机、夜间走廊与雨窗 |
+| 教师 | 教室黑板（原）、最后一排窗、教师办公室、放学走廊 |
+| 设计师 | 工作室显示器（原）、草图墙、夜景工作桌、速写桌面特写 |
+| 创业者 | 三张桌子（原）、会议角/白板、雨窗空桌、服务器与账本角 |
+
+- [scripts/generate-backgrounds.mjs](../../scripts/generate-backgrounds.mjs) 的 `careerRoom(kind, variant)` 新增 12 个变体；四张场景共用同一双室/雨夜/暖光/玻璃质感，但家具、光源和构图不同。
+- `SceneBackground` 预加载与类型联合扩展到 40 张；生成命令仍为 `node scripts/generate-backgrounds.mjs`。
+- 职业通话按进度轮换四张场景：
+  - 对白按节点顺序分成四段；
+  - 身份回应与第一次选择使用第 2 张；
+  - 共同衔接与第二次选择使用第 3 张；
+  - 第二次反馈与结局使用第 4 张。
+- 职业信件回到 `home`；总机、身份选择和最终回电继续使用 `connection`。
+- 场景仍为本地代码生成，不引入远程图片或字体；雨丝、尘埃、灯光漂移和减少动态效果保持一致。
+
+### 本轮校验
+
+以下全部实际执行、退出 0，浏览器 `failures` 与 `consoleEvents` 均为 `[]`：
+
+| 检查 | 结果 | 证据 |
+| --- | --- | --- |
+| `npm run typecheck` | 通过 | [expansion-typecheck.txt](assets/TASK-003/expansion-typecheck.txt) |
+| `npm run test:story` | 20/20 通过 | [expansion-test-story.txt](assets/TASK-003/expansion-test-story.txt) |
+| `npm run build` | CSS 43.57 kB / gzip 9.60 kB；JS 296.59 kB / gzip 92.08 kB | [expansion-build.txt](assets/TASK-003/expansion-build.txt) |
+| 扩展浏览器流程 | **17 项全部通过**；医生对白中实际切换 4 张不同场景 | [expansion-checks.json](assets/TASK-003/expansion-checks.json) |
+| 全量场景文件 | 40 张 SVG 均含雨丝/尘埃动效、镜头保护与减少动态效果规则；28 张旧场景 + 12 张新增全部通过 | [scene-motion-checks.json](assets/TASK-003/scene-motion-checks.json) |
+| 第一通回归 | 点击/双击/选区 18 项、低语 19 项、页面过渡 8 项、布局全部通过 | 对应 JSON 已更新 |
+
+场景文件可直接查看：[医生分诊台](../../public/backgrounds/doctor-triage.svg)、[医生休息室](../../public/backgrounds/doctor-break.svg)、[医生夜间走廊](../../public/backgrounds/doctor-night.svg)、[教师窗边](../../public/backgrounds/teacher-window.svg)、[教师办公室](../../public/backgrounds/teacher-office.svg)、[教师走廊](../../public/backgrounds/teacher-corridor.svg)、[设计师草图墙](../../public/backgrounds/designer-wall.svg)、[设计师夜景](../../public/backgrounds/designer-night.svg)、[设计师速写桌](../../public/backgrounds/designer-sketch.svg)、[创业者会议角](../../public/backgrounds/founder-meeting.svg)、[创业者雨窗](../../public/backgrounds/founder-window.svg)、[创业者机房角](../../public/backgrounds/founder-server.svg)。
+
+应用内截图更新：[医生第一次选择（分诊台）](assets/TASK-003/expansion-career-choice-1440.png)、[设计师场景](assets/TASK-003/expansion-career-designer-1440.png)、[创业者场景](assets/TASK-003/expansion-career-founder-1440.png)、[教师 390](assets/TASK-003/expansion-career-390.png)、[设计师 320](assets/TASK-003/expansion-career-320.png)。
+
+### 仍存在的限制
+
+- 浏览器只完整走了医生线并验证四场景轮换；教师、设计师、创业者线的四张场景均已生成并验证首屏，但未逐条走完 16 个结局的完整浏览器路径。
+- 总机在手机端仍允许纵向滚动；未使用实体手机、Safari/Firefox 或真实读屏。
+- 本轮尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署。

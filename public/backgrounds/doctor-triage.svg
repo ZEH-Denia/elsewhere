@@ -94,60 +94,38 @@
     <path d="M806 540L1338 504V666H806Z" fill="url(#floor)"/>
     <path fill="none" d="M806 561L1338 523M806 614L1338 567M924 666L1008 524M1150 666L1160 516" stroke="#a392b1" stroke-opacity=".055"/>
 
-      <rect x="806" y="164" width="532" height="250" fill="#0b2029" opacity=".42"/>
-      <g transform="translate(1014 194)">
-    <rect width="228" height="62" rx="4" fill="#0d161c" stroke="#cfe3e4" stroke-opacity=".55"/>
-    <rect x="5" y="5" width="218" height="52" rx="2" fill="none" stroke="#cfe3e4" stroke-opacity=".18"/>
-    <path fill="none" d="M34 31H47M40.5 24.5V37.5" stroke="#d98a86" stroke-width="5" stroke-linecap="round"/>
-    <text x="114" y="32" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="19" font-weight="600" fill="#cfe3e4" fill-opacity="0.92" text-anchor="middle" letter-spacing="0.6">分 诊</text>
-    <text x="114" y="53" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9" font-weight="600" fill="#cfe3e4" fill-opacity="0.55" text-anchor="middle" letter-spacing="1.4">TRIAGE / 24H</text>
+      <rect x="806" y="164" width="532" height="240" fill="#0b2029" opacity=".4"/>
+      <g transform="translate(1000 194)">
+    <rect width="238" height="64" rx="4" fill="#0d161c" stroke="#cfe3e4" stroke-opacity=".55"/>
+    <rect x="5" y="5" width="228" height="54" rx="2" fill="none" stroke="#cfe3e4" stroke-opacity=".18"/>
+    <path fill="none" d="M30 32H46M38 24V40" stroke="#d98a86" stroke-width="5" stroke-linecap="round"/>
+    <text x="119" y="33" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="19" font-weight="600" fill="#cfe3e4" fill-opacity="0.92" text-anchor="middle" letter-spacing="0.6">分 诊</text>
+    <text x="119" y="55" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="9" font-weight="600" fill="#cfe3e4" fill-opacity="0.55" text-anchor="middle" letter-spacing="1.4">TRIAGE</text>
   </g>
-      <g transform="translate(1258 195)">
-        <rect width="66" height="88" rx="4" fill="#0c171d" stroke="#806c58" stroke-opacity=".6"/>
-        <rect x="6" y="8" width="54" height="34" fill="#17241f"/>
-        <text x="33" y="33" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="19" font-weight="600" fill="#e6bd80" fill-opacity="0.94" text-anchor="middle" letter-spacing="1.4">A037</text>
-        <circle cx="18" cy="62" r="4" fill="#8fd0d6" opacity=".65"/>
-        <path fill="none" d="M28 62H58M28 72H50" stroke="#d7c4a7" stroke-opacity=".28" stroke-width="2"/>
+      <g transform="translate(1246 198)">
+        <rect width="78" height="96" rx="4" fill="#0c171d" stroke="#806c58" stroke-opacity=".55"/>
+        <rect x="7" y="8" width="64" height="38" fill="#17241f"/>
+        <text x="39" y="34" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="20" font-weight="600" fill="#e6bd80" fill-opacity="0.94" text-anchor="middle" letter-spacing="1.4">A037</text>
+        <circle cx="20" cy="66" r="4" fill="#8fd0d6" opacity=".6"/>
       </g>
-      <g transform="translate(934 236)">
-    <circle r="24" fill="#111820" stroke="#6d6458" stroke-opacity=".65" stroke-width="3"/>
-    <circle r="19" fill="#cfd8d6" opacity=".55"/>
-    <path fill="none" d="M0 -15V0L10.08 6.24" stroke="#2d3237" stroke-width="2.6" stroke-linecap="round"/>
-    <circle r="2" fill="#2d3237"/>
-  </g>
-      <path fill="none" d="M858 196V430M1002 196V430M1146 196V430" stroke="#334a54" stroke-opacity=".28" stroke-width="2"/>
-      <path fill="none" d="M858 196H1314" stroke="#465e68" stroke-opacity=".35" stroke-width="5"/>
-      <path d="M884 196Q918 250 884 354M986 196Q952 248 986 344" fill="none" stroke="#d4dfdd" stroke-opacity=".1" stroke-width="13"/>
-      <g transform="translate(864 438)">
-        <path d="M0 0H430L414 18H16Z" fill="#4d4a44" stroke="#b7a58a" stroke-opacity=".35"/>
-        <path fill="none" d="M24 18V106M406 18V106" stroke="#1a1f23" stroke-width="10"/>
-        <rect x="44" y="4" width="88" height="50" rx="3" fill="#dce5e2" opacity=".52"/>
-        <path fill="none" d="M56 16H120M56 28H104" stroke="#788482" stroke-opacity=".4" stroke-width="2"/>
-        <g transform="translate(166 6)">
-          <rect width="86" height="52" rx="4" fill="#1a2a31" stroke="#9bb2b7" stroke-opacity=".3"/>
-          <path fill="none" d="M12 14H74M12 26H74M12 38H58" stroke="#8fd0d6" stroke-opacity=".3" stroke-width="3"/>
-        </g>
-        <g transform="translate(286 4)">
-          <path d="M0 12H58L52 24H8Z" fill="#d9d3c4" opacity=".5"/>
-          <path d="M12 12V2H46V12" fill="none" stroke="#9a9182" stroke-opacity=".4" stroke-width="3"/>
+      <g transform="translate(868 440)">
+        <path d="M0 0H396L378 20H18Z" fill="#4d4a44" stroke="#b7a58a" stroke-opacity=".32"/>
+        <path fill="none" d="M24 20V106M370 20V106" stroke="#1a1f23" stroke-width="10"/>
+        <rect x="44" y="4" width="92" height="54" rx="3" fill="#dce5e2" opacity=".55"/>
+        <path fill="none" d="M56 18H120M56 30H104M56 42H112" stroke="#788482" stroke-opacity=".38" stroke-width="2"/>
+        <g transform="translate(180 4)">
+          <rect width="78" height="54" rx="4" fill="#1a2a31" stroke="#9bb2b7" stroke-opacity=".3"/>
+          <path fill="none" d="M14 16H64M14 28H52" stroke="#8fd0d6" stroke-opacity=".3" stroke-width="3"/>
         </g>
       </g>
-      <g transform="translate(1210 454) scale(1.05)">
+      <g transform="translate(1208 456) scale(1.12)">
     <circle cx="0" cy="34" r="25" fill="none" stroke="#b4c2c4" stroke-opacity=".6" stroke-width="4"/>
     <circle cx="62" cy="40" r="14" fill="none" stroke="#b4c2c4" stroke-opacity=".5" stroke-width="3"/>
     <path d="M-16 14L4 -32H34L24 14H-16ZM-16 14L-24 40" fill="none" stroke="#cfdbdb" stroke-opacity=".62" stroke-width="4" stroke-linejoin="round"/>
     <path fill="none" d="M4 -32H50M34 14V34H16" stroke="#cfdbdb" stroke-opacity=".52" stroke-width="4"/>
     <path fill="none" d="M-4 -42H34" stroke="#aab8ba" stroke-opacity=".45" stroke-width="4" stroke-linecap="round"/>
   </g>
-      <g transform="translate(884 476)">
-        <rect width="112" height="30" rx="3" fill="#e0dbcc" opacity=".52" transform="rotate(-2 56 15)"/>
-        <path fill="none" d="M14 10H94M14 20H76" stroke="#6e6a5e" stroke-opacity=".45" stroke-width="2" transform="rotate(-2 56 15)"/>
-      </g>
-      <g transform="translate(1110 452)">
-        <path d="M0 24C7 4 26 -4 46 5C62 12 70 28 66 46" fill="none" stroke="#cfe0df" stroke-opacity=".5" stroke-width="4" stroke-linecap="round"/>
-        <path fill="none" d="M66 46V63" stroke="#cfe0df" stroke-opacity=".4" stroke-width="4"/>
-        <circle cx="66" cy="72" r="9" fill="#182227" stroke="#b9cacb" stroke-opacity=".6" stroke-width="2"/>
-      </g>
+
     <rect x="806" y="164" width="532" height="502" fill="url(#glass)" opacity=".12"/>
   </g></g>
   <rect x="102" y="164" width="532" height="502" fill="url(#glass)" opacity=".32"/>

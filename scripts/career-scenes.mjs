@@ -184,128 +184,80 @@ function careerShell(inner, { wash = '#1b1a20', opacity = 0.34, glow = 0.78 } = 
 function doctorVariant(variant) {
   if (variant === 1) {
     return careerShell(`
-      <rect x="806" y="164" width="532" height="250" fill="#0b2029" opacity=".42"/>
-      ${sign(1014, 194, 228, 62, '分 诊', { accent: '#cfe3e4', sub: 'TRIAGE / 24H', icon: '<path fill="none" d="M34 31H47M40.5 24.5V37.5" stroke="#d98a86" stroke-width="5" stroke-linecap="round"/>' })}
-      <g transform="translate(1258 195)">
-        <rect width="66" height="88" rx="4" fill="#0c171d" stroke="#806c58" stroke-opacity=".6"/>
-        <rect x="6" y="8" width="54" height="34" fill="#17241f"/>
-        ${label(33, 33, 'A037', { size: 19, fill: '#e6bd80', opacity: 0.94, spacing: 1.4 })}
-        <circle cx="18" cy="62" r="4" fill="#8fd0d6" opacity=".65"/>
-        <path fill="none" d="M28 62H58M28 72H50" stroke="#d7c4a7" stroke-opacity=".28" stroke-width="2"/>
+      <rect x="806" y="164" width="532" height="240" fill="#0b2029" opacity=".4"/>
+      ${sign(1000, 194, 238, 64, '分 诊', { accent: '#cfe3e4', sub: 'TRIAGE', icon: '<path fill="none" d="M30 32H46M38 24V40" stroke="#d98a86" stroke-width="5" stroke-linecap="round"/>' })}
+      <g transform="translate(1246 198)">
+        <rect width="78" height="96" rx="4" fill="#0c171d" stroke="#806c58" stroke-opacity=".55"/>
+        <rect x="7" y="8" width="64" height="38" fill="#17241f"/>
+        ${label(39, 34, 'A037', { size: 20, fill: '#e6bd80', opacity: 0.94, spacing: 1.4 })}
+        <circle cx="20" cy="66" r="4" fill="#8fd0d6" opacity=".6"/>
       </g>
-      ${wallClock(934, 236, 24, { face: '#cfd8d6' })}
-      <path fill="none" d="M858 196V430M1002 196V430M1146 196V430" stroke="#334a54" stroke-opacity=".28" stroke-width="2"/>
-      <path fill="none" d="M858 196H1314" stroke="#465e68" stroke-opacity=".35" stroke-width="5"/>
-      <path d="M884 196Q918 250 884 354M986 196Q952 248 986 344" fill="none" stroke="#d4dfdd" stroke-opacity=".1" stroke-width="13"/>
-      <g transform="translate(864 438)">
-        <path d="M0 0H430L414 18H16Z" fill="#4d4a44" stroke="#b7a58a" stroke-opacity=".35"/>
-        <path fill="none" d="M24 18V106M406 18V106" stroke="#1a1f23" stroke-width="10"/>
-        <rect x="44" y="4" width="88" height="50" rx="3" fill="#dce5e2" opacity=".52"/>
-        <path fill="none" d="M56 16H120M56 28H104" stroke="#788482" stroke-opacity=".4" stroke-width="2"/>
-        <g transform="translate(166 6)">
-          <rect width="86" height="52" rx="4" fill="#1a2a31" stroke="#9bb2b7" stroke-opacity=".3"/>
-          <path fill="none" d="M12 14H74M12 26H74M12 38H58" stroke="#8fd0d6" stroke-opacity=".3" stroke-width="3"/>
-        </g>
-        <g transform="translate(286 4)">
-          <path d="M0 12H58L52 24H8Z" fill="#d9d3c4" opacity=".5"/>
-          <path d="M12 12V2H46V12" fill="none" stroke="#9a9182" stroke-opacity=".4" stroke-width="3"/>
+      <g transform="translate(868 440)">
+        <path d="M0 0H396L378 20H18Z" fill="#4d4a44" stroke="#b7a58a" stroke-opacity=".32"/>
+        <path fill="none" d="M24 20V106M370 20V106" stroke="#1a1f23" stroke-width="10"/>
+        <rect x="44" y="4" width="92" height="54" rx="3" fill="#dce5e2" opacity=".55"/>
+        <path fill="none" d="M56 18H120M56 30H104M56 42H112" stroke="#788482" stroke-opacity=".38" stroke-width="2"/>
+        <g transform="translate(180 4)">
+          <rect width="78" height="54" rx="4" fill="#1a2a31" stroke="#9bb2b7" stroke-opacity=".3"/>
+          <path fill="none" d="M14 16H64M14 28H52" stroke="#8fd0d6" stroke-opacity=".3" stroke-width="3"/>
         </g>
       </g>
-      ${wheelchair(1210, 454, 1.05)}
-      <g transform="translate(884 476)">
-        <rect width="112" height="30" rx="3" fill="#e0dbcc" opacity=".52" transform="rotate(-2 56 15)"/>
-        <path fill="none" d="M14 10H94M14 20H76" stroke="#6e6a5e" stroke-opacity=".45" stroke-width="2" transform="rotate(-2 56 15)"/>
-      </g>
-      <g transform="translate(1110 452)">
-        <path d="M0 24C7 4 26 -4 46 5C62 12 70 28 66 46" fill="none" stroke="#cfe0df" stroke-opacity=".5" stroke-width="4" stroke-linecap="round"/>
-        <path fill="none" d="M66 46V63" stroke="#cfe0df" stroke-opacity=".4" stroke-width="4"/>
-        <circle cx="66" cy="72" r="9" fill="#182227" stroke="#b9cacb" stroke-opacity=".6" stroke-width="2"/>
-      </g>`)
+      ${wheelchair(1208, 456, 1.12)}
+    `)
   }
   if (variant === 2) {
     return careerShell(`
       <rect x="806" y="164" width="532" height="240" fill="#2a211a" opacity=".36"/>
-      ${sign(1004, 192, 236, 58, '值 班 室', { accent: '#e0bc8d', sub: 'ON CALL', icon: '<circle cx="32" cy="30" r="8" fill="none" stroke="#e0bc8d" stroke-opacity=".7" stroke-width="2"/><path d="M39 24L46 17" stroke="#e0bc8d" stroke-width="2"/>' })}
+      ${sign(1004, 192, 236, 58, '值 班 室', { accent: '#e0bc8d', sub: 'ON CALL' })}
       <g transform="translate(824 246)">
-        <rect width="164" height="252" rx="4" fill="#18232a" stroke="#79888d" stroke-opacity=".4"/>
-        <path fill="none" d="M0 60H164M0 120H164M0 180H164" stroke="#9babad" stroke-opacity=".18" stroke-width="2"/>
-        <rect x="108" y="24" width="40" height="22" rx="2" fill="#0b151a"/>
-        <path fill="none" d="M116 31H140M116 38H132" stroke="#8fd0d6" stroke-opacity=".45" stroke-width="2"/>
-        <circle cx="128" cy="76" r="3" fill="#e0bc8d" opacity=".7"/>
-        <circle cx="128" cy="136" r="3" fill="#e0bc8d" opacity=".7"/>
-        <rect x="16" y="74" width="62" height="34" rx="3" fill="#0d171c"/>
-        <path fill="none" d="M26 86H66M26 96H54" stroke="#c9d5d3" stroke-opacity=".3" stroke-width="2"/>
+        <rect width="164" height="288" rx="4" fill="#18232a" stroke="#79888d" stroke-opacity=".4"/>
+        <path fill="none" d="M0 72H164M0 144H164M0 216H164" stroke="#9babad" stroke-opacity=".18" stroke-width="2"/>
+        <path fill="none" d="M122 94H142M122 166H142M122 238H142" stroke="#e0bc8d" stroke-opacity=".5" stroke-width="3"/>
       </g>
       <g transform="translate(986 286)">
-        <path fill="none" d="M40 -2V-14M16 8L40 -2L64 8" stroke="#c9d5d3" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+        <path fill="none" d="M40 -2V-14M16 8L40 -2L64 8" stroke="#c9d5d3" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
         <path d="M18 10H44L60 18L70 34L56 42L48 32V100H18V32L10 42L-4 34L6 18Z" fill="#7fa9a2" opacity=".55" stroke="#c2d4cf" stroke-opacity=".28"/>
-        <path fill="none" d="M28 12L38 28L48 12M18 34V96M48 34V96" stroke="#dce7e4" stroke-opacity=".3" stroke-width="2"/>
-        <path fill="none" d="M56 42L62 62M10 42L4 62" stroke="#c2d4cf" stroke-opacity=".3" stroke-width="2"/>
+        <path fill="none" d="M28 12L38 28L48 12" stroke="#dce7e4" stroke-opacity=".3" stroke-width="2"/>
       </g>
-      <g transform="translate(1102 232)">
-        <rect width="188" height="292" rx="5" fill="#121c22" stroke="#7d8a8c" stroke-opacity=".45"/>
-        <rect x="10" y="12" width="168" height="198" fill="#10252c" stroke="#8fd0d6" stroke-opacity=".25"/>
-        <path fill="none" d="M26 42H160M26 72H160M26 102H144M26 132H160M26 162H126" stroke="#8fd0d6" stroke-opacity=".16" stroke-width="3"/>
-        <rect x="22" y="30" width="40" height="18" rx="2" fill="#d9b178" opacity=".5"/>
-        <rect x="70" y="30" width="40" height="18" rx="2" fill="#c98a80" opacity=".42"/>
-        <rect x="118" y="30" width="40" height="18" rx="2" fill="#8fc8c8" opacity=".36"/>
-        <path fill="none" d="M16 224H172" stroke="#a5b3b2" stroke-opacity=".2" stroke-width="3"/>
-        ${cup(40, 226, 1.15, '#d9c5a7')}
-        <circle cx="140" cy="238" r="10" fill="#d9b178" opacity=".22"/>
+      <g transform="translate(1128 244)">
+        <rect width="180" height="284" rx="5" fill="#121c22" stroke="#7d8a8c" stroke-opacity=".45"/>
+        <rect x="10" y="12" width="160" height="196" fill="#10252c" stroke="#8fd0d6" stroke-opacity=".22"/>
+        <path fill="none" d="M27 52H153M27 90H153M27 128H153" stroke="#8fd0d6" stroke-opacity=".18" stroke-width="3"/>
+        <rect x="28" y="36" width="34" height="18" rx="2" fill="#d9b178" opacity=".55"/>
+        <rect x="72" y="36" width="34" height="18" rx="2" fill="#c98a80" opacity=".45"/>
+        <rect x="116" y="36" width="34" height="18" rx="2" fill="#8fc8c8" opacity=".4"/>
+        ${label(90, 226, '咖 啡', { size: 12, fill: '#d9c9ad', opacity: 0.55, spacing: 1.6 })}
       </g>
-      <g transform="translate(858 466)">
+      <g transform="translate(858 468)">
         <path d="M0 0H244L228 20H16Z" fill="#4a4037" stroke="#b59773" stroke-opacity=".32"/>
-        <path fill="none" d="M24 20V104M220 20V104" stroke="#1e1e1f" stroke-width="9"/>
-        <path d="M34 4H196L190 22H30Z" fill="#d9d1c0" opacity=".4"/>
-        <path d="M98 2C110 -18 142 -22 158 -8C174 -22 206 -8 198 12H88Z" fill="#9fb3ac" opacity=".4"/>
-        ${cup(38, 12, 1.05, '#d9c5a7')}
+        <path fill="none" d="M24 20V96M220 20V96" stroke="#1e1e1f" stroke-width="9"/>
+        <path d="M34 4H196L190 20H30Z" fill="#d9d1c0" opacity=".35"/>
       </g>
-      <g transform="translate(1150 470)">
-        <path d="M0 0H112L104 18H8Z" fill="#3a3733"/>
-        <path fill="none" d="M16 18V86M94 18V86" stroke="#1c1e1f" stroke-width="8"/>
-        <path d="M24 4H90L84 18H30Z" fill="#c7cfc9" opacity=".35"/>
-      </g>
-      <g transform="translate(1024 454)">
+      <g transform="translate(1004 452)">
         <path fill="none" d="M2 0C2 24 14 34 24 46C34 34 46 24 46 0" stroke="#c3d3d1" stroke-opacity=".55" stroke-width="3"/>
         <path fill="none" d="M24 46V60" stroke="#c3d3d1" stroke-opacity=".45" stroke-width="3"/>
-        <path fill="none" d="M2 0H-6M46 0H54" stroke="#c3d3d1" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
         <circle cx="24" cy="68" r="9" fill="#1b2327" stroke="#a9b9b9" stroke-opacity=".6" stroke-width="2"/>
-        <circle cx="24" cy="68" r="3" fill="#9fb3ac" opacity=".35"/>
       </g>
-      <g class="anim glow-drift"><ellipse cx="1196" cy="386" rx="120" ry="120" fill="url(#lampGlow)" opacity=".32"/></g>`)
+      <g class="anim glow-drift"><ellipse cx="1210" cy="390" rx="120" ry="120" fill="url(#lampGlow)" opacity=".3"/></g>
+    `)
   }
   if (variant === 3) {
     return careerShell(`
       <rect x="806" y="164" width="532" height="300" fill="#0a1a24" opacity=".46"/>
-      <path d="M806 300L1338 452V666H806Z" fill="#0d1419" opacity=".72"/>
-      <path fill="none" d="M806 300L1338 452M806 382L1338 488M806 470L1338 526M806 558L1338 566" stroke="#8fa6ad" stroke-opacity=".1"/>
-      <path fill="none" d="M1072 250V520" stroke="#6f858e" stroke-opacity=".18" stroke-width="3"/>
-      <path fill="none" d="M886 164H1258" stroke="#6e828a" stroke-opacity=".3" stroke-width="5"/>
-      <g class="anim blink"><rect x="920" y="176" width="76" height="6" rx="3" fill="#d9edf0" opacity=".34"/><rect x="1120" y="176" width="76" height="6" rx="3" fill="#d9edf0" opacity=".28"/></g>
-      ${sign(1008, 204, 128, 58, '静', { accent: '#9ccdd2', sub: 'NIGHT WARD' })}
-      <path d="M1174 196H1298V226H1174Z" fill="#132229" stroke="#75888f" stroke-opacity=".4"/>
-      <path fill="none" d="M1188 204H1284M1188 212H1264" stroke="#d5e4e4" stroke-opacity=".3" stroke-width="2"/>
-      <g transform="translate(826 230)">
-        <path fill="none" d="M0 0H190M0 22H190" stroke="#82959c" stroke-opacity=".28" stroke-width="4"/>
-        <path d="M14 22Q36 80 20 212M56 22Q34 90 54 218M100 22Q122 84 104 212M144 22Q124 92 142 218M182 22Q166 82 178 210" fill="none" stroke="#a8b9bd" stroke-opacity=".16" stroke-width="11"/>
-        <path fill="none" d="M46 148H154" stroke="#6c7d84" stroke-opacity=".28" stroke-width="3"/>
-        ${hospitalBed(40, 188, 118)}
+      <path fill="none" d="M878 178H1240" stroke="#6e828a" stroke-opacity=".3" stroke-width="5"/>
+      <g class="anim blink"><rect x="930" y="188" width="92" height="6" rx="3" fill="#d9edf0" opacity=".3"/></g>
+      ${sign(1090, 204, 128, 58, '静', { accent: '#9ccdd2', sub: 'NIGHT WARD' })}
+      <g transform="translate(858 236)">
+        <path d="M18 22Q42 88 24 226M78 22Q54 96 76 232M150 22Q174 90 156 226M228 22Q204 98 226 232" fill="none" stroke="#a8b9bd" stroke-opacity=".15" stroke-width="13"/>
+        ${hospitalBed(54, 198, 198)}
       </g>
-      <g transform="translate(1162 460)">
-        <path d="M0 0H196L180 20H15Z" fill="#4a5052" stroke="#aab7b8" stroke-opacity=".32"/>
-        <path fill="none" d="M24 20V66M166 20V66" stroke="#20262a" stroke-width="8"/>
-        <path d="M28 4H164L156 20H32Z" fill="#c9d7d7" opacity=".34"/>
-        <circle cx="34" cy="70" r="9" fill="#182024" stroke="#9dafb1" stroke-width="2"/>
-        <circle cx="156" cy="70" r="9" fill="#182024" stroke="#9dafb1" stroke-width="2"/>
+      <g transform="translate(1178 292)">
+        <rect width="132" height="82" rx="4" fill="#102029" stroke="#89a1a8" stroke-opacity=".4"/>
+        <path d="M14 28H36L46 12L58 54L70 32H118" fill="none" stroke="#8fd0d6" stroke-opacity=".7" stroke-width="2.5"/>
+        <path fill="none" d="M14 62H118" stroke="#8fd0d6" stroke-opacity=".14"/>
       </g>
-      ${ivPole(1268, 332)}
-      <g transform="translate(1214 302)">
-        <rect width="92" height="64" rx="4" fill="#102029" stroke="#89a1a8" stroke-opacity=".4"/>
-        <path d="M10 20H32L40 9L50 44L60 24H82" fill="none" stroke="#8fd0d6" stroke-opacity=".72" stroke-width="2.5"/>
-        <path fill="none" d="M10 52H82" stroke="#8fd0d6" stroke-opacity=".18"/>
-      </g>
-      <circle cx="1210" cy="418" r="3" fill="#d79a9a" opacity=".6"/>
-      <path fill="none" d="M838 552L1318 526" stroke="#8fa0a5" stroke-opacity=".12" stroke-width="2"/>`)
+      <path fill="none" d="M838 552L1318 526" stroke="#8fa0a5" stroke-opacity=".1" stroke-width="2"/>
+    `)
   }
   return ''
 }
@@ -689,36 +641,16 @@ function sceneArt(kind, variant) {
     if (variant > 0) return doctorVariant(variant)
     return `
       <rect x="806" y="164" width="532" height="240" fill="#0a222c" opacity=".44"/>
-      <g class="anim glow-drift"><ellipse cx="1120" cy="330" rx="150" ry="140" fill="url(#stageGlow)" opacity=".34"/></g>
-      <path fill="none" d="M858 196H1314M858 208H1314" stroke="#5e737d" stroke-opacity=".3" stroke-width="3"/>
-      <path fill="none" d="M904 196V430M1094 196V430M1284 196V430" stroke="#334a54" stroke-opacity=".24" stroke-width="2"/>
-      ${sign(1122, 198, 98, 112, '急诊', { accent: '#e0a09b', sub: 'ER', icon: '<path fill="none" d="M49 24H49M49 10V38M35 24H63" stroke="#dd9b95" stroke-width="7" stroke-linecap="round"/>' })}
-      ${sign(1230, 214, 78, 44, '24H', { accent: '#9fc3c7' })}
-      ${monitorScreen(1150, 330, 132, 88, `
-        <path d="M14 56H30L38 32L48 68L58 46L70 56H116" fill="none" stroke="#8fd0d6" stroke-opacity=".8" stroke-width="2.5"/>
-        <path fill="none" d="M14 18H116" stroke="#8fd0d6" stroke-opacity=".16"/>
-        <text x="14" y="82" font-family="${FONT}" font-size="11" fill="#8fd0d6" fill-opacity=".55">78</text>
+      <g class="anim glow-drift"><ellipse cx="1120" cy="330" rx="150" ry="140" fill="url(#stageGlow)" opacity=".32"/></g>
+      ${sign(1118, 198, 112, 122, '急诊', { accent: '#e0a09b', sub: 'ER', icon: '<path fill="none" d="M56 22V40M47 31H65" stroke="#dd9b95" stroke-width="7" stroke-linecap="round"/>' })}
+      ${monitorScreen(1152, 344, 140, 88, `
+        <path d="M14 56H30L38 32L48 68L58 46L70 56H122" fill="none" stroke="#8fd0d6" stroke-opacity=".8" stroke-width="2.5"/>
       `)}
-      <g transform="translate(1024 420)">
-        <path fill="none" d="M0 0H120M0 8H120" stroke="#8b9ba2" stroke-opacity=".3" stroke-width="3"/>
-        ${hospitalBed(10, 56, 236)}
+      <g transform="translate(916 430)">
+        ${hospitalBed(0, 40, 280)}
       </g>
-      ${ivPole(1020, 300)}
-      <g transform="translate(852 460)">
-        <path d="M0 0H92L84 18H8Z" fill="#3d413f" stroke="#a6a18e" stroke-opacity=".3"/>
-        <path fill="none" d="M14 18V82M76 18V82" stroke="#1d2021" stroke-width="7"/>
-        <rect x="20" y="2" width="54" height="16" rx="2" fill="#c9d8d7" opacity=".4"/>
-        <path fill="none" d="M28 8H66" stroke="#7c8b89" stroke-opacity=".4" stroke-width="2"/>
-      </g>
-      <g transform="translate(1250 462)">
-        <rect width="54" height="92" rx="4" fill="#18252b" stroke="#7f8d92" stroke-opacity=".38"/>
-        <rect x="8" y="8" width="38" height="28" fill="#0b151a"/>
-        <path fill="none" d="M14 18H40M14 26H34" stroke="#d9b178" stroke-opacity=".35" stroke-width="2"/>
-        <circle cx="18" cy="52" r="4" fill="#8fd0d6" opacity=".55"/>
-        <path fill="none" d="M28 52H44" stroke="#a9b8ba" stroke-opacity=".3" stroke-width="2"/>
-      </g>
-      <path d="M826 240Q850 280 826 390M924 214Q950 292 926 420" fill="none" stroke="#d5e2e1" stroke-opacity=".12" stroke-width="15"/>
-      <path fill="none" d="M806 552L1338 526" stroke="#9db1b5" stroke-opacity=".12" stroke-width="2"/>`
+      ${ivPole(886, 286)}
+      <path fill="none" d="M838 552L1318 526" stroke="#9db1b5" stroke-opacity=".08" stroke-width="2"/>`
   }
   if (kind === 'teacher') {
     if (variant > 0) return teacherVariant(variant)

@@ -165,6 +165,7 @@ await waitFor(viewIs('career'))
 await settle(500)
 const doctorStart = await state()
 assert.ok(doctorStart.line.includes('凌晨两点十七分'))
+report.shots.push(await screenshot('expansion-career-start-1440'))
 const doctorScenes = new Set([await evaluate("document.querySelector('.scene-current')?.getAttribute('src')")])
 assert.ok([...doctorScenes][0].endsWith('/doctor.svg'), 'doctor uses the doctor scene')
 let identityResponseSeen = false

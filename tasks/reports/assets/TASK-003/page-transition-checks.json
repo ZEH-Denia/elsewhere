@@ -1,0 +1,116 @@
+{
+  "viewport": "1440x900 / 390x844",
+  "checks": [
+    {
+      "name": "home-settled",
+      "screen": "home",
+      "animationName": "screen-page-in",
+      "duration": "0.38s",
+      "opacity": 1,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    {
+      "name": "intro-transition",
+      "early": {
+        "screen": "intro",
+        "animationName": "screen-page-in",
+        "duration": "0.38s",
+        "opacity": 0.310674,
+        "transform": "matrix(1, 0, 0, 1, 0, 6.89326)",
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "settled": {
+        "screen": "intro",
+        "animationName": "screen-page-in",
+        "duration": "0.38s",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      }
+    },
+    {
+      "name": "dialogue-line-early",
+      "animationName": "dialogue-line-in",
+      "opacity": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 5)"
+    },
+    {
+      "name": "dialogue-line-in",
+      "opacity": 1,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "name": "first-choice-transition",
+      "screen": "call-first-response",
+      "animationName": "screen-page-in",
+      "duration": "0.38s",
+      "opacity": 1,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    {
+      "name": "feedback-transition",
+      "screen": "call-dialogue",
+      "animationName": "screen-page-in",
+      "duration": "0.38s",
+      "opacity": 0.999118,
+      "transform": "matrix(1, 0, 0, 1, 0, 0.00881555)",
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    {
+      "name": "reduced-motion",
+      "home": {
+        "screen": "home",
+        "animationName": "none",
+        "duration": "0s",
+        "opacity": 1,
+        "transform": "none",
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "intro": {
+        "screen": "intro",
+        "animationName": "none",
+        "duration": "0s",
+        "opacity": 1,
+        "transform": "none",
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      }
+    },
+    {
+      "name": "mobile-390",
+      "home": {
+        "screen": "home",
+        "animationName": "screen-page-in",
+        "duration": "0.38s",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "intro": {
+        "screen": "intro",
+        "animationName": "screen-page-in",
+        "duration": "0.38s",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "scrollWidth": 390,
+        "clientWidth": 390
+      }
+    }
+  ],
+  "shots": [
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-intro-early-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-dialogue-line-early-1440.png"
+  ],
+  "failures": [],
+  "consoleEvents": [],
+  "result": "all page transition checks passed"
+}

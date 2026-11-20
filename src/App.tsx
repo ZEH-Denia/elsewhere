@@ -184,6 +184,13 @@ function App() {
           : ''
   const selectedOption = firstChoice.options.find(({ id }) => id === safeProgress.choiceId)
   const selectedNextStep = secondChoice.options.find(({ id }) => id === safeProgress.nextStepId)
+  const screenKey = view !== 'call'
+    ? view
+    : currentNode.kind === 'end'
+      ? 'call-end'
+      : currentNode.kind === 'choice'
+        ? `call-${currentNode.id}`
+        : 'call-dialogue'
 
   return (
     <div className="app-background min-h-svh text-mist" data-view={view} onClick={advanceOnSurfaceClick}>
@@ -209,165 +216,167 @@ function App() {
         </header>
 
         <main className={`app-main${callActive ? ' is-call' : view !== 'call' ? ' is-prelude' : ''}`}>
-          {view === 'home' && (
-            <section className="screen-enter prelude" aria-labelledby="home-title">
-              <div className="prelude-stage">
-                <CallCard className="home-call" object />
-              </div>
-              <div className="prelude-dock">
-                <article className="prelude-panel">
-                  <div className="prelude-copy">
-                    <p className="eyebrow"><span />来自另一个世界的信号</p>
-                    <h1 id="home-title" className="home-title">
-                      <span className="home-title-brand">Elsewhere</span>
-                      <span className="home-title-cn">未接来电</span>
-                    </h1>
-                    <div className="home-intro">
-                      <p>如果当年，你选择了另一条路。</p>
-                      <p>平行世界的你，正在来电。</p>
+          <div key={screenKey} className="screen-transition" data-screen={screenKey}>
+            {view === 'home' && (
+              <section className="screen-enter prelude" aria-labelledby="home-title">
+                <div className="prelude-stage">
+                  <CallCard className="home-call" object />
+                </div>
+                <div className="prelude-dock">
+                  <article className="prelude-panel">
+                    <div className="prelude-copy">
+                      <p className="eyebrow"><span />来自另一个世界的信号</p>
+                      <h1 id="home-title" className="home-title">
+                        <span className="home-title-brand">Elsewhere</span>
+                        <span className="home-title-cn">未接来电</span>
+                      </h1>
+                      <div className="home-intro">
+                        <p>如果当年，你选择了另一条路。</p>
+                        <p>平行世界的你，正在来电。</p>
+                      </div>
+                      <p className="quiet-note prelude-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>
                     </div>
-                    <p className="quiet-note prelude-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>
-                  </div>
-                  <div className="prelude-actions">
-                    <button ref={startButton} type="button" className="primary-action group" onClick={() => setView('intro')}>
-                      <span>开始体验</span><span className="action-icon"><Arrow /></span>
-                    </button>
-                  </div>
-                </article>
-              </div>
-            </section>
-          )}
-
-          {view === 'intro' && (
-            <section className="screen-enter prelude" aria-labelledby="intro-title">
-              <div className="prelude-dock">
-                <article className="prelude-panel">
-                  <div className="prelude-copy">
-                    <p className="eyebrow"><span />来电前言</p>
-                    <h1 ref={introHeading} tabIndex={-1} id="intro-title" className="intro-heading">
-                      如果当年选择了音乐，<br className="hidden sm:block" />你现在会在哪里？
-                    </h1>
-                    <div className="intro-copy">
-                      <p>想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。</p>
-                      <p>这是一段虚构的平行人生，不代表对未来的预测。</p>
+                    <div className="prelude-actions">
+                      <button ref={startButton} type="button" className="primary-action group" onClick={() => setView('intro')}>
+                        <span>开始体验</span><span className="action-icon"><Arrow /></span>
+                      </button>
                     </div>
-                  </div>
-                  <div className="prelude-actions">
-                    <button type="button" className="panel-return-action group" onClick={returnHome}>
-                      <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
-                    </button>
-                    <button type="button" className="primary-action group" onClick={showIncoming}>
-                      <span>进入来电</span><span className="action-icon"><Arrow /></span>
-                    </button>
-                  </div>
-                </article>
-              </div>
-            </section>
-          )}
+                  </article>
+                </div>
+              </section>
+            )}
 
-          {view === 'incoming' && (
-            <section className="screen-enter prelude prelude-incoming" aria-labelledby="incoming-title">
-              <div className="prelude-stage">
-                <CallCard className="incoming-call" object status="ringing" />
-              </div>
-              <div className="prelude-dock">
-                <article className="prelude-panel">
-                  <div className="prelude-copy">
-                    <p className="eyebrow"><span />一通来自平行世界的来电</p>
-                    <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
-                    <p className="incoming-note">这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。</p>
-                    <p className="quiet-note prelude-note">剧情模拟，不会请求麦克风或通知权限。</p>
-                  </div>
-                  <div className="prelude-actions">
-                    <button type="button" className="panel-return-action group" onClick={returnHome}>
-                      <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
-                    </button>
-                    <button type="button" className="primary-action group" onClick={answerCall}>
-                      <span>接听</span><span className="action-icon"><Arrow /></span>
-                    </button>
-                  </div>
-                </article>
-              </div>
-            </section>
-          )}
-
-          {view === 'call' && currentNode.kind !== 'end' && (
-            <section className="screen-enter call-session" aria-labelledby="call-title">
-              <p className="sr-only" aria-live="polite" aria-atomic="true">{liveText}</p>
-              <div className={`call-dock${currentNode.kind === 'choice' ? ' is-choice' : ''}`}>
-                <article className={`dialogue-panel${currentNode.kind === 'choice' ? ' is-prompt' : ''}`}>
-                  <div className="dialogue-speaker-tab">
-                    <span className="dialogue-speaker-state call-live-state"><CallState status="connected" showLabel={false} /></span>
-                    <span className="speaker-name">{currentNode.kind === 'choice' ? '另一个你' : currentNode.speaker}</span>
-                    {speakerOrigin && <span className="speaker-origin">{speakerOrigin}</span>}
-                  </div>
-                  {currentNode.kind === 'choice' ? (
-                    <div className="choice-prompt">
-                      <p className="choice-kicker"><span />{currentNode.id === 'first-response' ? '第一次选择' : '第二次选择'}</p>
-                      <h2 ref={choiceHeading} tabIndex={-1} id="choice-title">
-                        {currentNode.id === 'first-response' ? '你想怎么回答？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
-                      </h2>
+            {view === 'intro' && (
+              <section className="screen-enter prelude" aria-labelledby="intro-title">
+                <div className="prelude-dock">
+                  <article className="prelude-panel">
+                    <div className="prelude-copy">
+                      <p className="eyebrow"><span />来电前言</p>
+                      <h1 ref={introHeading} tabIndex={-1} id="intro-title" className="intro-heading">
+                        如果当年选择了音乐，<br className="hidden sm:block" />你现在会在哪里？
+                      </h1>
+                      <div className="intro-copy">
+                        <p>想象一下电话另一端的声音：那么熟悉，却来自你不曾抵达的人生。</p>
+                        <p>这是一段虚构的平行人生，不代表对未来的预测。</p>
+                      </div>
                     </div>
-                  ) : (
-                    <p className="dialogue-text">{currentNode.text}</p>
-                  )}
-                  <div className="dialogue-panel-footer">
-                    <p className="dialogue-progress">{panelProgress}</p>
+                    <div className="prelude-actions">
+                      <button type="button" className="panel-return-action group" onClick={returnHome}>
+                        <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
+                      </button>
+                      <button type="button" className="primary-action group" onClick={showIncoming}>
+                        <span>进入来电</span><span className="action-icon"><Arrow /></span>
+                      </button>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+
+            {view === 'incoming' && (
+              <section className="screen-enter prelude prelude-incoming" aria-labelledby="incoming-title">
+                <div className="prelude-stage">
+                  <CallCard className="incoming-call" object status="ringing" />
+                </div>
+                <div className="prelude-dock">
+                  <article className="prelude-panel">
+                    <div className="prelude-copy">
+                      <p className="eyebrow"><span />一通来自平行世界的来电</p>
+                      <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
+                      <p className="incoming-note">这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。</p>
+                      <p className="quiet-note prelude-note">剧情模拟，不会请求麦克风或通知权限。</p>
+                    </div>
+                    <div className="prelude-actions">
+                      <button type="button" className="panel-return-action group" onClick={returnHome}>
+                        <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
+                      </button>
+                      <button type="button" className="primary-action group" onClick={answerCall}>
+                        <span>接听</span><span className="action-icon"><Arrow /></span>
+                      </button>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+
+            {view === 'call' && currentNode.kind !== 'end' && (
+              <section className="screen-enter call-session" aria-labelledby="call-title">
+                <p className="sr-only" aria-live="polite" aria-atomic="true">{liveText}</p>
+                <div className={`call-dock${currentNode.kind === 'choice' ? ' is-choice' : ''}`}>
+                  <article className={`dialogue-panel${currentNode.kind === 'choice' ? ' is-prompt' : ''}`}>
+                    <div className="dialogue-speaker-tab">
+                      <span className="dialogue-speaker-state call-live-state"><CallState status="connected" showLabel={false} /></span>
+                      <span className="speaker-name">{currentNode.kind === 'choice' ? '另一个你' : currentNode.speaker}</span>
+                      {speakerOrigin && <span className="speaker-origin">{speakerOrigin}</span>}
+                    </div>
                     {currentNode.kind === 'choice' ? (
-                      <p className="choice-hint">移入选项可预览另一条路 · 选择会改变走向</p>
+                      <div className="choice-prompt">
+                        <p className="choice-kicker"><span />{currentNode.id === 'first-response' ? '第一次选择' : '第二次选择'}</p>
+                        <h2 ref={choiceHeading} tabIndex={-1} id="choice-title">
+                          {currentNode.id === 'first-response' ? '你想怎么回答？' : '如果明天就能为自己做一件小事，你想从哪里开始？'}
+                        </h2>
+                      </div>
                     ) : (
-                      <button type="button" className="dialogue-continue" onClick={() => setProgress(advanceOpening)}>
-                        <span>继续</span><span className="action-icon"><Arrow /></span>
-                      </button>
+                      <p key={currentNode.id} className="dialogue-text dialogue-line">{currentNode.text}</p>
                     )}
-                  </div>
-                </article>
+                    <div className="dialogue-panel-footer">
+                      <p className="dialogue-progress">{panelProgress}</p>
+                      {currentNode.kind === 'choice' ? (
+                        <p className="choice-hint">移入选项可预览另一条路 · 选择会改变走向</p>
+                      ) : (
+                        <button type="button" className="dialogue-continue" onClick={() => setProgress(advanceOpening)}>
+                          <span>继续</span><span className="action-icon"><Arrow /></span>
+                        </button>
+                      )}
+                    </div>
+                  </article>
 
-                {currentNode.kind === 'choice' && (
-                  <div className="choice-options" aria-labelledby="choice-title">
-                    {currentNode.options.map((option, index) => (
-                      <button
-                        key={option.id}
-                        type="button"
-                        className="choice-option"
-                        onMouseEnter={() => setPreviewScene(getChoicePreviewScene(option.id))}
-                        onMouseLeave={() => setPreviewScene(null)}
-                        onFocus={() => setPreviewScene(getChoicePreviewScene(option.id))}
-                        onBlur={() => setPreviewScene(null)}
-                        onClick={() => setProgress((current) => chooseOpening(current, option.id))}
-                      >
-                        <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
-                        <span className="choice-label">{option.label}</span>
-                        <span className="choice-arrow"><Arrow /></span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </section>
-          )}
+                  {currentNode.kind === 'choice' && (
+                    <div className="choice-options" aria-labelledby="choice-title">
+                      {currentNode.options.map((option, index) => (
+                        <button
+                          key={option.id}
+                          type="button"
+                          className="choice-option"
+                          onMouseEnter={() => setPreviewScene(getChoicePreviewScene(option.id))}
+                          onMouseLeave={() => setPreviewScene(null)}
+                          onFocus={() => setPreviewScene(getChoicePreviewScene(option.id))}
+                          onBlur={() => setPreviewScene(null)}
+                          onClick={() => setProgress((current) => chooseOpening(current, option.id))}
+                        >
+                          <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
+                          <span className="choice-label">{option.label}</span>
+                          <span className="choice-arrow"><Arrow /></span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
 
-          {view === 'call' && currentNode.kind === 'end' && (
-            <section className="screen-enter end-layout" aria-labelledby="end-title" data-ending-id={currentNode.id}>
-              <p className="eyebrow"><span />剧情结局</p>
-              <h1 ref={endHeading} tabIndex={-1} id="end-title">{currentNode.title}</h1>
-              <div className="call-live-state end-call-state"><CallState status="ended" /></div>
-              <div className="end-reflection">
-                {selectedOption && <p className="end-choice">你的回应：{selectedOption.label}</p>}
-                {selectedNextStep && <p className="end-choice">下一步：{selectedNextStep.label}</p>}
-                <p>{currentNode.summary}</p>
-              </div>
-              <div className="action-row">
-                <button type="button" className="primary-action group" onClick={showIncoming}>
-                  <span>重听这通来电</span><span className="action-icon"><Arrow returning /></span>
-                </button>
-                <button type="button" className="secondary-action group home-return-action" onClick={returnHome}>
-                  <span>返回首页</span><span className="action-icon"><Arrow /></span>
-                </button>
-              </div>
-            </section>
-          )}
+            {view === 'call' && currentNode.kind === 'end' && (
+              <section className="screen-enter end-layout" aria-labelledby="end-title" data-ending-id={currentNode.id}>
+                <p className="eyebrow"><span />剧情结局</p>
+                <h1 ref={endHeading} tabIndex={-1} id="end-title">{currentNode.title}</h1>
+                <div className="call-live-state end-call-state"><CallState status="ended" /></div>
+                <div className="end-reflection">
+                  {selectedOption && <p className="end-choice">你的回应：{selectedOption.label}</p>}
+                  {selectedNextStep && <p className="end-choice">下一步：{selectedNextStep.label}</p>}
+                  <p>{currentNode.summary}</p>
+                </div>
+                <div className="action-row">
+                  <button type="button" className="primary-action group" onClick={showIncoming}>
+                    <span>重听这通来电</span><span className="action-icon"><Arrow returning /></span>
+                  </button>
+                  <button type="button" className="secondary-action group home-return-action" onClick={returnHome}>
+                    <span>返回首页</span><span className="action-icon"><Arrow /></span>
+                  </button>
+                </div>
+              </section>
+            )}
 
+          </div>
         </main>
 
         {view === 'call' && currentNode.kind === 'end' && (

@@ -1,0 +1,14 @@
+
+> elsewhere-missed-call@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 20 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.68 kB │ gzip:  0.46 kB
+dist/assets/index-CyeWG9Xx.css   39.11 kB │ gzip:  8.87 kB
+dist/assets/index-BE4fu6ig.js   249.67 kB │ gzip: 78.24 kB
+
+✓ built in 99ms

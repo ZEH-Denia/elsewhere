@@ -246,7 +246,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.635) 8%, rgba(233, 228, 221, 0.635) 92%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 8%, rgba(233, 228, 221, 0.66) 92%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -409,7 +409,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.714) 11%, rgba(233, 228, 221, 0.714) 89%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 11%, rgba(233, 228, 221, 0.78) 89%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -518,7 +518,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.8) 6.5%, rgba(233, 228, 221, 0.8) 93.5%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -1384,7 +1384,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.63) 8%, rgba(233, 228, 221, 0.63) 92%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 8%, rgba(233, 228, 221, 0.66) 92%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -1547,7 +1547,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.714) 11%, rgba(233, 228, 221, 0.714) 89%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 11%, rgba(233, 228, 221, 0.78) 89%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -1656,7 +1656,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.8) 6.5%, rgba(233, 228, 221, 0.8) 93.5%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6.5%, rgba(233, 228, 221, 0.86) 93.5%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -2196,7 +2196,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.63) 6%, rgba(233, 228, 221, 0.63) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 6%, rgba(233, 228, 221, 0.66) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -2359,7 +2359,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.753) 6%, rgba(233, 228, 221, 0.753) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 6%, rgba(233, 228, 221, 0.78) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -2468,7 +2468,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.83) 6%, rgba(233, 228, 221, 0.83) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -3008,7 +3008,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.63) 6%, rgba(233, 228, 221, 0.63) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.66) 6%, rgba(233, 228, 221, 0.66) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -3171,7 +3171,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.745) 6%, rgba(233, 228, 221, 0.745) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.78) 6%, rgba(233, 228, 221, 0.78) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {
@@ -3280,7 +3280,7 @@
       },
       "veil": {
         "display": "none",
-        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.83) 6%, rgba(233, 228, 221, 0.83) 94%, rgba(233, 228, 221, 0) 100%)"
+        "backgroundImage": "linear-gradient(90deg, rgba(233, 228, 221, 0) 0%, rgba(233, 228, 221, 0.86) 6%, rgba(233, 228, 221, 0.86) 94%, rgba(233, 228, 221, 0) 100%)"
       },
       "header": {
         "rect": {

@@ -130,6 +130,8 @@ async function screenshot(name) {
 }
 
 async function snapshot() {
+  await waitFor("(() => { const el = document.querySelector('.screen-transition'); return !el || el.getAnimations().every((animation) => animation.playState !== 'running') })()", 2000)
+  await settle(30)
   return evaluate(`(() => {
     const box = (element) => {
       if (!element) return null

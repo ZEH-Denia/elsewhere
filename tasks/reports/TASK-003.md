@@ -898,3 +898,58 @@ git restore --source=ac91aaa -- src/App.tsx
 - 手机与桌面均用 Chromium 无头浏览器验证；未在实体手机、Safari 或 Firefox 实测。
 - 点击画面会推进，意味着想单纯观察背景时也可能跳句；这是本轮要求的行为，若之后需要“锁定画面”或“回看上一句”，需另立任务。
 - 本轮尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。
+
+## 35. 页面切换过渡动画
+
+日期：2026-11-20（Asia/Shanghai）。团队要求“给页面切换加上过渡动画”。本轮增加页面级淡入上移与台词淡入，复用现有背景交叉淡化，不改变剧情、按钮、点击任意处推进和防闪烁逻辑。
+
+### 动画设计
+
+- 页面级：首页、前言、来电提示、对话、第一次选择、第二次选择、结局各自作为一个页面状态。切换时新页面用 380ms 从下方 10px 处淡入，透明度 0 → 1；顶部品牌、通话标题与背景不参与位移。
+- 台词级：同一对话页内推进到下一句时，台词用 240ms 从下方 5px 处淡入。说话人、进度、继续按钮不移动，避免每句话都像换整页。
+- 背景：继续使用既有 240ms 场景层交叉淡化，不新增白色遮罩、不缩放场景图，避免此前修过的闪烁和辉光错位。
+- 选择、结局等页面状态有独立页面动画；选项悬停预览只切换背景，不重播页面动画。
+- 减少动态效果：沿用全局 `prefers-reduced-motion` 规则，页面与台词动画都不执行，内容直接以最终位置显示。
+- 动画只改变透明度和位移，不拦截点击；动画进行中点击空白仍可正常推进。
+
+### 实现
+
+- [src/App.tsx](../../src/App.tsx)：按 `view` 与节点类型生成 `screenKey`（`home`、`intro`、`incoming`、`call-dialogue`、`call-first-response`、`call-next-step`、`call-end`），用带 `key` 的 `.screen-transition` 包裹当前页面；台词 `<p>` 以节点 id 为 key。
+- [src/index.css](../../src/index.css)：新增 `.screen-transition` 的 `screen-page-in` 与 `.dialogue-line` 的 `dialogue-line-in`；`.screen-transition` 作为 `flex: 1` 的列容器，保持首页、来电与结局原有的一屏布局。
+- 旧页面在新页面淡入时卸载，不做双向交叉淡入；背景层的交叉淡化继续承担“场景不闪白”的过渡。
+
+### 本轮验证
+
+环境同第 32 节。`npm run typecheck`、15/15 剧情测试、构建通过，原始输出见 [transition-typecheck.txt](assets/TASK-003/transition-typecheck.txt)、[transition-test-story.txt](assets/TASK-003/transition-test-story.txt)、[transition-build.txt](assets/TASK-003/transition-build.txt)。
+
+新增 [page-transition-checks.mjs](assets/TASK-003/page-transition-checks.mjs)，8 项真实浏览器检查全部通过，数据见 [page-transition-checks.json](assets/TASK-003/page-transition-checks.json)，`failures` 与 `consoleEvents` 均为 `[]`：
+
+| 检查 | 实测 |
+| --- | --- |
+| 首页入场 | `screen-page-in` 运行，结束后透明度 1、位移归零 |
+| 首页 → 前言 | 新页面 380ms 淡入上移；中途透明度小于 1，结束后为 1 |
+| 前言 → 来电 → 对话 | 每次页面状态变化都触发页面动画，对话页正常落位 |
+| 台词推进 | `.dialogue-line` 运行 `dialogue-line-in`，结束后透明度 1、位移归零 |
+| 第一次选择 | 选择页使用独立页面动画，选项与面板落位正常 |
+| 选择反馈 | 返回对话页时再次触发页面动画，不残留上一页位移 |
+| 减少动态效果 | 页面与台词 `animation-name` 均为 `none`，内容透明度 1 |
+| 手机 390 | 页面动画正常，首页与前言无横向溢出 |
+
+过渡中途截图：[前言淡入中 1440](assets/TASK-003/transition-intro-early-1440.png)、[台词淡入中 1440](assets/TASK-003/transition-dialogue-line-early-1440.png)。两张均为深色背景上的半透明内容，没有白色闪屏。
+
+回归检查：点击任意处推进 15 项、低语交互 19 项、场景与动效检查全部通过。Galgame 布局检查初次在动画中途测量首页/前言按钮，出现 3px 的假差异；已在 [galgame-layout-checks.mjs](assets/TASK-003/galgame-layout-checks.mjs) 的 `snapshot()` 中等待 `.screen-transition` 动画结束后再测量，复跑结果为 `all galgame layout checks passed`，不是放宽位置阈值。
+
+### 备份与回退
+
+开始前已备份 `App.tsx`、`index.css` 到 `/Users/zeh/Documents/elsewhere-backups/2026-11-20-pre-page-transition/`，基线提交 `965c1b2`。回退：
+
+```bash
+git restore --source=965c1b2 -- src/App.tsx src/index.css
+```
+
+### 限制
+
+- 只有新页面淡入，没有旧页面淡出或双向交叉淡化；切换瞬间旧内容会被卸载，背景层保持连续。
+- 页面动画统一向上淡入，不区分前进和后退方向。
+- 台词动画按节点 id 触发；选项页、结局页走页面动画，不单独给选项文字加入场动画。
+- 未在实体手机、Safari 或 Firefox 实测；本轮尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。

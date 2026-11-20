@@ -19,20 +19,32 @@ function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>): Scen
   if (view === 'incoming') return 'incoming'
 
   switch (node.id) {
+    case 'opening-01':
+      return 'connection'
+    case 'opening-02':
+      return 'doubt'
     case 'opening-03':
-    case 'opening-05':
       return 'music'
     case 'opening-04':
-    case 'opening-06':
       return 'reality'
+    case 'opening-05':
+      return 'rehearsal'
+    case 'opening-06':
+      return 'desk'
+    case 'opening-07':
+      return 'question'
     case 'first-response':
       return 'first-choice'
     case 'regret-feedback-01':
-    case 'regret-feedback-02':
       return 'regret'
+    case 'regret-feedback-02':
+      return 'regret-quiet'
     case 'cherish-feedback-01':
-    case 'cherish-feedback-02':
       return 'cherish'
+    case 'cherish-feedback-02':
+      return 'cherish-morning'
+    case 'opening-closing':
+      return 'closing'
     case 'next-step':
       return 'second-choice'
     case 'make-space-feedback':

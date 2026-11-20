@@ -4,14 +4,22 @@ const sceneNames = [
   'home',
   'incoming',
   'opening',
+  'connection',
+  'doubt',
   'music',
   'reality',
+  'rehearsal',
+  'desk',
+  'question',
   'first-choice',
   'regret',
+  'regret-quiet',
   'cherish',
+  'cherish-morning',
   'second-choice',
   'make-space',
   'reach-out',
+  'closing',
   'farewell',
   'ending-regret-space',
   'ending-regret-reach',
@@ -27,6 +35,14 @@ export function SceneBackground({ scene, preview = null }: { scene: SceneName; p
   const [previewVisible, setPreviewVisible] = useState(false)
   const previousScene = useRef(scene)
   const activePreview = preview && preview !== scene ? preview : null
+  const mountedScenes = [...new Set([scene, outgoing, previewScene].filter((name): name is SceneName => Boolean(name)))]
+
+  useEffect(() => {
+    for (const name of sceneNames) {
+      const image = new Image()
+      image.src = `/backgrounds/${name}.svg`
+    }
+  }, [])
 
   useEffect(() => {
     if (previousScene.current === scene) return
@@ -50,7 +66,7 @@ export function SceneBackground({ scene, preview = null }: { scene: SceneName; p
 
   return (
     <div className={`scene-background${activePreview ? ' is-previewing' : ''}`} data-scene={scene} aria-hidden="true">
-      {sceneNames.map((name) => {
+      {mountedScenes.map((name) => {
         const classes = ['scene-background-image']
         if (name === scene) classes.push('scene-current', 'is-active')
         if (name === outgoing) classes.push('scene-previous', 'is-outgoing')

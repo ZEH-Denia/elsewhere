@@ -6,14 +6,22 @@ const scenes = {
   home: { phone: 0.18 },
   incoming: { phone: 0, right: 1.2 },
   opening: { phone: 0.55 },
+  connection: { camera: 'center', zoom: 1.1, phone: 0.9, left: 0.85, right: 0.85, rain: 0.36 },
+  doubt: { camera: 'left', zoom: 1.26, focus: 'left', motif: 'photo', left: 1.1, right: 0.4, phone: 0.16, rain: 0.28, cool: true },
   music: { focus: 'right', motif: 'music', right: 1.25, left: 0.55 },
   reality: { focus: 'left', motif: 'reality', left: 1.2, right: 0.55 },
+  rehearsal: { camera: 'right', zoom: 1.28, focus: 'right', motif: 'sheet', right: 1.15, left: 0.4, phone: 0.1, rain: 0.14, warm: true },
+  desk: { focus: 'left', left: 1.22, right: 0.45, motif: 'clock', phone: 0, rain: 0.24, cool: true },
+  question: { split: true, motif: 'voice', phone: 0.6, left: 0.95, right: 0.95, rain: 0.18 },
   'first-choice': { split: true, phone: 0.15 },
   regret: { focus: 'right', motif: 'guitar', right: 0.9, left: 0.4, rain: 0.38, cool: true },
+  'regret-quiet': { camera: 'right', zoom: 1.24, focus: 'right', right: 0.92, left: 0.25, phone: 0.12, rain: 0.46, cool: true },
   cherish: { focus: 'left', motif: 'lamp', left: 1.3, right: 0.55, warm: true },
+  'cherish-morning': { camera: 'left', zoom: 1.2, focus: 'left', motif: 'lamp', left: 1.15, right: 0.4, dawn: true, rain: 0.08, warm: true },
   'second-choice': { split: true, motif: 'paths', left: 0.9, right: 0.9 },
   'make-space': { focus: 'right', motif: 'space', right: 1.15, left: 0.55 },
   'reach-out': { motif: 'reach', left: 1.05, right: 0.9, warm: true },
+  closing: { motif: 'wave', phone: 0.28, left: 0.95, right: 0.95, rain: 0.08 },
   farewell: { dawn: true, phone: 0.18, left: 1.05, right: 1.05 },
   'ending-regret-space': { dawn: true, motif: 'space', focus: 'right', cool: true },
   'ending-regret-reach': { dawn: true, motif: 'reach', cool: true },
@@ -31,15 +39,63 @@ function randomGenerator(initialSeed) {
   }
 }
 
-function rainLines(count, opacity, seed, width = 1440, height = 820) {
+function rainLines(count, opacity, seed, width = 1500, height = 1080) {
   const random = randomGenerator(seed)
-  return Array.from({ length: count }, () => {
+  const lines = Array.from({ length: count }, () => {
     const x = random() * (width + 60) - 30
-    const y = random() * height
+    const y = random() * height - 90
     const length = 10 + random() * 28
     return `<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x - length * 0.24).toFixed(1)}" y2="${(y + length).toFixed(1)}" stroke-width="${(0.6 + random()).toFixed(1)}" opacity="${(0.2 + random() * 0.65).toFixed(2)}"/>`
-  }).join('').replace(/^/, `<g stroke="#c5d8e5" stroke-linecap="round" opacity="${opacity}">`).concat('</g>')
+  }).join('')
+  return `<g class="anim rain-drift" stroke="#c5d8e5" stroke-linecap="round" opacity="${opacity}">${lines}</g>`
 }
+
+function dustMotes(count, seed, tone = '#efd6ad') {
+  const random = randomGenerator(seed)
+  const motes = Array.from({ length: count }, () => {
+    const x = 130 + random() * 1180
+    const y = 150 + random() * 430
+    const radius = 0.7 + random() * 1.7
+    const duration = (11 + random() * 9).toFixed(1)
+    const delay = (-random() * duration).toFixed(1)
+    return `<circle class="anim mote" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${radius.toFixed(1)}" style="animation-duration:${duration}s;animation-delay:${delay}s"/>`
+  }).join('')
+  return `<g fill="${tone}" opacity=".55">${motes}</g>`
+}
+
+function cameraTransform(kind, zoom) {
+  const [anchorX, anchorY] = kind === 'left' ? [368, 430] : kind === 'right' ? [1072, 430] : [720, 430]
+  const [targetX, targetY] = kind === 'left' ? [560, 430] : kind === 'right' ? [880, 430] : [720, 430]
+  return `translate(${(targetX - anchorX * zoom).toFixed(1)} ${(targetY - anchorY * zoom).toFixed(1)}) scale(${zoom})`
+}
+
+const motionStyle = `<style>
+  .rain-drift { animation: rain-drift 11s ease-in-out infinite; }
+  .mote { animation-name: mote-rise; animation-duration: 12s; animation-timing-function: ease-in-out; animation-iteration-count: infinite; opacity: 0; }
+  .glow-drift { animation: glow-drift 14s ease-in-out infinite; }
+  .sway { animation: sway 11s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 50%; }
+  .drift { animation: drift 15s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 50%; }
+  .spin { animation: spin 34s linear infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+  .pulse { animation: pulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+  .ring { animation: ring 6.4s ease-out infinite; transform-box: fill-box; transform-origin: 50% 50%; }
+  .rise { animation: rise 7s ease-in-out infinite; }
+  .flow { animation: flow 7s linear infinite; }
+  .blink { animation: blink 1.3s steps(2, start) infinite; }
+  .signal-flow { animation: signal-flow 6s linear infinite; }
+  @keyframes rain-drift { 0%, 100% { transform: translate(0px, 0px); } 50% { transform: translate(-14px, 24px); } }
+  @keyframes mote-rise { 0% { opacity: 0; transform: translate(0px, 0px); } 16% { opacity: .5; } 62% { opacity: .26; } 100% { opacity: 0; transform: translate(-10px, -54px); } }
+  @keyframes glow-drift { 0%, 100% { transform: translate(0px, 0px); } 50% { transform: translate(7px, -6px); } }
+  @keyframes sway { 0%, 100% { transform: rotate(-1.4deg) translateY(0px); } 50% { transform: rotate(1.4deg) translateY(-4px); } }
+  @keyframes drift { 0%, 100% { transform: translate(0px, 0px); } 50% { transform: translate(6px, -8px); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes pulse { 0%, 100% { transform: scaleY(.32); } 50% { transform: scaleY(1); } }
+  @keyframes ring { 0% { transform: scale(.5); opacity: .55; } 68% { opacity: .14; } 100% { transform: scale(2.4); opacity: 0; } }
+  @keyframes rise { 0% { opacity: 0; transform: translateY(6px); } 35% { opacity: .55; } 100% { opacity: 0; transform: translateY(-16px); } }
+  @keyframes flow { to { stroke-dashoffset: -120; } }
+  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes signal-flow { to { stroke-dashoffset: -96; } }
+  @media (prefers-reduced-motion: reduce) { .anim { animation: none !important; } }
+</style>`
 
 function guitar(x = 0, y = 0, scale = 1) {
   return `<g transform="translate(${x} ${y}) scale(${scale}) rotate(-12 70 130)">
@@ -59,9 +115,9 @@ function phone(opacity) {
   if (!opacity) return ''
   return `<g opacity="${opacity}">
     <path d="M624 362C672 312 695 306 720 306C745 306 772 315 816 362" fill="none" stroke="#76d4d3" stroke-opacity=".16" stroke-width="20" filter="url(#blur8)"/>
-    <path d="M624 362C672 312 695 306 720 306C745 306 772 315 816 362" fill="none" stroke="#8ad7d6" stroke-opacity=".75" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+    <path class="anim signal-flow" d="M624 362C672 312 695 306 720 306C745 306 772 315 816 362" fill="none" stroke="#8ad7d6" stroke-opacity=".75" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
     <circle cx="624" cy="362" r="5" fill="#d6c49e"/><circle cx="816" cy="362" r="5" fill="#c2a4da"/>
-    <circle cx="720" cy="306" r="52" fill="#82d9d5" opacity=".1" filter="url(#blur8)"/>
+    <circle class="anim glow-drift" cx="720" cy="306" r="52" fill="#82d9d5" opacity=".1" filter="url(#blur8)"/>
     <circle cx="720" cy="306" r="35" fill="#0b1821" stroke="#8ad7d6" stroke-opacity=".75"/>
     <circle cx="720" cy="306" r="28" fill="#10242c" stroke="#d1f2eb" stroke-opacity=".12"/>
     <path d="M707 293L714 303L708 308C711 314 715 318 721 320L725 314L735 320L733 327C732 330 729 331 726 330C711 326 701 316 697 301C696 297 698 294 701 293Z" fill="none" stroke="#c7eeea" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -70,42 +126,93 @@ function phone(opacity) {
 }
 
 function motif(kind) {
-  if (kind === 'music') return `<g transform="translate(594 112)" fill="none" stroke="#d8b8ed" stroke-opacity=".38" stroke-width="3">
+  if (kind === 'music') return `<g class="anim drift"><g transform="translate(594 112)" fill="none" stroke="#d8b8ed" stroke-opacity=".38" stroke-width="3">
     <path d="M0 28H252M0 46H252M0 64H252M0 82H252M0 100H252"/>
     <path d="M72 28V82L46 91M164 12V70L136 79M72 40L164 25"/>
     <ellipse cx="38" cy="92" rx="15" ry="10" fill="#b890d0" fill-opacity=".25" transform="rotate(-16 38 92)"/>
     <ellipse cx="128" cy="80" rx="15" ry="10" fill="#b890d0" fill-opacity=".25" transform="rotate(-16 128 80)"/>
-  </g>`
-  if (kind === 'reality') return `<g transform="translate(590 108)">
+  </g></g>`
+  if (kind === 'reality') return `<g class="anim drift"><g transform="translate(590 108)">
     <rect width="264" height="132" rx="12" fill="#0d1b28" fill-opacity=".64" stroke="#7ea8b7" stroke-opacity=".24"/>
     <circle cx="22" cy="20" r="3" fill="#c79b68"/><circle cx="34" cy="20" r="3" fill="#6f9ea7"/><circle cx="46" cy="20" r="3" fill="#687a91"/>
     <path d="M26 50H90M104 50H154M42 70H106M120 70H218M42 90H78M92 90H162M26 110H70M84 110H132" stroke="#8ac4c3" stroke-opacity=".44" stroke-width="5" stroke-linecap="round"/>
     <path d="M164 50H218M174 90H224M144 110H196" stroke="#d0a674" stroke-opacity=".42" stroke-width="5" stroke-linecap="round"/>
-  </g>`
-  if (kind === 'guitar') return `<ellipse cx="724" cy="440" rx="180" ry="230" fill="url(#stageGlow)"/>${guitar(650, 280, 1.05)}`
-  if (kind === 'lamp') return `<g transform="translate(610 258)">
+    <rect class="anim blink" x="138" y="104" width="6" height="11" rx="1" fill="#8ac4c3" opacity=".7"/>
+  </g></g>`
+  if (kind === 'guitar') return `<g class="anim drift"><ellipse cx="724" cy="440" rx="180" ry="230" fill="url(#stageGlow)"/>${guitar(650, 280, 1.05)}</g>`
+  if (kind === 'lamp') return `<g class="anim drift"><g transform="translate(610 258)">
     <ellipse cx="112" cy="150" rx="190" ry="200" fill="url(#lampGlow)"/>
     <path d="M110 170L158 62M158 62L122 32" stroke="#76716a" stroke-width="10" stroke-linecap="round"/>
     <path d="M78 12Q124 -4 154 36L128 80Q92 66 78 12Z" fill="#c69b65" stroke="#f2d29f" stroke-opacity=".5" stroke-width="3"/>
     <path d="M92 76L0 282H242L132 76Z" fill="#f5c57e" opacity=".07"/>
     <ellipse cx="110" cy="182" rx="58" ry="12" fill="#80715d"/><ellipse cx="110" cy="178" rx="40" ry="7" fill="#e0bf86" opacity=".6"/>
-  </g>`
+  </g></g>`
   if (kind === 'paths') return `<g fill="none" stroke-linecap="round">
     <path d="M720 640C682 520 548 466 480 354" stroke="#e2bd82" stroke-opacity=".35" stroke-width="3"/>
     <path d="M720 640C760 520 890 462 962 354" stroke="#c5a2df" stroke-opacity=".35" stroke-width="3"/>
     <path d="M720 640C682 520 548 466 480 354M720 640C760 520 890 462 962 354" stroke="#d9ece7" stroke-opacity=".35" stroke-width="12" filter="url(#blur8)"/>
+    <path class="anim flow" d="M720 640C682 520 548 466 480 354M720 640C760 520 890 462 962 354" stroke="#e9fbf6" stroke-opacity=".5" stroke-width="2" stroke-dasharray="5 19"/>
     <circle cx="720" cy="640" r="7" fill="#a5d9d2" fill-opacity=".65"/>
   </g>`
-  if (kind === 'space') return `<ellipse cx="720" cy="424" rx="210" ry="248" fill="url(#stageGlow)"/>${guitar(644, 266, 1.02)}
-    <g transform="translate(802 276)"><circle r="45" fill="#0d1721" fill-opacity=".72" stroke="#dbc49d" stroke-opacity=".48" stroke-width="2"/><circle r="34" fill="none" stroke="#dbc49d" stroke-opacity=".2"/><path d="M0 -25V0L18 12" fill="none" stroke="#eed8b4" stroke-opacity=".72" stroke-width="3" stroke-linecap="round"/><circle r="4" fill="#eed8b4"/></g>`
+  if (kind === 'space') return `<g class="anim drift"><ellipse cx="720" cy="424" rx="210" ry="248" fill="url(#stageGlow)"/>${guitar(644, 266, 1.02)}
+    <g transform="translate(802 276)"><circle r="45" fill="#0d1721" fill-opacity=".72" stroke="#dbc49d" stroke-opacity=".48" stroke-width="2"/><circle r="34" fill="none" stroke="#dbc49d" stroke-opacity=".2"/><path d="M0 -25V0L18 12" fill="none" stroke="#eed8b4" stroke-opacity=".72" stroke-width="3" stroke-linecap="round"/><g class="anim spin" style="animation-duration:26s"><line x1="0" y1="0" x2="0" y2="-30" stroke="#eed8b4" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round"/></g><circle r="4" fill="#eed8b4"/></g></g>`
   if (kind === 'reach') return `<g transform="translate(594 310)">
     <ellipse cx="126" cy="140" rx="230" ry="180" fill="url(#lampGlow)" opacity=".7"/>
     <path d="M40 94H102L96 154Q72 172 48 154Z" fill="#b8a184" fill-opacity=".72" stroke="#eed8b7" stroke-opacity=".45" stroke-width="2"/>
     <path d="M102 106Q132 104 124 130Q118 144 98 140" fill="none" stroke="#d6bea0" stroke-opacity=".6" stroke-width="7"/>
     <path d="M158 94H220L214 154Q190 172 166 154Z" fill="#8d779e" fill-opacity=".76" stroke="#d6bce8" stroke-opacity=".45" stroke-width="2"/>
     <path d="M220 106Q250 104 242 130Q236 144 216 140" fill="none" stroke="#bfa4cf" stroke-opacity=".6" stroke-width="7"/>
-    <path d="M58 72C46 58 68 50 56 34M82 72C70 58 92 50 80 34M176 72C164 58 186 50 174 34M200 72C188 58 210 50 198 34" fill="none" stroke="#e8ddd1" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
+    <g class="anim rise" style="animation-duration:8s"><path d="M58 72C46 58 68 50 56 34M82 72C70 58 92 50 80 34M176 72C164 58 186 50 174 34M200 72C188 58 210 50 198 34" fill="none" stroke="#e8ddd1" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/></g>
     <path d="M0 176H260" stroke="#c3ad93" stroke-opacity=".35" stroke-width="4" stroke-linecap="round"/>
+  </g>`
+  if (kind === 'photo') return `<g transform="translate(636 330) scale(.84)">
+    <g class="anim sway" style="animation-duration:12s"><g transform="rotate(-6 -18 20)">
+      <rect x="-74" y="-90" width="112" height="140" rx="4" fill="#e7dcc8" opacity=".84" stroke="#f4ead7" stroke-opacity=".45"/>
+      <rect x="-64" y="-80" width="92" height="98" fill="#283743"/>
+      <path d="M-64 -36L-28 -74L-8 -52L18 -70L28 18H-64Z" fill="#3c5464" opacity=".85"/>
+      <circle cx="8" cy="-58" r="9" fill="#b08a63" opacity=".7"/>
+      <rect x="-74" y="30" width="112" height="20" fill="#f0e6d4" opacity=".7"/>
+      <path d="M-52 14h62" stroke="#9a8a73" stroke-width="3" opacity=".4" stroke-linecap="round"/>
+    </g></g>
+    <g class="anim sway" style="animation-duration:14s;animation-delay:-5s"><g transform="translate(92 26) rotate(5 20 10)">
+      <rect x="-64" y="-78" width="100" height="126" rx="4" fill="#ded2c0" opacity=".8"/>
+      <rect x="-54" y="-68" width="80" height="86" fill="#3a2836"/>
+      <path d="M-54 18V-16L-22 -46L2 -20L26 -44V18Z" fill="#5b4358" opacity=".88"/>
+      <circle cx="14" cy="-42" r="8" fill="#d7b07b" opacity=".65"/>
+      <path d="M20 -54L34 -62M26 -50L40 -58" stroke="#e7cfa8" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
+    </g></g>
+    <path d="M-56 92Q36 128 132 92" fill="none" stroke="#d9c3a4" stroke-opacity=".32" stroke-width="2"/>
+  </g>`
+  if (kind === 'clock') return `<g transform="translate(720 238)">
+    <g class="anim drift"><circle r="58" fill="#101923" fill-opacity=".8" stroke="#d9c19a" stroke-opacity=".42" stroke-width="2"/>
+    <circle r="48" fill="none" stroke="#d9c19a" stroke-opacity=".14"/>
+    <path d="M0 -42V-36M30 -30L26 -25M42 0H36M30 30L26 25M0 42V36M-30 30L-26 25M-42 0H-36M-30 -30L-26 -25" stroke="#e7d5b2" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
+    <path d="M0 0V-26M0 0L14 10" stroke="#f0dfbf" stroke-opacity=".7" stroke-width="3" stroke-linecap="round"/></g>
+    <g class="anim spin" style="animation-duration:30s"><line x1="0" y1="0" x2="0" y2="-34" stroke="#e0a86e" stroke-opacity=".72" stroke-width="1.6" stroke-linecap="round"/></g>
+    <circle r="3" fill="#f0dfbf"/>
+  </g>`
+  if (kind === 'sheet') return `<g transform="translate(648 300)">
+    <g class="anim sway" style="animation-duration:10s"><g transform="rotate(-3)">
+      <rect x="-96" y="-64" width="192" height="128" rx="4" fill="#eadfca" opacity=".9" stroke="#f5ecd9" stroke-opacity=".4"/>
+      <path d="M-76 -40H76M-76 -26H76M-76 -12H76M-76 2H76M-76 16H76M-76 30H76" stroke="#8a7a64" stroke-opacity=".4" stroke-width="1.6"/>
+      <path d="M-42 24V-30M-30 28V-26M16 20V-34M28 24V-30" stroke="#5a544e" stroke-opacity=".6" stroke-width="2.4" stroke-linecap="round"/>
+      <ellipse cx="-48" cy="26" rx="9" ry="6" fill="#5a544e" opacity=".55" transform="rotate(-16 -48 26)"/>
+      <ellipse cx="-24" cy="30" rx="9" ry="6" fill="#5a544e" opacity=".55" transform="rotate(-16 -24 30)"/>
+      <ellipse cx="10" cy="22" rx="9" ry="6" fill="#5a544e" opacity=".55" transform="rotate(-16 10 22)"/>
+      <ellipse cx="34" cy="26" rx="9" ry="6" fill="#5a544e" opacity=".55" transform="rotate(-16 34 26)"/>
+      <path d="M-74 46H6" stroke="#c99b70" stroke-opacity=".6" stroke-width="2" stroke-linecap="round"/>
+    </g></g>
+    <g transform="translate(84 58) rotate(24)"><rect x="0" y="0" width="8" height="76" rx="2" fill="#c8a06c"/><path d="M8 0L8 10L-2 6Z" fill="#f0dcc0"/></g>
+  </g>`
+  if (kind === 'voice') return `<g transform="translate(600 470)">
+    <ellipse cx="120" cy="20" rx="190" ry="70" fill="url(#stageGlow)" opacity=".5" class="anim glow-drift"/>
+    <g fill="#a9ddd6">${[16, 34, 58, 84, 104, 78, 54, 32, 42, 64, 40, 22].map((height, index) => `<rect class="anim pulse" x="${index * 19}" y="${-height}" width="8" height="${height}" rx="4" style="animation-duration:${(1.6 + (index % 4) * 0.36).toFixed(2)}s;animation-delay:-${(index * 0.27).toFixed(2)}s" opacity=".55"/>`).join('')}</g>
+  </g>`
+  if (kind === 'wave') return `<g transform="translate(720 366)">
+    <circle class="anim ring" r="54" fill="none" stroke="#8ad7d6" stroke-opacity=".5" stroke-width="2" style="animation-duration:6.4s"/>
+    <circle class="anim ring" r="54" fill="none" stroke="#8ad7d6" stroke-opacity=".5" stroke-width="2" style="animation-duration:6.4s;animation-delay:-2.1s"/>
+    <circle class="anim ring" r="54" fill="none" stroke="#8ad7d6" stroke-opacity=".5" stroke-width="2" style="animation-duration:6.4s;animation-delay:-4.2s"/>
+    <circle r="5" fill="#bde9e4" opacity=".6"/>
   </g>`
   return ''
 }
@@ -128,7 +235,7 @@ function leftRoom() {
     <path d="M360 202H374V236H360ZM378 196H396V236H378ZM400 207H412V236H400ZM417 190H439V236H417Z" fill="#58606a"/>
     <rect x="446" y="204" width="92" height="28" rx="2" fill="#1a252f" stroke="#83919a" stroke-opacity=".15"/>
     <path d="M458 211H522M458 218H506M458 225H516" stroke="#8b9ba3" stroke-opacity=".22" stroke-width="3"/>
-    <ellipse cx="490" cy="470" rx="176" ry="172" fill="url(#lampGlow)"/>
+    <g class="anim glow-drift"><ellipse cx="490" cy="470" rx="176" ry="172" fill="url(#lampGlow)"/></g>
     <path d="M493 423L530 340M530 340L500 318" stroke="#5b5e60" stroke-width="8" stroke-linecap="round"/>
     <path d="M470 304Q501 286 529 315L511 348Q484 340 470 304Z" fill="#c59b63"/>
     <path d="M476 308Q499 297 520 316" stroke="#ffe0a4" stroke-opacity=".65" stroke-width="3"/>
@@ -150,7 +257,7 @@ function leftRoom() {
 function rightRoom() {
   return `<g clip-path="url(#rightClip)">
     <rect x="806" y="164" width="532" height="502" fill="url(#rightRoom)"/>
-    <ellipse cx="1110" cy="348" rx="290" ry="268" fill="url(#stageGlow)"/>
+    <g class="anim glow-drift"><ellipse cx="1110" cy="348" rx="290" ry="268" fill="url(#stageGlow)"/></g>
     <g opacity=".32"><path d="M838 194H894V450H838ZM906 194H962V450H906ZM974 194H1030V450H974ZM1042 194H1098V450H1042ZM1110 194H1166V450H1110ZM1178 194H1234V450H1178ZM1246 194H1302V450H1246Z" fill="#40344f"/><path d="M850 194V450M918 194V450M986 194V450M1054 194V450M1122 194V450M1190 194V450M1258 194V450" stroke="#9a82aa" stroke-opacity=".18"/></g>
     <path d="M1080 156H1180L1300 666H884Z" fill="url(#spotlight)"/>
     <ellipse cx="1115" cy="626" rx="218" ry="44" fill="#c5a0dc" opacity=".07" filter="url(#blur8)"/>
@@ -183,9 +290,11 @@ function renderScene(name, config) {
       : ''
   const motifLift = config.motif === 'music' || config.motif === 'reality' ? uiLift : 0
   const split = config.split ? '<path d="M720 112V754" stroke="#b2d9d7" stroke-opacity=".1" stroke-width="2" stroke-dasharray="2 14"/>' : ''
+  const camera = config.camera ? cameraTransform(config.camera, config.zoom ?? 1.15) : ''
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title desc">
   <title id="title">Elsewhere 雨夜双城 · ${name}</title><desc id="desc">工程书桌与音乐排练室在雨夜中由来电信号连接。</desc>
+  ${motionStyle}
   <defs>
     <linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#120d0c"/><stop offset=".46" stop-color="#2b1c1c"/><stop offset="1" stop-color="#160f0e"/></linearGradient>
     <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e2a276" stop-opacity=".36"/><stop offset=".48" stop-color="#8b5e5e" stop-opacity=".15"/><stop offset="1" stop-color="#17110f" stop-opacity="0"/></linearGradient>
@@ -208,7 +317,7 @@ function renderScene(name, config) {
   <rect width="1440" height="900" fill="url(#night)"/>
   <ellipse cx="360" cy="340" rx="460" ry="370" fill="#b47b58" opacity=".09"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#a86c6c" opacity=".1"/>
 ${dawn}
-  <g transform="translate(0 -${uiLift})">
+  <g transform="translate(0 -${uiLift}) ${camera}">
   <path d="M0 112H1440V754H0Z" fill="#080d15" opacity=".9"/><path d="M0 112H1440M0 754H1440" stroke="#6d8296" stroke-opacity=".14"/>
   <g filter="url(#shadow)"><rect x="72" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#344250" stroke-opacity=".55"/><rect x="92" y="154" width="552" height="522" rx="4" fill="#111923" stroke="#637484" stroke-opacity=".18"/><rect x="776" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#454057" stroke-opacity=".58"/><rect x="796" y="154" width="552" height="522" rx="4" fill="#171522" stroke="#756887" stroke-opacity=".18"/></g>
   <g opacity="${left}">${leftRoom()}</g><g opacity="${right}">${rightRoom()}</g>
@@ -217,7 +326,8 @@ ${dawn}
   <rect x="102" y="164" width="532" height="502" rx="3" fill="none" stroke="#9aabba" stroke-opacity=".12"/><rect x="806" y="164" width="532" height="502" rx="3" fill="none" stroke="#aa9bb8" stroke-opacity=".12"/>
   </g>
   ${rainLines(150, config.rain ?? 0.2, 27)}
-${`  <g transform="translate(0 -${uiLift})">${focusShade}${split}${phone(config.phone ?? 0)}<g transform="translate(0 ${motifLift})">${motif(config.motif)}</g></g>${tint}`.trimEnd()}
+  ${dustMotes(22, 61)}
+${`  <g transform="translate(0 -${uiLift}) ${camera}">${focusShade}${split}${phone(config.phone ?? 0)}<g transform="translate(0 ${motifLift})">${motif(config.motif)}</g></g>${tint}`.trimEnd()}
   <rect width="1440" height="900" fill="url(#warmWash)"/>
   <rect y="606" width="1440" height="294" fill="url(#bottomShade)"/><rect width="1440" height="900" fill="url(#vignette)"/><rect width="1440" height="900" filter="url(#grain)" opacity=".38"/>
 </svg>

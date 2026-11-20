@@ -134,6 +134,13 @@ button:focus-visible,
   z-index: 1;
   visibility: visible;
   opacity: 1;
+  transform-origin: center 46%;
+  animation: scene-drift 38s ease-in-out infinite alternate;
+}
+
+@keyframes scene-drift {
+  from { transform: scale(1.004); }
+  to { transform: scale(1.02); }
 }
 
 .scene-background-image.is-outgoing {

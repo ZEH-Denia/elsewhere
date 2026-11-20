@@ -555,3 +555,31 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 - 最终 `npm run typecheck`、15/15 剧情测试与 `npm run build` 均退出 0；CSS 34.98 kB / gzip 8.07 kB，JS 241.33 kB / gzip 75.45 kB。悬停/键盘预览、场景换场、对白与选择布局仍通过同一次检查。
 
 本轮未使用实体设备或真实读屏，未在 Safari/Firefox 实测；修复尚未复审，不据此自称 PASS。未合并 main、未部署、未进入下一任务。
+
+## 29. 扩充场景并加入动效
+
+日期：2026-11-20（Asia/Shanghai）。团队反馈“场景图太单调了，多画几幅，并且加入动效”。盘点确认：21 个剧情节点只映射到 16 张图，七条主线里 `opening-01/02/07` 共用 `opening`、`03/05` 共用 `music`、`04/06` 共用 `reality`，两组四句反馈也各自共用一张，确实重复。
+
+- 画面扩充到 24 张，新增 8 张单句画面：`connection`（接起电话）、`doubt`（质疑）、`rehearsal`（排练完）、`desk`（准备实习）、`question`（提出追问）、`regret-quiet`（承认不安）、`cherish-morning`（认真过好今天）、`closing`（杂音渐弱）。`src/App.tsx` 按节点逐一映射；`opening.svg` 保留为未知节点的安全回退。
+- 其中 `doubt`、`rehearsal`、`regret-quiet`、`cherish-morning` 改用近景构图（对窗外框整体缩放并平移），`connection` 轻微推近；新增两张拍立得、挂钟、乐谱、声波与扩散信号波纹作为中景母题，同一交互与面板结构不变。
+- `scripts/generate-backgrounds.mjs` 为全部 24 张 SVG 内嵌 CSS 动效：雨丝缓慢漂移、22 粒尘埃上升、灯光与舞台光晕漂移、来电信号虚线流动、挂钟秒针旋转、声波柱起伏、杂音波纹扩散、杯口热气上升、乐谱/拍立得轻摆、聊天窗口光标闪烁；当前场景另有 38 秒一轮的 1.004→1.02 缓慢呼吸。所有动画只改局部位移、旋转或描边，不对整个场景做明暗闪烁，避免回到此前“整屏闪白”的问题。
+- 每张 SVG 内置 `@media (prefers-reduced-motion: reduce) { .anim { animation: none !important; } }`，全局 `prefers-reduced-motion` 规则同时关闭当前场景呼吸。
+- `src/components/SceneBackground.tsx` 只挂载当前、淡出中与预览这三类场景（最多 3 张），启动时用 `new Image()` 预载全部 24 张，避免 24 份 SVG 动画常驻运行。
+
+验证环境：独立无头 Edge 157（`CDP_PORT=9224`）访问生产预览 `http://127.0.0.1:4173/`，以真实鼠标事件走完 regret→make-space 与 cherish 两条路径；`npm run typecheck`、15/15 剧情测试与 `npm run build` 均退出 0，CSS 35.71 kB / gzip 8.20 kB，JS 241.77 kB / gzip 75.60 kB。日志见 [galgame-typecheck.txt](assets/TASK-003/galgame-typecheck.txt)、[galgame-test-story.txt](assets/TASK-003/galgame-test-story.txt)、[galgame-build.txt](assets/TASK-003/galgame-build.txt)。
+
+新增 [scene-motion-checks.mjs](assets/TASK-003/scene-motion-checks.mjs)，结果 `all scene and motion checks passed`，`failures` 与 `consoleEvents` 均为 `[]`，完整数据见 [scene-motion-checks.json](assets/TASK-003/scene-motion-checks.json)：
+
+| 检查 | 实测 |
+| --- | --- |
+| 逐句场景 | `connection → doubt → music → reality → rehearsal → desk → question → first-choice → regret → regret-quiet → closing → second-choice → make-space → farewell → ending-regret-space` 全部符合 |
+| 另一分支 | `cherish → cherish-morning → closing` 符合，珍惜分支可正常到达共同衔接 |
+| 新增画面 | 8 张均生成；桌面与手机截图的场景 `src` 与剧情节点一致 |
+| 文件动效 | 24 张 SVG 均含减少动态效果守卫、雨丝与尘埃，且至少 5 个动画元素 |
+| 默认动效 | 内联 SVG 中雨丝 `animation-name: rain-drift`、尘埃 `mote-rise`，`playState` 为 `running`；当前场景 `scene-drift` 同为 `running` |
+| 减少动态效果 | 模拟 `prefers-reduced-motion: reduce` 后，雨丝/尘埃/当前场景的 `animation-name` 均为 `none`，`getAnimations()` 数量均为 0；SVG 子框架同样收到媒体模拟 |
+| 资源与控制台 | 24 张背景均加载成功，无失败请求、无应用异常 |
+
+已目视检查新增截图：[接起电话 1440](assets/TASK-003/galgame-scene-connection-1440.png)、[质疑 1440](assets/TASK-003/galgame-scene-doubt-1440.png)、[排练 1440](assets/TASK-003/galgame-scene-rehearsal-1440.png)、[实习 1440](assets/TASK-003/galgame-scene-desk-1440.png)、[追问 1440](assets/TASK-003/galgame-scene-question-1440.png)、[不安 1440](assets/TASK-003/galgame-scene-regret-quiet-1440.png)、[杂音渐弱 1440](assets/TASK-003/galgame-scene-closing-1440.png)、[390 近景质疑](assets/TASK-003/galgame-scene-doubt-390.png)、[390 排练](assets/TASK-003/galgame-scene-rehearsal-390.png)、[390 追问](assets/TASK-003/galgame-scene-question-390.png)、[390 珍惜反馈](assets/TASK-003/galgame-scene-cherish-morning-390.png)。桌面双室构图与手机中央裁切下主体均可见，底部面板未遮挡关键母题。原有 [galgame-layout-checks.mjs](assets/TASK-003/galgame-layout-checks.mjs) 同一次重跑仍为 `all galgame layout checks passed`，三屏、对白、选择、预览、反馈与结局布局无回退。
+
+本轮未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未在 Safari/Firefox 实测；动效在无头 Edge 中按实际 `Animation.playState` 验证，减少动态效果仍为 CDP 媒体模拟；新增画面尚未复审，不据此自称 PASS。未合并 main、未部署、未进入下一任务。

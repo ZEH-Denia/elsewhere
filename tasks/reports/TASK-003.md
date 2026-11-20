@@ -615,3 +615,88 @@ Microsoft Edge 157 独立无扩展配置访问最终生产预览 `http://127.0.0
 换场过程中的实际截图：[首页→前言](assets/TASK-003/transition-home-to-intro-mid.png)、[前言→来电](assets/TASK-003/transition-intro-to-incoming-mid.png)、[来电→通话](assets/TASK-003/transition-incoming-to-call-mid.png)、[通话首次继续](assets/TASK-003/transition-call-first-advance-mid.png)、[390 来电→通话](assets/TASK-003/transition-mobile-incoming-to-call-mid.png)、[390 通话稳定后](assets/TASK-003/transition-mobile-call-settled.png)。截图取在点击后约 70ms，仍为完整画面，未见米色空白。
 
 本轮未使用实体手机或平板，未运行 VoiceOver 等真实读屏，未在 Safari/Firefox 实测（`@property` 在旧浏览器会退化为原来的瞬时切换）；叠层覆盖率与解码就绪来自页面内 `requestAnimationFrame` 采样，不是录屏分析。该修复尚未复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。
+
+## 31. 画面低语热点（桌面鼠标与键盘交互）
+
+日期：2026-11-20（Asia/Shanghai）。团队提出“有没有与图片有关的新型交互方式，比如加入鼠标的交互，先出方案”，在候选方案中选定 C“低语热点”；随后要求“注意备份原文件随时回退”。本轮只增加画面交互层，不改剧情节点、文案流程、选择逻辑、布局与既有动效，也未新增依赖。
+
+### 交互模型
+
+- 八张剧情画面各放一枚 9px 的暗紫色小点，落在该场景的母题上；其余画面不显示热点。
+- 鼠标或触控笔悬停 450ms 后才展开纸条，离开立即收起；仅掠过不会弹字。键盘 Tab 聚焦时立即展开，不等 450ms。
+- 点击小点可“钉住”纸条，移开鼠标后仍保留；再次点击取消。任何场景下按 Escape 收起。
+- 选择项悬停/聚焦触发场景预览时，整个低语层卸载，避免与预览图争抢注意力；预览结束后恢复。
+- 纸条无待机动画、无循环闪烁、无声音；减少动态效果时展开/收起不再过渡。
+- 纸条使用与底部面板一致的米色纸面、细边与柔和阴影；小点与纸条都被场景圆角裁剪。命中区为 44×44px，小点居中。焦点态为米色描边加赤陶色外环，在深色插画与吉他木色上均可辨认。
+- 覆盖层只让八个小点接收指针，其余区域 `pointer-events: none`；已验证热点不与 `.prelude-panel`、`.dialogue-panel` 交叠。
+- 桌面窄至 760px 以下、以及 `pointer: coarse` / `hover: none` 的设备不渲染可交互热点，手机布局保持原样。
+
+### 场景与文案
+
+| 场景 | 母题 | 纸条文案 | 1440×900 实测小点中心 |
+| --- | --- | --- | --- |
+| home | 吉他 | 琴弦上还留着当年的指印。 | (973.7, 477.9) |
+| connection | 话筒 | 信号只够传过来声音。 | (720.0, 250.7) |
+| doubt | 拍立得 | 两张照片，背面写着同一天。 | (895.0, 241.9) |
+| rehearsal | 乐谱 | 第三小节，改了很多次。 | (342.4, 209.4) |
+| desk | 挂钟 | 秒针走得很慢，像在等回答。 | (720.0, 239.9) |
+| question | 声波 | 有句话，被杂音轻轻吞掉了。 | (720.0, 354.0) |
+| regret-quiet | 旧吉他 | 最旧的那根弦，一直没换。 | (768.2, 479.9) |
+| closing | 信号波纹 | 波纹散开，又回到原处。 | (720.0, 302.9) |
+
+热点按 SVG 设计坐标记录，运行时按 `object-fit: cover; object-position: center 46%` 的同一几何换算：`scale = max(W/1440, H/900)`，水平居中，垂直以 46% 对齐。使用 `ResizeObserver` 跟随窗口与面板尺寸，不依赖图片实际解码完成事件。已知热点在桌面 1024×768 与 1440×900 均不压住阅读面板；挂钟热点落在表盘下沿，纸条朝下，表针与刻度完整可见。
+
+### 代码与可访问性
+
+- 新增 [src/components/SceneWhispers.tsx](../../src/components/SceneWhispers.tsx)：场景到热点的静态表、覆盖坐标换算、悬停计时、钉住与 Escape 状态、尺寸监听。没有第三方库。
+- [src/App.tsx](../../src/App.tsx) 在场景背景之后挂载 `<SceneWhispers scene={sceneName} />`，仅当 `previewScene === null`；热点位于 `aria-hidden` 的场景图片之外。
+- [src/index.css](../../src/index.css) 增加桌面热点、纸条、尾巴、焦点环与响应式隐藏规则；不使用新的全局变量。
+- 每个热点是原生 `<button>`，可访问名称为“画面细节”，说明通过 `aria-describedby` 指向纸条。CDP 可访问性树实测：`role = button`、`name = 画面细节`、`description = 琴弦上还留着当年的指印。`；读屏不会把纸条当作重复的可见文本再次朗读。
+- 焦点顺序中热点位于主行动“开始体验”之前；Tab 实测可直接到达并显示焦点环，Enter 实测可切换钉住。
+- 390 手机端组件因媒体查询为 `display: none`，同时不渲染按钮（尺寸测得为 0），不会留下不可见但仍可聚焦或点击的元素。减少动态效果下纸条 `transition-duration` 为 `0s`。
+
+### 本轮验证
+
+环境：独立无头 Edge `157.0.4341.60`，真实鼠标事件与键盘 Tab，生产预览 `http://127.0.0.1:4173/`（本轮构建产物）。命令均退出 0：
+
+| 检查 | 实际结果 | 原始输出 |
+| --- | --- | --- |
+| `npm run typecheck` | `tsc --noEmit` 通过 | [whisper-typecheck.txt](assets/TASK-003/whisper-typecheck.txt) |
+| `npm run test:story` | 15/15 通过，0 failed | [whisper-test-story.txt](assets/TASK-003/whisper-test-story.txt) |
+| `npm run build` | 20 modules；CSS 37.92 kB / gzip 8.61 kB；JS 245.08 kB / gzip 76.79 kB | [whisper-build.txt](assets/TASK-003/whisper-build.txt) |
+| 既有布局检查 | `all galgame layout checks passed`，三屏与对白/选择/预览无回退 | 重跑未覆盖旧截图与 JSON |
+| 既有动效检查 | `all scene and motion checks passed`，24 张画面与减少动态效果无回退 | — |
+| 换场检查 | 所有换场最短覆盖率 1.000，0 空白帧 | 重跑未覆盖旧截图与 JSON |
+
+新增 [whisper-checks.mjs](assets/TASK-003/whisper-checks.mjs)，17 项检查全部通过，完整数据见 [whisper-checks.json](assets/TASK-003/whisper-checks.json)；`failures` 与 `consoleEvents` 均为 `[]`：
+
+| 检查 | 实测 |
+| --- | --- |
+| 八张剧情画面 | 均只有一枚热点，文案与表格一致；首次到达时纸条关闭 |
+| 悬停意图 | 悬停 240ms 时透明度仍为 0；450ms 后展开，最终透明度 1.000 |
+| 键盘焦点 | Tab 直接聚焦热点，`:focus-visible` 为 true，纸条立即展开 |
+| 钉住与 Escape | 点击后移开鼠标仍保留；Escape 后透明度回到 0 |
+| 键盘钉住 | 焦点下按 Enter，再 Tab 移开焦点，纸条仍保留；Escape 后关闭 |
+| 尺寸与命中 | 命中区 44×44；小点中心的可命中元素为热点本身 |
+| 面板避让 | 1440×900 与 1024×768 下，首页与通话场景热点均不与纸面面板相交 |
+| 预览暂停 | 悬停选项时低语层数量为 0；移开后恢复为 1 |
+| 可访问性树 | `button` / `画面细节` / 纸条文案作为 description |
+| 减少动态效果 | 纸条过渡为 `0s`，展开后仍可读 |
+| 手机 390 | 覆盖层 `display: none`，不渲染可点击按钮 |
+
+实际截图：[首页悬停 1440](assets/TASK-003/whisper-home-hover-1440.png)、[首页键盘焦点 1440](assets/TASK-003/whisper-home-keyboard-1440.png)、[接起电话 1440](assets/TASK-003/whisper-connection-hover-1440.png)、[质疑照片 1440](assets/TASK-003/whisper-doubt-hover-1440.png)、[排练乐谱 1440](assets/TASK-003/whisper-scene-rehearsal-1440.png)、[实习挂钟 1440](assets/TASK-003/whisper-scene-desk-1440.png)、[追问声波 1440](assets/TASK-003/whisper-scene-question-1440.png)、[不安旧吉他 1440](assets/TASK-003/whisper-scene-regret-quiet-1440.png)、[共同衔接波纹 1440](assets/TASK-003/whisper-scene-closing-1440.png)、[首页悬停 1024](assets/TASK-003/whisper-home-1024.png)、[手机 390](assets/TASK-003/whisper-mobile-home-390.png)。已逐张目视：纸条在场景圆角内，尾巴指向小点，未遮住右上标题、底部对白或主行动按钮。
+
+### 备份与回退
+
+开始前已把原文件复制到 `/Users/zeh/Documents/elsewhere-backups/2026-11-20-pre-whisper/`（`SceneBackground.tsx`、`App.tsx`、`index.css`），并记录基线提交 `ae59b15` 于 `BASELINE_COMMIT.txt`。回退本轮只需：
+
+```bash
+rm src/components/SceneWhispers.tsx
+git restore --source=ae59b15 -- src/App.tsx src/index.css
+```
+
+`SceneBackground.tsx` 本轮未改动；备份目录保留完整副本，可在不回滚 Git 的情况下逐文件对照。
+
+### 限制
+
+低语热点按设计只在桌面鼠标与键盘环境出现，没有手机触摸替代交互；未使用实体手机或平板，未在 Safari/Firefox 实测，未运行 VoiceOver/NVDA 等真实读屏（可访问性结论来自 Chromium 可访问性树）。小点需要用户主动发现，本轮没有加入首次提示动画或教学层。纸条会遮住母题周围一小块插画，已通过调整挂钟热点到表盘下沿、限制纸条宽度减少遮挡。该交互尚未经 Codex 复审，不据此自称 PASS；未合并 main、未部署、未进入下一任务。

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { CallCard, CallState } from './components/CallCard'
 import { SceneBackground, type SceneName } from './components/SceneBackground'
+import { SceneWhispers } from './components/SceneWhispers'
 import {
   advanceOpening,
   chooseOpening,
@@ -178,6 +179,7 @@ function App() {
   return (
     <div className="app-background min-h-svh text-mist" data-view={view}>
       <SceneBackground scene={sceneName} preview={previewScene} />
+      {previewScene === null && <SceneWhispers scene={sceneName} />}
       <div className="ambient ambient-violet" aria-hidden="true" />
       <div className="ambient ambient-cyan" aria-hidden="true" />
 

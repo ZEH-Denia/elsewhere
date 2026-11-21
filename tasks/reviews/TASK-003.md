@@ -1,6 +1,6 @@
 # TASK-003 审查记录
 
-当前结论见末尾的 2026-11-21 桌面视觉改进验收。
+当前结论为 PASS，应用基线为 `task-003@510568b`。验收范围与证据见末尾的 2026-11-21 桌面视觉改进总验收。以下早期 FIX 和返修记录按原时间顺序保留。
 
 日期：2026-11-17。审核对象：task-003 的 `64c6c5e`，执行报告：[该提交的报告](https://github.com/ZEH-Denia/elsewhere/blob/64c6c5e/tasks/reports/TASK-003.md)。Codex 审核；Qoder 执行。
 

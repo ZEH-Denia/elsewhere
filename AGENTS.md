@@ -9,7 +9,7 @@
 
 ## 每次工作前
 
-1. 阅读本文件、`docs/COLLABORATION.md`、`tasks/current.md`。
+1. 阅读本文件、`docs/COLLABORATION.md`、`tasks/current.md`。项目约定在两处分支同步，当前任务和审查正文以 `main` 为准。
 2. 阅读任务所列参考文档和最新审查。若有同编号 FIX，先处理返修。
 3. 检查实际文件与 `git status`；已有改动属于协作现场，不擅自覆盖、回滚或清理。
 4. 检查是否有遗留执行进程，以单写者方式保存改动。

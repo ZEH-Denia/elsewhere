@@ -1,7 +1,9 @@
-# Codex 审查报告目录
+# 审查记录
 
-Codex 收到 Qoder 报告并审查真实实现后，新建 `TASK-XXX.md`，状态使用 PASS / FIX / BLOCKED。格式见 `../../docs/COLLABORATION.md`。
+| 任务 | 审查结论 |
+| --- | --- |
+| [TASK-001](TASK-001.md) | PASS，已[归档](../archive/TASK-001.md) |
+| [TASK-002](TASK-002.md) | PASS，已[归档](../archive/TASK-002.md) |
+| [TASK-003](TASK-003.md) | PASS，桌面视觉改进总验收以 `task-003@510568b` 为准 |
 
-当前审查：[TASK-001 / PASS](TASK-001.md)、[TASK-002 / PASS](TASK-002.md)。FIX 由 Qoder 修复，Codex 负责复验，不直接改业务代码。
-
-当前 [TASK-003 / PASS](TASK-003.md)，R1 已关闭，等待团队批准下一任务。
+当前范围见 [任务文档](../current.md)。历史 FIX、复验过程以及覆盖范围见各任务审查正文。

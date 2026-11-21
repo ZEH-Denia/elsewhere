@@ -33,7 +33,8 @@ npm run preview
 
 | 要找什么 | 从这里开始 |
 | --- | --- |
-| 项目介绍与团队分工 | [团队快速了解](docs/团队快速了解.md) |
+| 项目作用与完整体验 | [项目介绍](docs/项目介绍.md) |
+| 团队快速入门与分工 | [团队快速了解](docs/团队快速了解.md) |
 | 获取项目与更新本地副本 | [同事接手指南](docs/同事接手指南.md) |
 | 当前范围、进度和验收 | [项目现状](docs/PROJECT_STATUS.md) · [当前任务](tasks/current.md) · [审查记录](tasks/reviews/README.md) |
 | 开发与 Git 同步约定 | [协作协议](docs/COLLABORATION.md) · [GitHub 协作入门](docs/GITHUB_COLLABORATION.md) |

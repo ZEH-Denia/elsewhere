@@ -204,3 +204,18 @@ Codex 在内置浏览器的 1280×720 桌面视口实际点击本地生产预览
 | `opening.webp` | Wide poetic exterior of two adjacent windows in the same rain-dark building, one warm engineering desk and one blue rehearsal room recognizable through the glass, seen from low across the street. Thin shifting reflections and rain, human warmth, clear scene different from the reference's inside point of view, no overlaid symbols. |
 
 </details>
+
+
+## 2026-11-21 桌面自主走查与返修（PASS）
+
+以 `9cfba64` 的本地生产构建为基线，在 Microsoft Edge 的 1280×720 视口复现来电、选择和图片异常交互。返修提交为 `codex/task-003-home-visual@99fb563`，生产入口脚本为 `index-DNQGcKJ8.js`。
+
+| 实测问题 | 返修及复验 |
+| --- | --- |
+| 响铃卡与「接听」的中心相距约 570 px | 桌面版将唯一的接听按钮放入响铃卡，读屏标题仍标明来电。进入页面后从标题按 Tab 即到接听。底部保留通话说明与返回 |
+| 首次选择的答案先于提问出现 | 首通及职业线均在同一面板依次显示问题、答案和进度。1280×720 下首个提问结束于 y=490，答案始于 y=508 |
+| 用键盘选完首通选项后焦点落到 BODY | 两次选择后，焦点落到反馈页的「继续」，再次按 Space 可推进 |
+| 鼠标移出时丢失键盘预览，或 Tab 换选项时被旧悬停覆盖 | 鼠标移出恢复仍有焦点的选项，Tab 切换时采用新焦点。验证先悬停再 Tab、先 Tab 再悬停及移出 |
+| WebP 请求被拦截时，故障画面清除了上一帧 | 新插画成功解码后才替换。仅拦截 `doubt.webp` 时自动显示原 SVG，两种格式均被拦截时保留 `connection.webp` 且隐藏此时错位的热点，随后正常载入 `music.webp` |
+
+最终构建在 Edge 1440×900 实际点通首通 4 个结局、四条职业线 16 个结局、16 封不同来信、最终回电和返回总机，共观察到 43 张场景图正常解码显示。复跑桌面走查，背景推进、双击防跳句、拖选保护、退出取消与确认均通过。正常回归中的网络错误和控制台警告为 0。类型检查、20 项剧情测试、生产构建及 diff 检查通过。

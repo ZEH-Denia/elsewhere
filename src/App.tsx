@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
-import { CallCard, CallState } from './components/CallCard'
+import { CallCard, CallState, HomeSignal } from './components/CallCard'
 import { SceneBackground, type SceneName } from './components/SceneBackground'
 import { SceneWhispers } from './components/SceneWhispers'
 import {
@@ -35,6 +35,8 @@ import type { CareerProgress } from './story/expansion'
 type View = 'home' | 'intro' | 'incoming' | 'call' | 'identity' | 'hub' | 'career' | 'letter' | 'finale'
 
 type ChoicePreview = { scene: SceneName | null; tone: 'cool' | 'warm' }
+
+const desktopHomeQuery = '(min-width: 900px)'
 
 function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>, careerId: CareerId | null): SceneName {
   if (view === 'home' || view === 'intro' || view === 'letter') return 'home'
@@ -164,6 +166,7 @@ function Arrow({ returning = false }: { returning?: boolean }) {
 
 function App() {
   const [view, setView] = useState<View>('home')
+  const [desktopHome, setDesktopHome] = useState(() => window.matchMedia(desktopHomeQuery).matches)
   const [progress, setProgress] = useState(createInitialOpeningProgress)
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [confirmTarget, setConfirmTarget] = useState<'home' | 'hub'>('home')
@@ -192,9 +195,12 @@ function App() {
   const confirmDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
-  const sceneName = view === 'career' && careerProgress
-    ? careerProgress.phase === 'letter' ? 'home' : careerSceneFor(careerProgress)
-    : getSceneName(view, currentNode, careerProgress?.careerId ?? null)
+  const illustratedHome = view === 'home' && desktopHome
+  const sceneName = illustratedHome
+    ? 'home-hero'
+    : view === 'career' && careerProgress
+      ? careerProgress.phase === 'letter' ? 'home' : careerSceneFor(careerProgress)
+      : getSceneName(view, currentNode, careerProgress?.careerId ?? null)
   const activeCareer = careerProgress ? getCareer(careerProgress.careerId) : null
   const careerLine = careerProgress ? getCareerLine(careerProgress) : null
   const careerChoice = careerProgress ? getCareerChoice(careerProgress) : null
@@ -483,9 +489,17 @@ function App() {
             ? `call-${currentNode.id}`
             : 'call-dialogue'
 
+  useEffect(() => {
+    const media = window.matchMedia(desktopHomeQuery)
+    const update = () => setDesktopHome(media.matches)
+    media.addEventListener('change', update)
+    update()
+    return () => media.removeEventListener('change', update)
+  }, [])
+
   return (
     <div
-      className="app-background min-h-svh text-mist"
+      className={`app-background min-h-svh text-mist${illustratedHome ? ' is-home-hero' : ''}`}
       data-view={view}
       onClick={advanceOnSurfaceClick}
       onPointerDownCapture={() => {
@@ -497,7 +511,7 @@ function App() {
       <div className="ambient ambient-violet" aria-hidden="true" />
       <div className="ambient ambient-cyan" aria-hidden="true" />
 
-      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-360 flex-col px-5 sm:px-8 lg:px-12">
+      <div className="app-shell relative z-10 mx-auto flex min-h-svh w-full max-w-360 flex-col px-5 sm:px-8 lg:px-12">
         <header className="app-header">
           <div className="flex items-center gap-3" aria-label="Elsewhere">
             <span className="brand-mark" aria-hidden="true"><span /></span>
@@ -508,7 +522,7 @@ function App() {
               <h1 ref={callHeading} tabIndex={-1} id="call-title" className="header-call-title">{callTitle}</h1>
               <button type="button" className="end-call-action header-end-call" onClick={openEndConfirm}>结束通话</button>
             </div>
-          ) : (
+          ) : !illustratedHome && (
             <p className="header-meta font-mono text-[10px] tracking-[0.16em] sm:text-xs">平行人生 <span className="header-sep mx-2">/</span> 001</p>
           )}
         </header>
@@ -516,19 +530,19 @@ function App() {
         <main className={`app-main${callActive ? ' is-call' : view !== 'call' ? ' is-prelude' : ''}`}>
           <div key={screenKey} className="screen-transition" data-screen={screenKey}>
             {view === 'home' && (
-              <section className="screen-enter prelude" aria-labelledby="home-title">
+              <section className={`screen-enter prelude${illustratedHome ? ' home-hero' : ''}`} aria-labelledby="home-title">
                 <div className="prelude-stage">
-                  <CallCard className="home-call" object compact />
+                  {illustratedHome ? <HomeSignal /> : <CallCard className="home-call" object compact />}
                 </div>
                 <div className="prelude-dock">
                   <article className="prelude-panel">
                     <div className="prelude-copy">
                       <h1 id="home-title" className="home-title">
-                        <span className="home-title-brand">Elsewhere</span>
+                        {!illustratedHome && <span className="home-title-brand">Elsewhere</span>}
                         <span className="home-title-cn">未接来电</span>
                       </h1>
                       <p className="home-intro">如果当年，你选择了另一条路。</p>
-                      <p className="quiet-note prelude-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>
+                      {!illustratedHome && <p className="quiet-note prelude-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>}
                     </div>
                     <div className="prelude-actions">
                       <button ref={startButton} type="button" className="primary-action group" onClick={startStory}>

@@ -33,6 +33,16 @@ export function CallState({ status, showLabel = true }: { status: CallStatus; sh
   )
 }
 
+export function HomeSignal() {
+  return (
+    <div className="home-signal">
+      <PhoneSymbol />
+      <p>另一个你<span className="sr-only">，{statusLabels.idle}</span></p>
+      <CallState status="idle" showLabel={false} />
+    </div>
+  )
+}
+
 export function CallCard({
   className = '',
   object = false,

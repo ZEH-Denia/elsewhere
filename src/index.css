@@ -2534,3 +2534,112 @@ button:focus-visible,
   justify-content: flex-end;
   margin-top: 4px;
 }
+
+.is-home-hero :is(.scene-background, .scene-whispers) {
+  inset: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.is-home-hero .app-shell {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.is-home-hero .app-header {
+  min-height: 64px;
+  margin-inline: clamp(30px, 3vw, 70px);
+  border-bottom: 0;
+}
+
+.is-home-hero .header-brand {
+  color: hsl(var(--night-raised));
+  font-size: 14px;
+}
+
+.prelude.home-hero {
+  max-width: none;
+  padding-bottom: 0;
+}
+
+.home-hero .prelude-stage {
+  position: absolute;
+  inset: clamp(44px, 15.4svh, 180px) 0 auto;
+  padding: 0;
+}
+
+.home-signal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: hsl(var(--night-raised));
+  font-size: clamp(15px, 1.2vw, 20px);
+  letter-spacing: 0.07em;
+  text-shadow: 0 1px 8px #161313;
+}
+
+.home-signal > svg {
+  width: 26px;
+  height: 26px;
+}
+
+.home-signal .call-state {
+  margin: 0;
+}
+
+.home-signal .signal-lines {
+  gap: 3px;
+  color: hsl(var(--night) / 0.82);
+}
+
+.home-hero .prelude-panel {
+  min-height: clamp(152px, 25.3svh, 280px);
+  align-items: center;
+  padding: clamp(20px, 4svh, 56px) clamp(36px, 5.2vw, 112px);
+  border: 0;
+  border-radius: 25px 25px 0 0;
+  background: linear-gradient(180deg, #eee5db, #e7ded3);
+  box-shadow: none;
+}
+
+.home-hero .prelude-copy {
+  align-self: center;
+}
+
+.home-hero .home-title {
+  margin: 0 0 9px;
+}
+
+.home-hero .home-title-cn {
+  margin: 0;
+  font-size: clamp(44px, 4.5vw, 82px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.home-hero .home-intro {
+  font-size: clamp(17px, 1.6vw, 30px);
+  letter-spacing: 0;
+}
+
+.home-hero .prelude-actions {
+  min-width: auto;
+  align-self: center;
+}
+
+.home-hero .primary-action {
+  min-width: clamp(212px, 18.6vw, 330px);
+  min-height: clamp(52px, 8.1svh, 82px);
+  margin: 0;
+  padding-inline: clamp(22px, 2.8vw, 50px) 16px;
+  font-size: clamp(16px, 1.25vw, 23px);
+}
+
+.home-hero .primary-action .action-icon {
+  background: transparent;
+}
+
+.home-hero .primary-action .action-icon svg {
+  width: 25px;
+  height: 25px;
+}

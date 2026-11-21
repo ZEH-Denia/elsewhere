@@ -43,17 +43,22 @@ const sceneNames = [
   'ending-cherish-reach',
 ] as const
 
-export type SceneName = (typeof sceneNames)[number]
+export type SceneName = (typeof sceneNames)[number] | 'home-hero'
 
 type SceneLayer = { key: number; name: SceneName }
 
 const imageCache = new Map<SceneName, HTMLImageElement>()
 
+function sceneImageUrl(name: SceneName) {
+  const extension = name === 'home-hero' ? 'webp' : 'svg'
+  return `/backgrounds/${name}.${extension}`
+}
+
 function whenDecoded(name: SceneName) {
   let image = imageCache.get(name)
   if (!image) {
     image = new Image()
-    image.src = `/backgrounds/${name}.svg`
+    image.src = sceneImageUrl(name)
     imageCache.set(name, image)
   }
 
@@ -140,7 +145,7 @@ export function SceneBackground({
     for (const name of sceneNames) {
       if (imageCache.has(name)) continue
       const image = new Image()
-      image.src = `/backgrounds/${name}.svg`
+      image.src = sceneImageUrl(name)
       imageCache.set(name, image)
     }
   }, [])
@@ -162,7 +167,7 @@ export function SceneBackground({
           >
             <img
               className={`scene-background-image ${isLatest ? 'scene-current' : 'scene-previous'}`}
-              src={`/backgrounds/${layer.name}.svg`}
+              src={sceneImageUrl(layer.name)}
               alt=""
               draggable={false}
             />
@@ -175,7 +180,7 @@ export function SceneBackground({
           className={`scene-layer${previewLayers.readyKeys.includes(layer.key) ? ' is-visible' : ''}`}
           style={{ zIndex: 10 + index }}
         >
-          <img className="scene-background-image scene-preview" src={`/backgrounds/${layer.name}.svg`} alt="" draggable={false} />
+          <img className="scene-background-image scene-preview" src={sceneImageUrl(layer.name)} alt="" draggable={false} />
         </div>
       ))}
     </div>

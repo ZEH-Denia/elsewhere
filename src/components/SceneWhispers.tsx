@@ -28,6 +28,14 @@ type Whisper = {
 const HOVER_DELAY = 150
 
 const whispers: Partial<Record<SceneName, Whisper[]>> = {
+  'home-hero': [{
+    id: 'guitar',
+    x: 1290,
+    y: 458,
+    text: '琴弦上还留着当年的指印。',
+    hit: { cx: 1285, cy: 421, w: 160, h: 360 },
+    halo: { cx: 1285, cy: 494, rx: 102, ry: 141 },
+  }],
   home: [{
     id: 'guitar',
     x: 1066,
@@ -215,9 +223,10 @@ export function SceneWhispers({ scene, layoutKey }: { scene: SceneName; layoutKe
 
   useEffect(() => () => clearTimer(), [])
 
-  const scale = size.width > 0 && size.height > 0 ? Math.max(size.width / 1440, size.height / 900) : 0
-  const offsetX = (size.width - 1440 * scale) / 2
-  const offsetY = (size.height - 900 * scale) * 0.46
+  const [imageWidth, imageHeight] = scene === 'home-hero' ? [1672, 941] : [1440, 900]
+  const scale = size.width > 0 && size.height > 0 ? Math.max(size.width / imageWidth, size.height / imageHeight) : 0
+  const offsetX = (size.width - imageWidth * scale) / 2
+  const offsetY = (size.height - imageHeight * scale) * 0.46
   const activeId = hoveredId ?? pinnedId
 
   return (

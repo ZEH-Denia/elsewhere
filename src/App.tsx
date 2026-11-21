@@ -512,20 +512,16 @@ function App() {
             {view === 'home' && (
               <section className="screen-enter prelude" aria-labelledby="home-title">
                 <div className="prelude-stage">
-                  <CallCard className="home-call" object />
+                  <CallCard className="home-call" object compact />
                 </div>
                 <div className="prelude-dock">
                   <article className="prelude-panel">
                     <div className="prelude-copy">
-                      <p className="eyebrow"><span />来自另一个世界的信号</p>
                       <h1 id="home-title" className="home-title">
                         <span className="home-title-brand">Elsewhere</span>
                         <span className="home-title-cn">未接来电</span>
                       </h1>
-                      <div className="home-intro">
-                        <p>如果当年，你选择了另一条路。</p>
-                        <p>平行世界的你，正在来电。</p>
-                      </div>
+                      <p className="home-intro">如果当年，你选择了另一条路。</p>
                       <p className="quiet-note prelude-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>
                     </div>
                     <div className="prelude-actions">
@@ -688,14 +684,13 @@ function App() {
                       <p className="section-note">这个选择只改变你回应另一个自己的方式，不改变第一章的选择和结局。</p>
                     </div>
                     <div className="identity-options">
-                      {identities.map((option, index) => (
+                      {identities.map((option) => (
                         <button
                           key={option.id}
                           type="button"
                           className="identity-option"
                           onClick={() => chooseIdentity(option.id)}
                         >
-                          <span className="identity-index">{String(index + 1).padStart(2, '0')}</span>
                           <span className="identity-copy">
                             <strong>{option.label}</strong>
                             <span>{option.description}</span>
@@ -723,6 +718,14 @@ function App() {
                       <h1 ref={hubHeading} tabIndex={-1} id="hub-title" className="section-heading">
                         另一个世界，未知线路
                       </h1>
+                      {canOpenFinale({ identity, firstEnding, readCareers, finaleSeen: false }) && (
+                        <div className="hub-finale">
+                          <p>「还有一通，来自你自己。」</p>
+                          <button type="button" className="primary-action group" onClick={startFinale}>
+                            <span>接听最后一通</span><span className="action-icon"><Arrow /></span>
+                          </button>
+                        </div>
+                      )}
                       <p className="hub-later">{prologueText.laterYou}</p>
                       <div className="hub-script">
                         {hubPrologueLines.map((line, index) => (
@@ -753,14 +756,6 @@ function App() {
                       })}
                     </div>
 
-                    {canOpenFinale({ identity, firstEnding, readCareers, finaleSeen: false }) && (
-                      <div className="hub-finale">
-                        <p>「还有一通，来自你自己。」</p>
-                        <button type="button" className="primary-action group" onClick={startFinale}>
-                          <span>接听最后一通</span><span className="action-icon"><Arrow /></span>
-                        </button>
-                      </div>
-                    )}
                     <div className="screen-back-row">
                       <button type="button" className="panel-return-action group" onClick={returnHome}>
                         <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
@@ -782,11 +777,11 @@ function App() {
                           另一条线路的回信
                         </h1>
                         {careerLetter && (
-                          <>
+                          <div className="letter-paper">
                             <p className="letter-opening">{careerLetter.opening}</p>
                             <p className="letter-body">{careerLetter.body}</p>
                             <p className="letter-sign">——另一个你</p>
-                          </>
+                          </div>
                         )}
                       </div>
                       <div className="action-row letter-actions">
@@ -881,8 +876,10 @@ function App() {
                         <h1 ref={finaleHeading} tabIndex={-1} id="finale-title" className="section-heading">
                           下次换你打给我
                         </h1>
-                        <p className="letter-body">{finale.letter}</p>
-                        <p className="letter-sign">——另一个你</p>
+                        <div className="letter-paper">
+                          <p className="letter-body">{finale.letter}</p>
+                          <p className="letter-sign">——另一个你</p>
+                        </div>
                       </div>
                       <div className="action-row letter-actions">
                         <button type="button" className="primary-action group" onClick={returnToHub}>

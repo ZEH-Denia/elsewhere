@@ -4,8 +4,7 @@
 
 | 记录 | 范围 |
 | --- | --- |
-| [TASK-001](TASK-001.md) | 工程、首页与前言 |
+| [TASK-001](TASK-001.md) | 工程、首页、前言及补充验收证据 |
 | [TASK-002](TASK-002.md) | 首页视觉和首通来电 |
-| [TASK-003](TASK-003.md) | 第一通的第二次选择、四种结局及早期返修 |
-| [TASK-003 任务分支报告](https://github.com/ZEH-Denia/elsewhere/blob/510568b/tasks/reports/TASK-003.md) | 扩展剧情、素材和相应验证的完整记录 |
-| [2026-11-21 只读交接](https://github.com/ZEH-Denia/elsewhere/blob/510568b/tasks/reports/CODEX-READONLY-HANDOFF-2026-11-21.md) | 交接时的发布、验收及待办记录 |
+| [TASK-003](TASK-003.md) | 第一通的第二次选择与四种结局、扩展剧情、素材及验证 |
+| [2026-11-21 只读交接](CODEX-READONLY-HANDOFF-2026-11-21.md) | 交接时的发布、验收及待办记录 |

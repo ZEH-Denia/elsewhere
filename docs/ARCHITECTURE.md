@@ -1,6 +1,6 @@
 # 技术方案与边界
 
-当前应用基线为 `task-003@510568b`。运行方法见 [README](../README.md)，验收范围见 [TASK-003 审查](../tasks/reviews/TASK-003.md)。
+当前应用位于 `main`，验收基线为 `510568b`。运行方法见 [README](../README.md)，验收范围见 [TASK-003 审查](../tasks/reviews/TASK-003.md)。
 
 | 部分 | 当前实现 |
 | --- | --- |

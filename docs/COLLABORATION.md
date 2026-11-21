@@ -18,8 +18,8 @@
 
 | 位置 | 用途 |
 | --- | --- |
-| `main` | 当前任务与审查的权威版本，保存项目约定、说明和归档 |
-| 当前任务分支 `task-003` | 应用实现与返修，必要时同步文档副本便于本地查阅 |
+| `main` | 当前应用、项目约定、任务、审查和归档 |
+| 开发任务分支 | 团队批准新任务后用于实现及返修，完成审核并获批后合入 `main` |
 | [tasks/reports/](../tasks/reports/README.md) | 既有执行交接、截图及验证证据 |
 | [tasks/reviews/](../tasks/reviews/README.md) | Codex 的独立审查，使用 PASS / FIX / BLOCKED |
 | `tasks/archive/` | 已完成并归档的任务 |

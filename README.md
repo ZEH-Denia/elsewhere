@@ -4,7 +4,7 @@
 
 第一通来电有两次选择和四种结局。随后可选择三种身份，进入医生、教师、设计师和创业者四条职业线路。职业线路共 16 个结局和对应来信。读完任一封职业来信即可解锁最终回电。
 
-TASK-003 的 28 项桌面视觉改进已通过验收，应用基线为 `task-003@510568b`。当前公网站点仍提供此前发布的版本。手机版开发和窄屏验收暂缓。 [公网体验](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/) · [桌面验收](tasks/reviews/TASK-003.md)
+TASK-003 的 28 项桌面视觉改进已通过验收，应用已合入 `main`，验收基线为 `510568b`。当前公网站点仍提供此前发布的版本。手机版开发和窄屏验收暂缓。 [公网体验](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/) · [桌面验收](tasks/reviews/TASK-003.md)
 
 ## 本地运行
 
@@ -12,8 +12,8 @@ TASK-003 的 28 项桌面视觉改进已通过验收，应用基线为 `task-003
 
 ```sh
 git fetch origin
-git switch task-003
-git pull --ff-only origin task-003
+git switch main
+git pull --ff-only origin main
 npm ci
 npm run dev
 ```
@@ -40,4 +40,4 @@ npm run preview
 | 产品、技术和候选任务 | [产品定义](docs/PRODUCT.md) · [技术方案](docs/ARCHITECTURE.md) · [路线图](docs/ROADMAP.md) |
 | 既有执行记录 | [历史报告](tasks/reports/README.md) · [原始交接](CODEX_HANDOFF.md) |
 
-Codex 负责实现、验证和记录。项目说明及验收记录以 `main` 为准，最新应用实现位于 `task-003`。
+Codex 负责实现、验证和记录。`main` 包含当前应用、项目说明和验收记录。

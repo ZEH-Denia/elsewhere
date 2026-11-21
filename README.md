@@ -1,73 +1,43 @@
 # Elsewhere：未接来电
 
-> 2026-11-21：TASK-003 扩展剧情的桌面键盘返修已通过本地复验。手机版开发和窄屏验收暂缓。
-
 接到来自平行世界自己的电话，通过互动剧情探索另一种人生。
 
-**组员从这里开始：[团队快速了解（约三分钟）](docs/团队快速了解.md)**，了解产品体验、当前进度、团队分工与可参与的工作。
+第一通来电有两次选择和四种结局。随后可选择三种身份，进入医生、教师、设计师和创业者四条职业线路。职业线路共 16 个结局和对应来信。读完任一封职业来信即可解锁最终回电。
 
-GitHub 仓库当前公开。异地获取项目与更新方式见 [ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere) 和 [GitHub 协作入门](docs/GITHUB_COLLABORATION.md)。
-
-## 当前状态
-
-2026-11-17：TASK-001 的工程、首页与可返回前言，以及 TASK-002 的视觉和首通来电均已 PASS。TASK-002 的确认退出焦点返修已通过复审，见 [审查报告](tasks/reviews/TASK-002.md)。
-
-第一通来电的两次选择与四种结局已通过复审。扩展剧情在 `task-003`，包括三种身份、第二通来电总机、医生/教师/设计师/创业者四条职业线、16 个职业结局与信件，以及读完任一封信后解锁的最终回电。
-
-公网站点可匿名接听，当前运行此前发布的构建。桌面键盘返修版通过本地生产预览复验，部署待团队批准。 [Qoder Sites 体验地址](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/)
-
-四条职业线各有 4 张代码生成的专属场景，覆盖急诊走廊/分诊台/休息室/夜间走廊、教室/窗边/办公室/走廊、工作室/草图墙/夜景/速写桌、开放办公区/会议角/雨窗/机房角；身份选择、总机、信件和尾声沿用现有暖米纸面与“未知线路”视觉。
-
-## 复审与交接
-
-完整实现与早期证据见 [TASK-003 执行报告](tasks/reports/TASK-003.md)，最新桌面验收见 [TASK-003 审查](https://github.com/ZEH-Denia/elsewhere/blob/main/tasks/reviews/TASK-003.md)。
-
-当前[Qoder 开发交接入口](docs/QODER_START.md)记录任务交接方式；具体范围以 TASK-003 当前任务为准。同一台电脑直接打开现有项目目录，沿用已有工程与已验收实现。
-
-## 文档入口
-
-| 文档 | 用途 |
-| --- | --- |
-| [AGENTS.md](AGENTS.md) | 角色、权限和工作边界 |
-| [当前任务](tasks/current.md) | TASK-003 的目标、范围及验收标准 |
-| [Qoder 开工交接](docs/QODER_START.md) | 可直接复制的开发指令、分支与交还步骤 |
-| [协作协议](docs/COLLABORATION.md) | 交接、执行报告、审查与返修 |
-| [GitHub 协作入门](docs/GITHUB_COLLABORATION.md) | 组员访问、下载与同步项目 |
-| [产品定义](docs/PRODUCT.md) | MVP 体验与范围 |
-| [技术方案](docs/ARCHITECTURE.md) | 技术约束与演进方向 |
-| [路线图](docs/ROADMAP.md) | 顺序、里程碑与进入条件 |
-| [开发与参赛详细计划](docs/DETAILED_PLAN.md) | 逐日排期、分支剧情、任务门槛、验证与提交安排 |
-| [界面美化方向](docs/VISUAL_DIRECTION.md) | 已纳入 TASK-002 的首页、来电和对话视觉方向 |
-| [首通来电执行用稿](docs/STORY_OPENING.md) | 首通主线、第一次选择及反馈的固定内容 |
-| [分支与结局执行用稿](docs/STORY_BRANCHES.md) | TASK-003 的第二次选择、反馈与四种结局 |
-| [项目现状](docs/PROJECT_STATUS.md) | 检查证据、已完成事项和未验证事项 |
-| [GitHub 内容核查](docs/GITHUB_CONTENT_AUDIT.md) | 远程文件一致性、现状核查结果与修正记录 |
-| [原始交接](CODEX_HANDOFF.md) | 接管依据，保持原文 |
+TASK-003 的 28 项桌面视觉改进已通过验收，应用基线为 `task-003@510568b`。当前公网站点仍提供此前发布的版本。手机版开发和窄屏验收暂缓。 [公网体验](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/) · [桌面验收](tasks/reviews/TASK-003.md)
 
 ## 本地运行
 
-工程使用 React、TypeScript、Vite 与 Tailwind CSS，包管理器为 npm。`package.json` 遵循 Vite 的运行要求：Node.js 20 系列需 20.19.0 或更高版本，其他版本需 22.12.0 或更高版本；本轮实际使用 Node.js v24.16.0、npm 11.13.0。
+工程使用 React、TypeScript、Vite 和 Tailwind CSS。需要 Git、npm，以及 Node.js 20.19.0 或更新的 20.x，或 Node.js 22.12.0 及以上。已有克隆可在工作树干净时从仓库根目录执行以下命令。
 
-```bash
+```sh
+git fetch origin
+git switch task-003
+git pull --ff-only origin task-003
 npm ci
 npm run dev
 ```
 
-开发服务默认地址为 `http://127.0.0.1:5173/`。另开终端可执行：
+打开终端显示的地址，开发服务默认使用 `http://127.0.0.1:5173/`。生产预览先运行构建，默认地址为 `http://127.0.0.1:4173/`。
 
-```bash
+```sh
 npm run typecheck
 npm run test:story
 npm run build
 npm run preview
 ```
 
-生产构建输出到 `dist/`（不提交），预览服务默认地址为 `http://127.0.0.1:4173/`。`npm run test:story` 同时检查第一通的两次选择/四结局，以及扩展职业线的四职业、16 组合、16 封信、身份差异、兜底文案、信件解锁和重置。
+剧情数据与插画均在本地。刷新页面会回到首页，体验无需账号或 API Key。
 
-当前版本包含第一通完整剧情与第二通扩展：第一通的两次选择和四种结局保持原样；结局后可继续选择三种“现在的你”，进入四职业线路总机。每条职业线保留两次选择和四种结局，读完任一条线路的信件后会解锁音乐自我的最终回电与最后一封信；其他线路仍可返回总机重听。
+## 文档入口
 
-夜色双室插画保持不透明度 1，首页、前言、来电、对白与选择统一使用贴在画面底部的纸面面板与选项按钮，中央不再铺白雾；仅第一通结局保留原有居中局部纸衬底。说话人标签跨在对话框上沿，进度与紧凑的“继续”位于页脚；选项按钮在悬停或键盘聚焦时以独立图层预览对应场景。换场保留旧场景做 220ms 交叉淡化，不会出现白场。桌面与手机主行动位置继续复用现有规则。
+| 要找什么 | 从这里开始 |
+| --- | --- |
+| 项目介绍与团队分工 | [团队快速了解](docs/团队快速了解.md) |
+| 获取项目与更新本地副本 | [同事接手指南](docs/同事接手指南.md) |
+| 当前范围、进度和验收 | [项目现状](docs/PROJECT_STATUS.md) · [当前任务](tasks/current.md) · [审查记录](tasks/reviews/README.md) |
+| 开发与 Git 同步约定 | [协作协议](docs/COLLABORATION.md) · [GitHub 协作入门](docs/GITHUB_COLLABORATION.md) |
+| 产品、技术和候选任务 | [产品定义](docs/PRODUCT.md) · [技术方案](docs/ARCHITECTURE.md) · [路线图](docs/ROADMAP.md) |
+| 既有执行记录 | [历史报告](tasks/reports/README.md) · [原始交接](CODEX_HANDOFF.md) |
 
-职业通话分别使用代码生成的专属场景，四条职业线各 4 张；职业场景绘制在 `scripts/career-scenes.mjs`，可用 `node scripts/generate-backgrounds.mjs` 重新生成全部 40 张本地 SVG。信件页使用现有暖米纸面阅读区。扩展流程支持点击画面继续、键盘按钮、减少动态效果和返回首页。双世界时间线、分享、存档或后端仍未实现；不需要 API Key、账号或远程素材，不保存剧情进度；刷新页面会回到首页。
-
-MVP 不要求用户提供 API Key，也不要求配置后端。团队已持续授权每轮改动完成并检查后自动提交、推送：指挥文档同步 main，Qoder 开发与返修同步任务分支。代码合并 main、网站部署与赛事投稿按协作协议另行批准。
+Codex 负责实现、验证和记录。项目说明及验收记录以 `main` 为准，最新应用实现位于 `task-003`。

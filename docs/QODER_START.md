@@ -1,4 +1,13 @@
-# Qoder 开发交接入口
+# Qoder 历史开发交接
+
+历史记录。2026-11-21 起由 Codex 直接负责项目工作，当前流程与任务见 [协作协议](COLLABORATION.md) 和 [任务文档](../tasks/current.md)。
+
+<details>
+<summary>展开原交接记录</summary>
+
+> 2026-11-21 起，项目工作由 Codex 直接执行。本页保留为过去的 Qoder 交接记录。当前范围见[任务文档](../tasks/current.md)。
+
+> 2026-11-21：团队指定 Codex 完成 TASK-003 扩展剧情的桌面返修。返修已通过本地复验，提交 `d7cb883` 位于 `task-003`。后续安排以[当前任务](../tasks/current.md)和[审查](../tasks/reviews/TASK-003.md)为准。以下交接用于查阅历史。
 
 > 2026-11-19 最新状态：TASK-003 复审 PASS，等待团队批准下一任务；PR #3 已合并较早版本，后续修改仍在 task-003。下文旧的 FIX 指令为历史记录。
 
@@ -46,3 +55,5 @@ Codex 从本轮 main 交接提交准备 task-002；首次开工不需要重装�
 > 审核 TASK-002。Qoder 已停止修改，提交号：填写实际已推送提交号；报告：tasks/reports/TASK-002.md。
 
 2026-11-17 初审已完成，结论 FIX；原始开发已完成，当前仅返修 R1，未批准下一任务。
+
+</details>

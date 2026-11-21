@@ -14,3 +14,9 @@ coverage/
 # Local system files
 .DS_Store
 Thumbs.db
+
+# Local project originals and site binding
+/.Elsewhere · 未接来电.qoder.site
+/.qoder-office-docx-locks/
+/Elsewhere-未接来电-剧本.docx
+/Elsewhere-未接来电-第二通来电-剧本.docx

@@ -1,9 +1,11 @@
-# Qoder 执行报告目录
+# 历史执行报告
 
-Qoder 完成任务后新建 `TASK-XXX.md`，格式见 `../../docs/COLLABORATION.md`。截图保存在 `assets/TASK-XXX/` 并用相对路径引用。
+既有执行报告及其附件保留原作者和当时的结果。当前验收结论见 [审查记录](../reviews/README.md)。
 
-- [TASK-001](TASK-001.md)：工程、首页与前言，已 PASS 并归档。
-- [TASK-002](TASK-002.md)：视觉与首通来电，R1 已复审 PASS。
-- [TASK-003](TASK-003.md)：第二次选择与四种结局，实现、定稿文案及恒亮无框视觉交互已完成，连续主行动坐标稳定，等待 Codex 复审。
-
-不要复制本说明充当完成报告，也不要由 Codex 代写开发验证结果。
+| 记录 | 范围 |
+| --- | --- |
+| [TASK-001](TASK-001.md) | 工程、首页与前言 |
+| [TASK-002](TASK-002.md) | 首页视觉和首通来电 |
+| [TASK-003](TASK-003.md) | 第一通的第二次选择、四种结局及早期返修 |
+| [TASK-003 任务分支报告](https://github.com/ZEH-Denia/elsewhere/blob/510568b/tasks/reports/TASK-003.md) | 扩展剧情、素材和相应验证的完整记录 |
+| [2026-11-21 只读交接](https://github.com/ZEH-Denia/elsewhere/blob/510568b/tasks/reports/CODEX-READONLY-HANDOFF-2026-11-21.md) | 交接时的发布、验收及待办记录 |

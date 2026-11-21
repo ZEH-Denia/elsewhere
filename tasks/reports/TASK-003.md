@@ -1264,3 +1264,18 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 ### 结论与限制
 
 本轮点击测试未发现阻断性交互、布局或控制台问题，因此没有代码修复。覆盖的是每条职业线各一条组合；16 种组合的数据路径仍由剧情测试覆盖。测试使用无头 Edge，未使用实体设备或真实读屏；未经 Codex 复审，不据此自称 PASS。
+
+## 46. Qoder Sites 公网发布与无痕验证
+
+日期：2026-11-21（Asia/Shanghai）。按团队授权，将当前 `dist` 发布到原有 Qoder Sites 项目，并把访问权限从“指定成员”改为公开。
+
+- 公网地址：https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone
+- 使用全新的无头 Edge 无痕配置打开，未登录、无既有 Cookie；页面标题为“Elsewhere：未接来电”，没有出现登录门槛。
+- 首页点击“开始体验”进入前言，再点击“进入来电”进入来电页；首页与来电页资源加载正常，无破图，`failures` / `consoleEvents` 均为 `[]`。
+- 公网直接请求返回 200；页面右下角可见 “Made with Qoder” 标识。
+
+证据：[无痕首页截图](assets/TASK-003/qoder-sites-public-incognito-1440.png)、[无痕来电截图](assets/TASK-003/qoder-sites-public-incognito-incoming-1440.png)、[无痕验证结果](assets/TASK-003/qoder-sites-public-incognito.json)。
+
+仓库权限：GitHub 仓库仍为 PUBLIC。根据参赛协议 6.4“比赛期间未经阿里云同意禁止公开分享与赛事相关的代码”，建议赛期内转为私有；该操作涉及共享仓库可见性，等待团队明确授权后执行。Qoder Sites 公网链接是主办方要求的公开交付物，与源码仓库可见性分开处理。
+
+未完成：天池报名/提交、成员实名认证与大学生认证、论坛作品帖、Qoder 账号填写。未经 Codex 复审，不据此自称 PASS。

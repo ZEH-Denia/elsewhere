@@ -1,0 +1,30 @@
+{
+  "url": "https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/?incognito=1795232085549",
+  "first": {
+    "href": "https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/?incognito=1795232085549",
+    "title": "Elsewhere：未接来电",
+    "h1": "Elsewhere未接来电",
+    "body": "ELSEWHERE\n\n平行人生 / 001\n\nPARALLEL CALL\n001\n\n另一个你\n\n来自平行世界的自己\n\n信号待接通\n现实 · 工程\n平行 · 音乐\n\n来自另一个世界的信号\n\nElsewhere\n未接来电\n\n如果当年，你选择了另一条路。\n\n平行世界的你，正在来电。\n\n一段虚构的平行人生，无需注册\n\n开始体验",
+    "loginLike": false,
+    "images": [
+      {
+        "src": "https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/backgrounds/home.svg",
+        "ok": true
+      }
+    ],
+    "overflow": false
+  },
+  "second": {
+    "view": "incoming",
+    "h1": "另一个你，正在来电",
+    "images": [
+      {
+        "src": "https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/backgrounds/incoming.svg",
+        "ok": true
+      }
+    ],
+    "overflow": false
+  },
+  "failures": [],
+  "consoleEvents": []
+}

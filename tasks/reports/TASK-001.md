@@ -4,10 +4,10 @@
 | --- | --- |
 | 任务 | TASK-001：建立可运行工程与神秘来电首页 |
 | 执行日期 | 2026-11-17（Asia/Shanghai） |
-| 报告轮次 | 初次 |
+| 报告轮次 | 初次 + 第 1 次补证 |
 | 执行方 | Qoder IDE |
 | 分支 | `task-001` |
-| 状态 | **完成，待 Codex 审核**；应用实现与真实浏览器验证已完成，Qoder IDE 过程截图未获取 |
+| 状态 | **完成初次开发与第 1 次补证，待 Codex 复验**；已补原始过程摘录，Qoder IDE 历史界面截图仍未获取 |
 | 基线提交 | `c34560e` |
 | 本轮提交 | 本报告随本轮改提交；最终提交号由交接消息提供，避免报告自引用 |
 
@@ -34,7 +34,7 @@
 | `public/favicon.svg` | 本地矢量站点图标，避免 favicon 404 |
 | `README.md` | 当前状态与可复制的运行说明 |
 | `tasks/reports/TASK-001.md` | 本报告 |
-| `tasks/reports/assets/TASK-001/**` | 浏览器截图和 JSON 检查结果 |
+| `tasks/reports/assets/TASK-001/**` | 浏览器截图、JSON 检查结果与第 1 次补证的 Qoder 原始过程摘录 |
 
 未修改 `AGENTS.md`、`CODEX_HANDOFF.md`、`docs/**`、`tasks/current.md` 或 `tasks/reviews/**`。现有 `.gitignore` 已覆盖依赖、构建产物、缓存、系统文件、日志和本地环境密钥，无需改动。
 
@@ -135,7 +135,7 @@
 | AC-05 | 已验证。390×844、1440×900 和 320×844 均无横向溢出；按钮完整；320px 实际滚动到底部 | 对应截图；`browser-results.json`；`interaction-results.json` |
 | AC-06 | 已验证。Tab、Enter、Space 完整往返，焦点可见且页面切换可感知，减少动态效果生效 | `keyboard-results.json`；焦点与减少动态效果截图 |
 | AC-07 | 已验证。无应用控制台异常、失败响应或外部请求 | `browser-results.json` 的网络、异常和日志数组 |
-| AC-08 | 已验证。README 含实际命令与边界，报告和浏览器证据已保存，改动均在允许清单内 | `README.md`、本报告、文件清单、`git diff --check` |
+| AC-08 | README 与工程/浏览器证据已保存，改动在允许清单内；第 1 次补证已增加可核验的 Qoder 原始会话与工具调用摘录，IDE 历史界面截图仍未取得，材料完整性待 Codex 复验 | `README.md`、本报告、`assets/TASK-001/qoder-process-excerpt.json`、文件清单、`git diff --check` |
 
 以上为 Qoder 执行记录，不代表 Codex 审核 PASS。
 
@@ -146,3 +146,33 @@
 - 验证用无头 Edge 已正常关闭。
 - Vite 开发服务仍运行：`http://127.0.0.1:5173/`。
 - 提交前分支为 `task-001`，基线 `c34560e`；改动仅包含本报告第 1 节所列允许文件。最终提交与远程核对结果见交接消息。
+
+## 7. 第 1 次补证（2026-11-17）
+
+本轮仅处理 `tasks/reviews/TASK-001.md` 的 R1，不修改应用源码、工程配置、依赖或 README。以下材料于 **2026-11-17（Asia/Shanghai）** 从真实既有历史补取，不是开发当时新增的截图，也没有重新表演过去的开发操作。
+
+### 证据来源与关联
+
+- 原 Qoder 会话：`执行 TASK-001 并推送`；sessionId：`4c09b159-d71d-48c4-b023-9cce435262d2`；authorityEndpointId：`6417e2d8-4c41-40ab-b9ce-911b688b7b96`。
+- 通过 Qoder 内置 `read_chat_session` 读取该会话，返回 `hasMoreBefore: false`。原始用户消息 ID 为 `a91d2730-7141-4d41-935f-fcd41be5e50e`，时间 `2026-11-17T04:15:03.596Z`（Asia/Shanghai 2026-11-17 12:15:03），正文即本报告所执行的 TASK-001 开工指令。
+- 同时读取本机追加式原始记录 `~/.qoder-cn/projects/-Users-zeh-Documents-elsewhere/4c09b159-d71d-48c4-b023-9cce435262d2.jsonl`，从首次开发轮次提取工具调用参数和结果。
+- 提交的可复核摘录：[`assets/TASK-001/qoder-process-excerpt.json`](assets/TASK-001/qoder-process-excerpt.json)。文件记录上述会话来源、原始指令、1-based JSONL 行号、完整工具调用 ID、输入和结果；两条初始 `Write` 仅保留前 1600 字符，同时记录完整原始内容长度与 SHA-256，其余选中输入和结果完整保留。
+- 摘录 SHA-256：`5dfb2c90a6610eeb1a35c35ce37038b35b69d04b1390a85c9c743ee0b5499274`。
+
+### 补取到的实际过程片段
+
+| 环节 | 原始记录定位与内容 |
+| --- | --- |
+| 任务指令 | 上述用户消息明确要求只执行 TASK-001、真实验证、报告、提交推送与停止待审 |
+| 初始生成 | JSONL 144～145 行：`Write` 创建 `src/App.tsx` 与 `src/index.css`；结果在 163、165 行，均成功；摘录含源码片段和完整输入哈希 |
+| 实际调整 | 204 行调整 `.brand-mark` 定位；515 行将前言标题 `max-w-2xl` 改为 `max-w-3xl`；516 行移除 `html/body` 的 `min-width: 320px`，保留对应旧值、新值和成功结果 |
+| 工程验证 | 360～361、525～526 行分别执行初次及样式修复后的 `npm run typecheck`、`npm run build`；结果在 367～369、528～530 行，最终构建为 16 modules、87ms |
+| 浏览器验证 | 533 行为真实 CDP 验证命令，包含三种视口、鼠标、原生键盘、减少动态效果、截图、控制台和网络采集；535 行结果与已提交的 `browser-results.json` 逐字一致 |
+
+### 截图补取限制与本轮核验
+
+- 初次两次 `getApp` 各 20 秒未返回的事实保留在第 6 节，不改写为已取得开发时截图。
+- 本轮第一次补取界面时，Computer Use 明确返回 macOS 辅助功能与屏幕录制授权仍待完成；第二次尝试在 30 秒内未返回。仍未获得 Qoder IDE 历史界面截图，不以浏览器截图代替，也不声称该材料已补齐。
+- 因原始任务历史和本地 JSONL 均可访问，本轮提交上述原始记录摘录作为可复核替代证据，由 Codex 判断证据是否充分；Qoder 不自行变更 FIX 或宣布 PASS。
+- 已用独立脚本回查全部 10 个选中事件：工具 ID、名称、JSONL 行号、输入、结果及两条 `Write` 的完整内容长度/SHA-256 均与原始记录一致；原始指令一致，浏览器结果与已提交 JSON 一致。
+- 本轮只新增 `qoder-process-excerpt.json` 并更新本报告；未重跑应用构建或浏览器验收，因为应用实现没有变化。证据 JSON 解析、来源一致性检查和 `git diff --check` 是本轮验证范围。

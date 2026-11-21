@@ -1,0 +1,171 @@
+{
+  "kind": "qoder.task001.processEvidence.excerpt",
+  "supplementalRetrieval": {
+    "date": "2026-11-17",
+    "timeZone": "Asia/Shanghai",
+    "method": "Existing Qoder session history and append-only local JSONL; no development action was reenacted",
+    "uiScreenshotStatus": "Not captured: the first supplemental Computer Use attempt reported Accessibility and Screen Recording authorization still pending; a second attempt did not return within 30 seconds"
+  },
+  "source": {
+    "sessionId": "4c09b159-d71d-48c4-b023-9cce435262d2",
+    "authorityEndpointId": "6417e2d8-4c41-40ab-b9ce-911b688b7b96",
+    "title": "执行 TASK-001 并推送",
+    "hasMoreBefore": false,
+    "userMessageId": "a91d2730-7141-4d41-935f-fcd41be5e50e",
+    "userTimestamp": "2026-11-17T04:15:03.596Z",
+    "originalTranscriptPath": "/Users/zeh/.qoder-cn/projects/-Users-zeh-Documents-elsewhere/4c09b159-d71d-48c4-b023-9cce435262d2.jsonl",
+    "sessionExportMethod": "mcp__builtin__read_chat_session"
+  },
+  "instruction": "请阅读 docs/QODER_START.md、AGENTS.md、docs/COLLABORATION.md 和 tasks/current.md。检查工作区后切换到 task-001，只执行 TASK-001，完成开发与真实验证，写入 tasks/reports/TASK-001.md，自动提交推送 task-001。最后提供提交号、报告路径和预览地址，停止修改，等待 Codex 审核。",
+  "selection": {
+    "description": "Original instruction, initial App/CSS generation, actual CSS and desktop/narrow-screen adjustments, typecheck/build calls, and final CDP browser verification. Write contents are bounded excerpts with hashes of their complete original inputs; other selected inputs and outputs are preserved in full.",
+    "toolCallIds": [
+      "6774c676-0da9-495c-94cb-b10e2d3002b0",
+      "4fd320f6-3239-4639-acca-457277de5399",
+      "8314c8d3-ab32-4924-86d8-e8a055e49715",
+      "0b8f8887-ce75-44c9-8104-98334519bc6f",
+      "ee6a2ac1-afe6-46b9-a43c-238b0172511c",
+      "68fecc70-7109-4f00-bb0e-9640db018144",
+      "31f22d48-b05e-4151-ab77-b274dc5f8531",
+      "61e64b92-f737-4104-aac4-230068da28f1",
+      "75124112-ff5a-4d7a-9a27-a9940741b4bf",
+      "a4f53943-73e0-4a43-ad7f-3f946aa685d4"
+    ]
+  },
+  "events": [
+    {
+      "sourceJsonlLine": 144,
+      "toolCallId": "6774c676-0da9-495c-94cb-b10e2d3002b0",
+      "name": "Write",
+      "input": {
+        "file_path": "/Users/zeh/Documents/elsewhere/src/App.tsx",
+        "contentExcerpt": "import { useEffect, useRef, useState } from 'react'\n\ntype View = 'home' | 'intro'\n\nfunction PhoneSymbol() {\n  return (\n    <svg viewBox=\"0 0 48 48\" fill=\"none\" aria-hidden=\"true\">\n      <path\n        d=\"M16.8 8.5 21 17l-4.7 3.6c2.3 5.1 6 8.8 11.1 11.1l3.6-4.7 8.5 4.2-.8 7.1c-.2 1.7-1.7 2.9-3.4 2.7C18.5 39.5 8.5 29.5 7 12.7c-.2-1.7 1-3.2 2.7-3.4l7.1-.8Z\"\n        stroke=\"currentColor\"\n        strokeWidth=\"1.6\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      />\n      <path d=\"M28 8c6.5 1.3 10.7 5.5 12 12M29.5 14c3.3.8 5.7 3.2 6.5 6.5\" stroke=\"currentColor\" strokeWidth=\"1.6\" strokeLinecap=\"round\" />\n    </svg>\n  )\n}\n\nfunction Arrow({ returning = false }: { returning?: boolean }) {\n  return (\n    <svg className={returning ? 'rotate-180' : ''} viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\">\n      <path d=\"M4 10h11M11 6l4 4-4 4\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n    </svg>\n  )\n}\n\nfunction App() {\n  const [view, setView] = useState<View>('home')\n  const previousView = useRef<View>('home')\n  const startButton = useRef<HTMLButtonElement>(null)\n  const introHeading = useRef<HTMLHeadingElement>(null)\n\n  useEffect(() => {\n    if (previousView.current === view) return\n    previousView.current = view\n\n    if (view === 'intro') {\n      introHeading.current?.focus()\n    } else {\n      startButton.current?.focus()\n    }\n  }, [view])\n\n  return (\n    <div className=\"app-background min-h-svh overflow-hidden text-mist\">\n      <div className=\"ambient ambient-violet\" aria-hidden=\"true\" />\n      <div className=\"ambient amb",
+        "contentLength": 6780,
+        "contentSha256": "1ac05043de5179b9472e4c6c3a7319ac89d5de28639099d3c14fb0d3b6288ac2",
+        "contentTruncated": true
+      },
+      "result": "File created successfully at: /Users/zeh/Documents/elsewhere/src/App.tsx The file state is current in your context; no need to read it back.",
+      "resultJsonlLine": 163
+    },
+    {
+      "sourceJsonlLine": 145,
+      "toolCallId": "4fd320f6-3239-4639-acca-457277de5399",
+      "name": "Write",
+      "input": {
+        "file_path": "/Users/zeh/Documents/elsewhere/src/index.css",
+        "contentExcerpt": "@import \"tailwindcss\";\n\n:root {\n  --night: 231 55% 6%;\n  --night-raised: 230 40% 10%;\n  --mist: 220 30% 94%;\n  --white: 0 0% 100%;\n  --soft: 222 20% 72%;\n  --dim: 222 15% 54%;\n  --accent: 174 72% 62%;\n  --violet: 259 75% 66%;\n  --line: 225 30% 24%;\n  --line-strong: 225 22% 38%;\n  --action: 174 64% 70%;\n  --action-ink: 230 50% 8%;\n  color-scheme: dark;\n  font-synthesis: none;\n}\n\n@theme inline {\n  --color-night: hsl(var(--night));\n  --color-night-raised: hsl(var(--night-raised));\n  --color-mist: hsl(var(--mist));\n  --color-white: hsl(var(--white));\n  --color-soft: hsl(var(--soft));\n  --color-dim: hsl(var(--dim));\n  --color-accent: hsl(var(--accent));\n  --color-violet: hsl(var(--violet));\n  --color-line: hsl(var(--line) / 0.55);\n  --color-line-strong: hsl(var(--line-strong));\n  --color-action: hsl(var(--action));\n  --color-action-ink: hsl(var(--action-ink));\n  --font-sans: \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", system-ui, sans-serif;\n  --font-mono: \"SFMono-Regular\", Consolas, \"Liberation Mono\", monospace;\n}\n\n* {\n  box-sizing: border-box;\n}\n\nhtml {\n  min-width: 320px;\n  background: hsl(var(--night));\n}\n\nbody {\n  min-width: 320px;\n  min-height: 100vh;\n  margin: 0;\n  background: hsl(var(--night));\n  font-family: var(--font-sans);\n  -webkit-font-smoothing: antialiased;\n}\n\nbutton {\n  min-height: 48px;\n  cursor: pointer;\n  touch-action: manipulation;\n}\n\nbutton:focus-visible,\n[tabindex=\"-1\"]:focus-visible {\n  outline: 2px solid hsl(var(--accent));\n  outline-offset: 5px;\n}\n\n::selection {\n  color: hsl(var(--white));\n  background: hsl(var(--violet) / 0.55);\n}\n\n.app-backgr",
+        "contentLength": 7799,
+        "contentSha256": "276bb23c4d26227d68050bf41f7f6e92449058e1415e32c1f9822bd28640c239",
+        "contentTruncated": true
+      },
+      "result": "File created successfully at: /Users/zeh/Documents/elsewhere/src/index.css The file state is current in your context; no need to read it back.",
+      "resultJsonlLine": 165
+    },
+    {
+      "sourceJsonlLine": 204,
+      "toolCallId": "8314c8d3-ab32-4924-86d8-e8a055e49715",
+      "name": "Edit",
+      "input": {
+        "file_path": "/Users/zeh/Documents/elsewhere/src/index.css",
+        "old_string": ".brand-mark {\n  display: grid;",
+        "new_string": ".brand-mark {\n  position: relative;\n  display: grid;"
+      },
+      "result": "Successfully modified file: /Users/zeh/Documents/elsewhere/src/index.css (1 replacements). The file state is current in your context; no need to read it back.",
+      "resultJsonlLine": 206
+    },
+    {
+      "sourceJsonlLine": 360,
+      "toolCallId": "0b8f8887-ce75-44c9-8104-98334519bc6f",
+      "name": "Bash",
+      "input": {
+        "command": "npm run typecheck",
+        "description": "Run TypeScript validation",
+        "dir_path": "/Users/zeh/Documents/elsewhere",
+        "timeout": 120000,
+        "risk": false
+      },
+      "result": "> elsewhere-missed-call@0.1.0 typecheck\n> tsc --noEmit",
+      "resultJsonlLine": 367
+    },
+    {
+      "sourceJsonlLine": 361,
+      "toolCallId": "ee6a2ac1-afe6-46b9-a43c-238b0172511c",
+      "name": "Bash",
+      "input": {
+        "command": "npm run build",
+        "description": "Build production application",
+        "dir_path": "/Users/zeh/Documents/elsewhere",
+        "timeout": 120000,
+        "risk": false
+      },
+      "result": "> elsewhere-missed-call@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.8 building client environment for production...\ntransforming...\n✓ 16 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.68 kB │ gzip:  0.46 kB\ndist/assets/index-CmsrSuYH.css   16.42 kB │ gzip:  4.75 kB\ndist/assets/index-C62NWctl.js   226.16 kB │ gzip: 70.97 kB\n\n✓ built in 92ms",
+      "resultJsonlLine": 369
+    },
+    {
+      "sourceJsonlLine": 515,
+      "toolCallId": "68fecc70-7109-4f00-bb0e-9640db018144",
+      "name": "Edit",
+      "input": {
+        "file_path": "/Users/zeh/Documents/elsewhere/src/App.tsx",
+        "old_string": "className=\"intro-heading max-w-2xl text-[clamp(2.25rem,5vw,4.75rem)]",
+        "new_string": "className=\"intro-heading max-w-3xl text-[clamp(2.25rem,5vw,4.75rem)]"
+      },
+      "result": "Successfully modified file: /Users/zeh/Documents/elsewhere/src/App.tsx (1 replacements). The file state is current in your context; no need to read it back.",
+      "resultJsonlLine": 518
+    },
+    {
+      "sourceJsonlLine": 516,
+      "toolCallId": "31f22d48-b05e-4151-ab77-b274dc5f8531",
+      "name": "Edit",
+      "input": {
+        "file_path": "/Users/zeh/Documents/elsewhere/src/index.css",
+        "old_string": "html {\n  min-width: 320px;\n  background: hsl(var(--night));\n}\n\nbody {\n  min-width: 320px;\n  min-height: 100vh;",
+        "new_string": "html {\n  background: hsl(var(--night));\n}\n\nbody {\n  min-height: 100vh;"
+      },
+      "result": "Successfully modified file: /Users/zeh/Documents/elsewhere/src/index.css (1 replacements). The file state is current in your context; no need to read it back.",
+      "resultJsonlLine": 520
+    },
+    {
+      "sourceJsonlLine": 525,
+      "toolCallId": "61e64b92-f737-4104-aac4-230068da28f1",
+      "name": "Bash",
+      "input": {
+        "command": "npm run typecheck",
+        "description": "Revalidate TypeScript after visual fixes",
+        "dir_path": "/Users/zeh/Documents/elsewhere",
+        "timeout": 120000,
+        "risk": false
+      },
+      "result": "> elsewhere-missed-call@0.1.0 typecheck\n> tsc --noEmit",
+      "resultJsonlLine": 528
+    },
+    {
+      "sourceJsonlLine": 526,
+      "toolCallId": "75124112-ff5a-4d7a-9a27-a9940741b4bf",
+      "name": "Bash",
+      "input": {
+        "command": "npm run build",
+        "description": "Rebuild after visual fixes",
+        "dir_path": "/Users/zeh/Documents/elsewhere",
+        "timeout": 120000,
+        "risk": false
+      },
+      "result": "> elsewhere-missed-call@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.8 building client environment for production...\ntransforming...\n✓ 16 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.68 kB │ gzip:  0.46 kB\ndist/assets/index-CxpDV8Pm.css   16.56 kB │ gzip:  4.77 kB\ndist/assets/index-iey-HzJI.js   226.16 kB │ gzip: 70.97 kB\n\n✓ built in 87ms",
+      "resultJsonlLine": 530
+    },
+    {
+      "sourceJsonlLine": 533,
+      "toolCallId": "a4f53943-73e0-4a43-ad7f-3f946aa685d4",
+      "name": "Bash",
+      "input": {
+        "command": "node --input-type=module <<'NODE'\nimport { writeFile } from 'node:fs/promises'\n\nconst target = await fetch('http://127.0.0.1:9223/json/new?about:blank', { method: 'PUT' }).then((response) => response.json())\nconst socket = new WebSocket(target.webSocketDebuggerUrl)\nawait new Promise((resolve, reject) => {\n  socket.addEventListener('open', resolve, { once: true })\n  socket.addEventListener('error', reject, { once: true })\n})\nlet sequence = 0\nconst pending = new Map()\nconst eventWaiters = new Map()\nconst requests = []\nconst responses = []\nconst exceptions = []\nconst logEntries = []\nsocket.addEventListener('message', (event) => {\n  const message = JSON.parse(event.data)\n  if (message.id) {\n    const handler = pending.get(message.id)\n    if (!handler) return\n    pending.delete(message.id)\n    message.error ? handler.reject(new Error(JSON.stringify(message.error))) : handler.resolve(message.result)\n    return\n  }\n  if (message.method === 'Network.requestWillBeSent') requests.push(message.params.request.url)\n  if (message.method === 'Network.responseReceived') responses.push({ url: message.params.response.url, status: message.params.response.status })\n  if (message.method === 'Runtime.exceptionThrown') exceptions.push(message.params.exceptionDetails)\n  if (message.method === 'Log.entryAdded') logEntries.push(message.params.entry)\n  const waiter = eventWaiters.get(message.method)\n  if (waiter) {\n    eventWaiters.delete(message.method)\n    waiter(message.params)\n  }\n})\nfunction send(method, params = {}) {\n  const id = ++sequence\n  return new Promise((resolve, reject) => {\n    pending.set(id, { resolve, reject })\n    socket.send(JSON.stringify({ id, method, params }))\n  })\n}\nfunction waitForEvent(method) { return new Promise((resolve) => eventWaiters.set(method, resolve)) }\nasync function evaluate(expression) {\n  const result = await send('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true })\n  if (result.exceptionDetails) throw new Error(JSON.stringify(result.exceptionDetails))\n  return result.result.value\n}\nasync function settle() {\n  await evaluate('new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))')\n  await new Promise((resolve) => setTimeout(resolve, 550))\n}\nasync function navigate() {\n  const loaded = waitForEvent('Page.loadEventFired')\n  await send('Page.navigate', { url: 'http://127.0.0.1:5173/' })\n  await loaded\n  await settle()\n}\nasync function key(keyValue, code, virtualKey, text) {\n  const down = { key: keyValue, code, windowsVirtualKeyCode: virtualKey }\n  if (text) {\n    down.type = 'keyDown'\n    down.text = text\n    down.unmodifiedText = text\n  } else down.type = 'rawKeyDown'\n  await send('Input.dispatchKeyEvent', down)\n  await send('Input.dispatchKeyEvent', { type: 'keyUp', key: keyValue, code, windowsVirtualKeyCode: virtualKey })\n  await settle()\n}\nasync function clickButton() {\n  const rect = await evaluate(\"(() => { const r = document.querySelector('button').getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; })()\")\n  await send('Input.dispatchMouseEvent', { type: 'mousePressed', ...rect, button: 'left', clickCount: 1 })\n  await send('Input.dispatchMouseEvent', { type: 'mouseReleased', ...rect, button: 'left', clickCount: 1 })\n  await settle()\n}\nasync function screenshot(name) {\n  const result = await send('Page.captureScreenshot', { format: 'png', fromSurface: true, captureBeyondViewport: false })\n  await writeFile(`/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-001/${name}.png`, Buffer.from(result.data, 'base64'))\n}\nawait send('Page.enable')\nawait send('Runtime.enable')\nawait send('Network.enable')\nawait send('Log.enable')\nconst results = []\nlet keyboardEvidence\nfor (const [width, height] of [[390, 844], [1440, 900], [320, 844]]) {\n  await send('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: 1, mobile: false })\n  await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }] })\n  await navigate()\n  const home = await evaluate(`(() => {\n    const button = document.querySelector('button')\n    const rect = button.getBoundingClientRect()\n    const root = document.documentElement\n    return {\n      viewport: { width: innerWidth, height: innerHeight },\n      layoutViewportWidth: root.clientWidth,\n      documentWidth: root.scrollWidth,\n      documentHeight: root.scrollHeight,\n      horizontalOverflow: root.scrollWidth > root.clientWidth,\n      title: document.querySelector('h1').innerText,\n      button: { text: button.innerText, x: rect.x, y: rect.y, width: rect.width, height: rect.height, withinHorizontalViewport: rect.left >= 0 && rect.right <= root.clientWidth },\n      pageScrollable: root.scrollHeight > innerHeight\n    }\n  })()`)\n  await screenshot(`home-${width}x${height}`)\n  const record = { home }\n  if (width !== 320) {\n    await clickButton()\n    record.intro = await evaluate(`(() => ({\n      heading: document.querySelector('h1').innerText,\n      activeElement: document.activeElement.innerText,\n      disclaimerPresent: document.body.innerText.includes('这是一段虚构的平行人生，不代表对真实未来的预测。'),\n      returnButton: document.querySelector('button').innerText\n    }))()`)\n    await screenshot(`intro-${width}x${height}`)\n    await clickButton()\n    record.mouseReturn = await evaluate(\"document.querySelector('h1').innerText\")\n\n    await navigate()\n    const keyboard = {}\n    await key('Tab', 'Tab', 9)\n    keyboard.tabToStart = await evaluate(\"({ active: document.activeElement.innerText, focusVisible: document.activeElement.matches(':focus-visible'), outline: getComputedStyle(document.activeElement).outline })\")\n    await key('Enter', 'Enter', 13, '\\r')\n    keyboard.enterStart = await evaluate(\"({ heading: document.querySelector('h1').innerText, active: document.activeElement.innerText })\")\n    await key('Tab', 'Tab', 9)\n    keyboard.tabToReturn = await evaluate(\"({ active: document.activeElement.innerText, focusVisible: document.activeElement.matches(':focus-visible'), outline: getComputedStyle(document.activeElement).outline })\")\n    if (width === 390) await screenshot('keyboard-focus-return')\n    await key(' ', 'Space', 32, ' ')\n    keyboard.spaceReturn = await evaluate(\"({ heading: document.querySelector('h1').innerText, active: document.activeElement.innerText })\")\n    await key(' ', 'Space', 32, ' ')\n    keyboard.spaceRestart = await evaluate(\"({ heading: document.querySelector('h1').innerText, active: document.activeElement.innerText })\")\n    await key('Tab', 'Tab', 9)\n    await key('Enter', 'Enter', 13, '\\r')\n    keyboard.enterReturn = await evaluate(\"({ heading: document.querySelector('h1').innerText, active: document.activeElement.innerText })\")\n    record.keyboard = keyboard\n    if (width === 390) keyboardEvidence = keyboard\n  }\n  if (width === 390) {\n    await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] })\n    await navigate()\n    record.reducedMotion = await evaluate(`(() => {\n      const screen = getComputedStyle(document.querySelector('.screen-enter'))\n      const orbit = getComputedStyle(document.querySelector('.orbit-outer'))\n      const button = getComputedStyle(document.querySelector('button'))\n      return { mediaMatches: matchMedia('(prefers-reduced-motion: reduce)').matches, screenAnimation: screen.animationName, orbitAnimation: orbit.animationName, buttonTransitionDuration: button.transitionDuration }\n    })()`)\n    await screenshot('home-390x844-reduced-motion')\n  }\n  results.push(record)\n}\nconst network = [...new Set(requests)].map((url) => ({ url, status: responses.findLast((entry) => entry.url === url)?.status ?? null }))\nconst output = {\n  results,\n  network,\n  externalRequests: network.filter(({ url }) => /^https?:/.test(url) && !url.startsWith('http://127.0.0.1:5173/')),\n  failedResponses: responses.filter(({ status }) => status >= 400),\n  exceptions,\n  logEntries: logEntries.filter((entry) => entry.level === 'error' || entry.level === 'warning')\n}\nawait writeFile('/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-001/browser-results.json', JSON.stringify(output, null, 2) + '\\n')\nawait writeFile('/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-001/keyboard-results.json', JSON.stringify(keyboardEvidence, null, 2) + '\\n')\nconsole.log(JSON.stringify(output, null, 2))\nsocket.close()\nNODE",
+        "description": "Rerun complete browser acceptance checks",
+        "dir_path": "/Users/zeh/Documents/elsewhere",
+        "timeout": 120000,
+        "risk": false
+      },
+      "result": "{\n  \"results\": [\n    {\n      \"home\": {\n        \"viewport\": {\n          \"width\": 390,\n          \"height\": 844\n        },\n        \"layoutViewportWidth\": 375,\n        \"documentWidth\": 375,\n        \"documentHeight\": 1136,\n        \"horizontalOverflow\": false,\n        \"title\": \"Elsewhere\\n未接来电\",\n        \"button\": {\n          \"text\": \"开始体验\",\n          \"x\": 20,\n          \"y\": 447.453125,\n          \"width\": 184,\n          \"height\": 52,\n          \"withinHorizontalViewport\": true\n        },\n        \"pageScrollable\": true\n      },\n      \"intro\": {\n        \"heading\": \"如果当年选择了音乐，你现在会在哪里？\",\n        \"activeElement\": \"如果当年选择了音乐，你现在会在哪里？\",\n        \"disclaimerPresent\": true,\n        \"returnButton\": \"返回首页\"\n      },\n      \"mouseReturn\": \"Elsewhere\\n未接来电\",\n      \"keyboard\": {\n        \"tabToStart\": {\n          \"active\": \"开始体验\",\n          \"focusVisible\": true,\n          \"outline\": \"rgb(88, 228, 214) solid 2px\"\n        },\n        \"enterStart\": {\n          \"heading\": \"如果当年选择了音乐，你现在会在哪里？\",\n          \"active\": \"如果当年选择了音乐，你现在会在哪里？\"\n        },\n        \"tabToReturn\": {\n          \"active\": \"返回首页\",\n          \"focusVisible\": true,\n          \"outline\": \"rgb(88, 228, 214) solid 2px\"\n        },\n        \"spaceReturn\": {\n          \"heading\": \"Elsewhere\\n未接来电\",\n          \"active\": \"开始体验\"\n        },\n        \"spaceRestart\": {\n          \"heading\": \"如果当年选择了音乐，你现在会在哪里？\",\n          \"active\": \"如果当年选择了音乐，你现在会在哪里？\"\n        },\n        \"enterReturn\": {\n          \"heading\": \"Elsewhere\\n未接来电\",\n          \"active\": \"开始体验\"\n        }\n      },\n      \"reducedMotion\": {\n        \"mediaMatches\": true,\n        \"screenAnimation\": \"none\",\n        \"orbitAnimation\": \"none\",\n        \"buttonTransitionDuration\": \"0s\"\n      }\n    },\n    {\n      \"home\": {\n        \"viewport\": {\n          \"width\": 1440,\n          \"height\": 900\n        },\n        \"layoutViewportWidth\": 1440,\n        \"documentWidth\": 1440,\n        \"documentHeight\": 900,\n        \"horizontalOverflow\": false,\n        \"title\": \"Elsewhere\\n未接来电\",\n        \"button\": {\n          \"text\": \"开始体验\",\n          \"x\": 48,\n          \"y\": 608.484375,\n          \"width\": 184,\n          \"height\": 52,\n          \"withinHorizontalViewport\": true\n        },\n        \"pageScrollable\": false\n      },\n      \"intro\": {\n        \"heading\": \"如果当年选择了音乐，\\n你现在会在哪里？\",\n        \"activeElement\": \"如果当年选择了音乐，\\n你现在会在哪里？\",\n        \"disclaimerPresent\": true,\n        \"returnButton\": \"返回首页\"\n      },\n      \"mouseReturn\": \"Elsewhere\\n未接来电\",\n      \"keyboard\": {\n        \"tabToStart\": {\n          \"active\": \"开始体验\",\n          \"focusVisible\": true,\n          \"outline\": \"rgb(88, 228, 214) solid 2px\"\n        },\n        \"enterStart\": {\n          \"heading\": \"如果当年选择了音乐，\\n你现在会在哪里？\",\n          \"active\": \"如果当年选择了音乐，\\n你现在会在哪里？\"\n        },\n        \"tabToReturn\": {\n          \"active\": \"返回首页\",\n          \"focusVisible\": true,\n          \"outline\": \"rgb(88, 228, 214) solid 2px\"\n        },\n        \"spaceReturn\": {\n          \"heading\": \"Elsewhere\\n未接来电\",\n          \"active\": \"开始体验\"\n        },\n        \"spaceRestart\": {\n          \"heading\": \"如果当年选择了音乐，\\n你现在会在哪里？\",\n          \"active\": \"如果当年选择了音乐，\\n你现在会在哪里？\"\n        },\n        \"enterReturn\": {\n          \"heading\": \"Elsewhere\\n未接来电\",\n          \"active\": \"开始体验\"\n        }\n      }\n    },\n    {\n      \"home\": {\n        \"viewport\": {\n          \"width\": 320,\n          \"height\": 844\n        },\n        \"layoutViewportWidth\": 305,\n        \"documentWidth\": 305,\n        \"documentHeight\": 1108,\n        \"horizontalOverflow\": false,\n        \"title\": \"Elsewhere\\n未接来电\",\n        \"button\": {\n          \"text\": \"开始体验\",\n          \"x\": 20,\n          \"y\": 447.453125,\n          \"width\": 172,\n          \"height\": 52,\n          \"withinHorizontalViewport\": true\n        },\n        \"pageScrollable\": true\n      }\n    }\n  ],\n  \"network\": [\n    {\n      \"url\": \"http://127.0.0.1:5173/\",\n      \"status\": 200\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/@vite/client\",\n      \"status\": 304\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/src/main.tsx?t=1794890861102\",\n      \"status\": 304\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/@react-refresh\",\n      \"status\": 304\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/node_modules/.vite/deps/react.js?v=9f1f7608\",\n      \"status\": 200\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/node_modules/.vite/deps/react-dom_client.js?v=2e172918\",\n      \"status\": 200\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/src/App.tsx?t=1794890861002\",\n      \"status\": 304\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/src/index.css?t=1794890861102\",\n      \"status\": 304\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=9f1f7608\",\n      \"status\": 200\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/node_modules/.vite/deps/react-DgVJeC5g.js?v=00c9ff15\",\n      \"status\": 200\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/node_modules/vite/dist/client/env.mjs\",\n      \"status\": 304\n    },\n    {\n      \"url\": \"http://127.0.0.1:5173/node_modules/.vite/deps/react-dom-CFuoV50Q.js?v=00c9ff15\",\n      \"status\": 200\n    }\n  ],\n  \"externalRequests\": [],\n  \"failedResponses\": [],\n  \"exceptions\": [],\n  \"logEntries\": []\n}",
+      "resultJsonlLine": 535
+    }
+  ]
+}

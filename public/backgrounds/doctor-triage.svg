@@ -115,14 +115,6 @@
           <path fill="none" d="M50 62V72M32 72H68" stroke="#8b9ba1" stroke-opacity=".35" stroke-width="3"/>
         </g>
       </g>
-      <g transform="translate(1208 456) scale(1.18)">
-    <circle cx="0" cy="34" r="25" fill="none" stroke="#b4c2c4" stroke-opacity=".6" stroke-width="4"/>
-    <circle cx="62" cy="40" r="14" fill="none" stroke="#b4c2c4" stroke-opacity=".5" stroke-width="3"/>
-    <path d="M-14 12L4 -32H34L24 12Z" fill="#26343a" stroke="#cfdbdb" stroke-opacity=".62" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M-16 14H34L42 38H-8Z" fill="#1b262b" stroke="#cfdbdb" stroke-opacity=".52" stroke-width="3"/>
-    <path fill="none" d="M-16 14L-24 40M4 -32H50M34 14V34H16" stroke="#cfdbdb" stroke-opacity=".52" stroke-width="4"/>
-    <path fill="none" d="M-4 -42H34" stroke="#aab8ba" stroke-opacity=".45" stroke-width="4" stroke-linecap="round"/>
-  </g>
 
     <rect x="806" y="164" width="532" height="502" fill="url(#glass)" opacity=".12"/>
   </g></g>

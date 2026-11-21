@@ -1218,3 +1218,11 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 校验：构建通过；扩展流程 17 项通过，`failures` / `consoleEvents` 均为 `[]`；40 张场景动效检查通过。更新[分诊选择画面](assets/TASK-003/expansion-career-choice-1440.png)。
 
 未合并 main、未部署；未经 Codex 复审，不据此自称 PASS。
+
+## 43. 分诊画面移除轮椅
+
+日期：2026-11-20（Asia/Shanghai）。按反馈移除分诊选择画面中的轮椅，并删除已无引用的轮椅绘制函数。
+
+画面现在只保留分诊牌、`A037` 叫号台、记录板和实心分诊台，右侧留出更干净的台面空间。构建通过；扩展流程 17 项通过，`failures` / `consoleEvents` 均为 `[]`；40 张场景动效检查通过。更新[分诊选择画面](assets/TASK-003/expansion-career-choice-1440.png)。
+
+未合并 main、未部署；未经 Codex 复审，不据此自称 PASS。

@@ -92,16 +92,6 @@ function hospitalBed(x, y, width = 300) {
   </g>`
 }
 
-function wheelchair(x, y, scale = 1) {
-  return `<g transform="translate(${x} ${y}) scale(${scale})">
-    <circle cx="0" cy="34" r="25" fill="none" stroke="#b4c2c4" stroke-opacity=".6" stroke-width="4"/>
-    <circle cx="62" cy="40" r="14" fill="none" stroke="#b4c2c4" stroke-opacity=".5" stroke-width="3"/>
-    <path d="M-14 12L4 -32H34L24 12Z" fill="#26343a" stroke="#cfdbdb" stroke-opacity=".62" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M-16 14H34L42 38H-8Z" fill="#1b262b" stroke="#cfdbdb" stroke-opacity=".52" stroke-width="3"/>
-    <path fill="none" d="M-16 14L-24 40M4 -32H50M34 14V34H16" stroke="#cfdbdb" stroke-opacity=".52" stroke-width="4"/>
-    <path fill="none" d="M-4 -42H34" stroke="#aab8ba" stroke-opacity=".45" stroke-width="4" stroke-linecap="round"/>
-  </g>`
-}
 
 function studentDesk(x, y, scale = 1, { paper = '#e1d6c1', bag = '#3f514b' } = {}) {
   return `<g transform="translate(${x} ${y}) scale(${scale})">
@@ -200,8 +190,7 @@ function doctorVariant(variant) {
           <path fill="none" d="M50 62V72M32 72H68" stroke="#8b9ba1" stroke-opacity=".35" stroke-width="3"/>
         </g>
       </g>
-      ${wheelchair(1208, 456, 1.18)}
-    `)
+      `)
   }
   if (variant === 2) {
     return careerShell(`

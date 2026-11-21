@@ -300,7 +300,29 @@ function rightRoom({ showSheet = true, showGuitar = true } = {}) {
 }
 
 
+const sceneDefs = `  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#120d0c"/><stop offset=".46" stop-color="#2b1c1c"/><stop offset="1" stop-color="#160f0e"/></linearGradient>
+    <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e2a276" stop-opacity=".36"/><stop offset=".48" stop-color="#8b5e5e" stop-opacity=".15"/><stop offset="1" stop-color="#17110f" stop-opacity="0"/></linearGradient>
+    <linearGradient id="warmWash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efb77d" stop-opacity=".2"/><stop offset=".5" stop-color="#dca18c" stop-opacity=".13"/><stop offset="1" stop-color="#c98370" stop-opacity=".18"/></linearGradient>
+    <linearGradient id="leftRoom" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#3b2c24"/><stop offset=".55" stop-color="#2a211d"/><stop offset="1" stop-color="#15100e"/></linearGradient>
+    <linearGradient id="rightRoom" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#3b292c"/><stop offset=".58" stop-color="#2b2025"/><stop offset="1" stop-color="#171114"/></linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#261c18"/><stop offset="1" stop-color="#0e0b0a"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d5b497" stop-opacity=".13"/><stop offset=".42" stop-color="#62483f" stop-opacity=".05"/><stop offset=".48" stop-color="#f4d7b6" stop-opacity=".13"/><stop offset="1" stop-color="#211512" stop-opacity=".03"/></linearGradient>
+    <linearGradient id="spotlight" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe0b6" stop-opacity=".27"/><stop offset="1" stop-color="#d9a18b" stop-opacity="0"/></linearGradient>
+    <linearGradient id="bottomShade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#100b09" stop-opacity="0"/><stop offset=".56" stop-color="#100b09" stop-opacity=".46"/><stop offset="1" stop-color="#0b0807" stop-opacity=".94"/></linearGradient>
+    <radialGradient id="lampGlow"><stop stop-color="#ffe0a8" stop-opacity=".78"/><stop offset=".26" stop-color="#f4bd78" stop-opacity=".3"/><stop offset="1" stop-color="#e6a053" stop-opacity="0"/></radialGradient>
+    <radialGradient id="stageGlow"><stop stop-color="#ffd8bd" stop-opacity=".48"/><stop offset=".35" stop-color="#dda088" stop-opacity=".18"/><stop offset="1" stop-color="#aa6e63" stop-opacity="0"/></radialGradient>
+    <radialGradient id="vignette" cx=".5" cy=".45" r=".72"><stop offset=".42" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".66"/></radialGradient>
+    <filter id="blur8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="blur24" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#000" flood-opacity=".55"/></filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" seed="27" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .075"/></feComponentTransfer></filter>
+    <clipPath id="leftClip"><rect x="102" y="164" width="532" height="502" rx="3"/></clipPath><clipPath id="rightClip"><rect x="806" y="164" width="532" height="502" rx="3"/></clipPath>
+  </defs>`
+
 function renderScene(name, config) {
+  if (name === 'home') return renderStandaloneScene('home', '雨夜里，两扇亮着的窗由一根电话线连接。', homeBody(), { rain: 0.3, warm: true })
+  if (name === 'incoming') return renderStandaloneScene('incoming', '两台电话在两个世界里同时响起。', incomingBody(), { rain: 0.34, cool: true })
   const left = config.left ?? 1
   const right = config.right ?? 1
   const dawn = config.dawn ? `<rect width="1440" height="900" fill="url(#dawn)"/><path d="M0 248C280 210 480 268 720 226C970 182 1160 244 1440 196V0H0Z" fill="#e5a18a" opacity=".07"/><ellipse cx="720" cy="210" rx="380" ry="100" fill="#efb493" opacity=".1" filter="url(#blur24)"/>` : ''
@@ -324,25 +346,7 @@ function renderScene(name, config) {
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title desc">
   <title id="title">Elsewhere 雨夜双城 · ${name}</title><desc id="desc">工程书桌与音乐排练室在雨夜中由来电信号连接。</desc>
   ${motionStyle}
-  <defs>
-    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#120d0c"/><stop offset=".46" stop-color="#2b1c1c"/><stop offset="1" stop-color="#160f0e"/></linearGradient>
-    <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e2a276" stop-opacity=".36"/><stop offset=".48" stop-color="#8b5e5e" stop-opacity=".15"/><stop offset="1" stop-color="#17110f" stop-opacity="0"/></linearGradient>
-    <linearGradient id="warmWash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efb77d" stop-opacity=".2"/><stop offset=".5" stop-color="#dca18c" stop-opacity=".13"/><stop offset="1" stop-color="#c98370" stop-opacity=".18"/></linearGradient>
-    <linearGradient id="leftRoom" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#3b2c24"/><stop offset=".55" stop-color="#2a211d"/><stop offset="1" stop-color="#15100e"/></linearGradient>
-    <linearGradient id="rightRoom" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#3b292c"/><stop offset=".58" stop-color="#2b2025"/><stop offset="1" stop-color="#171114"/></linearGradient>
-    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#261c18"/><stop offset="1" stop-color="#0e0b0a"/></linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d5b497" stop-opacity=".13"/><stop offset=".42" stop-color="#62483f" stop-opacity=".05"/><stop offset=".48" stop-color="#f4d7b6" stop-opacity=".13"/><stop offset="1" stop-color="#211512" stop-opacity=".03"/></linearGradient>
-    <linearGradient id="spotlight" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe0b6" stop-opacity=".27"/><stop offset="1" stop-color="#d9a18b" stop-opacity="0"/></linearGradient>
-    <linearGradient id="bottomShade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#100b09" stop-opacity="0"/><stop offset=".56" stop-color="#100b09" stop-opacity=".46"/><stop offset="1" stop-color="#0b0807" stop-opacity=".94"/></linearGradient>
-    <radialGradient id="lampGlow"><stop stop-color="#ffe0a8" stop-opacity=".78"/><stop offset=".26" stop-color="#f4bd78" stop-opacity=".3"/><stop offset="1" stop-color="#e6a053" stop-opacity="0"/></radialGradient>
-    <radialGradient id="stageGlow"><stop stop-color="#ffd8bd" stop-opacity=".48"/><stop offset=".35" stop-color="#dda088" stop-opacity=".18"/><stop offset="1" stop-color="#aa6e63" stop-opacity="0"/></radialGradient>
-    <radialGradient id="vignette" cx=".5" cy=".45" r=".72"><stop offset=".42" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".66"/></radialGradient>
-    <filter id="blur8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
-    <filter id="blur24" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="24"/></filter>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#000" flood-opacity=".55"/></filter>
-    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" seed="27" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .075"/></feComponentTransfer></filter>
-    <clipPath id="leftClip"><rect x="102" y="164" width="532" height="502" rx="3"/></clipPath><clipPath id="rightClip"><rect x="806" y="164" width="532" height="502" rx="3"/></clipPath>
-  </defs>
+${sceneDefs}
   <rect width="1440" height="900" fill="url(#night)"/>
   <ellipse cx="360" cy="340" rx="460" ry="370" fill="#b47b58" opacity=".09"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#a86c6c" opacity=".1"/>
 ${dawn}
@@ -361,6 +365,130 @@ ${`  <g transform="translate(0 -${uiLift}) ${camera}">${focusShade}${split}${pho
   <rect y="606" width="1440" height="294" fill="url(#bottomShade)"/><rect width="1440" height="900" fill="url(#vignette)"/><rect width="1440" height="900" filter="url(#grain)" opacity=".38"/>
 </svg>
 `
+}
+
+
+function phoneGlyph(x, y, scale = 1, accent = '#8ad7d6') {
+  return `<g transform="translate(${x} ${y}) scale(${scale})">
+    <circle r="30" fill="#0b1821" stroke="${accent}" stroke-opacity=".5" stroke-width="1.5"/>
+    <path d="M-12 -9L-4 1L-10 7C-6 13 -2 17 4 19L8 13L18 19L16 26C15 29 12 30 9 29C-6 25 -16 15 -20 0C-21 -4 -19 -7 -16 -8Z" fill="none" stroke="#c7eeea" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24 -18C32 -15 37 -9 39 -1" fill="none" stroke="${accent}" stroke-opacity=".6" stroke-width="2" stroke-linecap="round"/>
+    <path d="M27 -27C40 -23 48 -13 51 0" fill="none" stroke="${accent}" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
+  </g>`
+}
+
+function landlinePhone(x, y, accent = '#8ad7d6') {
+  return `<g transform="translate(${x} ${y})">
+    <ellipse cx="115" cy="176" rx="122" ry="16" fill="#070b0d" opacity=".55"/>
+    <path d="M14 100H220L238 164H-6Z" fill="#303a3e" stroke="#aab6b7" stroke-opacity=".55" stroke-width="2"/>
+    <rect x="26" y="70" width="182" height="36" rx="18" fill="#4a575b" stroke="#d0d8d8" stroke-opacity=".4" stroke-width="2"/>
+    <path fill="none" d="M40 82H190" stroke="#d8dfdf" stroke-opacity=".18" stroke-width="2"/>
+    <circle cx="42" cy="88" r="11" fill="#1a2226" stroke="#b4c1c2" stroke-opacity=".55"/>
+    <circle cx="192" cy="88" r="11" fill="#1a2226" stroke="#b4c1c2" stroke-opacity=".55"/>
+    <circle cx="115" cy="132" r="30" fill="#1a2226" stroke="#8d9da0" stroke-opacity=".7" stroke-width="2"/>
+    <circle cx="115" cy="132" r="7" fill="#0a1114" stroke="#b1c0c2" stroke-opacity=".55"/>
+    <path fill="none" d="M88 120H142M78 146H98M132 146H152M88 158H98M132 158H152" stroke="#b1c0c2" stroke-opacity=".3" stroke-width="2"/>
+    <path fill="none" d="M220 128C270 146 252 196 212 202" stroke="#a4b2b4" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
+    <circle class="anim blink" cx="230" cy="112" r="4" fill="${accent}" opacity=".85"/>
+    <circle class="anim ring" cx="115" cy="88" r="42" fill="none" stroke="${accent}" stroke-opacity=".24" stroke-width="2"/>
+    <circle class="anim ring" cx="115" cy="88" r="50" fill="none" stroke="${accent}" stroke-opacity=".14" stroke-width="2" style="animation-delay:-2.2s"/>
+    <circle class="anim ring" cx="115" cy="88" r="62" fill="none" stroke="${accent}" stroke-opacity=".08" stroke-width="2" style="animation-delay:-4.4s"/>
+  </g>`
+}
+
+function renderStandaloneScene(name, description, body, { rain = 0.3, cool = false, warm = true } = {}) {
+  const tint = cool
+    ? '<rect width="1440" height="900" fill="#6d5360" opacity=".09"/>'
+    : warm
+      ? '<rect width="1440" height="900" fill="#9b6946" opacity=".09"/>'
+      : ''
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title desc">
+  <title id="title">Elsewhere 雨夜双城 · ${name}</title><desc id="desc">${description}</desc>
+  ${motionStyle}
+  ${sceneDefs}
+  <rect width="1440" height="900" fill="url(#night)"/>
+  <ellipse cx="360" cy="340" rx="460" ry="370" fill="#b47b58" opacity=".09"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#a86c6c" opacity=".1"/>
+  ${body}
+  ${rainLines(150, rain, 31)}
+  ${dustMotes(22, 67)}
+  ${tint}
+  <rect width="1440" height="900" fill="url(#warmWash)"/>
+  <rect y="606" width="1440" height="294" fill="url(#bottomShade)"/><rect width="1440" height="900" fill="url(#vignette)"/><rect width="1440" height="900" filter="url(#grain)" opacity=".38"/>
+</svg>
+`
+}
+
+function homeBody() {
+  return `<rect y="112" width="1440" height="642" fill="#191314"/>
+  <path d="M0 556H1440M0 630H1440" stroke="#3a2a24" stroke-opacity=".32" stroke-width="2"/>
+  <g stroke="#8a6b58" stroke-opacity=".08"><path d="M0 280H1440M0 410H1440M0 520H1440"/></g>
+  <g transform="translate(150 176)">
+    <rect width="430" height="386" rx="12" fill="#060b10" stroke="#49545b" stroke-width="10"/>
+    <rect x="12" y="12" width="406" height="362" rx="6" fill="#241b17"/>
+    <ellipse cx="210" cy="210" rx="190" ry="170" fill="url(#lampGlow)" opacity=".28"/>
+    <path d="M40 92H340" stroke="#6d5945" stroke-width="4"/>
+    <path d="M50 70H70V92H50ZM78 58H96V92H78ZM104 66H120V92H104Z" fill="#5f4b3b" opacity=".8"/>
+    <path d="M22 300H390L374 320H36Z" fill="#46362b" stroke="#8f7459" stroke-opacity=".5"/>
+    <path fill="none" d="M48 320V374M354 320V374" stroke="#211c18" stroke-width="7"/>
+    <rect x="54" y="210" width="142" height="90" rx="4" fill="#0b151b" stroke="#586a72" stroke-opacity=".5"/>
+    <path fill="none" d="M66 228H182M66 244H182M66 260H156" stroke="#7fb9b8" stroke-opacity=".36" stroke-width="3"/>
+    <path fill="none" d="M125 300V280" stroke="#586a72" stroke-opacity=".5" stroke-width="4"/>
+    <path fill="none" d="M300 160V300M284 300H316" stroke="#b08a5e" stroke-opacity=".55" stroke-width="4"/>
+    <ellipse cx="300" cy="288" rx="48" ry="14" fill="url(#lampGlow)" opacity=".5"/>
+    <path fill="none" d="M215 12V374M12 194H418" stroke="#070b0d" stroke-width="12"/>
+    <rect x="12" y="12" width="406" height="362" fill="url(#glass)" opacity=".18"/>
+  </g>
+  <g transform="translate(860 176)">
+    <rect width="430" height="386" rx="12" fill="#060b10" stroke="#49545b" stroke-width="10"/>
+    <rect x="12" y="12" width="406" height="362" rx="6" fill="#241a22"/>
+    <ellipse cx="210" cy="210" rx="190" ry="170" fill="url(#stageGlow)" opacity=".3"/>
+    <rect x="36" y="270" width="100" height="84" rx="4" fill="#171b20" stroke="#7d7b86" stroke-opacity=".4"/>
+    <path fill="none" d="M46 286H126M46 300H126M46 314H126" stroke="#a7a0ad" stroke-opacity=".22" stroke-width="2"/>
+    ${guitar(150, 96, 0.72)}
+    <path fill="none" d="M330 270V370M300 370H360M330 270L300 248M330 270L360 246" stroke="#9c8d99" stroke-opacity=".45" stroke-width="3"/>
+    <rect x="294" y="104" width="76" height="88" fill="#d8ccb8" opacity=".5" transform="rotate(4 332 148)"/>
+    <path fill="none" d="M306 124H354M306 140H354M306 156H336" stroke="#70685c" stroke-opacity=".4" stroke-width="2" transform="rotate(4 332 148)"/>
+    <path fill="none" d="M215 12V374M12 194H418" stroke="#070b0d" stroke-width="12"/>
+    <rect x="12" y="12" width="406" height="362" fill="url(#glass)" opacity=".18"/>
+  </g>
+  <path d="M132 566H598V580H132Z" fill="#2b1e18" stroke="#6f5745" stroke-opacity=".24"/>
+  <path d="M842 566H1308V580H842Z" fill="#2b1e18" stroke="#6f5745" stroke-opacity=".24"/>
+  <path d="M580 530C650 590 790 590 860 530" fill="none" stroke="#b18b62" stroke-opacity=".5" stroke-width="4"/>
+  <path class="anim signal-flow" d="M580 530C650 590 790 590 860 530" fill="none" stroke="#8ad7d6" stroke-opacity=".65" stroke-width="2" stroke-dasharray="2 10"/>
+  ${phoneGlyph(720, 528, 0.78)}`
+}
+
+function incomingBody() {
+  return `<rect y="112" width="1440" height="642" fill="#141014"/>
+  <g transform="translate(96 150)">
+    <rect width="1248" height="420" rx="8" fill="#070d12" stroke="#4a5459" stroke-width="10"/>
+    <rect x="12" y="12" width="1224" height="396" fill="#0d1a24"/>
+    <ellipse cx="620" cy="210" rx="520" ry="210" fill="url(#stageGlow)" opacity=".22"/>
+    <g fill="#d9b178" opacity=".34">
+      <rect x="118" y="250" width="10" height="12"/><rect x="146" y="226" width="8" height="10"/><rect x="210" y="270" width="7" height="9"/>
+      <rect x="276" y="238" width="9" height="11"/><rect x="356" y="260" width="8" height="8"/><rect x="900" y="236" width="9" height="11"/>
+      <rect x="960" y="262" width="8" height="9"/><rect x="1040" y="230" width="10" height="12"/><rect x="1118" y="268" width="7" height="8"/>
+    </g>
+    <g fill="#9fd8d8" opacity=".18">
+      <rect x="172" y="320" width="8" height="72"/><rect x="194" y="340" width="6" height="52"/><rect x="236" y="300" width="10" height="92"/>
+      <rect x="1018" y="310" width="8" height="82"/><rect x="1052" y="334" width="6" height="58"/><rect x="1090" y="296" width="10" height="96"/>
+    </g>
+    <path fill="none" d="M624 12V408M12 210H1236" stroke="#070b0d" stroke-width="14"/>
+    <path fill="none" d="M624 12V408M12 210H1236" stroke="#71868e" stroke-opacity=".12" stroke-width="2"/>
+    <rect x="12" y="12" width="1224" height="396" fill="url(#glass)" opacity=".16"/>
+  </g>
+  <path d="M0 560H1440V900H0Z" fill="#1a1311"/>
+  <path fill="none" d="M0 560H1440" stroke="#6b5644" stroke-opacity=".4" stroke-width="3"/>
+  ${landlinePhone(170, 420, '#d9b178')}
+  ${landlinePhone(1000, 420, '#8ad7d6')}
+  <path class="anim signal-flow" d="M410 520H1000" fill="none" stroke="#8ad7d6" stroke-opacity=".5" stroke-width="2" stroke-dasharray="2 12"/>
+  <g transform="translate(720 525)">
+    <circle class="anim ring" r="44" fill="none" stroke="#8ad7d6" stroke-opacity=".28" stroke-width="2"/>
+    <circle class="anim ring" r="58" fill="none" stroke="#8ad7d6" stroke-opacity=".16" stroke-width="2" style="animation-delay:-2.2s"/>
+    <circle class="anim ring" r="72" fill="none" stroke="#8ad7d6" stroke-opacity=".1" stroke-width="2" style="animation-delay:-4.4s"/>
+    ${phoneGlyph(0, 0, 0.75)}
+  </g>`
 }
 
 await mkdir(outputDirectory, { recursive: true })

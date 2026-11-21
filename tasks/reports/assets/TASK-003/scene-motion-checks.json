@@ -154,13 +154,13 @@
   "fileChecks": {
     "home": {
       "motionGuard": true,
-      "animatedElements": 27,
+      "animatedElements": 24,
       "rain": true,
       "motes": true
     },
     "incoming": {
       "motionGuard": true,
-      "animatedElements": 25,
+      "animatedElements": 35,
       "rain": true,
       "motes": true
     },

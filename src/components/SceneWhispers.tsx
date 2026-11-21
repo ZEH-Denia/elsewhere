@@ -1,17 +1,13 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import type { SceneName } from './SceneBackground'
 
-type EdgeKind = 'guitar' | 'sheet'
-
 type Halo = { cx: number; cy: number; rx: number; ry: number }
 type Hit = { cx: number; cy: number; w: number; h: number }
 type EdgeMask = { x: number; y: number; w: number; h: number; x1: number; y1: number; x2: number; y2: number }
 
 type WhisperEdge = {
-  kind: EdgeKind
   transform: string
   mask: EdgeMask
-  soft?: boolean
 }
 
 type Whisper = {
@@ -44,79 +40,67 @@ const whispers: Partial<Record<SceneName, Whisper[]>> = {
     hit: { cx: 1065, cy: 314, w: 108, h: 182 },
     halo: { cx: 1064, cy: 315, rx: 75, ry: 103 },
     edge: {
-      kind: 'guitar',
       transform: 'translate(0 -60) translate(860 176) translate(150 96) scale(0.72) rotate(-12 70 130)',
       mask: { x: -10, y: -10, w: 170, h: 250, x1: 20, y1: 0, x2: 140, y2: 230 },
     },
   }],
   connection: [{
     id: 'phone',
-    x: 720,
-    y: 247,
+    x: 831,
+    y: 508,
     text: '信号只够传过来声音。',
-    hit: { cx: 720, cy: 245, w: 300, h: 220 },
-    halo: { cx: 720, cy: 245, rx: 135, ry: 105 },
+    hit: { cx: 825, cy: 510, w: 185, h: 108 },
+    halo: { cx: 825, cy: 510, rx: 95, ry: 54 },
   }],
   doubt: [{
     id: 'photo',
-    x: 898,
-    y: 238,
+    x: 1056,
+    y: 416,
     text: '两张照片，背面写着同一天。',
-    hit: { cx: 930, cy: 240, w: 320, h: 230 },
-    halo: { cx: 930, cy: 240, rx: 150, ry: 115 },
+    hit: { cx: 1056, cy: 426, w: 465, h: 274 },
+    halo: { cx: 1056, cy: 426, rx: 230, ry: 130 },
   }],
   rehearsal: [{
     id: 'sheet',
-    x: 336,
-    y: 205,
+    x: 555,
+    y: 374,
     text: '第三小节，改了很多次。',
-    hit: { cx: 338, cy: 204, w: 330, h: 270 },
-    halo: { cx: 338, cy: 204, rx: 175, ry: 135 },
-    edge: {
-      kind: 'sheet',
-      transform: 'translate(0 -60) translate(-492.2 -120.4) scale(1.28) translate(648 300) rotate(-3)',
-      mask: { x: -120, y: -88, w: 240, h: 176, x1: -96, y1: -64, x2: 96, y2: 64 },
-      soft: true,
-    },
+    hit: { cx: 550, cy: 375, w: 345, h: 310 },
+    halo: { cx: 550, cy: 375, rx: 172, ry: 155 },
   }],
   desk: [{
     id: 'clock',
-    x: 720,
-    y: 236,
+    x: 824,
+    y: 317,
     text: '秒针走得很慢，像在等回答。',
     placement: 'below',
-    hit: { cx: 720, cy: 178, w: 280, h: 250 },
-    halo: { cx: 720, cy: 178, rx: 120, ry: 120 },
+    hit: { cx: 819, cy: 306, w: 226, h: 240 },
+    halo: { cx: 819, cy: 306, rx: 102, ry: 115 },
   }],
   question: [{
     id: 'voice',
-    x: 720,
-    y: 352,
+    x: 860,
+    y: 354,
     text: '有句话，被杂音轻轻吞掉了。',
-    hit: { cx: 710, cy: 376, w: 360, h: 220 },
-    halo: { cx: 710, cy: 372, rx: 155, ry: 95 },
+    hit: { cx: 854, cy: 355, w: 214, h: 157 },
+    halo: { cx: 854, cy: 355, rx: 98, ry: 67 },
   }],
   'regret-quiet': [{
     id: 'guitar',
-    x: 769,
-    y: 480,
+    x: 875,
+    y: 426,
     text: '最旧的那根弦，一直没换。',
-    hit: { cx: 768, cy: 478, w: 300, h: 340 },
-    halo: { cx: 766, cy: 484, rx: 155, ry: 200 },
-    edge: {
-      kind: 'guitar',
-      transform: 'translate(0 -60) translate(-449.3 -103.2) scale(1.24) translate(900 378) rotate(-12 70 130)',
-      mask: { x: -10, y: -10, w: 170, h: 250, x1: 20, y1: 0, x2: 140, y2: 230 },
-    },
+    hit: { cx: 875, cy: 426, w: 490, h: 275 },
+    halo: { cx: 875, cy: 426, rx: 230, ry: 128 },
   }],
   closing: [{
     id: 'rings',
-    x: 720,
-    y: 300,
+    x: 834,
+    y: 413,
     text: '波纹散开，又回到原处。',
     placement: 'below',
-    hit: { cx: 720, cy: 304, w: 360, h: 300 },
-    halo: { cx: 720, cy: 304, rx: 160, ry: 150 },
+    hit: { cx: 834, cy: 413, w: 420, h: 126 },
+    halo: { cx: 834, cy: 413, rx: 210, ry: 60 },
   }],
 }
 
@@ -133,14 +117,6 @@ function GuitarSilhouette() {
       />
     </>
   )
-}
-
-function SheetSilhouette() {
-  return <rect x="-96" y="-64" width="192" height="128" rx="4" fill="#ffd7a2" />
-}
-
-function EdgeSilhouette({ kind }: { kind: EdgeKind }) {
-  return kind === 'guitar' ? <GuitarSilhouette /> : <SheetSilhouette />
 }
 
 export function SceneWhispers({ scene, layoutKey }: { scene: SceneName; layoutKey: string }) {
@@ -223,7 +199,7 @@ export function SceneWhispers({ scene, layoutKey }: { scene: SceneName; layoutKe
 
   useEffect(() => () => clearTimer(), [])
 
-  const [imageWidth, imageHeight] = scene === 'home-hero' ? [1672, 941] : [1440, 900]
+  const [imageWidth, imageHeight] = scene === 'home' ? [1440, 900] : [1672, 941]
   const scale = size.width > 0 && size.height > 0 ? Math.max(size.width / imageWidth, size.height / imageHeight) : 0
   const offsetX = (size.width - imageWidth * scale) / 2
   const offsetY = (size.height - imageHeight * scale) * 0.46
@@ -255,10 +231,10 @@ export function SceneWhispers({ scene, layoutKey }: { scene: SceneName; layoutKe
               return (
                 <Fragment key={edgeId}>
                   <filter id={`${edgeId}-rim`} x="-40%" y="-40%" width="180%" height="180%">
-                    <feMorphology in="SourceAlpha" operator="dilate" radius={edge.soft ? 2.2 : 1.2} result="dilate" />
+                    <feMorphology in="SourceAlpha" operator="dilate" radius="1.2" result="dilate" />
                     <feComposite in="SourceAlpha" in2="dilate" operator="out" result="ring" />
-                    <feGaussianBlur in="ring" stdDeviation={edge.soft ? 5.5 : 2.4} result="soft" />
-                    <feFlood floodColor="#ffd7a2" floodOpacity={edge.soft ? 0.86 : 1} result="color" />
+                    <feGaussianBlur in="ring" stdDeviation="2.4" result="soft" />
+                    <feFlood floodColor="#ffd7a2" floodOpacity="1" result="color" />
                     <feComposite in="color" in2="soft" operator="in" result="rim" />
                   </filter>
                   <linearGradient
@@ -315,7 +291,7 @@ export function SceneWhispers({ scene, layoutKey }: { scene: SceneName; layoutKe
                     filter={`url(#${edgeId}-rim)`}
                     mask={`url(#${edgeId}-mask)`}
                   >
-                    <EdgeSilhouette kind={edge.kind} />
+                    <GuitarSilhouette />
                   </g>
                 </g>
               )

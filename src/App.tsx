@@ -39,10 +39,9 @@ type ChoicePreview = { scene: SceneName | null; tone: 'cool' | 'warm' }
 const desktopHomeQuery = '(min-width: 900px)'
 
 function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>, careerId: CareerId | null): SceneName {
-  if (view === 'home' || view === 'intro' || view === 'letter') return 'home'
-  if (view === 'incoming') return 'incoming'
+  if (view === 'home' || view === 'intro' || view === 'incoming' || view === 'letter' || view === 'finale') return view
   if (view === 'career') return careerId ?? 'connection'
-  if (view === 'identity' || view === 'hub' || view === 'finale') return 'connection'
+  if (view === 'identity' || view === 'hub') return 'hub'
 
   switch (node.id) {
     case 'opening-01':
@@ -199,8 +198,8 @@ function App() {
   const sceneName = illustratedHome
     ? 'home-hero'
     : view === 'career' && careerProgress
-      ? careerProgress.phase === 'letter' ? 'home' : careerSceneFor(careerProgress)
-      : getSceneName(view, currentNode, careerProgress?.careerId ?? null)
+      ? careerProgress.phase === 'letter' ? 'letter' : careerSceneFor(careerProgress)
+      : getSceneName(view === 'finale' && finaleLetterOpen ? 'letter' : view, currentNode, careerProgress?.careerId ?? null)
   const activeCareer = careerProgress ? getCareer(careerProgress.careerId) : null
   const careerLine = careerProgress ? getCareerLine(careerProgress) : null
   const careerChoice = careerProgress ? getCareerChoice(careerProgress) : null

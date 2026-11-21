@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 
 const sceneNames = [
   'home',
+  'home-hero',
+  'intro',
   'incoming',
   'opening',
   'connection',
@@ -41,27 +43,46 @@ const sceneNames = [
   'ending-regret-reach',
   'ending-cherish-space',
   'ending-cherish-reach',
+  'hub',
+  'letter',
+  'finale',
 ] as const
 
-export type SceneName = (typeof sceneNames)[number] | 'home-hero'
+export type SceneName = (typeof sceneNames)[number]
 
 type SceneLayer = { key: number; name: SceneName }
 
 const imageCache = new Map<SceneName, HTMLImageElement>()
 
+const scenePreloads: Partial<Record<SceneName, readonly SceneName[]>> = {
+  home: ['intro'],
+  'home-hero': ['intro'],
+  intro: ['incoming'],
+  incoming: ['connection'],
+  question: ['first-choice', 'regret', 'cherish'],
+  'first-choice': ['regret', 'cherish'],
+  closing: ['second-choice', 'make-space', 'reach-out'],
+  'second-choice': ['make-space', 'reach-out'],
+  hub: ['doctor', 'teacher', 'designer', 'founder'],
+}
+
 function sceneImageUrl(name: SceneName) {
-  const extension = name === 'home-hero' ? 'webp' : 'svg'
+  const extension = name === 'home' ? 'svg' : 'webp'
   return `/backgrounds/${name}.${extension}`
 }
 
-function whenDecoded(name: SceneName) {
+function getSceneImage(name: SceneName) {
   let image = imageCache.get(name)
   if (!image) {
     image = new Image()
     image.src = sceneImageUrl(name)
     imageCache.set(name, image)
   }
+  return image
+}
 
+function whenDecoded(name: SceneName) {
+  const image = getSceneImage(name)
   return image.decode().catch(
     () =>
       new Promise<void>((resolve) => {
@@ -142,13 +163,8 @@ export function SceneBackground({
   const previewLayers = useFadeLayers(activePreview)
 
   useEffect(() => {
-    for (const name of sceneNames) {
-      if (imageCache.has(name)) continue
-      const image = new Image()
-      image.src = sceneImageUrl(name)
-      imageCache.set(name, image)
-    }
-  }, [])
+    for (const name of scenePreloads[scene] ?? []) getSceneImage(name)
+  }, [scene])
 
   return (
     <div

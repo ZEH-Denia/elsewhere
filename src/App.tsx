@@ -180,6 +180,8 @@ function App() {
   const callHeading = useRef<HTMLHeadingElement>(null)
   const choiceHeading = useRef<HTMLHeadingElement>(null)
   const endHeading = useRef<HTMLHeadingElement>(null)
+  const careerHeading = useRef<HTMLHeadingElement>(null)
+  const careerContinueButton = useRef<HTMLButtonElement>(null)
   const identityHeading = useRef<HTMLHeadingElement>(null)
   const hubHeading = useRef<HTMLHeadingElement>(null)
   const letterHeading = useRef<HTMLHeadingElement>(null)
@@ -195,6 +197,7 @@ function App() {
   const careerChoice = careerProgress ? getCareerChoice(careerProgress) : null
   const careerEnding = careerProgress ? getCareerEnding(careerProgress) : null
   const careerLetter = careerProgress ? getCareerLetter(careerProgress) : null
+  const careerPhase = careerProgress?.phase
   const prologueText = getPrologueText(firstEnding, identity)
   const finaleLines: StoryLine[] = [
     { speaker: '另一个你', text: getFinaleOpening(firstEnding) },
@@ -230,13 +233,34 @@ function App() {
     if (view === 'identity') identityHeading.current?.focus()
     if (view === 'hub') hubHeading.current?.focus()
     if (view === 'letter') letterHeading.current?.focus()
-    if (view === 'career' || view === 'finale') callHeading.current?.focus()
+    if (view === 'finale') callHeading.current?.focus()
   }, [confirmOpen, view])
 
   useEffect(() => {
-    if (view === 'career' && careerProgress?.phase === 'letter') letterHeading.current?.focus()
+    if (view !== 'career') return
+
+    switch (careerPhase) {
+      case 'dialogue':
+        callHeading.current?.focus()
+        break
+      case 'first-choice':
+      case 'second-choice':
+      case 'ending':
+        careerHeading.current?.focus()
+        break
+      case 'first-feedback':
+      case 'second-feedback':
+        careerContinueButton.current?.focus()
+        break
+      case 'letter':
+        letterHeading.current?.focus()
+        break
+    }
+  }, [view, careerPhase])
+
+  useEffect(() => {
     if (view === 'finale' && finaleDone) finaleHeading.current?.focus()
-  }, [view, careerProgress?.phase, finaleDone])
+  }, [view, finaleDone])
 
   useEffect(() => {
     if (currentNode.kind === 'choice') choiceHeading.current?.focus()
@@ -772,7 +796,7 @@ function App() {
                   </div>
                 </section>
               ) : (
-                <section className="screen-enter call-session" aria-labelledby="career-title">
+                <section className="screen-enter call-session" aria-labelledby={careerChoice || careerEnding ? 'career-title' : 'call-title'}>
                   <div className={`call-dock${careerChoice ? ' is-choice' : ''}`}>
                     <article className={`dialogue-panel${careerChoice ? ' is-prompt' : ''}`}>
                       <div className="dialogue-speaker-tab">
@@ -788,7 +812,7 @@ function App() {
                       {careerEnding ? (
                         <div className="career-ending">
                           <p className="choice-kicker"><span />剧情结局</p>
-                          <h2 id="career-title">{careerEnding.title}</h2>
+                          <h2 ref={careerHeading} tabIndex={-1} id="career-title">{careerEnding.title}</h2>
                           <p className="dialogue-text">{careerEnding.summary}</p>
                           <p className="career-last-line">{careerEnding.lastLine}</p>
                           <button type="button" className="dialogue-continue" onClick={advanceCareerStory}>
@@ -798,7 +822,7 @@ function App() {
                       ) : careerChoice ? (
                         <div className="choice-prompt">
                           <p className="choice-kicker"><span />{careerProgress.phase === 'first-choice' ? '第一次选择' : '第二次选择'}</p>
-                          <h2 id="career-title">{careerChoice.prompt}</h2>
+                          <h2 ref={careerHeading} tabIndex={-1} id="career-title">{careerChoice.prompt}</h2>
                         </div>
                       ) : (
                         <p
@@ -814,7 +838,7 @@ function App() {
                         {careerChoice ? (
                           <p className="choice-hint">选择会改变这条线路的走向</p>
                         ) : careerEnding ? null : (
-                          <button type="button" className="dialogue-continue" onClick={advanceCareerStory}>
+                          <button ref={careerContinueButton} type="button" className="dialogue-continue" onClick={advanceCareerStory}>
                             <span>继续</span><span className="action-icon"><Arrow /></span>
                           </button>
                         )}

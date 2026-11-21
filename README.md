@@ -1,24 +1,26 @@
 # Elsewhere：未接来电
 
-> 2026-11-20：TASK-003 第一通四结局已复审 PASS；第二通来电与四职业扩展正在 task-003 实现，尚未复审或合并。
+> 2026-11-21：TASK-003 扩展剧情的桌面键盘返修已通过本地复验。手机版开发和窄屏验收暂缓。
 
 接到来自平行世界自己的电话，通过互动剧情探索另一种人生。
 
 **组员从这里开始：[团队快速了解（约三分钟）](docs/团队快速了解.md)**，了解产品体验、当前进度、团队分工与可参与的工作。
 
-GitHub 仓库：[ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere)，当前为公开仓库（2026-11-16 实查）。异地获取项目与更新方式见 [GitHub 协作入门](docs/GITHUB_COLLABORATION.md)。
+GitHub 仓库当前公开。异地获取项目与更新方式见 [ZEH-Denia/elsewhere](https://github.com/ZEH-Denia/elsewhere) 和 [GitHub 协作入门](docs/GITHUB_COLLABORATION.md)。
 
 ## 当前状态
 
 2026-11-17：TASK-001 的工程、首页与可返回前言，以及 TASK-002 的视觉和首通来电均已 PASS。TASK-002 的确认退出焦点返修已通过复审，见 [审查报告](tasks/reviews/TASK-002.md)。
 
-当前 **TASK-003 / PASS**：第一通来电的两次选择与四种结局已通过复审。task-003 现已在此基础上接入扩展内容：第一章结局后的“继续”、三种“现在的你”、第二通来电总机、医生/教师/设计师/创业者四条职业线、每条线的两次选择与四种结局、16 封职业信，以及读完任一条信后解锁的最终回电与最后一封信。扩展内容尚未经 Codex 复审，也未合并 main 或发布。
+第一通来电的两次选择与四种结局已通过复审。扩展剧情在 `task-003`，包括三种身份、第二通来电总机、医生/教师/设计师/创业者四条职业线、16 个职业结局与信件，以及读完任一封信后解锁的最终回电。
+
+公网站点可匿名接听，当前运行此前发布的构建。桌面键盘返修版通过本地生产预览复验，部署待团队批准。 [Qoder Sites 体验地址](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/)
 
 四条职业线各有 4 张代码生成的专属场景，覆盖急诊走廊/分诊台/休息室/夜间走廊、教室/窗边/办公室/走廊、工作室/草图墙/夜景/速写桌、开放办公区/会议角/雨窗/机房角；身份选择、总机、信件和尾声沿用现有暖米纸面与“未知线路”视觉。
 
 ## 复审与交接
 
-完整实现、逐轮修复和真实验证证据见 [TASK-003 执行报告](tasks/reports/TASK-003.md)。Codex 最终复审见 [TASK-003 审查](tasks/reviews/TASK-003.md)，团队决定下一任务。
+完整实现与早期证据见 [TASK-003 执行报告](tasks/reports/TASK-003.md)，最新桌面验收见 [TASK-003 审查](https://github.com/ZEH-Denia/elsewhere/blob/main/tasks/reviews/TASK-003.md)。
 
 当前[Qoder 开发交接入口](docs/QODER_START.md)记录任务交接方式；具体范围以 TASK-003 当前任务为准。同一台电脑直接打开现有项目目录，沿用已有工程与已验收实现。
 

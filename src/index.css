@@ -186,6 +186,10 @@ button:focus-visible,
   opacity: 1;
 }
 
+.scene-background[data-art-ready="false"] ~ .scene-whispers {
+  visibility: hidden;
+}
+
 .scene-layer {
   position: absolute;
   inset: 0;
@@ -1185,10 +1189,6 @@ button:focus-visible,
   gap: 18px;
 }
 
-.call-dock.is-choice .dialogue-panel { order: 2; }
-
-.call-dock.is-choice .choice-options { order: 1; }
-
 .dialogue-panel {
   position: relative;
   display: flex;
@@ -1366,10 +1366,9 @@ button:focus-visible,
 
 .choice-options {
   display: flex;
-  width: min(760px, 100%);
   flex-direction: column;
-  align-self: center;
   gap: 12px;
+  margin-bottom: 16px;
 }
 
 .choice-option {
@@ -2675,4 +2674,81 @@ button:focus-visible,
 .home-hero .primary-action .action-icon svg {
   width: 25px;
   height: 25px;
+}
+
+.prelude-incoming.is-centered .incoming-call {
+  width: min(100%, 328px);
+}
+
+.prelude-incoming.is-centered .call-card {
+  padding: 22px 26px;
+  border-color: hsl(35 36% 77% / 0.24);
+  background: linear-gradient(162deg, hsl(25 23% 15% / 0.94), hsl(209 21% 12% / 0.96));
+  box-shadow: 0 20px 55px hsl(20 22% 6% / 0.34);
+}
+
+.prelude-incoming.is-centered .parallel-outline {
+  display: none;
+}
+
+.prelude-incoming.is-centered .caller-main {
+  margin: 0 0 18px;
+}
+
+.prelude-incoming.is-centered .phone-symbol {
+  width: 70px;
+  height: 70px;
+  color: hsl(194 42% 77%);
+  border-color: hsl(194 37% 70% / 0.36);
+}
+
+.prelude-incoming.is-centered .phone-symbol svg {
+  width: 32px;
+  height: 32px;
+}
+
+.prelude-incoming.is-centered .caller-copy {
+  margin-top: 14px;
+}
+
+.prelude-incoming.is-centered .caller-name {
+  margin: 0;
+  color: #f5ebdf;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+}
+
+.prelude-incoming.is-centered .call-state {
+  margin-top: 6px;
+  color: #decdbb;
+}
+
+.prelude-incoming.is-centered .signal-lines {
+  color: hsl(194 39% 75%);
+}
+
+.prelude-incoming.is-centered .primary-action {
+  width: 100%;
+  border-color: hsl(20 58% 69% / 0.68);
+}
+
+.prelude-incoming.is-centered .prelude-panel {
+  align-items: center;
+  min-height: 0;
+  padding: 14px 26px;
+  border-color: hsl(35 36% 77% / 0.22);
+  background: hsl(24 22% 12% / 0.89);
+}
+
+.prelude-incoming.is-centered .prelude-copy {
+  align-self: center;
+}
+
+.prelude-incoming.is-centered :is(.incoming-note, .prelude-note, .panel-return-action) {
+  color: #decdbb;
+}
+
+.prelude-incoming.is-centered :is(.primary-action, .panel-return-action, .caller-name):focus-visible {
+  outline-color: hsl(191 49% 79%);
 }

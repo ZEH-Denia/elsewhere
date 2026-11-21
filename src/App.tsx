@@ -36,7 +36,7 @@ type View = 'home' | 'intro' | 'incoming' | 'call' | 'identity' | 'hub' | 'caree
 
 type ChoicePreview = { scene: SceneName | null; tone: 'cool' | 'warm' }
 
-const desktopHomeQuery = '(min-width: 900px)'
+const desktopLayoutQuery = '(min-width: 900px)'
 
 function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>, careerId: CareerId | null): SceneName {
   if (view === 'home' || view === 'intro' || view === 'incoming' || view === 'letter' || view === 'finale') return view
@@ -163,13 +163,18 @@ function Arrow({ returning = false }: { returning?: boolean }) {
   )
 }
 
+function choicePreviewFor(optionIndex: number, scene: SceneName | null = null): ChoicePreview {
+  return { scene, tone: optionIndex === 0 ? 'cool' : 'warm' }
+}
+
 function App() {
   const [view, setView] = useState<View>('home')
-  const [desktopHome, setDesktopHome] = useState(() => window.matchMedia(desktopHomeQuery).matches)
+  const [desktopLayout, setDesktopLayout] = useState(() => window.matchMedia(desktopLayoutQuery).matches)
   const [progress, setProgress] = useState(createInitialOpeningProgress)
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [confirmTarget, setConfirmTarget] = useState<'home' | 'hub'>('home')
-  const [choicePreview, setChoicePreview] = useState<ChoicePreview | null>(null)
+  const [hoveredPreview, setHoveredPreview] = useState<ChoicePreview | null>(null)
+  const [focusedPreview, setFocusedPreview] = useState<ChoicePreview | null>(null)
   const [identity, setIdentity] = useState<PlayerIdentity | null>(null)
   const [firstEnding, setFirstEnding] = useState<string | null>(null)
   const [readCareers, setReadCareers] = useState<CareerId[]>([])
@@ -184,6 +189,7 @@ function App() {
   const incomingHeading = useRef<HTMLHeadingElement>(null)
   const callHeading = useRef<HTMLHeadingElement>(null)
   const choiceHeading = useRef<HTMLHeadingElement>(null)
+  const openingContinueButton = useRef<HTMLButtonElement>(null)
   const endHeading = useRef<HTMLHeadingElement>(null)
   const careerHeading = useRef<HTMLHeadingElement>(null)
   const careerContinueButton = useRef<HTMLButtonElement>(null)
@@ -194,7 +200,9 @@ function App() {
   const confirmDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
-  const illustratedHome = view === 'home' && desktopHome
+  const previousOpeningKind = useRef(currentNode.kind)
+  const choicePreview = hoveredPreview ?? focusedPreview
+  const illustratedHome = view === 'home' && desktopLayout
   const sceneName = illustratedHome
     ? 'home-hero'
     : view === 'career' && careerProgress
@@ -221,7 +229,8 @@ function App() {
   ]
 
   useEffect(() => {
-    setChoicePreview(null)
+    setHoveredPreview(null)
+    setFocusedPreview(null)
   }, [safeProgress.nodeId, view, careerPhase])
 
   useEffect(() => {
@@ -271,9 +280,13 @@ function App() {
   }, [view, finaleDone])
 
   useEffect(() => {
+    const previousKind = previousOpeningKind.current
+    previousOpeningKind.current = currentNode.kind
+    if (view !== 'call') return
     if (currentNode.kind === 'choice') choiceHeading.current?.focus()
+    if (currentNode.kind === 'feedback' && previousKind === 'choice') openingContinueButton.current?.focus()
     if (currentNode.kind === 'end') endHeading.current?.focus()
-  }, [currentNode.kind, safeProgress.nodeId])
+  }, [currentNode.kind, safeProgress.nodeId, view])
 
   function openEndConfirm() {
     setConfirmTarget(view === 'career' || view === 'finale' ? 'hub' : 'home')
@@ -360,8 +373,9 @@ function App() {
     })
   }
 
-  function showChoicePreview(optionIndex: number, scene: SceneName | null = null) {
-    setChoicePreview({ scene, tone: optionIndex === 0 ? 'cool' : 'warm' })
+  function focusChoicePreview(optionIndex: number, scene: SceneName | null = null) {
+    setHoveredPreview(null)
+    setFocusedPreview(choicePreviewFor(optionIndex, scene))
   }
 
   function finishCareer(event: MouseEvent<HTMLButtonElement>) {
@@ -489,12 +503,18 @@ function App() {
             : 'call-dialogue'
 
   useEffect(() => {
-    const media = window.matchMedia(desktopHomeQuery)
-    const update = () => setDesktopHome(media.matches)
+    const media = window.matchMedia(desktopLayoutQuery)
+    const update = () => setDesktopLayout(media.matches)
     media.addEventListener('change', update)
     update()
     return () => media.removeEventListener('change', update)
   }, [])
+
+  const answerAction = (
+    <button type="button" className="primary-action group" onClick={answerCall}>
+      <span>接听</span><span className="action-icon"><Arrow /></span>
+    </button>
+  )
 
   return (
     <div
@@ -581,15 +601,30 @@ function App() {
             )}
 
             {view === 'incoming' && (
-              <section className="screen-enter prelude prelude-incoming" aria-labelledby="incoming-title">
+              <section className={`screen-enter prelude prelude-incoming${desktopLayout ? ' is-centered' : ''}`} aria-labelledby="incoming-title">
                 <div className="prelude-stage">
-                  <CallCard className="incoming-call" object status="ringing" />
+                  <CallCard
+                    className="incoming-call"
+                    object
+                    compact={desktopLayout}
+                    status="ringing"
+                    title={desktopLayout ? (
+                      <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title" className="caller-name">
+                        另一个你<span className="sr-only">，正在来电</span>
+                      </h1>
+                    ) : undefined}
+                    action={desktopLayout ? answerAction : undefined}
+                  />
                 </div>
                 <div className="prelude-dock">
                   <article className="prelude-panel">
                     <div className="prelude-copy">
-                      <p className="eyebrow"><span />一通来自平行世界的来电</p>
-                      <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
+                      {!desktopLayout && (
+                        <>
+                          <p className="eyebrow"><span />一通来自平行世界的来电</p>
+                          <h1 ref={incomingHeading} tabIndex={-1} id="incoming-title">另一个你，<br />正在来电</h1>
+                        </>
+                      )}
                       <p className="incoming-note">这不是一次真实的通话。你可以随时结束，也可以听听另一条路上的自己。</p>
                       <p className="quiet-note prelude-note">剧情模拟，不会请求麦克风或通知权限。</p>
                     </div>
@@ -597,9 +632,7 @@ function App() {
                       <button type="button" className="panel-return-action group" onClick={returnHome}>
                         <span className="action-icon"><Arrow returning /></span><span>返回首页</span>
                       </button>
-                      <button type="button" className="primary-action group" onClick={answerCall}>
-                        <span>接听</span><span className="action-icon"><Arrow /></span>
-                      </button>
+                      {!desktopLayout && answerAction}
                     </div>
                   </article>
                 </div>
@@ -608,7 +641,7 @@ function App() {
 
             {view === 'call' && currentNode.kind !== 'end' && (
               <section className="screen-enter call-session" aria-labelledby="call-title">
-                <div className={`call-dock${currentNode.kind === 'choice' ? ' is-choice' : ''}`}>
+                <div className="call-dock">
                   <article className={`dialogue-panel${currentNode.kind === 'choice' ? ' is-prompt' : ''}`}>
                     <div className="dialogue-speaker-tab">
                       <span className="dialogue-speaker-state call-live-state"><CallState status="connected" showLabel={false} /></span>
@@ -625,6 +658,29 @@ function App() {
                     ) : (
                       <p key={currentNode.id} className="dialogue-text dialogue-line">{currentNode.text}</p>
                     )}
+                    {currentNode.kind === 'choice' && (
+                      <div className="choice-options" role="group" aria-labelledby="choice-title">
+                        {currentNode.options.map((option, index) => (
+                          <button
+                            key={option.id}
+                            type="button"
+                            className="choice-option"
+                            onMouseEnter={() => setHoveredPreview(choicePreviewFor(index, getChoicePreviewScene(option.id)))}
+                            onMouseLeave={() => setHoveredPreview(null)}
+                            onFocus={() => focusChoicePreview(index, getChoicePreviewScene(option.id))}
+                            onBlur={() => setFocusedPreview(null)}
+                            onClick={(event) => {
+                              if (event.detail > 1) return
+                              setProgress((current) => chooseOpening(current, option.id))
+                            }}
+                          >
+                            <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
+                            <span className="choice-label">{option.label}</span>
+                            <span className="choice-arrow"><Arrow /></span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                     <div className="dialogue-panel-footer">
                       <p className="dialogue-progress">{panelProgress}</p>
                       {!surfaceHintDismissed && dialogueStep === 1 && (
@@ -633,36 +689,12 @@ function App() {
                       {currentNode.kind === 'choice' ? (
                         <p className="choice-hint">移入选项可预览另一条路 · 选择会改变走向</p>
                       ) : (
-                        <button type="button" className="dialogue-continue" onClick={advanceStory}>
+                        <button ref={openingContinueButton} type="button" className="dialogue-continue" onClick={advanceStory}>
                           <span>继续</span><span className="action-icon"><Arrow /></span>
                         </button>
                       )}
                     </div>
                   </article>
-
-                  {currentNode.kind === 'choice' && (
-                    <div className="choice-options" aria-labelledby="choice-title">
-                      {currentNode.options.map((option, index) => (
-                        <button
-                          key={option.id}
-                          type="button"
-                          className="choice-option"
-                          onMouseEnter={() => showChoicePreview(index, getChoicePreviewScene(option.id))}
-                          onMouseLeave={() => setChoicePreview(null)}
-                          onFocus={() => showChoicePreview(index, getChoicePreviewScene(option.id))}
-                          onBlur={() => setChoicePreview(null)}
-                          onClick={(event) => {
-                            if (event.detail > 1) return
-                            setProgress((current) => chooseOpening(current, option.id))
-                          }}
-                        >
-                          <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
-                          <span className="choice-label">{option.label}</span>
-                          <span className="choice-arrow"><Arrow /></span>
-                        </button>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </section>
             )}
@@ -816,7 +848,7 @@ function App() {
                 </section>
               ) : (
                 <section className="screen-enter call-session" aria-labelledby={careerChoice || careerEnding ? 'career-title' : 'call-title'}>
-                  <div className={`call-dock${careerChoice ? ' is-choice' : ''}`}>
+                  <div className="call-dock">
                     <article className={`dialogue-panel${careerChoice ? ' is-prompt' : ''}`}>
                       <div className="dialogue-speaker-tab">
                         <span className="dialogue-speaker-state call-live-state"><CallState status="connected" showLabel={false} /></span>
@@ -852,6 +884,26 @@ function App() {
                         </p>
                       )}
 
+                      {careerChoice && (
+                        <div className="choice-options" role="group" aria-labelledby="career-title">
+                          {careerChoice.options.map((option, index) => (
+                            <button
+                              key={option.id}
+                              type="button"
+                              className="choice-option"
+                              onMouseEnter={() => setHoveredPreview(choicePreviewFor(index))}
+                              onMouseLeave={() => setHoveredPreview(null)}
+                              onFocus={() => focusChoicePreview(index)}
+                              onBlur={() => setFocusedPreview(null)}
+                              onClick={() => chooseCareer(option.id)}
+                            >
+                              <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
+                              <span className="choice-label">{option.label}</span>
+                              <span className="choice-arrow"><Arrow /></span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
                       <div className="dialogue-panel-footer">
                         <p className="dialogue-progress">{activeCareer.title} · {careerProgressLabel(careerProgress)}</p>
                         {careerChoice ? (
@@ -863,27 +915,6 @@ function App() {
                         )}
                       </div>
                     </article>
-
-                    {careerChoice && (
-                      <div className="choice-options" aria-labelledby="career-title">
-                        {careerChoice.options.map((option, index) => (
-                          <button
-                            key={option.id}
-                            type="button"
-                            className="choice-option"
-                          onMouseEnter={() => showChoicePreview(index)}
-                          onMouseLeave={() => setChoicePreview(null)}
-                          onFocus={() => showChoicePreview(index)}
-                          onBlur={() => setChoicePreview(null)}
-                            onClick={() => chooseCareer(option.id)}
-                          >
-                            <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
-                            <span className="choice-label">{option.label}</span>
-                            <span className="choice-arrow"><Arrow /></span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 </section>
               )

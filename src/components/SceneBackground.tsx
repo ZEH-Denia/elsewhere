@@ -50,9 +50,17 @@ const sceneNames = [
 
 export type SceneName = (typeof sceneNames)[number]
 
-type SceneLayer = { key: number; name: SceneName }
+type SceneLayer = { key: number; name: SceneName; src: string | null }
 
-const imageCache = new Map<SceneName, HTMLImageElement>()
+const imageCache = new Map<string, HTMLImageElement>()
+
+const svgFallbacks: Partial<Record<SceneName, string>> = {
+  'home-hero': 'home',
+  intro: 'home',
+  hub: 'connection',
+  letter: 'home',
+  finale: 'connection',
+}
 
 const scenePreloads: Partial<Record<SceneName, readonly SceneName[]>> = {
   home: ['intro'],
@@ -71,34 +79,38 @@ function sceneImageUrl(name: SceneName) {
   return `/backgrounds/${name}.${extension}`
 }
 
-function getSceneImage(name: SceneName) {
-  let image = imageCache.get(name)
+function getSceneImage(src: string) {
+  let image = imageCache.get(src)
   if (!image) {
     image = new Image()
-    image.src = sceneImageUrl(name)
-    imageCache.set(name, image)
+    image.src = src
+    imageCache.set(src, image)
   }
   return image
 }
 
-function whenDecoded(name: SceneName) {
-  const image = getSceneImage(name)
-  return image.decode().catch(
-    () =>
-      new Promise<void>((resolve) => {
-        if (image.complete) {
-          resolve()
-          return
-        }
-        image.addEventListener('load', () => resolve(), { once: true })
-        image.addEventListener('error', () => resolve(), { once: true })
-      }),
-  )
+async function decodes(src: string) {
+  const image = getSceneImage(src)
+  try {
+    await image.decode()
+    if (image.naturalWidth > 0) return true
+  } catch {
+    // A requested image can fail to load or decode.
+  }
+  if (imageCache.get(src) === image) imageCache.delete(src)
+  return false
+}
+
+async function loadScene(name: SceneName): Promise<string | null> {
+  const primary = sceneImageUrl(name)
+  if (await decodes(primary)) return primary
+  if (name === 'home') return null
+  const fallback = `/backgrounds/${svgFallbacks[name] ?? name}.svg`
+  return await decodes(fallback) ? fallback : null
 }
 
 function useFadeLayers(target: SceneName | null) {
   const [layers, setLayers] = useState<SceneLayer[]>([])
-  const [readyKeys, setReadyKeys] = useState<number[]>([])
   const layersRef = useRef(layers)
   const keyRef = useRef(0)
 
@@ -108,26 +120,23 @@ function useFadeLayers(target: SceneName | null) {
 
   useEffect(() => {
     if (!target) {
-      setReadyKeys((current) => (current.length ? [] : current))
       const timer = window.setTimeout(() => setLayers((current) => (current.length ? [] : current)), 260)
       return () => window.clearTimeout(timer)
     }
 
     const top = layersRef.current[layersRef.current.length - 1]
-    if (top && top.name === target) {
-      void whenDecoded(target).then(() => {
-        setReadyKeys((current) => (current.includes(top.key) ? current : [...current, top.key]))
-      })
-      return
-    }
+    if (top?.name === target && top.src) return
 
-    const key = ++keyRef.current
-    setLayers((current) => [...current, { key, name: target }])
+    const key = top?.name === target ? top.key : ++keyRef.current
+    if (top?.key !== key) {
+      setLayers((current) => [...current.filter((layer) => layer.src), { key, name: target, src: null }])
+    }
     let cancelled = false
-    void whenDecoded(target).then(() => {
-      if (!cancelled) {
-        setReadyKeys((current) => (current.includes(key) ? current : [...current, key]))
-      }
+    void loadScene(target).then((src) => {
+      if (cancelled) return
+      setLayers((current) => src
+        ? current.map((layer) => layer.key === key ? { ...layer, src } : layer)
+        : current.filter((layer) => layer.key !== key))
     })
     return () => {
       cancelled = true
@@ -136,17 +145,14 @@ function useFadeLayers(target: SceneName | null) {
 
   useEffect(() => {
     const top = layers[layers.length - 1]
-    if (!top || !readyKeys.includes(top.key)) return
+    if (!top?.src || layers.length === 1) return
     const timer = window.setTimeout(() => {
-      setLayers((current) => {
-        const last = current[current.length - 1]
-        return last ? [last] : current
-      })
+      setLayers((current) => current[current.length - 1]?.key === top.key ? [top] : current)
     }, 320)
     return () => window.clearTimeout(timer)
-  }, [layers, readyKeys])
+  }, [layers])
 
-  return { layers, readyKeys }
+  return layers
 }
 
 export function SceneBackground({
@@ -161,42 +167,44 @@ export function SceneBackground({
   const activePreview = preview && preview !== scene ? preview : null
   const sceneLayers = useFadeLayers(scene)
   const previewLayers = useFadeLayers(activePreview)
+  const currentLayer = sceneLayers[sceneLayers.length - 1]
 
   useEffect(() => {
-    for (const name of scenePreloads[scene] ?? []) getSceneImage(name)
+    for (const name of scenePreloads[scene] ?? []) getSceneImage(sceneImageUrl(name))
   }, [scene])
 
   return (
     <div
       className={`scene-background${activePreview || previewTone ? ' is-previewing' : ''}`}
       data-scene={scene}
+      data-art-ready={currentLayer?.src === sceneImageUrl(scene)}
       data-preview-tone={previewTone}
       aria-hidden="true"
     >
-      {sceneLayers.layers.map((layer, index) => {
-        const isLatest = index === sceneLayers.layers.length - 1
+      {sceneLayers.map((layer, index) => {
+        const isLatest = index === sceneLayers.length - 1
         return (
           <div
             key={layer.key}
-            className={`scene-layer${sceneLayers.readyKeys.includes(layer.key) ? ' is-visible' : ''}`}
+            className={`scene-layer${layer.src ? ' is-visible' : ''}`}
             style={{ zIndex: index + 1 }}
           >
-            <img
+            {layer.src && <img
               className={`scene-background-image ${isLatest ? 'scene-current' : 'scene-previous'}`}
-              src={sceneImageUrl(layer.name)}
+              src={layer.src}
               alt=""
               draggable={false}
-            />
+            />}
           </div>
         )
       })}
-      {previewLayers.layers.map((layer, index) => (
+      {previewLayers.map((layer, index) => (
         <div
           key={`preview-${layer.key}`}
-          className={`scene-layer${previewLayers.readyKeys.includes(layer.key) ? ' is-visible' : ''}`}
+          className={`scene-layer${activePreview && layer.src ? ' is-visible' : ''}`}
           style={{ zIndex: 10 + index }}
         >
-          <img className="scene-background-image scene-preview" src={sceneImageUrl(layer.name)} alt="" draggable={false} />
+          {layer.src && <img className="scene-background-image scene-preview" src={layer.src} alt="" draggable={false} />}
         </div>
       ))}
     </div>

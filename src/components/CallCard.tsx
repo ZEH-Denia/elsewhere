@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 export type CallStatus = 'idle' | 'ringing' | 'connected' | 'ended'
 
 const statusLabels: Record<CallStatus, string> = {
@@ -48,11 +50,15 @@ export function CallCard({
   object = false,
   compact = false,
   status = 'idle',
+  title,
+  action,
 }: {
   className?: string
   object?: boolean
   compact?: boolean
   status?: CallStatus
+  title?: ReactNode
+  action?: ReactNode
 }) {
   return (
     <div className={`call-visual${object ? ' is-object' : ''}${className ? ` ${className}` : ''}`}>
@@ -67,7 +73,7 @@ export function CallCard({
         <div className="caller-main">
           <div className="phone-symbol"><PhoneSymbol /></div>
           <div className="caller-copy">
-            <p className="caller-name">另一个你</p>
+            {title ?? <p className="caller-name">另一个你</p>}
             {!compact && <p className="caller-origin">来自平行世界的自己</p>}
           </div>
           <CallState status={status} showLabel={object || status !== 'idle'} />
@@ -78,6 +84,7 @@ export function CallCard({
             <span><i aria-hidden="true" />平行 · 音乐</span>
           </div>
         )}
+        {action}
       </div>
     </div>
   )

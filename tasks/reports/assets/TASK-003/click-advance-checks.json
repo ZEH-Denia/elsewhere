@@ -1,0 +1,192 @@
+{
+  "viewport": "1440x900 / 390x844",
+  "checks": [
+    {
+      "name": "home-surface",
+      "view": "home",
+      "text": null,
+      "progress": null,
+      "speaker": null,
+      "choices": 0,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": true,
+      "live": "",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "intro-surface",
+      "view": "intro",
+      "text": null,
+      "progress": null,
+      "speaker": null,
+      "choices": 0,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": true,
+      "live": "",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "incoming-surface",
+      "view": "incoming"
+    },
+    {
+      "name": "call-opening",
+      "view": "call",
+      "text": "喂？先别挂——如果我说，我也是你呢？",
+      "progress": "主线 01 / 07",
+      "speaker": "另一个你",
+      "choices": 0,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": true,
+      "live": "另一个你：喂？先别挂——如果我说，我也是你呢？",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "selection-guard",
+      "selected": "喂？先别挂——如果我说，我也是你呢？",
+      "view": "call",
+      "text": "喂？先别挂——如果我说，我也是你呢？",
+      "progress": "主线 01 / 07",
+      "speaker": "另一个你",
+      "choices": 0,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": true,
+      "live": "另一个你：喂？先别挂——如果我说，我也是你呢？",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "surface-advance",
+      "view": "call",
+      "text": "这是什么恶作剧？",
+      "progress": "主线 02 / 07",
+      "speaker": "你",
+      "choices": 0,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": true,
+      "live": "你：这是什么恶作剧？",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "panel-text-advance",
+      "before": "主线 02 / 07",
+      "after": "主线 03 / 07"
+    },
+    {
+      "name": "continue-button-once",
+      "before": "主线 03 / 07",
+      "after": "主线 04 / 07"
+    },
+    {
+      "name": "end-call-guard",
+      "view": "call",
+      "text": "……没有。我留在了原来的路上，当时觉得它更稳妥。",
+      "progress": "主线 04 / 07",
+      "speaker": "你",
+      "choices": 0,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": false,
+      "live": "你：……没有。我留在了原来的路上，当时觉得它更稳妥。",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "whisper-guard",
+      "before": "主线 05 / 07",
+      "after": "主线 06 / 07"
+    },
+    {
+      "name": "first-choice-guard",
+      "view": "call",
+      "text": null,
+      "progress": "选择 01 / 02",
+      "speaker": "另一个你",
+      "choices": 2,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": false,
+      "live": "",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "feedback-advance",
+      "first": "回应反馈 01 / 02",
+      "second": "共同衔接"
+    },
+    {
+      "name": "second-choice-guard",
+      "view": "call",
+      "text": null,
+      "progress": "选择 02 / 02",
+      "speaker": "另一个你",
+      "choices": 2,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": false,
+      "live": "",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "ending-surface",
+      "before": "把旋律找回来",
+      "after": "把旋律找回来",
+      "action": "行动反馈",
+      "farewell": "通话尾声"
+    },
+    {
+      "name": "mobile-390-surface",
+      "view": "call",
+      "text": "这是什么恶作剧？",
+      "progress": "主线 02 / 07",
+      "speaker": "你",
+      "choices": 0,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": false,
+      "live": "你：这是什么恶作剧？",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "final-home",
+      "view": "home",
+      "text": null,
+      "progress": null,
+      "speaker": null,
+      "choices": 0,
+      "endTitle": null,
+      "dialogOpen": false,
+      "bubbleOpen": false,
+      "whisper": true,
+      "live": "",
+      "liveInsideScreen": false
+    },
+    {
+      "name": "double-click-guard",
+      "start": "intro",
+      "enter": "incoming",
+      "answer": "主线 01 / 07"
+    },
+    {
+      "name": "double-tap-guard",
+      "start": "intro",
+      "enter": "incoming",
+      "answer": "主线 01 / 07"
+    }
+  ],
+  "failures": [],
+  "consoleEvents": [],
+  "result": "all click-to-advance checks passed"
+}

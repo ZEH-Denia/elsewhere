@@ -1,0 +1,397 @@
+{
+  "viewport": "1440x900 / 390x844",
+  "scenes": {},
+  "newScenes": {
+    "connection": {
+      "390": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-connection-390.png",
+      "1440": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-connection-1440.png"
+    },
+    "doubt": {
+      "390": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-doubt-390.png",
+      "1440": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-doubt-1440.png"
+    },
+    "rehearsal": {
+      "390": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-rehearsal-390.png",
+      "1440": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-rehearsal-1440.png"
+    },
+    "desk": {
+      "1440": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-desk-1440.png"
+    },
+    "question": {
+      "390": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-question-390.png",
+      "1440": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-question-1440.png"
+    },
+    "regret-quiet": {
+      "1440": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-regret-quiet-1440.png"
+    },
+    "closing": {
+      "390": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-closing-390.png",
+      "1440": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-closing-1440.png"
+    },
+    "cherish-morning": {
+      "390": "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/galgame-scene-cherish-morning-390.png"
+    }
+  },
+  "motion": {
+    "normal": {
+      "rain": "rain-drift",
+      "mote": "mote-rise",
+      "appScene": "none",
+      "appSceneTransform": "none",
+      "rainRunning": "running",
+      "appSceneRunning": null,
+      "reduce": false
+    },
+    "reduced": {
+      "rain": "none",
+      "mote": "none",
+      "appScene": "none",
+      "rainAnimations": 0,
+      "appSceneAnimations": 0,
+      "reduce": true
+    }
+  },
+  "failures": [],
+  "consoleEvents": [],
+  "steps": [
+    {
+      "step": "opening-01",
+      "src": "/backgrounds/connection.svg"
+    },
+    {
+      "step": "opening-02",
+      "src": "/backgrounds/doubt.svg"
+    },
+    {
+      "step": "opening-03",
+      "src": "/backgrounds/music.svg"
+    },
+    {
+      "step": "opening-04",
+      "src": "/backgrounds/reality.svg"
+    },
+    {
+      "step": "opening-05",
+      "src": "/backgrounds/rehearsal.svg"
+    },
+    {
+      "step": "opening-06",
+      "src": "/backgrounds/desk.svg"
+    },
+    {
+      "step": "opening-07",
+      "src": "/backgrounds/question.svg"
+    },
+    {
+      "step": "first-response",
+      "src": "/backgrounds/first-choice.svg"
+    },
+    {
+      "step": "regret-feedback-01",
+      "src": "/backgrounds/regret.svg"
+    },
+    {
+      "step": "regret-feedback-02",
+      "src": "/backgrounds/regret-quiet.svg"
+    },
+    {
+      "step": "opening-closing",
+      "src": "/backgrounds/closing.svg"
+    },
+    {
+      "step": "next-step",
+      "src": "/backgrounds/second-choice.svg"
+    },
+    {
+      "step": "make-space-feedback",
+      "src": "/backgrounds/make-space.svg"
+    },
+    {
+      "step": "call-farewell",
+      "src": "/backgrounds/farewell.svg"
+    },
+    {
+      "step": "ending",
+      "ending": "regret-make-space"
+    },
+    {
+      "step": "opening-01-mobile",
+      "src": "/backgrounds/connection.svg"
+    },
+    {
+      "step": "opening-02-mobile",
+      "src": "/backgrounds/doubt.svg"
+    },
+    {
+      "step": "music-mobile",
+      "src": "/backgrounds/music.svg"
+    },
+    {
+      "step": "reality-mobile",
+      "src": "/backgrounds/reality.svg"
+    },
+    {
+      "step": "opening-05-mobile",
+      "src": "/backgrounds/rehearsal.svg"
+    },
+    {
+      "step": "opening-07-mobile",
+      "src": "/backgrounds/question.svg"
+    },
+    {
+      "step": "cherish-feedback-01-mobile",
+      "src": "/backgrounds/cherish.svg"
+    },
+    {
+      "step": "cherish-feedback-02-mobile",
+      "src": "/backgrounds/cherish-morning.svg"
+    },
+    {
+      "step": "opening-closing-mobile",
+      "src": "/backgrounds/closing.svg"
+    }
+  ],
+  "fileChecks": {
+    "home": {
+      "motionGuard": true,
+      "animatedElements": 24,
+      "rain": true,
+      "motes": true
+    },
+    "incoming": {
+      "motionGuard": true,
+      "animatedElements": 35,
+      "rain": true,
+      "motes": true
+    },
+    "opening": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "connection": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "doubt": {
+      "motionGuard": true,
+      "animatedElements": 29,
+      "rain": true,
+      "motes": true
+    },
+    "music": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "reality": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "rehearsal": {
+      "motionGuard": true,
+      "animatedElements": 28,
+      "rain": true,
+      "motes": true
+    },
+    "desk": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "doctor": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "doctor-triage": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "doctor-break": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "doctor-night": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "teacher": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "teacher-window": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "teacher-office": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "teacher-corridor": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "designer": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "designer-wall": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "designer-night": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "designer-sketch": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "founder": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "founder-meeting": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "founder-window": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "founder-server": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "question": {
+      "motionGuard": true,
+      "animatedElements": 40,
+      "rain": true,
+      "motes": true
+    },
+    "first-choice": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "regret": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "regret-quiet": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "cherish": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "cherish-morning": {
+      "motionGuard": true,
+      "animatedElements": 25,
+      "rain": true,
+      "motes": true
+    },
+    "second-choice": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "make-space": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "reach-out": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "closing": {
+      "motionGuard": true,
+      "animatedElements": 30,
+      "rain": true,
+      "motes": true
+    },
+    "farewell": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "ending-regret-space": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "ending-regret-reach": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    },
+    "ending-cherish-space": {
+      "motionGuard": true,
+      "animatedElements": 27,
+      "rain": true,
+      "motes": true
+    },
+    "ending-cherish-reach": {
+      "motionGuard": true,
+      "animatedElements": 26,
+      "rain": true,
+      "motes": true
+    }
+  },
+  "result": "all scene and motion checks passed"
+}

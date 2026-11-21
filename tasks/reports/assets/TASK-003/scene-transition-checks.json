@@ -1,0 +1,104 @@
+{
+  "viewport": "1440x900 / 390x844",
+  "steps": [
+    {
+      "label": "initial-scene",
+      "visibleLayers": 1,
+      "decoded": true
+    },
+    {
+      "label": "home-to-intro",
+      "frames": 27,
+      "minCoverage": 1,
+      "gapFrames": 0,
+      "unreadyVisibleFrames": 0,
+      "gapSamples": [],
+      "unreadySamples": []
+    },
+    {
+      "label": "intro-to-incoming",
+      "frames": 17,
+      "minCoverage": 1,
+      "gapFrames": 0,
+      "unreadyVisibleFrames": 0,
+      "gapSamples": [],
+      "unreadySamples": []
+    },
+    {
+      "label": "incoming-to-call",
+      "frames": 17,
+      "minCoverage": 1,
+      "gapFrames": 0,
+      "unreadyVisibleFrames": 0,
+      "gapSamples": [],
+      "unreadySamples": []
+    },
+    {
+      "label": "call-first-advance",
+      "frames": 16,
+      "minCoverage": 1,
+      "gapFrames": 0,
+      "unreadyVisibleFrames": 0,
+      "gapSamples": [],
+      "unreadySamples": []
+    },
+    {
+      "label": "call-rapid-advance",
+      "frames": 13,
+      "minCoverage": 1,
+      "gapFrames": 0,
+      "unreadyVisibleFrames": 0,
+      "gapSamples": [],
+      "unreadySamples": []
+    },
+    {
+      "label": "choice-preview-switch",
+      "frames": 16,
+      "minCoverage": 1,
+      "gapFrames": 0,
+      "unreadyVisibleFrames": 0,
+      "gapSamples": [],
+      "unreadySamples": []
+    },
+    {
+      "label": "mobile-home-to-intro",
+      "frames": 61,
+      "minCoverage": 1,
+      "gapFrames": 0,
+      "unreadyVisibleFrames": 0,
+      "gapSamples": [],
+      "unreadySamples": []
+    },
+    {
+      "label": "mobile-intro-to-incoming",
+      "frames": 59,
+      "minCoverage": 1,
+      "gapFrames": 0,
+      "unreadyVisibleFrames": 0,
+      "gapSamples": [],
+      "unreadySamples": []
+    },
+    {
+      "label": "mobile-incoming-to-call",
+      "frames": 61,
+      "minCoverage": 1,
+      "gapFrames": 0,
+      "unreadyVisibleFrames": 0,
+      "gapSamples": [],
+      "unreadySamples": []
+    }
+  ],
+  "failures": [],
+  "consoleEvents": [],
+  "shots": [
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-home-to-intro-mid.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-intro-to-incoming-mid.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-incoming-to-call-mid.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-call-first-advance-mid.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-preview-off-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-mobile-home-to-intro-mid.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-mobile-intro-to-incoming-mid.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-mobile-incoming-to-call-mid.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/transition-mobile-call-settled.png"
+  ]
+}

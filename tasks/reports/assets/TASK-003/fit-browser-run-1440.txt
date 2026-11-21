@@ -1,0 +1,7 @@
+{
+  "result": "all scripted assertions passed",
+  "combinations": 4,
+  "requests": 158,
+  "failures": [],
+  "consoleEvents": []
+}

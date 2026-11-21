@@ -1,0 +1,262 @@
+{
+  "viewport": "1440x900 / 390x844",
+  "checks": [
+    {
+      "name": "home-initial",
+      "label": "画面细节",
+      "descriptionId": "whisper-home-guitar",
+      "open": false,
+      "text": "琴弦上还留着当年的指印。",
+      "dot": {
+        "x": 973.6875,
+        "y": 477.890625,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 0,
+      "visibility": "hidden",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "accessibility-tree",
+      "role": "button",
+      "accessibleName": "画面细节",
+      "description": "琴弦上还留着当年的指印。"
+    },
+    {
+      "name": "home-hover-450ms",
+      "label": "画面细节",
+      "descriptionId": "whisper-home-guitar",
+      "open": true,
+      "text": "琴弦上还留着当年的指印。",
+      "dot": {
+        "x": 973.6875,
+        "y": 477.890625,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 1,
+      "visibility": "visible",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "home-keyboard-focus",
+      "label": "画面细节",
+      "descriptionId": "whisper-home-guitar",
+      "open": true,
+      "text": "琴弦上还留着当年的指印。",
+      "dot": {
+        "x": 973.6875,
+        "y": 477.890625,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 0.997797,
+      "visibility": "visible",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false,
+      "focusVisible": true
+    },
+    {
+      "name": "home-keyboard-pin-escape",
+      "afterEnterTab": 1,
+      "afterEscape": 0
+    },
+    {
+      "name": "home-pin-escape",
+      "pinnedAfterLeave": 1,
+      "afterEscape": 0
+    },
+    {
+      "name": "connection-hover",
+      "label": "画面细节",
+      "descriptionId": "whisper-connection-phone",
+      "open": true,
+      "text": "信号只够传过来声音。",
+      "dot": {
+        "x": 720,
+        "y": 250.734375,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 1,
+      "visibility": "visible",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "doubt-hover",
+      "label": "画面细节",
+      "descriptionId": "whisper-doubt-photo",
+      "open": true,
+      "text": "两张照片，背面写着同一天。",
+      "dot": {
+        "x": 895.03125,
+        "y": 241.890625,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 1,
+      "visibility": "visible",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "scene-rehearsal",
+      "label": "画面细节",
+      "descriptionId": "whisper-rehearsal-sheet",
+      "open": true,
+      "text": "第三小节，改了很多次。",
+      "dot": {
+        "x": 342.390625,
+        "y": 209.4375,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 0.997834,
+      "visibility": "visible",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "scene-desk",
+      "label": "画面细节",
+      "descriptionId": "whisper-desk-clock",
+      "open": true,
+      "text": "秒针走得很慢，像在等回答。",
+      "dot": {
+        "x": 720,
+        "y": 239.921875,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 1,
+      "visibility": "visible",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "scene-question",
+      "label": "画面细节",
+      "descriptionId": "whisper-question-voice",
+      "open": true,
+      "text": "有句话，被杂音轻轻吞掉了。",
+      "dot": {
+        "x": 720,
+        "y": 353.984375,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 1,
+      "visibility": "visible",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "preview-pause",
+      "paused": true,
+      "resumed": true
+    },
+    {
+      "name": "scene-regret-quiet",
+      "label": "画面细节",
+      "descriptionId": "whisper-regret-quiet-guitar",
+      "open": true,
+      "text": "最旧的那根弦，一直没换。",
+      "dot": {
+        "x": 768.171875,
+        "y": 479.859375,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 1,
+      "visibility": "visible",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "scene-closing",
+      "label": "画面细节",
+      "descriptionId": "whisper-closing-rings",
+      "open": true,
+      "text": "波纹散开，又回到原处。",
+      "dot": {
+        "x": 720,
+        "y": 302.859375,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 0.997834,
+      "visibility": "visible",
+      "transitionDuration": "0.16s, 0.16s, 0.16s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "viewport-1024x768",
+      "homeOverlap": false,
+      "doubtOverlap": false
+    },
+    {
+      "name": "reduced-motion",
+      "label": "画面细节",
+      "descriptionId": "whisper-home-guitar",
+      "open": true,
+      "text": "琴弦上还留着当年的指印。",
+      "dot": {
+        "x": 973.6875,
+        "y": 477.890625,
+        "width": 44,
+        "height": 44
+      },
+      "opacity": 1,
+      "visibility": "visible",
+      "transitionDuration": "0s",
+      "bubbleInScene": true,
+      "hit": true,
+      "panelOverlap": false
+    },
+    {
+      "name": "mobile-390",
+      "present": true,
+      "display": "none",
+      "buttonVisible": null
+    }
+  ],
+  "shots": [
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-home-hover-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-home-keyboard-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-connection-hover-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-doubt-hover-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-scene-rehearsal-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-scene-desk-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-scene-question-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-scene-regret-quiet-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-scene-closing-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-home-1024.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/whisper-mobile-home-390.png"
+  ],
+  "failures": [],
+  "consoleEvents": []
+}

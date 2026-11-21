@@ -1,0 +1,382 @@
+{
+  "viewport": "1440x900 / 390x844",
+  "checks": [
+    {
+      "name": "first-ending-continue",
+      "view": "call",
+      "heading": "把旋律找回来",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "identity-and-hub",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”接听",
+          "read": false
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "doctor-scene-rotation",
+      "scenes": [
+        "/backgrounds/doctor.svg",
+        "/backgrounds/doctor-triage.svg",
+        "/backgrounds/doctor-break.svg",
+        "/backgrounds/doctor-night.svg"
+      ]
+    },
+    {
+      "name": "doctor-identity-and-first-choice",
+      "view": "career",
+      "heading": "第二通来电",
+      "line": null,
+      "progress": "医生 · 白大褂 · 第一次选择",
+      "choices": [
+        "01我羡慕你，能确定自己在救人。",
+        "02听起来很累。有没有人问过你累不累？"
+      ],
+      "end": null,
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "doctor-ending",
+      "view": "career",
+      "heading": "第二通来电",
+      "line": "你给一个很久没联系的人发了条消息，又给另一个你补了一句：“轮到你了，去睡吧。”几分钟后，屏幕亮起：“好。明天再救。”你把手机扣在桌上，听见雨声。",
+      "progress": "医生 · 白大褂 · 剧情结局",
+      "choices": [],
+      "end": "凌晨的回拨",
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "doctor-letter",
+      "view": "career",
+      "heading": "另一条线路的回信",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": "那天你让我去睡，我就睡了。醒来后，我也给一个很久没联系的人发了消息。对方第一句是“你终于想起我了”。我差点在走廊里笑出来。下周我请她吃饭。",
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "read-mark-and-unlock",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "finale-opening",
+      "view": "finale",
+      "heading": "第二通来电",
+      "line": "你第一次接我电话时，说想把旋律找回来。我后来也练了几次。",
+      "progress": "最初的线路 · 最后一通回电",
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "finale-letter",
+      "view": "finale",
+      "heading": "下次换你打给我",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": "这次不问你过得好不好了。琴我没收起来，号码也没换。想打的时候，直接打。",
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": "下次换你打给我"
+    },
+    {
+      "name": "return-to-hub",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "career-exit-preserves-read",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "mobile-hub-390",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "mobile-career-390",
+      "view": "career",
+      "heading": "第二通来电",
+      "line": "下午四点四十。最后一排的窗还亮着，粉笔灰在光里慢慢落。另一个你把一摞作文本挪到桌角，袖口沾着一点红笔印。",
+      "progress": "教师 · 最后一排的窗 · 对白 01",
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "compact-career-1024",
+      "view": "career",
+      "heading": "第二通来电",
+      "line": "下午四点四十。最后一排的窗还亮着，粉笔灰在光里慢慢落。另一个你把一摞作文本挪到桌角，袖口沾着一点红笔印。",
+      "progress": "教师 · 最后一排的窗 · 对白 01",
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "compact-hub-1024",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "narrow-hub-320",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "finalTitle": null
+    },
+    {
+      "name": "narrow-career-320",
+      "view": "career",
+      "heading": "第二通来电",
+      "line": "凌晨一点。屋里只亮着显示器，桌上咖啡已经凉了。另一个你把第十二版修改意见拖到屏幕角落，像拖走一块石头。",
+      "progress": "设计师 · 第十二版 · 对白 01",
+      "choices": [],
+      "end": null,
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "finalTitle": null
+    }
+  ],
+  "shots": [
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-identity-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-hub-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-start-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-choice-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-ending-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-letter-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-hub-read-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-finale-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-finale-letter-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-designer-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-founder-1440.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-hub-390.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-390.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-1024.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-hub-1024.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-hub-320.png",
+    "/Users/zeh/Documents/elsewhere/tasks/reports/assets/TASK-003/expansion-career-320.png"
+  ],
+  "failures": [],
+  "consoleEvents": [],
+  "result": "all expansion UI checks passed"
+}

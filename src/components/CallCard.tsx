@@ -1,3 +1,12 @@
+export type CallStatus = 'idle' | 'ringing' | 'connected' | 'ended'
+
+const statusLabels: Record<CallStatus, string> = {
+  idle: '信号待接通',
+  ringing: '等待接听',
+  connected: '通话中',
+  ended: '通话已结束',
+}
+
 function PhoneSymbol() {
   return (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -13,27 +22,52 @@ function PhoneSymbol() {
   )
 }
 
-export function CallCard({ className = '' }: { className?: string }) {
+export function CallState({ status, showLabel = true }: { status: CallStatus; showLabel?: boolean }) {
   return (
-    <div className={`call-visual ${className}`}>
+    <div className="call-state" data-state={status}>
+      {status === 'ended'
+        ? <span className="signal-flatline" aria-hidden="true" />
+        : <div className="signal-lines" data-state={status} aria-hidden="true"><i /><i /><i /><i /><i /></div>}
+      {showLabel && <span>{statusLabels[status]}</span>}
+    </div>
+  )
+}
+
+export function CallCard({
+  className = '',
+  object = false,
+  compact = false,
+  status = 'idle',
+}: {
+  className?: string
+  object?: boolean
+  compact?: boolean
+  status?: CallStatus
+}) {
+  return (
+    <div className={`call-visual${object ? ' is-object' : ''}${className ? ` ${className}` : ''}`}>
       <div className="parallel-outline" aria-hidden="true" />
-      <div className="call-card">
-        <div className="call-card-top" aria-hidden="true">
-          <span>PARALLEL CALL</span>
-          <span>001</span>
-        </div>
+      <div className={`call-card${object ? ' is-object' : ''}`} data-call-status={status}>
+        {!compact && (
+          <div className="call-card-top" aria-hidden="true">
+            <span>PARALLEL CALL</span>
+            <span>001</span>
+          </div>
+        )}
         <div className="caller-main">
           <div className="phone-symbol"><PhoneSymbol /></div>
           <div className="caller-copy">
             <p className="caller-name">另一个你</p>
-            <p className="caller-origin">来自平行世界的自己</p>
+            {!compact && <p className="caller-origin">来自平行世界的自己</p>}
           </div>
-          <div className="signal-lines" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+          <CallState status={status} showLabel={object || status !== 'idle'} />
         </div>
-        <div className="world-labels">
-          <span><i aria-hidden="true" />现实 · 工程</span>
-          <span><i aria-hidden="true" />平行 · 音乐</span>
-        </div>
+        {!compact && (
+          <div className="world-labels">
+            <span><i aria-hidden="true" />现实 · 工程</span>
+            <span><i aria-hidden="true" />平行 · 音乐</span>
+          </div>
+        )}
       </div>
     </div>
   )

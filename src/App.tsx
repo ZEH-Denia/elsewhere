@@ -418,31 +418,33 @@ function App() {
     setView('hub')
   }
 
-  function advanceOnSurfaceClick(event: MouseEvent<HTMLDivElement>) {
+  function surfaceAdvanceAction(target: EventTarget) {
     if (confirmOpen) return
-    const target = event.target
     if (target instanceof Element && target.closest('button, a, input, select, textarea, dialog, [role="dialog"]')) return
+
+    if (view === 'call') {
+      if (currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing') return advanceStory
+    }
+
+    if (view === 'career' && careerProgress) {
+      if (['dialogue', 'identity', 'first-feedback', 'transition', 'second-feedback'].includes(careerProgress.phase)) return advanceCareerStory
+    }
+
+    if (view === 'finale' && !finaleDone) return advanceFinale
+  }
+
+  function preventRepeatedTextSelection(event: MouseEvent<HTMLDivElement>) {
+    if (event.button === 0 && event.detail > 1 && surfaceAdvanceAction(event.target)) event.preventDefault()
+  }
+
+  function advanceOnSurfaceClick(event: MouseEvent<HTMLDivElement>) {
+    const advance = surfaceAdvanceAction(event.target)
+    if (!advance || event.detail > 1) return
     if (selectionOnPointerDown.current || window.getSelection()?.toString()) {
       selectionOnPointerDown.current = false
       return
     }
-    if (event.detail > 1) return
-
-    if (view === 'call') {
-      if (currentNode.kind !== 'dialogue' && currentNode.kind !== 'feedback' && currentNode.kind !== 'closing') return
-      advanceStory()
-      return
-    }
-
-    if (view === 'career' && careerProgress) {
-      if (!['dialogue', 'identity', 'first-feedback', 'transition', 'second-feedback'].includes(careerProgress.phase)) return
-      advanceCareerStory()
-      return
-    }
-
-    if (view === 'finale' && !finaleDone) {
-      advanceFinale()
-    }
+    advance()
   }
 
   const openingLive = view === 'call' && (currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing')
@@ -521,6 +523,7 @@ function App() {
       className={`app-background min-h-svh text-mist${illustratedHome ? ' is-home-hero' : ''}`}
       data-view={view}
       onClick={advanceOnSurfaceClick}
+      onMouseDownCapture={preventRepeatedTextSelection}
       onPointerDownCapture={() => {
         selectionOnPointerDown.current = Boolean(window.getSelection()?.toString())
       }}

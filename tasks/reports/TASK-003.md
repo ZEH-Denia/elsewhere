@@ -1205,3 +1205,16 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 校验：构建通过；扩展流程 17 项通过，`failures` / `consoleEvents` 均为 `[]`；40 张场景动效检查通过；20/20 剧情测试通过。新增 [医生起始画面](assets/TASK-003/expansion-career-start-1440.png)，并更新[分诊选择](assets/TASK-003/expansion-career-choice-1440.png)与[医生结局](assets/TASK-003/expansion-career-ending-1440.png)。
 
 仍限制：完整浏览器路径只走医生线；未使用实体手机、Safari/Firefox 或真实读屏；未经 Codex 复审，不据此自称 PASS；未合并 main、未部署。
+
+## 42. 分诊选择画面再调整
+
+日期：2026-11-20（Asia/Shanghai）。针对分诊选择画面做了更具体的护士站构图：
+
+- 分诊台从细桌改成落到地面的实心前台，增加台面厚度与正面分缝。
+- 叫号 `A037` 从独立墙屏移到台面显示器上，减少一块悬浮屏幕，也更像真实分诊台。
+- 轮椅补上深色座椅与靠背，轮廓比纯线稿更实、更容易在手机端辨认。
+- 画面仍只保留分诊牌、叫号台、记录板和轮椅四类信息，没有增加新的装饰元素。
+
+校验：构建通过；扩展流程 17 项通过，`failures` / `consoleEvents` 均为 `[]`；40 张场景动效检查通过。更新[分诊选择画面](assets/TASK-003/expansion-career-choice-1440.png)。
+
+未合并 main、未部署；未经 Codex 复审，不据此自称 PASS。

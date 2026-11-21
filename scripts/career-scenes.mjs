@@ -96,8 +96,9 @@ function wheelchair(x, y, scale = 1) {
   return `<g transform="translate(${x} ${y}) scale(${scale})">
     <circle cx="0" cy="34" r="25" fill="none" stroke="#b4c2c4" stroke-opacity=".6" stroke-width="4"/>
     <circle cx="62" cy="40" r="14" fill="none" stroke="#b4c2c4" stroke-opacity=".5" stroke-width="3"/>
-    <path d="M-16 14L4 -32H34L24 14H-16ZM-16 14L-24 40" fill="none" stroke="#cfdbdb" stroke-opacity=".62" stroke-width="4" stroke-linejoin="round"/>
-    <path fill="none" d="M4 -32H50M34 14V34H16" stroke="#cfdbdb" stroke-opacity=".52" stroke-width="4"/>
+    <path d="M-14 12L4 -32H34L24 12Z" fill="#26343a" stroke="#cfdbdb" stroke-opacity=".62" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M-16 14H34L42 38H-8Z" fill="#1b262b" stroke="#cfdbdb" stroke-opacity=".52" stroke-width="3"/>
+    <path fill="none" d="M-16 14L-24 40M4 -32H50M34 14V34H16" stroke="#cfdbdb" stroke-opacity=".52" stroke-width="4"/>
     <path fill="none" d="M-4 -42H34" stroke="#aab8ba" stroke-opacity=".45" stroke-width="4" stroke-linecap="round"/>
   </g>`
 }
@@ -186,23 +187,20 @@ function doctorVariant(variant) {
     return careerShell(`
       <rect x="806" y="164" width="532" height="240" fill="#0b2029" opacity=".4"/>
       ${sign(1000, 194, 238, 64, '分 诊', { accent: '#cfe3e4', sub: 'TRIAGE', icon: '<path fill="none" d="M30 32H46M38 24V40" stroke="#d98a86" stroke-width="5" stroke-linecap="round"/>' })}
-      <g transform="translate(1246 198)">
-        <rect width="78" height="96" rx="4" fill="#0c171d" stroke="#806c58" stroke-opacity=".55"/>
-        <rect x="7" y="8" width="64" height="38" fill="#17241f"/>
-        ${label(39, 34, 'A037', { size: 20, fill: '#e6bd80', opacity: 0.94, spacing: 1.4 })}
-        <circle cx="20" cy="66" r="4" fill="#8fd0d6" opacity=".6"/>
-      </g>
       <g transform="translate(868 440)">
         <path d="M0 0H396L378 20H18Z" fill="#4d4a44" stroke="#b7a58a" stroke-opacity=".32"/>
-        <path fill="none" d="M24 20V106M370 20V106" stroke="#1a1f23" stroke-width="10"/>
+        <path d="M18 20H378V106H18Z" fill="#3d3630" opacity=".82"/>
+        <path fill="none" d="M36 32H360M36 96H360" stroke="#8f7b62" stroke-opacity=".18" stroke-width="2"/>
         <rect x="44" y="4" width="92" height="54" rx="3" fill="#dce5e2" opacity=".55"/>
         <path fill="none" d="M56 18H120M56 30H104M56 42H112" stroke="#788482" stroke-opacity=".38" stroke-width="2"/>
-        <g transform="translate(180 4)">
-          <rect width="78" height="54" rx="4" fill="#1a2a31" stroke="#9bb2b7" stroke-opacity=".3"/>
-          <path fill="none" d="M14 16H64M14 28H52" stroke="#8fd0d6" stroke-opacity=".3" stroke-width="3"/>
+        <g transform="translate(204 -42)">
+          <rect width="100" height="62" rx="4" fill="#111b21" stroke="#8b9ba1" stroke-opacity=".4"/>
+          <rect x="6" y="6" width="88" height="42" fill="#0b171d"/>
+          ${label(50, 32, 'A037', { size: 17, fill: '#e6bd80', opacity: 0.94, spacing: 1.4 })}
+          <path fill="none" d="M50 62V72M32 72H68" stroke="#8b9ba1" stroke-opacity=".35" stroke-width="3"/>
         </g>
       </g>
-      ${wheelchair(1208, 456, 1.12)}
+      ${wheelchair(1208, 456, 1.18)}
     `)
   }
   if (variant === 2) {

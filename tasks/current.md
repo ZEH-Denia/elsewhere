@@ -2,9 +2,9 @@
 
 ## 2026-11-21 桌面视觉改进
 
-团队授权依次落实本轮提出的全部 28 项桌面视觉改进，并指定后续项目工作由 Codex 直接完成。沿用 `TASK-003` 和 `task-003`。第一组已验证并同步 `24bd264`，第二组已验证并同步 `5ed03c7`。当前执行第三组。第一通与扩展剧情的历史验收记录见下方。
+团队授权依次落实本轮提出的全部 28 项桌面视觉改进，并指定后续项目工作由 Codex 直接完成。沿用 `TASK-003` 和 `task-003`。三组均已验证并推送，按钮与交互为 `24bd264`，页面布局与文字为 `5ed03c7`，背景、配色与动效为 `510568b`。详见[桌面视觉验收](reviews/TASK-003.md)。第一通与扩展剧情的历史验收记录见下方。
 
-改动前基线是 `task-003@d7cb883431a75e7d1bd502d6116d90a225336e03`，指挥文档基线是 `main@d082d57de0b6e3d85524f005ab1183d0301c770c`。本机备份位于 `/Users/zeh/Documents/elsewhere-backups/2026-11-21-before-desktop-visual.XTRJqJ/`，包含双分支完整历史 `elsewhere.bundle`、原构建 `dist-before.zip` 和 `SHA256SUMS`。备份校验通过。可用 `git clone -b task-003 <bundle路径> <新目录>` 在隔离目录恢复源码。若团队批准在共享分支回退，使用对应提交的 Git revert 保留历史。
+改动前基线是 `task-003@d7cb883431a75e7d1bd502d6116d90a225336e03`，指挥文档基线是 `main@d082d57de0b6e3d85524f005ab1183d0301c770c`。本机备份位于 `/Users/zeh/Documents/elsewhere-backups/2026-11-21-before-desktop-visual.XTRJqJ/`，包含双分支完整历史 `elsewhere.bundle`、原构建 `dist-before.zip` 和 `SHA256SUMS`。校验通过，并在隔离目录实际恢复了源码和构建包。若团队批准回退全部视觉改动，可依次 revert `510568b`、`5ed03c7`、`24bd264`，保留历史和项目协作约定。
 
 ### 第一组 · 按钮与交互
 

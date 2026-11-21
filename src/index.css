@@ -50,6 +50,8 @@
   --line: 30 12% 74%;
   --line-strong: 25 10% 56%;
   --action: 14 45% 40%;
+  --action-hover: 14 45% 35%;
+  --action-pressed: 14 45% 30%;
   --action-ink: 0 0% 100%;
   --reading-width: 860px;
   --veil-alpha: 0.85;
@@ -96,6 +98,10 @@ button {
   min-height: 48px;
   cursor: pointer;
   touch-action: manipulation;
+}
+
+:where(.primary-action, .secondary-action, .dialogue-continue, .panel-return-action, .end-call-action, .danger-action) {
+  user-select: none;
 }
 
 button:focus-visible,
@@ -419,20 +425,27 @@ button:focus-visible,
   flex: none;
   min-width: 0;
   min-height: 44px;
-  padding: 0 2px;
+  padding: 0 12px;
   border: 1px solid transparent;
   border-radius: 999px;
-  color: hsl(var(--night) / 0.56);
+  color: hsl(var(--night-raised) / 0.9);
   background: transparent;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   transition: color 180ms ease, background-color 180ms ease;
 }
 
 .end-call-action:hover {
-  color: hsl(var(--night) / 0.92);
-  background: hsl(var(--night) / 0.08);
-  border-color: transparent;
+  color: hsl(var(--white));
+  background: hsl(var(--night) / 0.14);
+}
+
+.end-call-action:active {
+  background: hsl(var(--night) / 0.24);
+}
+
+.end-call-action:focus-visible {
+  outline-color: hsl(var(--night-raised));
 }
 
 .app-main {
@@ -590,7 +603,7 @@ button:focus-visible,
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  transition: box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease;
 }
 
 .primary-action {
@@ -627,13 +640,28 @@ button:focus-visible,
 }
 
 .primary-action:hover,
-.secondary-action:hover {
-  transform: none;
+.dialogue-continue:hover {
+  background: hsl(var(--action-hover));
+  border-color: hsl(var(--action-hover));
 }
 
-.primary-action:hover .action-icon svg,
-.secondary-action:hover .action-icon svg {
-  transform: none;
+.primary-action:active,
+.dialogue-continue:active {
+  background: hsl(var(--action-pressed));
+  border-color: hsl(var(--action-pressed));
+}
+
+.secondary-action:hover {
+  background: hsl(var(--night-raised));
+  border-color: hsl(var(--soft));
+}
+
+.secondary-action:active {
+  background: hsl(var(--night));
+}
+
+.panel-return-action:active {
+  color: hsl(var(--accent));
 }
 
 .quiet-note {
@@ -1229,26 +1257,25 @@ button:focus-visible,
 
 .dialogue-continue {
   display: inline-flex;
+  flex: none;
   min-height: 44px;
   align-items: center;
-  gap: 12px;
-  padding: 0;
-  border: 0;
+  gap: 8px;
+  padding: 0 15px;
+  border: 1px solid hsl(var(--action));
   border-radius: 999px;
-  color: hsl(var(--soft));
-  background: transparent;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  transition: color 180ms ease;
+  color: hsl(var(--action-ink));
+  background: hsl(var(--action));
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: background-color 180ms ease, border-color 180ms ease;
 }
 
 .dialogue-continue .action-icon {
-  width: 34px;
-  height: 34px;
-  color: hsl(var(--white));
-  border: 0;
-  background: hsl(var(--action));
-  box-shadow: 0 8px 18px -10px hsl(14 45% 26% / 0.8);
+  width: 19px;
+  height: 19px;
+  background: transparent;
 }
 
 .dialogue-continue .action-icon svg {
@@ -1256,13 +1283,12 @@ button:focus-visible,
   height: 17px;
 }
 
-.dialogue-continue:hover {
-  color: hsl(var(--mist));
-}
-
-.dialogue-continue:hover .action-icon {
-  background: hsl(var(--action));
-  filter: brightness(1.06);
+.dialogue-next-hint {
+  margin: 0 0 0 auto;
+  color: hsl(var(--dim));
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: right;
 }
 
 .choice-prompt {
@@ -1357,9 +1383,13 @@ button:focus-visible,
 
 .choice-option:hover,
 .choice-option:focus-visible {
-  border-color: hsl(var(--parallel) / 0.6);
-  background: hsl(var(--night-raised) / 0.97);
-  box-shadow: 0 0 0 3px hsl(var(--parallel) / 0.1), 0 18px 34px -26px hsl(24 30% 10% / 0.62);
+  border-color: hsl(var(--accent) / 0.75);
+  background: hsl(var(--night-raised));
+  box-shadow: 0 0 0 3px hsl(var(--accent) / 0.12), 0 18px 34px -26px hsl(24 30% 10% / 0.62);
+}
+
+.choice-option:active {
+  background: hsl(var(--night));
 }
 
 .end-layout {
@@ -1452,6 +1482,15 @@ button:focus-visible,
   background: hsl(var(--danger));
   font-size: 14px;
   font-weight: 600;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.danger-action:hover {
+  background: hsl(var(--danger) / 0.9);
+}
+
+.danger-action:active {
+  background: hsl(var(--action-pressed));
 }
 
 @media (max-width: 899px) {
@@ -1638,8 +1677,8 @@ button:focus-visible,
   }
 
   .dialogue-continue .action-icon {
-    width: 30px;
-    height: 30px;
+    width: 17px;
+    height: 17px;
   }
 
   .choice-prompt h2 {

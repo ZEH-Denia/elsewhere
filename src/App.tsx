@@ -172,6 +172,7 @@ function App() {
   const [careerProgress, setCareerProgress] = useState<CareerProgress | null>(null)
   const [finaleStep, setFinaleStep] = useState(0)
   const [finaleLetterOpen, setFinaleLetterOpen] = useState(false)
+  const [surfaceHintDismissed, setSurfaceHintDismissed] = useState(false)
   const previousView = useRef<View>('home')
   const selectionOnPointerDown = useRef(false)
   const startButton = useRef<HTMLButtonElement>(null)
@@ -315,8 +316,9 @@ function App() {
     setView('call')
   }
 
-  function advanceStory(event: MouseEvent<HTMLButtonElement>) {
-    if (event.detail > 1) return
+  function advanceStory(event?: MouseEvent<HTMLButtonElement>) {
+    if (event && event.detail > 1) return
+    if (!surfaceHintDismissed) setSurfaceHintDismissed(true)
     setProgress(advanceOpening)
   }
 
@@ -403,7 +405,7 @@ function App() {
 
     if (view === 'call') {
       if (currentNode.kind !== 'dialogue' && currentNode.kind !== 'feedback' && currentNode.kind !== 'closing') return
-      setProgress(advanceOpening)
+      advanceStory()
       return
     }
 
@@ -610,6 +612,9 @@ function App() {
                     )}
                     <div className="dialogue-panel-footer">
                       <p className="dialogue-progress">{panelProgress}</p>
+                      {!surfaceHintDismissed && dialogueStep === 1 && (
+                        <p className="dialogue-next-hint">也可以点击画面继续</p>
+                      )}
                       {currentNode.kind === 'choice' ? (
                         <p className="choice-hint">移入选项可预览另一条路 · 选择会改变走向</p>
                       ) : (
@@ -665,7 +670,7 @@ function App() {
                     <span>重听这通来电</span><span className="action-icon"><Arrow returning /></span>
                   </button>
                   <button type="button" className="secondary-action group home-return-action" onClick={returnHome}>
-                    <span>返回首页</span><span className="action-icon"><Arrow /></span>
+                    <span>返回首页</span><span className="action-icon"><Arrow returning /></span>
                   </button>
                 </div>
               </section>
@@ -884,7 +889,7 @@ function App() {
                           <span>返回总机</span><span className="action-icon"><Arrow returning /></span>
                         </button>
                         <button type="button" className="secondary-action group" onClick={returnHome}>
-                          <span>返回首页</span><span className="action-icon"><Arrow /></span>
+                          <span>返回首页</span><span className="action-icon"><Arrow returning /></span>
                         </button>
                       </div>
                     </article>
@@ -939,7 +944,11 @@ function App() {
         onClose={() => setConfirmOpen(false)}
       >
         <h2 id="confirm-title">{confirmTarget === 'hub' ? '结束本次通话并返回总机？' : '结束本次通话并返回首页？'}</h2>
-        <p>{confirmTarget === 'hub' ? '当前职业线进度将清空，已读信件保留。' : '当前对话与选择将清空。'}</p>
+        <p>
+          {confirmTarget === 'home'
+            ? '当前对话与选择将清空。'
+            : view === 'finale' ? '本次回电将结束，已读信件保留。' : '当前职业线进度将清空，已读信件保留。'}
+        </p>
         <div className="action-row">
           <button type="button" className="secondary-action" onClick={() => setConfirmOpen(false)}>取消</button>
           <button type="button" className="danger-action" onClick={confirmEnd}>{confirmTarget === 'hub' ? '确认返回总机' : '确认结束'}</button>

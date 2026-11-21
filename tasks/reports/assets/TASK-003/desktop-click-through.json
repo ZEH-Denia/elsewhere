@@ -1,0 +1,241 @@
+{
+  "viewport": "1440x900",
+  "result": "desktop click-through passed",
+  "steps": [
+    {
+      "step": "first-ending",
+      "view": "call",
+      "heading": "和身边的人分享",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "endTitle": "和身边的人分享",
+      "letter": null,
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "transition": true
+    },
+    {
+      "step": "hub",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "endTitle": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”接听",
+          "read": false
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": false,
+      "overflow": false,
+      "transition": true
+    },
+    {
+      "step": "surface-click",
+      "before": "医生 · 白大褂 · 对白 01",
+      "after": "医生 · 白大褂 · 对白 02"
+    },
+    {
+      "step": "double-click",
+      "before": "医生 · 白大褂 · 对白 02",
+      "after": "医生 · 白大褂 · 对白 03"
+    },
+    {
+      "step": "selection-guard",
+      "selected": "你听起来像三天没睡。",
+      "progress": "医生 · 白大褂 · 对白 03"
+    },
+    {
+      "step": "end-call-confirm",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "endTitle": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”接听",
+          "read": false
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”接听",
+          "read": false
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”接听",
+          "read": false
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”接听",
+          "read": false
+        }
+      ],
+      "finaleLine": false,
+      "overflow": false,
+      "transition": true
+    },
+    {
+      "step": "career",
+      "label": "医生",
+      "pattern": [
+        0,
+        0
+      ],
+      "startLine": "凌晨两点十七分。急诊走廊的灯有一盏在闪。另一个你靠在自动贩卖机旁，白大褂口袋里露出一截没吃完的能量棒。",
+      "choicesSeen": [
+        [
+          "01我羡慕你，能确定自己在救人。",
+          "02听起来很累。有没有人问过你累不累？"
+        ],
+        [
+          "01先去睡一觉。",
+          "02给一个很久没联系的人发条消息。"
+        ]
+      ],
+      "end": "先救自己一次",
+      "letter": "这周我试着按时下班了一次。走到医院门口，天还没黑，我居然有点不习惯。你还给我的那句“休息是必需，不是奖励”，我收下了。下周可能还是会忙，但我会再试一次。",
+      "cardRead": true,
+      "ms": 10235
+    },
+    {
+      "step": "career",
+      "label": "教师",
+      "pattern": [
+        0,
+        1
+      ],
+      "startLine": "下午四点四十。最后一排的窗还亮着，粉笔灰在光里慢慢落。另一个你把一摞作文本挪到桌角，袖口沾着一点红笔印。",
+      "choicesSeen": [
+        [
+          "01我羡慕你，还能被一群孩子点燃。",
+          "02你不是没被点燃。你已经在照亮别人了。"
+        ],
+        [
+          "01给自己留一节课。",
+          "02去找那个学生聊聊。"
+        ]
+      ],
+      "end": "下课以后",
+      "letter": "那个学生今天交了一张画，画的是教室最后一排的窗，窗边多了一个人。她说那是老师，“看起来没那么累”。我把画压在教案下面，没敢让她看见我笑。",
+      "cardRead": true,
+      "ms": 9702
+    },
+    {
+      "step": "career",
+      "label": "设计师",
+      "pattern": [
+        1,
+        0
+      ],
+      "startLine": "凌晨一点。屋里只亮着显示器，桌上咖啡已经凉了。另一个你把第十二版修改意见拖到屏幕角落，像拖走一块石头。",
+      "choicesSeen": [
+        [
+          "01我羡慕你，还在做自己喜欢的东西。",
+          "02你已经把喜欢藏进细节里了。那也算数。"
+        ],
+        [
+          "01接这一版。",
+          "02关掉电脑。"
+        ]
+      ],
+      "end": "不投标的夜晚",
+      "letter": "我拒掉那个项目之后，对方居然说下次再找我。原来不是每一次拒绝都会失去什么。我的速写本已经画到第七页了。",
+      "cardRead": true,
+      "ms": 9765
+    },
+    {
+      "step": "career",
+      "label": "创业者",
+      "pattern": [
+        1,
+        1
+      ],
+      "startLine": "周一早上八点五十。办公室只有三张桌子，窗外的雨把玻璃糊成一片。另一个你把工资表最小化，桌角那盆绿植的叶子有点蔫。",
+      "choicesSeen": [
+        [
+          "01我羡慕你，至少没人能替你决定。",
+          "02你看起来比我还孤独。"
+        ],
+        [
+          "01去找以前的合伙人。",
+          "02给自己放一天假。"
+        ]
+      ],
+      "end": "把公司关小一点",
+      "letter": "我们把办公室换小了一间，还是三张桌子，但窗外有棵树。我把“做大”从今年的目标里删掉了，第一次觉得那两个字没那么重。",
+      "cardRead": true,
+      "ms": 10484
+    },
+    {
+      "step": "finale",
+      "view": "finale",
+      "heading": "下次换你打给我",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "endTitle": null,
+      "letter": "这次不问你过得好不好了。琴我没收起来，号码也没换。想打的时候，直接打。",
+      "hubCards": [],
+      "finaleLine": false,
+      "overflow": false,
+      "transition": true
+    },
+    {
+      "step": "return-hub",
+      "view": "hub",
+      "heading": "另一个世界，未知线路",
+      "line": null,
+      "progress": null,
+      "choices": [],
+      "end": null,
+      "endTitle": null,
+      "letter": null,
+      "hubCards": [
+        {
+          "text": "凌晨 02:17 · 急诊走廊医生“今天送来一个和你同岁的病人。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "下午 16:40 · 最后一排的窗教师“有个学生说，她想放弃画画。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "凌晨 01:00 · 第十二版设计师“甲方说，还是第一版更有感觉。”已接听 · 重听",
+          "read": true
+        },
+        {
+          "text": "周一 08:50 · 三张桌子创业者“下个月工资还没着落，但服务器费刚续上。”已接听 · 重听",
+          "read": true
+        }
+      ],
+      "finaleLine": true,
+      "overflow": false,
+      "transition": true
+    }
+  ],
+  "failures": [],
+  "consoleEvents": []
+}

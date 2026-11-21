@@ -1239,3 +1239,28 @@ git restore --source=6e05d32 -- src/App.tsx src/index.css src/components/SceneWh
 校验：构建通过；扩展流程 17 项通过，`failures` / `consoleEvents` 均为 `[]`；40 张场景动效检查通过（`home`、`incoming` 的雨丝/尘埃/减少动态效果均通过）。更新截图：[首页 1440](assets/TASK-003/galgame-home-1440.png)、[来电 1440](assets/TASK-003/galgame-incoming-1440.png)、[首页 390](assets/TASK-003/galgame-home-390.png)、[来电 390](assets/TASK-003/galgame-incoming-390.png)。
 
 未合并 main、未部署；未经 Codex 复审，不据此自称 PASS。
+
+## 45. 桌面浏览器点击测试
+
+日期：2026-11-20（Asia/Shanghai）。按团队要求，以 1440×900 桌面浏览器和真实鼠标事件完整点击一遍，不把手机布局列入本轮验收。
+
+### 实际路径
+
+首页 → 开始体验 → 前言 → 来电 → 接听 → 第一通对白 → 第一次选择（珍惜）→ 第二次选择（联系）→ 第一通结局 → 继续 → 身份（刚离开工程）→ 总机 → 医生完整线 → 教师完整线 → 设计师完整线 → 创业者完整线 → 最后一通 → 最终信件 → 返回总机。
+
+- 四条职业线分别走到不同选择组合：医生 0/0、教师 0/1、设计师 1/0、创业者 1/1；四个结局分别为“先救自己一次”“下课以后”“不投标的夜晚”“把公司关小一点”，四张卡片均变为“已接听 · 重听”。
+- 中途测试了桌面点画面继续：对白 01 → 02。
+- 双击画面只推进一句（对白 02 → 03，第二次点击被忽略）。
+- 选中对白文字后点击画面，进度保持不变。
+- 职业通话中“结束通话”先取消再确认，取消留在当前通话，确认回到总机，已读状态保留。
+- 所有页面在 1440 下无横向溢出；`failures` 和 `consoleEvents` 均为 `[]`。
+
+### 证据
+
+- [点击测试脚本](assets/TASK-003/desktop-click-through.mjs)
+- [点击测试结果](assets/TASK-003/desktop-click-through.json)
+- [第一通结局](assets/TASK-003/desktop-click-first-ending-1440.png)、[首次总机](assets/TASK-003/desktop-click-hub-1440.png)、[四线读完总机](assets/TASK-003/desktop-click-final-hub-1440.png)、[最终信件](assets/TASK-003/desktop-click-finale-1440.png)
+
+### 结论与限制
+
+本轮点击测试未发现阻断性交互、布局或控制台问题，因此没有代码修复。覆盖的是每条职业线各一条组合；16 种组合的数据路径仍由剧情测试覆盖。测试使用无头 Edge，未使用实体设备或真实读屏；未经 Codex 复审，不据此自称 PASS。

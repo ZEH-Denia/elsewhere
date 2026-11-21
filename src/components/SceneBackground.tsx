@@ -123,7 +123,15 @@ function useFadeLayers(target: SceneName | null) {
   return { layers, readyKeys }
 }
 
-export function SceneBackground({ scene, preview = null }: { scene: SceneName; preview?: SceneName | null }) {
+export function SceneBackground({
+  scene,
+  preview = null,
+  previewTone,
+}: {
+  scene: SceneName
+  preview?: SceneName | null
+  previewTone?: 'cool' | 'warm'
+}) {
   const activePreview = preview && preview !== scene ? preview : null
   const sceneLayers = useFadeLayers(scene)
   const previewLayers = useFadeLayers(activePreview)
@@ -138,7 +146,12 @@ export function SceneBackground({ scene, preview = null }: { scene: SceneName; p
   }, [])
 
   return (
-    <div className={`scene-background${activePreview ? ' is-previewing' : ''}`} data-scene={scene} aria-hidden="true">
+    <div
+      className={`scene-background${activePreview || previewTone ? ' is-previewing' : ''}`}
+      data-scene={scene}
+      data-preview-tone={previewTone}
+      aria-hidden="true"
+    >
       {sceneLayers.layers.map((layer, index) => {
         const isLatest = index === sceneLayers.layers.length - 1
         return (

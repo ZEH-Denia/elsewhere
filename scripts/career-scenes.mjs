@@ -159,7 +159,7 @@ function designerWall(x, y, width, height) {
   </g>`
 }
 
-function careerShell(inner, { wash = '#1b1a20', opacity = 0.34, glow = 0.78 } = {}) {
+function careerShell(inner, { wash = '#1b1a20', opacity = 0.34, glow = 0.46 } = {}) {
   return `<g clip-path="url(#rightClip)">
     <rect x="806" y="164" width="532" height="502" fill="url(#rightRoom)"/>
     <rect x="806" y="164" width="532" height="502" fill="${wash}" opacity="${opacity}"/>
@@ -760,5 +760,16 @@ function sceneArt(kind, variant) {
 }
 
 export function careerRoom(kind, variant = 0) {
-  return sceneArt(kind, variant)
+  const focus = {
+    doctor: [[1190, 333], [1114, 381], [1034, 334], [1146, 300]],
+    teacher: [[1005, 296], [1040, 396], [1111, 344], [1080, 311]],
+    designer: [[1082, 311], [1050, 310], [1088, 309], [1061, 386]],
+    founder: [[1000, 291], [1083, 319], [1090, 310], [1110, 333]],
+  }[kind]?.[variant]
+  const art = sceneArt(kind, variant)
+  if (!focus) return art
+
+  return `${art}
+    <ellipse data-career-focus="${kind}" cx="${focus[0]}" cy="${focus[1]}" rx="164" ry="110"
+      clip-path="url(#rightClip)" fill="url(#careerFocus)" opacity=".65" style="mix-blend-mode:screen"/>`
 }

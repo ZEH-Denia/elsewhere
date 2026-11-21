@@ -64,7 +64,7 @@ function rainLines(count, opacity, seed, width = 1500, height = 1080) {
     const length = 10 + random() * 28
     return `<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x - length * 0.24).toFixed(1)}" y2="${(y + length).toFixed(1)}" stroke-width="${(0.6 + random()).toFixed(1)}" opacity="${(0.2 + random() * 0.65).toFixed(2)}"/>`
   }).join('')
-  return `<g class="anim rain-drift" stroke="#c5d8e5" stroke-linecap="round" opacity="${opacity}">${lines}</g>`
+  return `<g class="anim rain-drift" stroke="#c5d8e5" stroke-linecap="round" opacity="${(opacity * 0.72).toFixed(3)}">${lines}</g>`
 }
 
 function dustMotes(count, seed, tone = '#efd6ad') {
@@ -77,7 +77,7 @@ function dustMotes(count, seed, tone = '#efd6ad') {
     const delay = (-random() * duration).toFixed(1)
     return `<circle class="anim mote" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${radius.toFixed(1)}" style="animation-duration:${duration}s;animation-delay:${delay}s"/>`
   }).join('')
-  return `<g fill="${tone}" opacity=".55">${motes}</g>`
+  return `<g fill="${tone}" opacity=".37">${motes}</g>`
 }
 
 function cameraTransform(kind, zoom) {
@@ -106,7 +106,7 @@ const motionStyle = `<style>
   @keyframes drift { 0%, 100% { transform: translate(0px, 0px); } 50% { transform: translate(6px, -8px); } }
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes pulse { 0%, 100% { transform: scaleY(.32); } 50% { transform: scaleY(1); } }
-  @keyframes ring { 0% { transform: scale(.5); opacity: .55; } 68% { opacity: .14; } 100% { transform: scale(2.4); opacity: 0; } }
+  @keyframes ring { 0% { transform: scale(.5); opacity: .4; } 68% { opacity: .1; } 100% { transform: scale(2.4); opacity: 0; } }
   @keyframes rise { 0% { opacity: 0; transform: translateY(6px); } 35% { opacity: .55; } 100% { opacity: 0; transform: translateY(-16px); } }
   @keyframes flow { to { stroke-dashoffset: -120; } }
   @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
@@ -252,7 +252,7 @@ function wallScore() {
 function leftRoom({ showLamp = true } = {}) {
   return `<g clip-path="url(#leftClip)">
     <rect x="102" y="164" width="532" height="502" fill="url(#leftRoom)"/>
-    <ellipse cx="444" cy="440" rx="250" ry="240" fill="url(#lampGlow)" opacity=".26"/>
+    <ellipse cx="444" cy="440" rx="250" ry="240" fill="url(#lampGlow)" opacity=".38"/>
     <path d="M102 540L634 498V666H102Z" fill="url(#floor)"/>
     <path d="M102 550L634 508M102 603L634 552M210 666L328 520M420 666L448 514" stroke="#80909a" stroke-opacity=".06"/>
     <rect x="126" y="192" width="188" height="266" rx="3" fill="#080e16" stroke="#4b5d6b" stroke-opacity=".5"/>
@@ -284,9 +284,9 @@ function leftRoom({ showLamp = true } = {}) {
 function rightRoom({ showSheet = true, showGuitar = true } = {}) {
   return `<g clip-path="url(#rightClip)">
     <rect x="806" y="164" width="532" height="502" fill="url(#rightRoom)"/>
-    <g class="anim glow-drift"><ellipse cx="1110" cy="348" rx="290" ry="268" fill="url(#stageGlow)"/></g>
+    <g class="anim glow-drift"><ellipse cx="1110" cy="348" rx="290" ry="268" fill="url(#musicGlow)"/></g>
     <g opacity=".32"><path d="M838 194H894V450H838ZM906 194H962V450H906ZM974 194H1030V450H974ZM1042 194H1098V450H1042ZM1110 194H1166V450H1110ZM1178 194H1234V450H1178ZM1246 194H1302V450H1246Z" fill="#40344f"/><path d="M850 194V450M918 194V450M986 194V450M1054 194V450M1122 194V450M1190 194V450M1258 194V450" stroke="#9a82aa" stroke-opacity=".18"/></g>
-    <path d="M1080 156H1180L1300 666H884Z" fill="url(#spotlight)"/>
+    <path d="M1080 156H1180L1300 666H884Z" fill="url(#musicSpot)"/>
     <ellipse cx="1115" cy="626" rx="218" ry="44" fill="#c5a0dc" opacity=".07" filter="url(#blur8)"/>
     <path d="M806 540L1338 504V666H806Z" fill="url(#floor)"/>
     <path d="M806 561L1338 523M806 614L1338 567M924 666L1008 524M1150 666L1160 516" stroke="#a392b1" stroke-opacity=".055"/>
@@ -303,16 +303,19 @@ function rightRoom({ showSheet = true, showGuitar = true } = {}) {
 const sceneDefs = `  <defs>
     <linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#120d0c"/><stop offset=".46" stop-color="#2b1c1c"/><stop offset="1" stop-color="#160f0e"/></linearGradient>
     <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e2a276" stop-opacity=".36"/><stop offset=".48" stop-color="#8b5e5e" stop-opacity=".15"/><stop offset="1" stop-color="#17110f" stop-opacity="0"/></linearGradient>
-    <linearGradient id="warmWash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efb77d" stop-opacity=".2"/><stop offset=".5" stop-color="#dca18c" stop-opacity=".13"/><stop offset="1" stop-color="#c98370" stop-opacity=".18"/></linearGradient>
+    <linearGradient id="warmWash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dca066" stop-opacity=".11"/><stop offset=".55" stop-color="#887480" stop-opacity=".045"/><stop offset="1" stop-color="#7495af" stop-opacity=".12"/></linearGradient>
     <linearGradient id="leftRoom" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#3b2c24"/><stop offset=".55" stop-color="#2a211d"/><stop offset="1" stop-color="#15100e"/></linearGradient>
-    <linearGradient id="rightRoom" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#3b292c"/><stop offset=".58" stop-color="#2b2025"/><stop offset="1" stop-color="#171114"/></linearGradient>
+    <linearGradient id="rightRoom" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#273847"/><stop offset=".58" stop-color="#222d38"/><stop offset="1" stop-color="#151821"/></linearGradient>
     <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#261c18"/><stop offset="1" stop-color="#0e0b0a"/></linearGradient>
     <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d5b497" stop-opacity=".13"/><stop offset=".42" stop-color="#62483f" stop-opacity=".05"/><stop offset=".48" stop-color="#f4d7b6" stop-opacity=".13"/><stop offset="1" stop-color="#211512" stop-opacity=".03"/></linearGradient>
     <linearGradient id="spotlight" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe0b6" stop-opacity=".27"/><stop offset="1" stop-color="#d9a18b" stop-opacity="0"/></linearGradient>
-    <linearGradient id="bottomShade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#100b09" stop-opacity="0"/><stop offset=".56" stop-color="#100b09" stop-opacity=".46"/><stop offset="1" stop-color="#0b0807" stop-opacity=".94"/></linearGradient>
+    <linearGradient id="musicSpot" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c1d7e2" stop-opacity=".3"/><stop offset="1" stop-color="#7697b9" stop-opacity="0"/></linearGradient>
+    <linearGradient id="bottomShade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#100b10" stop-opacity="0"/><stop offset=".48" stop-color="#100b10" stop-opacity=".47"/><stop offset="1" stop-color="#0a080d" stop-opacity=".91"/></linearGradient>
     <radialGradient id="lampGlow"><stop stop-color="#ffe0a8" stop-opacity=".78"/><stop offset=".26" stop-color="#f4bd78" stop-opacity=".3"/><stop offset="1" stop-color="#e6a053" stop-opacity="0"/></radialGradient>
     <radialGradient id="stageGlow"><stop stop-color="#ffd8bd" stop-opacity=".48"/><stop offset=".35" stop-color="#dda088" stop-opacity=".18"/><stop offset="1" stop-color="#aa6e63" stop-opacity="0"/></radialGradient>
-    <radialGradient id="vignette" cx=".5" cy=".45" r=".72"><stop offset=".42" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".66"/></radialGradient>
+    <radialGradient id="musicGlow"><stop stop-color="#abd5e9" stop-opacity=".53"/><stop offset=".4" stop-color="#7da7c5" stop-opacity=".24"/><stop offset="1" stop-color="#617c9d" stop-opacity="0"/></radialGradient>
+    <radialGradient id="careerFocus"><stop stop-color="#d5e3df" stop-opacity=".27"/><stop offset=".44" stop-color="#a2c3cb" stop-opacity=".095"/><stop offset="1" stop-color="#8aa4b8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="vignette" cx=".5" cy=".43" r=".73"><stop offset=".39" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".63"/></radialGradient>
     <filter id="blur8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
     <filter id="blur24" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="24"/></filter>
     <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#000" flood-opacity=".55"/></filter>
@@ -332,7 +335,7 @@ function renderScene(name, config) {
       ? '<rect y="112" width="704" height="642" fill="#02050b" opacity=".34"/>'
       : ''
   const tint = config.cool
-    ? '<rect width="1440" height="900" fill="#6d5360" opacity=".09"/>'
+    ? '<rect width="1440" height="900" fill="#52758e" opacity=".06"/>'
     : config.warm
       ? '<rect width="1440" height="900" fill="#9b6946" opacity=".09"/>'
       : ''
@@ -342,27 +345,31 @@ function renderScene(name, config) {
   const motifHasLamp = config.motif === 'lamp'
   const split = config.split ? '<path d="M720 112V754" stroke="#b2d9d7" stroke-opacity=".1" stroke-width="2" stroke-dasharray="2 14"/>' : ''
   const camera = config.camera ? cameraTransform(config.camera, config.zoom ?? 1.15) : ''
+  const roomLift = config.career ? uiLift + 24 : uiLift
+  const rightDividerX = config.career ? 1296 : 1072
+  const rightDividerY = config.career ? 563 : 328
+  const mullions = `M368 158V672M98 328H640M${rightDividerX} 158V672M802 ${rightDividerY}H1344`
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title desc">
   <title id="title">Elsewhere 雨夜双城 · ${name}</title><desc id="desc">工程书桌与音乐排练室在雨夜中由来电信号连接。</desc>
   ${motionStyle}
 ${sceneDefs}
   <rect width="1440" height="900" fill="url(#night)"/>
-  <ellipse cx="360" cy="340" rx="460" ry="370" fill="#b47b58" opacity=".09"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#a86c6c" opacity=".1"/>
+  <ellipse cx="360" cy="340" rx="460" ry="370" fill="#b47b58" opacity=".12"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#688eac" opacity=".1"/>
 ${dawn}
-  <g transform="translate(0 -${uiLift}) ${camera}">
+  <g transform="translate(0 -${roomLift}) ${camera}">
   <path d="M0 112H1440V754H0Z" fill="#080d15" opacity=".9"/><path d="M0 112H1440M0 754H1440" stroke="#6d8296" stroke-opacity=".14"/>
   <g filter="url(#shadow)"><rect x="72" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#344250" stroke-opacity=".55"/><rect x="92" y="154" width="552" height="522" rx="4" fill="#111923" stroke="#637484" stroke-opacity=".18"/><rect x="776" y="134" width="592" height="562" rx="8" fill="#05090f" stroke="#454057" stroke-opacity=".58"/><rect x="796" y="154" width="552" height="522" rx="4" fill="#171522" stroke="#756887" stroke-opacity=".18"/></g>
   <g opacity="${left}">${leftRoom({ showLamp: !motifHasLamp })}</g><g opacity="${right}">${config.career ? careerRoom(config.career, config.careerVariant ?? 0) : rightRoom({ showSheet: !motifHasScore, showGuitar: !motifHasGuitar })}</g>
   <rect x="102" y="164" width="532" height="502" fill="url(#glass)" opacity=".32"/>
-  <path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#080d14" stroke-width="15"/><path d="M368 158V672M98 328H640M1072 158V672M802 328H1344" stroke="#607080" stroke-opacity=".12" stroke-width="2"/>
+  <path d="${mullions}" stroke="#080d14" stroke-width="15"/><path d="${mullions}" stroke="#607080" stroke-opacity=".12" stroke-width="2"/>
   <rect x="102" y="164" width="532" height="502" rx="3" fill="none" stroke="#9aabba" stroke-opacity=".12"/><rect x="806" y="164" width="532" height="502" rx="3" fill="none" stroke="#aa9bb8" stroke-opacity=".12"/>
   </g>
   ${rainLines(150, config.rain ?? 0.2, 27)}
   ${dustMotes(22, 61)}
 ${`  <g transform="translate(0 -${uiLift}) ${camera}">${focusShade}${split}${phone(config.phone ?? 0)}<g transform="translate(0 ${motifLift})">${motif(config.motif)}</g></g>${tint}`.trimEnd()}
   <rect width="1440" height="900" fill="url(#warmWash)"/>
-  <rect y="606" width="1440" height="294" fill="url(#bottomShade)"/><rect width="1440" height="900" fill="url(#vignette)"/><rect width="1440" height="900" filter="url(#grain)" opacity=".38"/>
+  <rect y="563" width="1440" height="337" fill="url(#bottomShade)"/><rect width="1440" height="900" fill="url(#vignette)"/><rect width="1440" height="900" filter="url(#grain)" opacity=".38"/>
 </svg>
 `
 }
@@ -398,7 +405,7 @@ function landlinePhone(x, y, accent = '#8ad7d6') {
 
 function renderStandaloneScene(name, description, body, { rain = 0.3, cool = false, warm = true } = {}) {
   const tint = cool
-    ? '<rect width="1440" height="900" fill="#6d5360" opacity=".09"/>'
+    ? '<rect width="1440" height="900" fill="#52758e" opacity=".06"/>'
     : warm
       ? '<rect width="1440" height="900" fill="#9b6946" opacity=".09"/>'
       : ''
@@ -408,7 +415,7 @@ function renderStandaloneScene(name, description, body, { rain = 0.3, cool = fal
   ${motionStyle}
   ${sceneDefs}
   <rect width="1440" height="900" fill="url(#night)"/>
-  <ellipse cx="360" cy="340" rx="460" ry="370" fill="#b47b58" opacity=".09"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#a86c6c" opacity=".1"/>
+  <ellipse cx="360" cy="340" rx="460" ry="370" fill="#b47b58" opacity=".12"/><ellipse cx="1100" cy="330" rx="440" ry="360" fill="#688eac" opacity=".1"/>
   ${body}
   ${rainLines(150, rain, 31)}
   ${dustMotes(22, 67)}
@@ -425,8 +432,8 @@ function homeBody() {
   <g stroke="#8a6b58" stroke-opacity=".08"><path d="M0 280H1440M0 410H1440M0 520H1440"/></g>
   <g transform="translate(150 176)">
     <rect width="430" height="386" rx="12" fill="#060b10" stroke="#49545b" stroke-width="10"/>
-    <rect x="12" y="12" width="406" height="362" rx="6" fill="#241b17"/>
-    <ellipse cx="210" cy="210" rx="190" ry="170" fill="url(#lampGlow)" opacity=".28"/>
+    <rect x="12" y="12" width="406" height="362" rx="6" fill="#39281e"/>
+    <ellipse cx="210" cy="210" rx="190" ry="170" fill="url(#lampGlow)" opacity=".57"/>
     <path d="M40 92H340" stroke="#6d5945" stroke-width="4"/>
     <path d="M50 70H70V92H50ZM78 58H96V92H78ZM104 66H120V92H104Z" fill="#5f4b3b" opacity=".8"/>
     <path d="M22 300H390L374 320H36Z" fill="#46362b" stroke="#8f7459" stroke-opacity=".5"/>
@@ -441,8 +448,8 @@ function homeBody() {
   </g>
   <g transform="translate(860 176)">
     <rect width="430" height="386" rx="12" fill="#060b10" stroke="#49545b" stroke-width="10"/>
-    <rect x="12" y="12" width="406" height="362" rx="6" fill="#241a22"/>
-    <ellipse cx="210" cy="210" rx="190" ry="170" fill="url(#stageGlow)" opacity=".3"/>
+    <rect x="12" y="12" width="406" height="362" rx="6" fill="#213444"/>
+    <ellipse cx="210" cy="210" rx="190" ry="170" fill="url(#musicGlow)" opacity=".68"/>
     <rect x="36" y="270" width="100" height="84" rx="4" fill="#171b20" stroke="#7d7b86" stroke-opacity=".4"/>
     <path fill="none" d="M46 286H126M46 300H126M46 314H126" stroke="#a7a0ad" stroke-opacity=".22" stroke-width="2"/>
     ${guitar(150, 96, 0.72)}
@@ -464,7 +471,8 @@ function incomingBody() {
   <g transform="translate(96 150)">
     <rect width="1248" height="420" rx="8" fill="#070d12" stroke="#4a5459" stroke-width="10"/>
     <rect x="12" y="12" width="1224" height="396" fill="#0d1a24"/>
-    <ellipse cx="620" cy="210" rx="520" ry="210" fill="url(#stageGlow)" opacity=".22"/>
+    <ellipse cx="310" cy="210" rx="285" ry="195" fill="url(#lampGlow)" opacity=".42"/>
+    <ellipse cx="936" cy="210" rx="285" ry="195" fill="url(#musicGlow)" opacity=".54"/>
     <g fill="#d9b178" opacity=".34">
       <rect x="118" y="250" width="10" height="12"/><rect x="146" y="226" width="8" height="10"/><rect x="210" y="270" width="7" height="9"/>
       <rect x="276" y="238" width="9" height="11"/><rect x="356" y="260" width="8" height="8"/><rect x="900" y="236" width="9" height="11"/>

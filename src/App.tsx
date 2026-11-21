@@ -34,6 +34,8 @@ import type { CareerProgress } from './story/expansion'
 
 type View = 'home' | 'intro' | 'incoming' | 'call' | 'identity' | 'hub' | 'career' | 'letter' | 'finale'
 
+type ChoicePreview = { scene: SceneName | null; tone: 'cool' | 'warm' }
+
 function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>, careerId: CareerId | null): SceneName {
   if (view === 'home' || view === 'intro' || view === 'letter') return 'home'
   if (view === 'incoming') return 'incoming'
@@ -165,7 +167,7 @@ function App() {
   const [progress, setProgress] = useState(createInitialOpeningProgress)
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [confirmTarget, setConfirmTarget] = useState<'home' | 'hub'>('home')
-  const [previewScene, setPreviewScene] = useState<SceneName | null>(null)
+  const [choicePreview, setChoicePreview] = useState<ChoicePreview | null>(null)
   const [identity, setIdentity] = useState<PlayerIdentity | null>(null)
   const [firstEnding, setFirstEnding] = useState<string | null>(null)
   const [readCareers, setReadCareers] = useState<CareerId[]>([])
@@ -214,8 +216,8 @@ function App() {
   ]
 
   useEffect(() => {
-    setPreviewScene(null)
-  }, [safeProgress.nodeId])
+    setChoicePreview(null)
+  }, [safeProgress.nodeId, view, careerPhase])
 
   useEffect(() => {
     const dialog = confirmDialog.current
@@ -353,6 +355,10 @@ function App() {
     })
   }
 
+  function showChoicePreview(optionIndex: number, scene: SceneName | null = null) {
+    setChoicePreview({ scene, tone: optionIndex === 0 ? 'cool' : 'warm' })
+  }
+
   function finishCareer(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
     if (careerProgress) {
@@ -486,7 +492,7 @@ function App() {
         selectionOnPointerDown.current = Boolean(window.getSelection()?.toString())
       }}
     >
-      <SceneBackground scene={sceneName} preview={previewScene} />
+      <SceneBackground scene={sceneName} preview={choicePreview?.scene} previewTone={choicePreview?.tone} />
       <p className="sr-only" aria-live="polite" aria-atomic="true">{liveText}</p>
       <div className="ambient ambient-violet" aria-hidden="true" />
       <div className="ambient ambient-cyan" aria-hidden="true" />
@@ -628,10 +634,10 @@ function App() {
                           key={option.id}
                           type="button"
                           className="choice-option"
-                          onMouseEnter={() => setPreviewScene(getChoicePreviewScene(option.id))}
-                          onMouseLeave={() => setPreviewScene(null)}
-                          onFocus={() => setPreviewScene(getChoicePreviewScene(option.id))}
-                          onBlur={() => setPreviewScene(null)}
+                          onMouseEnter={() => showChoicePreview(index, getChoicePreviewScene(option.id))}
+                          onMouseLeave={() => setChoicePreview(null)}
+                          onFocus={() => showChoicePreview(index, getChoicePreviewScene(option.id))}
+                          onBlur={() => setChoicePreview(null)}
                           onClick={(event) => {
                             if (event.detail > 1) return
                             setProgress((current) => chooseOpening(current, option.id))
@@ -786,7 +792,7 @@ function App() {
                       </div>
                       <div className="action-row letter-actions">
                         <button type="button" className="primary-action group" onClick={finishCareer}>
-                          <span>读完，回总机</span><span className="action-icon"><Arrow /></span>
+                          <span>读完，回总机</span><span className="action-icon"><Arrow returning /></span>
                         </button>
                         <button type="button" className="secondary-action group" onClick={restartCareer}>
                           <span>重听这条线</span><span className="action-icon"><Arrow returning /></span>
@@ -852,6 +858,10 @@ function App() {
                             key={option.id}
                             type="button"
                             className="choice-option"
+                          onMouseEnter={() => showChoicePreview(index)}
+                          onMouseLeave={() => setChoicePreview(null)}
+                          onFocus={() => showChoicePreview(index)}
+                          onBlur={() => setChoicePreview(null)}
                             onClick={() => chooseCareer(option.id)}
                           >
                             <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
@@ -928,7 +938,9 @@ function App() {
         )}
       </div>
 
-      {previewScene === null && ['home', 'intro', 'incoming', 'call'].includes(view) && <SceneWhispers scene={sceneName} />}
+      {choicePreview === null && ['home', 'intro', 'incoming', 'call'].includes(view) && (
+        <SceneWhispers scene={sceneName} layoutKey={screenKey} />
+      )}
 
       <dialog
         ref={confirmDialog}

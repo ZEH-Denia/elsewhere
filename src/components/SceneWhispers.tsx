@@ -30,14 +30,14 @@ const HOVER_DELAY = 150
 const whispers: Partial<Record<SceneName, Whisper[]>> = {
   home: [{
     id: 'guitar',
-    x: 978,
-    y: 478,
+    x: 1066,
+    y: 318,
     text: '琴弦上还留着当年的指印。',
-    hit: { cx: 974, cy: 460, w: 280, h: 260 },
-    halo: { cx: 973, cy: 478, rx: 150, ry: 200 },
+    hit: { cx: 1065, cy: 314, w: 108, h: 182 },
+    halo: { cx: 1064, cy: 315, rx: 75, ry: 103 },
     edge: {
       kind: 'guitar',
-      transform: 'translate(0 -60) translate(900 378) rotate(-12 70 130)',
+      transform: 'translate(0 -60) translate(860 176) translate(150 96) scale(0.72) rotate(-12 70 130)',
       mask: { x: -10, y: -10, w: 170, h: 250, x1: 20, y1: 0, x2: 140, y2: 230 },
     },
   }],
@@ -135,10 +135,10 @@ function EdgeSilhouette({ kind }: { kind: EdgeKind }) {
   return kind === 'guitar' ? <GuitarSilhouette /> : <SheetSilhouette />
 }
 
-export function SceneWhispers({ scene }: { scene: SceneName }) {
+export function SceneWhispers({ scene, layoutKey }: { scene: SceneName; layoutKey: string }) {
   const hostRef = useRef<HTMLDivElement>(null)
   const hoverTimer = useRef<number | null>(null)
-  const [size, setSize] = useState({ width: 0, height: 0 })
+  const [size, setSize] = useState({ width: 0, height: 0, dockTop: 0 })
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const [pinnedId, setPinnedId] = useState<string | null>(null)
   const items = whispers[scene] ?? []
@@ -155,22 +155,29 @@ export function SceneWhispers({ scene }: { scene: SceneName }) {
   useEffect(() => {
     const host = hostRef.current
     if (!host) return
+    const dock = host.parentElement?.querySelector('.call-dock, .prelude-dock')
     const measure = () => {
       const rect = host.getBoundingClientRect()
-      setSize((current) =>
-        current.width === rect.width && current.height === rect.height ? current : { width: rect.width, height: rect.height },
-      )
+      const dockTop = dock ? dock.getBoundingClientRect().top - rect.top : rect.height
+      setSize((current) => current.width === rect.width && current.height === rect.height && current.dockTop === dockTop
+        ? current
+        : { width: rect.width, height: rect.height, dockTop })
     }
     measure()
     if (typeof ResizeObserver === 'undefined') return
     const observer = new ResizeObserver(measure)
     observer.observe(host)
+    if (dock) observer.observe(dock)
     return () => observer.disconnect()
-  }, [])
+  }, [layoutKey])
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return
+      if (hoverTimer.current !== null) {
+        window.clearTimeout(hoverTimer.current)
+        hoverTimer.current = null
+      }
       setHoveredId(null)
       setPinnedId(null)
     }
@@ -201,8 +208,9 @@ export function SceneWhispers({ scene }: { scene: SceneName }) {
 
   const togglePin = (id: string) => {
     clearTimer()
-    setPinnedId((current) => (current === id ? null : id))
-    setHoveredId(id)
+    const next = pinnedId === id ? null : id
+    setPinnedId(next)
+    setHoveredId(next)
   }
 
   useEffect(() => () => clearTimer(), [])
@@ -310,6 +318,11 @@ export function SceneWhispers({ scene }: { scene: SceneName }) {
         items.map((item) => {
           const active = activeId === item.id
           const bubbleId = `whisper-${scene}-${item.id}`
+          const anchorX = offsetX + item.x * scale
+          const anchorY = offsetY + item.y * scale
+          const bubbleX = Math.max(124, Math.min(size.width - 124, anchorX))
+          const bubbleY = Math.min(anchorY, size.dockTop - 16)
+          const placement = item.placement === 'below' && bubbleY + 52 < size.dockTop ? 'below' : 'above'
           return (
             <button
               key={item.id}
@@ -323,6 +336,7 @@ export function SceneWhispers({ scene }: { scene: SceneName }) {
               }}
               aria-label="画面细节"
               aria-describedby={bubbleId}
+              aria-expanded={active}
               onPointerEnter={(event) => {
                 if (event.pointerType === 'mouse' || event.pointerType === 'pen') showSoon(item.id)
               }}
@@ -343,7 +357,12 @@ export function SceneWhispers({ scene }: { scene: SceneName }) {
               >
                 <span
                   id={bubbleId}
-                  className={`scene-whisper-bubble is-${item.placement ?? 'above'}`}
+                  className={`scene-whisper-bubble is-${placement}`}
+                  style={{
+                    left: bubbleX - anchorX,
+                    top: placement === 'below' ? bubbleY - anchorY + 9 : 'auto',
+                    bottom: placement === 'above' ? anchorY - bubbleY + 9 : 'auto',
+                  }}
                 >
                   {item.text}
                 </span>

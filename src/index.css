@@ -326,13 +326,43 @@ button {
   transition: opacity 140ms ease, box-shadow 140ms ease;
 }
 
-.scene-whisper:hover .scene-whisper-anchor::before,
-.scene-whisper:focus-visible .scene-whisper-anchor::before {
+.scene-whisper:is(:hover, :focus-visible, .is-open) .scene-whisper-anchor::before {
   opacity: 1;
   box-shadow: 0 0 0 4px hsl(40 50% 80% / 0.38);
 }
 
+.scene-whisper-anchor::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid hsl(40 68% 88%);
+  border-radius: 50%;
+  opacity: 0.55;
+  transform: translate(-50%, -50%) scale(1.44);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scene-whisper:not(:hover, :focus-visible, .is-open) .scene-whisper-anchor::after {
+    animation: whisper-marker-breathe 3.2s ease-in-out infinite;
+  }
+}
+
+@keyframes whisper-marker-breathe {
+  0%, 100% {
+    opacity: 0.28;
+    transform: translate(-50%, -50%) scale(1.14);
+  }
+  50% {
+    opacity: 0.74;
+    transform: translate(-50%, -50%) scale(1.72);
+  }
+}
+
 .scene-whisper-bubble {
+  z-index: 1;
   position: absolute;
   left: 0;
   width: max-content;

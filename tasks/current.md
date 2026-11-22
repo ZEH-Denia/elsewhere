@@ -1,5 +1,9 @@
 # TASK-003：第二次选择与四条结局
 
+## 2026-11-22 场景推镜与视差
+
+团队要求将转场小样中的推镜与视差接入项目。接通、四条职业线入口和最终回电使用按场景绘制的深度分区，近景位移大于远景，约 680 ms 后回到原图构图。实现位于 `codex/task-003-home-visual@aff1eb2`，见 [桌面验收](reviews/TASK-003.md)。
+
 ## 2026-11-22 Qoder Sites 参赛版本
 
 已按团队授权从 `codex/task-003-home-visual@7991016` 构建并更新原 Qoder Sites 站点。原网址可公开访问，发布验证见 [TASK-003 审查](reviews/TASK-003.md)。天池论坛作品帖由赛事平台单独接收。 [公网体验](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/) · [天池赛题说明](https://tianchi.aliyun.com/competition/entrance/532536/information)

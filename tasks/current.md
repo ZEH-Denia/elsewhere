@@ -1,5 +1,9 @@
 # TASK-003：第二次选择与四条结局
 
+## 2026-11-22 Qoder Sites 参赛版本
+
+已按团队授权从 `codex/task-003-home-visual@7991016` 构建并更新原 Qoder Sites 站点。原网址可公开访问，发布验证见 [TASK-003 审查](reviews/TASK-003.md)。天池论坛作品帖由赛事平台单独接收。 [公网体验](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/) · [天池赛题说明](https://tianchi.aliyun.com/competition/entrance/532536/information)
+
 ## 2026-11-21 快速点击对白返修
 
 玩家反馈快速点画面会误选下一句，导致下一次点击只清除选区。首通、职业对白与最终回电共用的画面推进已修复，保留双击只进一句和手动拖选。验收提交为 `codex/task-003-home-visual@7991016`，见 [桌面审查](reviews/TASK-003.md)。

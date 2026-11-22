@@ -4,7 +4,7 @@
 
 第一通来电有两次选择和四种结局。随后可选择三种身份，进入医生、教师、设计师和创业者四条职业线路。职业线路共 16 个结局和对应来信。读完任一封职业来信即可解锁最终回电。
 
-TASK-003 的 28 项桌面视觉改进已通过验收，应用已合入 `main`，验收基线为 `510568b`。当前公网站点仍提供此前发布的版本。手机版开发和窄屏验收暂缓。 [公网体验](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/) · [桌面验收](tasks/reviews/TASK-003.md)
+TASK-003 的 28 项桌面视觉改进已通过验收并合入 `main`，验收基线为 `510568b`。Qoder Sites 已公开发布 `7991016`，包含雨夜插画和快速点击对白修复。手机版开发和窄屏验收暂缓。 [公网体验](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/) · [桌面验收](tasks/reviews/TASK-003.md)
 
 ## 本地运行
 

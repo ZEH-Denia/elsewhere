@@ -1,5 +1,9 @@
 # TASK-003：第二次选择与四条结局
 
+## 2026-11-22 七项桌面体验改进
+
+按团队要求实施公网走查中的七项建议。本机续玩和回信存档、后续来电引导、职业对白分组与重听跳转、对白记录和画面提示、前言与总机调整、尾声来信回扣、通话音效均已通过桌面验收。实现为 `codex/task-003-home-visual@5053d6a`，见 [验收记录](reviews/TASK-003.md)。
+
 ## 2026-11-22 Qoder Sites 推镜版
 
 已按团队授权将 `codex/task-003-home-visual@aff1eb2` 发布到原 Qoder Sites 地址。匿名桌面浏览器实测六处推镜及对白推进通过。 [公网体验](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/) · [发布验收](reviews/TASK-003.md)

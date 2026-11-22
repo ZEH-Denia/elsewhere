@@ -1,5 +1,9 @@
 # TASK-003：第二次选择与四条结局
 
+## 2026-11-22 Qoder Sites 推镜版
+
+已按团队授权将 `codex/task-003-home-visual@aff1eb2` 发布到原 Qoder Sites 地址。匿名桌面浏览器实测六处推镜及对白推进通过。 [公网体验](https://elsewhere-missed-call-gfiycnjh8f0.qoder.zone/) · [发布验收](reviews/TASK-003.md)
+
 ## 2026-11-22 场景推镜与视差
 
 团队要求将转场小样中的推镜与视差接入项目。接通、四条职业线入口和最终回电使用按场景绘制的深度分区，近景位移大于远景，约 680 ms 后回到原图构图。实现位于 `codex/task-003-home-visual@aff1eb2`，见 [桌面验收](reviews/TASK-003.md)。

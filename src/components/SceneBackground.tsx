@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { SceneCamera, cameraProfiles } from './SceneCamera'
 
 const sceneNames = [
   'home',
@@ -183,6 +184,12 @@ export function SceneBackground({
     >
       {sceneLayers.map((layer, index) => {
         const isLatest = index === sceneLayers.length - 1
+        const profile = isLatest && layer.name === scene && !activePreview && !previewTone
+          ? cameraProfiles[scene]
+          : undefined
+        const cameraImage = profile && layer.src === sceneImageUrl(scene)
+          ? imageCache.get(layer.src)
+          : undefined
         return (
           <div
             key={layer.key}
@@ -195,6 +202,7 @@ export function SceneBackground({
               alt=""
               draggable={false}
             />}
+            {profile && cameraImage && <SceneCamera image={cameraImage} profile={profile} />}
           </div>
         )
       })}

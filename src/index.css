@@ -209,6 +209,25 @@ button:focus-visible,
   user-select: none;
 }
 
+.scene-camera {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.scene-camera[data-playing="true"] {
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-camera[data-playing="true"] {
+    visibility: hidden;
+  }
+}
+
 .scene-whispers {
   --halo-low: 0.22;
   --halo-peak: 0.38;

@@ -12,8 +12,10 @@ import {
   openingDialogue,
   secondChoice,
 } from './story/opening'
+import { letterKey, loadCheckpoint, soundsAreEnabled, storeCheckpoint, storeSoundPreference, type Checkpoint, type CheckpointView } from './story/checkpoint'
+import { createCallSound, type CallSound } from './story/callSound'
 import {
-  advanceCareer,
+  advanceCareerPage,
   canOpenFinale,
   chooseCareerFirst,
   chooseCareerSecond,
@@ -23,8 +25,8 @@ import {
   getCareerChoice,
   getCareerEnding,
   getCareerLetter,
-  getCareerLine,
-  getFinaleOpening,
+  getCareerPage,
+  getFinaleLines,
   getPrologueText,
   identities,
   prologue,
@@ -32,13 +34,14 @@ import {
 import type { CareerId, PlayerIdentity, StoryLine } from './story/expansionTypes'
 import type { CareerProgress } from './story/expansion'
 
-type View = 'home' | 'intro' | 'incoming' | 'call' | 'identity' | 'hub' | 'career' | 'letter' | 'finale'
+type View = 'home' | CheckpointView
 
 type ChoicePreview = { scene: SceneName | null; tone: 'cool' | 'warm' }
 
 const desktopLayoutQuery = '(min-width: 900px)'
+const expansionLinePhases = ['dialogue', 'identity', 'first-feedback', 'transition', 'second-feedback']
 
-function getSceneName(view: View, node: ReturnType<typeof getOpeningNode>, careerId: CareerId | null): SceneName {
+function getSceneName(view: View | 'letter', node: ReturnType<typeof getOpeningNode>, careerId: CareerId | null): SceneName {
   if (view === 'home' || view === 'intro' || view === 'incoming' || view === 'letter' || view === 'finale') return view
   if (view === 'career') return careerId ?? 'connection'
   if (view === 'identity' || view === 'hub') return 'hub'
@@ -172,15 +175,20 @@ function App() {
   const [desktopLayout, setDesktopLayout] = useState(() => window.matchMedia(desktopLayoutQuery).matches)
   const [progress, setProgress] = useState(createInitialOpeningProgress)
   const [confirmOpen, setConfirmOpen] = useState(false)
-  const [confirmTarget, setConfirmTarget] = useState<'home' | 'hub'>('home')
+  const [confirmTarget, setConfirmTarget] = useState<'home' | 'hub' | 'restart'>('home')
   const [hoveredPreview, setHoveredPreview] = useState<ChoicePreview | null>(null)
   const [focusedPreview, setFocusedPreview] = useState<ChoicePreview | null>(null)
   const [identity, setIdentity] = useState<PlayerIdentity | null>(null)
-  const [firstEnding, setFirstEnding] = useState<string | null>(null)
-  const [readCareers, setReadCareers] = useState<CareerId[]>([])
+  const [letters, setLetters] = useState<CareerProgress[]>([])
   const [careerProgress, setCareerProgress] = useState<CareerProgress | null>(null)
   const [finaleStep, setFinaleStep] = useState(0)
-  const [finaleLetterOpen, setFinaleLetterOpen] = useState(false)
+  const [finaleSeen, setFinaleSeen] = useState(false)
+  const [hubIntroSeen, setHubIntroSeen] = useState(false)
+  const [dialogueLog, setDialogueLog] = useState<StoryLine[]>([])
+  const [checkpoint, setCheckpoint] = useState<Checkpoint | null>(loadCheckpoint)
+  const [soundEnabled, setSoundEnabled] = useState(soundsAreEnabled)
+  const audioContext = useRef<AudioContext | null>(null)
+  const playingSound = useRef<AudioBufferSourceNode | null>(null)
   const [surfaceHintDismissed, setSurfaceHintDismissed] = useState(false)
   const previousView = useRef<View>('home')
   const selectionOnPointerDown = useRef(false)
@@ -198,8 +206,11 @@ function App() {
   const letterHeading = useRef<HTMLHeadingElement>(null)
   const finaleHeading = useRef<HTMLHeadingElement>(null)
   const confirmDialog = useRef<HTMLDialogElement>(null)
+  const transcriptDialog = useRef<HTMLDialogElement>(null)
   const safeProgress = normalizeOpeningProgress(progress)
   const currentNode = getOpeningNode(safeProgress.nodeId)
+  const firstEnding = currentNode.kind === 'end' ? currentNode.id : null
+  const readCareers = [...new Set(letters.map((letter) => letter.careerId))]
   const previousOpeningKind = useRef(currentNode.kind)
   const choicePreview = hoveredPreview ?? focusedPreview
   const illustratedHome = view === 'home' && desktopLayout
@@ -207,26 +218,41 @@ function App() {
     ? 'home-hero'
     : view === 'career' && careerProgress
       ? careerProgress.phase === 'letter' ? 'letter' : careerSceneFor(careerProgress)
-      : getSceneName(view === 'finale' && finaleLetterOpen ? 'letter' : view, currentNode, careerProgress?.careerId ?? null)
+      : getSceneName(view === 'finale' && finaleStep > finale.lines.length ? 'letter' : view, currentNode, careerProgress?.careerId ?? null)
   const activeCareer = careerProgress ? getCareer(careerProgress.careerId) : null
-  const careerLine = careerProgress ? getCareerLine(careerProgress) : null
+  const careerPage = careerProgress ? getCareerPage(careerProgress) : []
+  const careerLine = careerPage[0]
   const careerChoice = careerProgress ? getCareerChoice(careerProgress) : null
   const careerEnding = careerProgress ? getCareerEnding(careerProgress) : null
   const careerLetter = careerProgress ? getCareerLetter(careerProgress) : null
   const careerPhase = careerProgress?.phase
+  const canSkipCareer = careerProgress && readCareers.includes(careerProgress.careerId) &&
+    (careerPhase === 'dialogue' || careerPhase === 'identity')
   const prologueText = getPrologueText(firstEnding, identity)
-  const finaleLines: StoryLine[] = [
-    { speaker: '另一个你', text: getFinaleOpening(firstEnding) },
-    ...finale.lines,
-  ]
+  const finaleLines = getFinaleLines(firstEnding, letters.at(-1))
   const finaleLine = finaleStep < finaleLines.length ? finaleLines[finaleStep] : null
-  const finaleDone = finaleStep >= finaleLines.length || finaleLetterOpen
+  const finaleDone = finaleStep >= finaleLines.length
   const hubPrologueLines: StoryLine[] = [
     ...prologue.bridge.slice(0, 2),
     { speaker: '另一个你', text: prologueText.musicOpening },
     ...prologue.bridge.slice(2),
     ...prologue.handoff,
   ]
+  const openingLine = currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing'
+    ? currentNode
+    : null
+  const currentLines = view === 'call' && openingLine ? [openingLine]
+    : view === 'career' ? careerPage
+      : view === 'finale' && finaleLine ? [finaleLine] : []
+
+  useEffect(() => {
+    if (view === 'home') return
+    const next: Checkpoint = {
+      view, progress, identity, career: careerProgress, letters, finaleStep, finaleSeen, hubIntroSeen, dialogueLog,
+    }
+    storeCheckpoint(next)
+    setCheckpoint(next)
+  }, [view, progress, identity, careerProgress, letters, finaleStep, finaleSeen, hubIntroSeen, dialogueLog])
 
   useEffect(() => {
     setHoveredPreview(null)
@@ -249,7 +275,6 @@ function App() {
     if (view === 'call') callHeading.current?.focus()
     if (view === 'identity') identityHeading.current?.focus()
     if (view === 'hub') hubHeading.current?.focus()
-    if (view === 'letter') letterHeading.current?.focus()
     if (view === 'finale') callHeading.current?.focus()
   }, [confirmOpen, view])
 
@@ -295,6 +320,10 @@ function App() {
 
   function confirmEnd(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
+    if (confirmTarget === 'restart') {
+      beginStory()
+      return
+    }
     if (confirmTarget === 'home') {
       returnHome(event)
       return
@@ -302,36 +331,65 @@ function App() {
     setConfirmOpen(false)
     setCareerProgress(null)
     setFinaleStep(0)
-    setFinaleLetterOpen(false)
+    setDialogueLog([])
     setView('hub')
   }
 
   function returnHome(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
     setConfirmOpen(false)
+    setView('home')
+  }
+
+  function beginStory() {
+    setConfirmOpen(false)
+    storeCheckpoint(null)
+    setCheckpoint(null)
     setProgress(createInitialOpeningProgress())
     setIdentity(null)
-    setFirstEnding(null)
-    setReadCareers([])
+    setLetters([])
     setCareerProgress(null)
     setFinaleStep(0)
-    setFinaleLetterOpen(false)
-    setView('home')
+    setFinaleSeen(false)
+    setHubIntroSeen(false)
+    setDialogueLog([])
+    setSurfaceHintDismissed(false)
+    setView('intro')
   }
 
   function startStory(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
-    setView('intro')
+    if (checkpoint) {
+      setConfirmTarget('restart')
+      setConfirmOpen(true)
+      return
+    }
+    beginStory()
+  }
+
+  function resumeStory(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1 || !checkpoint) return
+    setProgress(checkpoint.progress)
+    setIdentity(checkpoint.identity)
+    setLetters(checkpoint.letters)
+    setCareerProgress(checkpoint.career)
+    setFinaleStep(checkpoint.finaleStep)
+    setFinaleSeen(checkpoint.finaleSeen)
+    setHubIntroSeen(checkpoint.hubIntroSeen)
+    setDialogueLog(checkpoint.dialogueLog)
+    setView(checkpoint.view)
   }
 
   function showIncoming(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
     setProgress(createInitialOpeningProgress())
+    setDialogueLog([])
     setView('incoming')
   }
 
   function answerCall(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
+    playSound('connect')
     setProgress(createInitialOpeningProgress())
     setView('call')
   }
@@ -339,12 +397,12 @@ function App() {
   function advanceStory(event?: MouseEvent<HTMLButtonElement>) {
     if (event && event.detail > 1) return
     if (!surfaceHintDismissed) setSurfaceHintDismissed(true)
+    rememberDialogue(currentLines)
     setProgress(advanceOpening)
   }
 
   function startExpansion(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
-    if (currentNode.kind === 'end') setFirstEnding(currentNode.id)
     setCareerProgress(null)
     setView('identity')
   }
@@ -355,16 +413,30 @@ function App() {
   }
 
   function startCareer(careerId: CareerId) {
+    playSound('connect')
+    setHubIntroSeen(true)
+    setDialogueLog([])
     setCareerProgress(createCareerProgress(careerId, identity ?? 'steady'))
+    setView('career')
+  }
+
+  function openSavedLetter(letter: CareerProgress) {
+    setHubIntroSeen(true)
+    setDialogueLog([])
+    setCareerProgress(letter)
     setView('career')
   }
 
   function advanceCareerStory(event?: MouseEvent<HTMLButtonElement>) {
     if (event && event.detail > 1) return
-    setCareerProgress((current) => (current ? advanceCareer(current) : current))
+    rememberDialogue(currentLines)
+    setCareerProgress((current) => current ? advanceCareerPage(current) : current)
   }
 
-  function chooseCareer(optionId: string) {
+  function chooseCareer(event: MouseEvent<HTMLButtonElement>, optionId: string) {
+    if (event.detail > 1) return
+    const option = careerChoice?.options.find(({ id }) => id === optionId)
+    if (option) rememberDialogue([{ speaker: '你', text: option.label }])
     setCareerProgress((current) => {
       if (!current) return current
       if (current.phase === 'first-choice') return chooseCareerFirst(current, optionId)
@@ -373,61 +445,112 @@ function App() {
     })
   }
 
+  function skipCareer(event: MouseEvent<HTMLButtonElement>) {
+    if (event.detail > 1 || !canSkipCareer || !careerProgress) return
+    rememberDialogue(currentLines)
+    setCareerProgress({ ...careerProgress, phase: 'first-choice', lineIndex: 0 })
+  }
+
+  function rememberDialogue(lines: StoryLine[]) {
+    if (lines.length === 0) return
+    setDialogueLog((current) => [...current, ...lines.map(({ speaker, text }) => ({ speaker, text }))])
+  }
+
+  function openTranscript() {
+    const dialog = transcriptDialog.current
+    if (!dialog || dialog.open) return
+    dialog.showModal()
+    const list = dialog.querySelector('.transcript-list')
+    if (list) list.scrollTop = list.scrollHeight
+  }
+
   function focusChoicePreview(optionIndex: number, scene: SceneName | null = null) {
     setHoveredPreview(null)
     setFocusedPreview(choicePreviewFor(optionIndex, scene))
   }
 
+  function rememberLetter() {
+    if (careerProgress?.phase === 'letter') {
+      setLetters((current) => current.some((letter) => letterKey(letter) === letterKey(careerProgress))
+        ? current
+        : [...current, careerProgress])
+    }
+  }
+
   function finishCareer(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
-    if (careerProgress) {
-      const careerId = careerProgress.careerId
-      setReadCareers((current) => current.includes(careerId) ? current : [...current, careerId])
-    }
+    rememberLetter()
     setCareerProgress(null)
+    setDialogueLog([])
     setView('hub')
   }
 
   function restartCareer(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1 || !careerProgress) return
-    setCareerProgress(createCareerProgress(careerProgress.careerId, identity ?? 'steady'))
-    setView('career')
+    rememberLetter()
+    startCareer(careerProgress.careerId)
   }
 
   function startFinale(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
+    playSound('connect')
+    setHubIntroSeen(true)
+    setDialogueLog([])
     setFinaleStep(0)
-    setFinaleLetterOpen(false)
     setView('finale')
   }
 
   function advanceFinale(event?: MouseEvent<HTMLButtonElement>) {
     if (event && event.detail > 1) return
     if (finaleDone) return
-    setFinaleStep((current) => {
-      const next = current + 1
-      if (next >= finaleLines.length) setFinaleLetterOpen(true)
-      return next
-    })
+    rememberDialogue(currentLines)
+    if (finaleLines[finaleStep + 1]?.id === 'guitar-cue') playSound('guitar')
+    if (finaleStep + 1 >= finaleLines.length) setFinaleSeen(true)
+    setFinaleStep((current) => Math.min(current + 1, finaleLines.length))
   }
 
   function returnToHub(event: MouseEvent<HTMLButtonElement>) {
     if (event.detail > 1) return
     setFinaleStep(0)
-    setFinaleLetterOpen(false)
+    setDialogueLog([])
     setView('hub')
   }
 
+  function playSound(sound: CallSound) {
+    if (!soundEnabled || typeof AudioContext === 'undefined') return
+    try {
+      const context = audioContext.current ??= new AudioContext()
+      void context.resume().catch(() => {})
+      playingSound.current?.stop()
+      const source = createCallSound(context, sound)
+      source.onended = () => {
+        if (playingSound.current === source) playingSound.current = null
+        source.disconnect()
+      }
+      source.start()
+      playingSound.current = source
+    } catch {
+      // Sound is optional in browsers that cannot open an audio output.
+    }
+  }
+
+  function toggleSound() {
+    const enabled = !soundEnabled
+    if (!enabled) playingSound.current?.stop()
+    setSoundEnabled(enabled)
+    storeSoundPreference(enabled)
+  }
+
   function surfaceAdvanceAction(target: EventTarget) {
-    if (confirmOpen) return
-    if (target instanceof Element && target.closest('button, a, input, select, textarea, dialog, [role="dialog"]')) return
+    if (confirmOpen || transcriptDialog.current?.open) return
+    if (target instanceof Element && target.closest('button, a, input, select, textarea, summary, details, dialog, [role="dialog"]')) return
 
     if (view === 'call') {
       if (currentNode.kind === 'dialogue' || currentNode.kind === 'feedback' || currentNode.kind === 'closing') return advanceStory
     }
 
     if (view === 'career' && careerProgress) {
-      if (['dialogue', 'identity', 'first-feedback', 'transition', 'second-feedback'].includes(careerProgress.phase)) return advanceCareerStory
+      if (expansionLinePhases.includes(careerProgress.phase)) return advanceCareerStory
     }
 
     if (view === 'finale' && !finaleDone) return advanceFinale
@@ -451,8 +574,8 @@ function App() {
     ? `${currentNode.speaker}：${currentNode.text}`
     : ''
   const careerLive = view === 'career' && careerProgress
-    ? careerLine
-      ? `${careerLine.speaker}：${careerLine.text}`
+    ? careerPage.length
+      ? careerPage.map(({ speaker, text }) => `${speaker}：${text}`).join(' ')
       : careerChoice
         ? careerChoice.prompt
         : careerEnding
@@ -463,7 +586,7 @@ function App() {
   const liveText = openingLive || careerLive || finaleLive
   const expansionCallActive = Boolean(
     (view === 'career' && careerProgress && careerProgress.phase !== 'letter') ||
-    (view === 'finale' && !finaleLetterOpen),
+    (view === 'finale' && !finaleDone),
   )
   const callActive = (view === 'call' && currentNode.kind !== 'end') || expansionCallActive
   const callTitle = view === 'call' ? '第一通来电' : '第二通来电'
@@ -495,7 +618,7 @@ function App() {
       ? `career-${careerProgress.careerId}-${careerProgress.phase === 'letter' ? 'letter' : 'call'}`
       : 'career'
     : view === 'finale'
-      ? finaleLetterOpen ? 'finale-letter' : 'finale'
+      ? finaleDone ? 'finale-letter' : 'finale'
       : view !== 'call'
         ? view
         : currentNode.kind === 'end'
@@ -539,14 +662,22 @@ function App() {
             <span className="brand-mark" aria-hidden="true"><span /></span>
             <span className="header-brand font-mono text-xs font-medium tracking-[0.24em]">ELSEWHERE</span>
           </div>
-          {callActive ? (
-            <div className="header-call">
+          <div className="header-call">
+            {callActive ? (
               <h1 ref={callHeading} tabIndex={-1} id="call-title" className="header-call-title">{callTitle}</h1>
-              <button type="button" className="end-call-action header-end-call" onClick={openEndConfirm}>结束通话</button>
-            </div>
-          ) : !illustratedHome && (
-            <p className="header-meta font-mono text-[10px] tracking-[0.16em] sm:text-xs">平行人生 <span className="header-sep mx-2">/</span> 001</p>
-          )}
+            ) : !illustratedHome && (
+              <p className="header-meta font-mono text-[10px] tracking-[0.16em] sm:text-xs">平行人生 <span className="header-sep mx-2">/</span> 001</p>
+            )}
+            <button type="button" className="end-call-action sound-toggle" aria-label="音效" aria-pressed={soundEnabled} onClick={toggleSound}>
+              音效<span aria-hidden="true"> · {soundEnabled ? '开' : '关'}</span>
+            </button>
+            {callActive && (
+              <>
+                <button type="button" className="end-call-action" onClick={openTranscript}>对白记录</button>
+                <button type="button" className="end-call-action header-end-call" onClick={openEndConfirm}>结束通话</button>
+              </>
+            )}
+          </div>
         </header>
 
         <main className={`app-main${callActive ? ' is-call' : view !== 'call' ? ' is-prelude' : ''}`}>
@@ -567,9 +698,10 @@ function App() {
                       {!illustratedHome && <p className="quiet-note prelude-note"><span className="status-dot" aria-hidden="true" />一段虚构的平行人生，无需注册</p>}
                     </div>
                     <div className="prelude-actions">
-                      <button ref={startButton} type="button" className="primary-action group" onClick={startStory}>
-                        <span>开始体验</span><span className="action-icon"><Arrow /></span>
+                      <button ref={startButton} type="button" className="primary-action group" onClick={checkpoint ? resumeStory : startStory}>
+                        <span>{checkpoint ? '继续上次体验' : '开始体验'}</span><span className="action-icon"><Arrow /></span>
                       </button>
+                      {checkpoint && <button type="button" className="panel-return-action home-restart" onClick={startStory}>重新开始</button>}
                     </div>
                   </article>
                 </div>
@@ -674,6 +806,7 @@ function App() {
                             onBlur={() => setFocusedPreview(null)}
                             onClick={(event) => {
                               if (event.detail > 1) return
+                              rememberDialogue([{ speaker: '你', text: option.label }])
                               setProgress((current) => chooseOpening(current, option.id))
                             }}
                           >
@@ -714,7 +847,7 @@ function App() {
                 </div>
                 <div className="action-row">
                   <button type="button" className="primary-action group" onClick={startExpansion}>
-                    <span>继续</span><span className="action-icon"><Arrow /></span>
+                    <span>接听更多来电</span><span className="action-icon"><Arrow /></span>
                   </button>
                   <button type="button" className="secondary-action group" onClick={showIncoming}>
                     <span>重听这通来电</span><span className="action-icon"><Arrow returning /></span>
@@ -772,40 +905,55 @@ function App() {
                       <h1 ref={hubHeading} tabIndex={-1} id="hub-title" className="section-heading">
                         另一个世界，未知线路
                       </h1>
-                      {canOpenFinale({ identity, firstEnding, readCareers, finaleSeen: false }) && (
+                      {canOpenFinale({ identity, firstEnding, readCareers, finaleSeen }) ? (
                         <div className="hub-finale">
                           <p>「还有一通，来自你自己。」</p>
                           <button type="button" className="primary-action group" onClick={startFinale}>
-                            <span>接听最后一通</span><span className="action-icon"><Arrow /></span>
+                            <span>{finaleSeen ? '重听最后回电' : '接听最后一通'}</span><span className="action-icon"><Arrow /></span>
                           </button>
                         </div>
-                      )}
-                      <p className="hub-later">{prologueText.laterYou}</p>
-                      <div className="hub-script">
-                        {hubPrologueLines.map((line, index) => (
-                          <p key={`${line.speaker}-${index}`} className="hub-line">
-                            <span className="hub-speaker">{line.speaker}</span>
-                            <span>{line.text}</span>
-                          </p>
-                        ))}
-                      </div>
+                      ) : <p className="section-note hub-unlock">读完任意一封来信，就能接听最后一通。</p>}
+                      <details className="hub-prologue" open={!hubIntroSeen} onToggle={(event) => {
+                        if (!event.currentTarget.open) setHubIntroSeen(true)
+                      }}>
+                        <summary>总机开场对白</summary>
+                        <p className="hub-later">{prologueText.laterYou}</p>
+                        <div className="hub-script">
+                          {hubPrologueLines.map((line, index) => (
+                            <p key={`${line.speaker}-${index}`} className="hub-line">
+                              <span className="hub-speaker">{line.speaker}</span>
+                              <span>{line.text}</span>
+                            </p>
+                          ))}
+                        </div>
+                      </details>
                     </div>
 
+                    <p className="hub-progress">已读来信 · {readCareers.length} / {prologue.cards.length} 条线路</p>
                     <div className="hub-cards" aria-label="可接听的线路">
                       {prologue.cards.map((card) => {
-                        const read = readCareers.includes(card.id)
+                        const routeLetters = letters.filter((letter) => letter.careerId === card.id)
+                        const read = routeLetters.length > 0
                         return (
-                          <button
-                            key={card.id}
-                            type="button"
-                            className={`hub-card${read ? ' is-read' : ''}`}
-                            onClick={() => startCareer(card.id)}
-                          >
-                            <span className="hub-card-time">{card.time}</span>
-                            <strong className="hub-card-title">{card.label}</strong>
-                            <span className="hub-card-hook">{card.hook}</span>
-                            <span className="hub-card-status">{read ? '已接听 · 重听' : '接听'}</span>
-                          </button>
+                          <div key={card.id} className="hub-route">
+                            <button type="button" className={`hub-card${read ? ' is-read' : ''}`} onClick={() => startCareer(card.id)}>
+                              <span className="hub-card-time">{card.time}</span>
+                              <strong className="hub-card-title">{card.label}</strong>
+                              <span className="hub-card-hook">{card.hook}</span>
+                              <span className="hub-card-status">{read ? '已接听 · 重听' : '接听'}</span>
+                            </button>
+                            {routeLetters.length === 1 && (
+                              <button className="hub-letter-link" type="button" aria-label={`重读${card.label}的回信`} onClick={() => openSavedLetter(routeLetters[0])}>重读回信</button>
+                            )}
+                            {routeLetters.length > 1 && (
+                              <details className="hub-route-letters">
+                                <summary aria-label={`重读${card.label}的回信`}>重读回信 · {routeLetters.length} 封</summary>
+                                {routeLetters.map((letter) => (
+                                  <button key={letterKey(letter)} type="button" onClick={() => openSavedLetter(letter)}>{getCareerEnding(letter)?.title}</button>
+                                ))}
+                              </details>
+                            )}
+                          </div>
                         )
                       })}
                     </div>
@@ -856,11 +1004,13 @@ function App() {
                       <div className="dialogue-speaker-tab">
                         <span className="dialogue-speaker-state call-live-state"><CallState status="connected" showLabel={false} /></span>
                         <span className="speaker-name">
-                          {careerChoice ? '另一个你' : careerEnding ? '第二通来电' : careerLine?.speaker ?? '另一个你'}
+                          {careerChoice ? '另一个你' : careerEnding ? '第二通来电' : careerPage.length > 1 ? '通话中' : careerLine?.speaker ?? '另一个你'}
                         </span>
-                        <span className="speaker-origin">
-                          {careerChoice || careerEnding ? '来自平行世界的自己' : expansionSpeakerOrigin(careerLine?.speaker)}
-                        </span>
+                        {careerPage.length <= 1 && (
+                          <span className="speaker-origin">
+                            {careerChoice || careerEnding ? '来自平行世界的自己' : expansionSpeakerOrigin(careerLine?.speaker)}
+                          </span>
+                        )}
                       </div>
 
                       {careerEnding ? (
@@ -877,6 +1027,15 @@ function App() {
                         <div className="choice-prompt">
                           <p className="choice-kicker"><span />{careerProgress.phase === 'first-choice' ? '第一次选择' : '第二次选择'}</p>
                           <h2 ref={careerHeading} tabIndex={-1} id="career-title">{careerChoice.prompt}</h2>
+                        </div>
+                      ) : careerPage.length > 1 ? (
+                        <div key={careerProgress.lineIndex} className="career-dialogue-page dialogue-line">
+                          {careerPage.map((line) => (
+                            <p key={line.id} className="career-dialogue-row">
+                              <span className="career-dialogue-speaker">{line.speaker}</span>
+                              <span>{line.text}</span>
+                            </p>
+                          ))}
                         </div>
                       ) : (
                         <p
@@ -898,7 +1057,7 @@ function App() {
                               onMouseLeave={() => setHoveredPreview(null)}
                               onFocus={() => focusChoicePreview(index)}
                               onBlur={() => setFocusedPreview(null)}
-                              onClick={() => chooseCareer(option.id)}
+                              onClick={(event) => chooseCareer(event, option.id)}
                             >
                               <span className="choice-index">{String(index + 1).padStart(2, '0')}</span>
                               <span className="choice-label">{option.label}</span>
@@ -909,6 +1068,7 @@ function App() {
                       )}
                       <div className="dialogue-panel-footer">
                         <p className="dialogue-progress">{activeCareer.title} · {careerProgressLabel(careerProgress)}</p>
+                        {canSkipCareer && <button type="button" className="dialogue-skip" onClick={skipCareer}>跳到第一次选择</button>}
                         {careerChoice ? (
                           <p className="choice-hint">选择会改变这条线路的走向</p>
                         ) : careerEnding ? null : (
@@ -989,6 +1149,18 @@ function App() {
         <SceneWhispers scene={sceneName} layoutKey={screenKey} />
       )}
 
+      <dialog ref={transcriptDialog} className="confirm-dialog transcript-dialog" aria-labelledby="transcript-title">
+        <h2 id="transcript-title">对白记录</h2>
+        <ol className="transcript-list">
+          {[...dialogueLog, ...currentLines].map(({ speaker, text }, index) => (
+            <li key={index}><strong>{speaker}</strong><span>{text}</span></li>
+          ))}
+        </ol>
+        <form method="dialog" className="action-row">
+          <button type="submit" className="secondary-action">返回通话</button>
+        </form>
+      </dialog>
+
       <dialog
         ref={confirmDialog}
         className="confirm-dialog"
@@ -999,15 +1171,17 @@ function App() {
         }}
         onClose={() => setConfirmOpen(false)}
       >
-        <h2 id="confirm-title">{confirmTarget === 'hub' ? '结束本次通话并返回总机？' : '结束本次通话并返回首页？'}</h2>
+        <h2 id="confirm-title">{confirmTarget === 'restart' ? '重新开始体验？' : confirmTarget === 'hub' ? '结束本次通话并返回总机？' : '结束本次通话并返回首页？'}</h2>
         <p>
-          {confirmTarget === 'home'
-            ? '当前对话与选择将清空。'
-            : view === 'finale' ? '本次回电将结束，已读信件保留。' : '当前职业线进度将清空，已读信件保留。'}
+          {confirmTarget === 'restart'
+            ? '当前进度和来信会被清空。'
+            : confirmTarget === 'home'
+              ? '你可以稍后从首页继续这通来电。'
+              : view === 'finale' ? '本次回电将结束，已读信件保留。' : '当前职业线进度将清空，已读信件保留。'}
         </p>
         <div className="action-row">
           <button type="button" className="secondary-action" onClick={() => setConfirmOpen(false)}>取消</button>
-          <button type="button" className="danger-action" onClick={confirmEnd}>{confirmTarget === 'hub' ? '确认返回总机' : '确认结束'}</button>
+          <button type="button" className="danger-action" onClick={confirmEnd}>{confirmTarget === 'restart' ? '确认重新开始' : confirmTarget === 'hub' ? '确认返回总机' : '确认结束'}</button>
         </div>
       </dialog>
     </div>

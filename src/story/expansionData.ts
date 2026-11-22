@@ -109,7 +109,7 @@ export const expansionData: ExpansionData = {
         {
           "id": "doctor-04",
           "speaker": "另一个你",
-          "text": "差不多。今天抢救室满床，走廊都加了位。"
+          "text": "差不多。今天抢救室满床，刚送来一个和你同岁的人。"
         },
         {
           "id": "doctor-05",
@@ -169,7 +169,7 @@ export const expansionData: ExpansionData = {
         {
           "id": "doctor-16",
           "speaker": "另一个你",
-          "text": "刚才送来的那个，和你同岁。暂时稳住了。"
+          "text": "刚才那个病人，暂时稳住了。"
         },
         {
           "id": "doctor-17",
@@ -349,7 +349,7 @@ export const expansionData: ExpansionData = {
         {
           "id": "teacher-04",
           "speaker": "另一个你",
-          "text": "刚下课。学生大多走了，只剩最后一排的窗还亮着。"
+          "text": "刚下课。有个平时爱画画的学生留下来，说她不想再画了。"
         },
         {
           "id": "teacher-05",
@@ -379,7 +379,7 @@ export const expansionData: ExpansionData = {
         {
           "id": "teacher-10",
           "speaker": "另一个你",
-          "text": "今天有个学生来找我。她说想放弃画画，去读一个“好找工作”的专业。"
+          "text": "她说该去读一个“好找工作”的专业。可她说这话的时候，一直捏着画稿不放。"
         },
         {
           "id": "teacher-11",
@@ -579,7 +579,7 @@ export const expansionData: ExpansionData = {
         {
           "id": "designer-04",
           "speaker": "另一个你",
-          "text": "凌晨一点。甲方刚发来第十二版意见。"
+          "text": "凌晨一点。甲方刚发来第十二版意见：“还是第一版更有感觉”。"
         },
         {
           "id": "designer-05",
@@ -589,7 +589,7 @@ export const expansionData: ExpansionData = {
         {
           "id": "designer-06",
           "speaker": "另一个你",
-          "text": "他说“还是第一版更有感觉”。第一版是三个月前做的。"
+          "text": "第一版是三个月前做的。现在我都说不清哪一版还像我自己的。"
         },
         {
           "id": "designer-07",
@@ -814,7 +814,7 @@ export const expansionData: ExpansionData = {
         {
           "id": "founder-04",
           "speaker": "另一个你",
-          "text": "老板得第一个到，不然谁信这家公司还在。"
+          "text": "下个月工资还没着落，总得有人先把门打开。"
         },
         {
           "id": "founder-05",
@@ -834,7 +834,7 @@ export const expansionData: ExpansionData = {
         {
           "id": "founder-08",
           "speaker": "另一个你",
-          "text": "没事。我把能省的都省了。下个月工资还没着落，但服务器费刚续上。"
+          "text": "没事。我把能省的都省了，唯独服务器费刚续上。停一天，客户就真没了。"
         },
         {
           "id": "founder-09",
@@ -1049,6 +1049,7 @@ export const expansionData: ExpansionData = {
         "text": "你那边还好吗？"
       },
       {
+        "id": "career-recall",
         "speaker": "另一个你",
         "text": "还好。我听见你接了好几个世界的电话。"
       },
@@ -1061,6 +1062,7 @@ export const expansionData: ExpansionData = {
         "text": "嗯。尤其是你的声音，比第一次接我电话时，轻松多了。"
       },
       {
+        "id": "guitar-cue",
         "speaker": "旁白",
         "text": "电话那头传来琴弦被轻轻拨响的声音，只有一下。"
       },

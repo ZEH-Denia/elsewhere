@@ -22,6 +22,15 @@ type Whisper = {
 }
 
 const HOVER_DELAY = 150
+const detailLabels: Record<string, string> = {
+  guitar: '吉他',
+  phone: '信号设备',
+  photo: '照片',
+  sheet: '乐谱',
+  clock: '时钟',
+  voice: '通话杂音',
+  rings: '波纹',
+}
 
 const whispers: Partial<Record<SceneName, Whisper[]>> = {
   'home-hero': [{
@@ -319,7 +328,7 @@ export function SceneWhispers({ scene, layoutKey }: { scene: SceneName; layoutKe
                 width: item.hit.w * scale,
                 height: item.hit.h * scale,
               }}
-              aria-label="画面细节"
+              aria-label={`画面细节：${detailLabels[item.id]}`}
               aria-describedby={bubbleId}
               aria-expanded={active}
               onPointerEnter={(event) => {

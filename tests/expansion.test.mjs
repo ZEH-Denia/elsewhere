@@ -8,12 +8,15 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const temporaryDirectory = await mkdtemp(join(tmpdir(), 'elsewhere-expansion-'))
 let story
+let checkpoint
 try {
   const compiler = fileURLToPath(new URL('../node_modules/typescript/bin/tsc', import.meta.url))
   const source = fileURLToPath(new URL('../src/story/expansion.ts', import.meta.url))
+  const checkpointSource = fileURLToPath(new URL('../src/story/checkpoint.ts', import.meta.url))
   const result = spawnSync(process.execPath, [
     compiler,
     source,
+    checkpointSource,
     '--ignoreConfig',
     '--outDir', temporaryDirectory,
     '--module', 'esnext',
@@ -24,12 +27,14 @@ try {
   ], { encoding: 'utf8' })
   assert.equal(result.status, 0, `${result.stdout}${result.stderr}`)
   story = await import(pathToFileURL(join(temporaryDirectory, 'expansion.js')).href)
+  checkpoint = await import(pathToFileURL(join(temporaryDirectory, 'checkpoint.js')).href)
 } finally {
   await rm(temporaryDirectory, { recursive: true, force: true })
 }
 
 const {
   advanceCareer,
+  advanceCareerPage,
   canOpenFinale,
   careers,
   chooseCareerFirst,
@@ -39,6 +44,8 @@ const {
   getCareerEnding,
   getCareerLetter,
   getCareerLine,
+  getCareerPage,
+  getFinaleLines,
   getFinaleOpening,
   getPrologueText,
   markCareerRead,
@@ -135,4 +142,81 @@ test('读完任一条信件后解锁尾声入口，重置清空记录', () => {
   assert.equal(canOpenFinale(state), true)
   assert.deepEqual(state.readCareers, ['doctor'])
   assert.deepEqual(resetExpansionState(), { identity: null, firstEnding: null, readCareers: [], finaleSeen: false })
+})
+
+test('分组推进覆盖每句职业对白，第一处选择在十次以内到达', () => {
+  for (const career of careers) {
+    let progress = createCareerProgress(career.id, 'steady')
+    const heard = []
+    let clicks = 0
+    while (progress.phase === 'dialogue' && clicks < 10) {
+      heard.push(...getCareerPage(progress))
+      progress = advanceCareerPage(progress)
+      clicks++
+    }
+    assert.deepEqual(heard, career.dialogue)
+    assert.equal(progress.phase, 'identity')
+    assert.equal(advanceCareerPage(progress).phase, 'first-choice')
+    assert.ok(clicks + 1 <= 10)
+  }
+})
+
+function letterFor(career, ending) {
+  return {
+    ...createCareerProgress(career.id, 'steady'),
+    firstChoiceId: ending.firstId,
+    secondChoiceId: ending.secondId,
+    phase: 'letter',
+  }
+}
+
+test('十六封信都有不同的尾声回扣，并保留琴弦提示', () => {
+  const callbacks = new Set()
+  for (const career of careers) {
+    for (const ending of career.endings) {
+      const lines = getFinaleLines('regret-make-space', letterFor(career, ending))
+      const recall = lines.find(({ id }) => id === 'career-recall')
+      assert.ok(recall && !recall.text.includes('好几个世界'))
+      assert.equal(lines.filter(({ id }) => id === 'guitar-cue').length, 1)
+      callbacks.add(recall.text)
+    }
+  }
+  assert.equal(callbacks.size, 16)
+})
+
+test('存档能恢复分岔位置和同职业的不同来信，并丢弃损坏记录', () => {
+  const storage = new Map()
+  globalThis.window = { localStorage: {
+    getItem: (key) => storage.get(key) ?? null,
+    setItem: (key, value) => storage.set(key, value),
+    removeItem: (key) => storage.delete(key),
+  } }
+  try {
+    const [doctor] = careers
+    const letters = doctor.endings.slice(0, 2).map((ending) => letterFor(doctor, ending))
+    const save = {
+      view: 'career',
+      progress: { nodeId: 'regret-make-space', choiceId: 'regret', nextStepId: 'make-space' },
+      identity: 'steady',
+      career: { ...createCareerProgress(doctor.id, 'steady'), phase: 'first-choice' },
+      letters,
+      finaleStep: 0,
+      finaleSeen: false,
+      hubIntroSeen: true,
+      dialogueLog: [{ speaker: '你', text: '你听起来像三天没睡。' }],
+    }
+    checkpoint.storeCheckpoint(save)
+    assert.deepEqual(checkpoint.loadCheckpoint(), save)
+
+    checkpoint.storeCheckpoint({ ...save, career: { ...save.career, phase: 'second-choice' } })
+    assert.equal(checkpoint.loadCheckpoint().view, 'hub')
+    assert.deepEqual(checkpoint.loadCheckpoint().letters, letters)
+
+    checkpoint.storeCheckpoint({ ...save, progress: { nodeId: '__proto__' } })
+    assert.equal(checkpoint.loadCheckpoint(), null)
+    checkpoint.storeCheckpoint(null)
+    assert.equal(checkpoint.loadCheckpoint(), null)
+  } finally {
+    delete globalThis.window
+  }
 })

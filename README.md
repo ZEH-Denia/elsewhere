@@ -38,6 +38,7 @@ npm run preview
 | 获取项目与更新本地副本 | [同事接手指南](docs/同事接手指南.md) |
 | 当前范围、进度和验收 | [项目现状](docs/PROJECT_STATUS.md) · [当前任务](tasks/current.md) · [审查记录](tasks/reviews/README.md) |
 | 开发与 Git 同步约定 | [协作协议](docs/COLLABORATION.md) · [GitHub 协作入门](docs/GITHUB_COLLABORATION.md) |
+| 从本项目复用开发方法 | [互动叙事网页开发手册](docs/INTERACTIVE_STORY_PLAYBOOK.md) |
 | 产品、技术和候选任务 | [产品定义](docs/PRODUCT.md) · [技术方案](docs/ARCHITECTURE.md) · [路线图](docs/ROADMAP.md) |
 | 既有执行记录 | [历史报告](tasks/reports/README.md) · [原始交接](CODEX_HANDOFF.md) |
 
